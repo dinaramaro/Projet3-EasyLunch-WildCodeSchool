@@ -1,1 +1,1 @@
-# bordeaux-0918-js-easylunch
+# Projet Easy Lunch
