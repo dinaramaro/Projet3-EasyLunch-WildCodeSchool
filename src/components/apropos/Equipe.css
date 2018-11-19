@@ -1,0 +1,14 @@
+
+
+.person {
+    text-align : center;
+}
+
+.person h1 {
+    font-size : 25px;
+    margin : 10px;
+}
+
+.equipe img {
+    border-radius: 50%;
+}

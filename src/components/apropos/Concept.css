@@ -1,0 +1,46 @@
+.conteneur {
+    margin-left : 100px;
+    margin-right: 100px;
+}
+
+.titre {
+    background-image : radial-gradient(#F1CD00, #FEA400);
+    color : #FFFFFF;
+    text-align : center;
+    font-size : 2vw;
+    font-weight: bold;
+    height : 40px;
+    line-height: 40px;
+    
+}
+
+.box img {
+    width : 80%;
+}
+
+ul {
+    list-style-type: none;
+}
+.concept {
+    text-align: center;
+}
+
+.concept-text {
+    padding : 15px;
+    text-align: justify;
+}
+
+.logo {
+    width : 300px;
+    margin : 20px;
+}
+
+.logo-sm {
+   
+    margin : 20px;
+}
+
+.actu {
+    text-align : center;
+    margin : 50px;
+}
