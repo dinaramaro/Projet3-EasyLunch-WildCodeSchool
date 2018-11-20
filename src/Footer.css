@@ -1,0 +1,36 @@
+.nav-link{
+  color: white;
+}
+.nav-link:hover{
+color:whitesmoke;
+}
+.container{
+margin: auto;
+}
+.footer{
+  background-image: linear-gradient(to bottom right, #F1C40F, #FFA300);
+  list-style-type: none;
+}
+.card{
+background-image: linear-gradient(to bottom right, #FFA300, #F1C40F);
+border: none;
+}
+.row{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1%;
+}
+.image{
+  width: 75%; 
+}
+.logoF{
+display: flex;
+justify-content: center;
+}
+@media all and (max-width: 620px)
+{
+  .image
+  {
+      display: none;
+  }
+}

@@ -17,6 +17,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "precommit": "npm run lint-jsx",
+    "lint": "eslint src",
+    "lint-jsx": "eslint src/**/*.jsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
