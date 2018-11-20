@@ -1,0 +1,11 @@
+.navbar-logo{
+    height: 38px;
+}
+
+.navbar-div {
+    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+}
+
+.nav-dropdown {
+    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+}

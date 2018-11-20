@@ -1,4 +1,6 @@
 import React from 'react';
+import './NavBar.css';
+
 
 import {
   Collapse,
@@ -13,7 +15,7 @@ import {
   DropdownMenu,
   DropdownItem } from 'reactstrap';
 
-export default class NavBar extends React.Component {
+  export default class NavBar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -29,35 +31,46 @@ export default class NavBar extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <div className="navbar-div">
+        <Navbar  dark expand="md">
+          <NavbarBrand href="/" >
+            <img src="/medias/weblogo-easylunch-blanc.png" alt="navbarLogo" className="navbar-logo"/>
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+              <NavItem >
+                <NavLink href="/components/" style={{color : 'white'}}>Je participe</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
+                <NavLink href="/components/"style={{color : 'white'}}>Connexion</NavLink>
               </NavItem>
+             
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Options
+                <DropdownToggle nav caret style={{color : 'white'}}>
+                  A propos
                 </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
+                <DropdownMenu right className='nav-dropdown' >
+                  <DropdownItem style={{color : 'white'}}>
+                    Le concept
                   </DropdownItem>
-                  <DropdownItem>
-                    Option 2
+                  <DropdownItem style={{color : 'white'}}>
+                    L'équipe
                   </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                  <DropdownItem style={{color : 'white'}}>
+                    Contacts
+                  </DropdownItem>
+                  <DropdownItem style={{color : 'white'}}>
+                    Conditions générales
+                  </DropdownItem>
+                  <DropdownItem style={{color : 'white'}}>
+                    FAQ
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
+              <NavItem>
+                <NavLink href="/components/" style={{color : 'white'}}>Espace restaurateurs</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
@@ -66,7 +79,4 @@ export default class NavBar extends React.Component {
   }
 }
  
-export default Navbar;
-
-
 
