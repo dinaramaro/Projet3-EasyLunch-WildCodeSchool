@@ -1,6 +1,7 @@
 .conteneur {
     margin-left : 100px;
     margin-right: 100px;
+    text-align: center;
 }
 
 .titre {
@@ -21,9 +22,7 @@
 ul {
     list-style-type: none;
 }
-.concept {
-    text-align: center;
-}
+
 
 .concept-text {
     padding : 15px;

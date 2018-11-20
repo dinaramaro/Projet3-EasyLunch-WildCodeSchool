@@ -1,11 +1,11 @@
 import React from 'react';
 
 const CGV = () => {
-    return (
-        <div>
+  return (
+    <div>
 
-        </div>
-    );
+    </div>
+  );
 }
 
 export default CGV;
