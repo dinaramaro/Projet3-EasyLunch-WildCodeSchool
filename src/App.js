@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import Accueil from './components/Accueil';
+import { Switch, Route } from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
-      <div>
-        let's go !
-      </div>
+      <Switch>
+        <Route exact path="/" component={Accueil} />
+      </Switch>
+
     );
   }
 }

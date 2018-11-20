@@ -1,0 +1,221 @@
+
+.icone {
+    width: 60px;
+    height: 60px;
+    padding-top: 10px;
+    
+}
+
+.bouton {
+    margin-bottom: 0px!important;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 100%;
+
+}
+
+.bouton:hover {
+    cursor: pointer;
+}
+.carte {
+    border: 0px solid black!important;
+}
+
+.col {
+   
+    width: 100%;
+}
+
+.paraDetails {
+    text-align: justify;
+    padding: 10px 10px;
+}
+
+.fleche {
+    height: 25px;
+}
+
+@media (max-width: 575.98px) {
+
+    .video {
+        display: none;
+    }
+    .para1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+    
+    .para2 {
+        font-size: 2rem;
+        color: #ffa300;
+        
+    }
+    .rond {
+        border: 1px solid #ffa300;
+        color: #ffa300;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding-left: 15px;
+        padding-top: 5px;
+        font-size: 1.5rem;
+        position: relative;
+        top: 20px;
+        left: -10px;
+        z-index: 5;
+        background-color: white;
+    
+    
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .para1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.3rem;
+    }
+    
+    .para2 {
+        font-size: 1.75rem;
+        color: #ffa300;
+        
+    }
+    .rond {
+        border: 1px solid #ffa300;
+        color: #ffa300;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        padding-left: 15px;
+        padding-top: 5px;
+        font-size: 1.5rem;
+        position: relative;
+        top: 20px;
+        left: -10px;
+        z-index: 5;
+        background-color: white;
+    
+    
+    }
+    .titre {
+        font-size: 0.75rem;
+    }
+    .icone {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .para1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 1.75rem;
+    }
+    
+    .para2 {
+        font-size: 2rem;
+        color: #ffa300;
+        
+    }
+    .rond {
+        border: 1px solid #ffa300;
+        color: #ffa300;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        padding-left: 17px;
+        padding-top: 7px;
+        font-size: 1.5rem;
+        position: relative;
+        top: 20px;
+        left: -10px;
+        z-index: 5;
+        background-color: white;
+    
+    
+    }
+    .titre {
+        font-size: 1rem;
+    }
+    .icone {
+        margin-left: 25px;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .para1 {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 2rem;
+    }
+    
+    .para2 {
+        font-size: 2.5rem;
+        color: #ffa300;
+        
+    }
+    .rond {
+        border: 1px solid #ffa300;
+        color: #ffa300;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        padding-left: 20px;
+        padding-top: 10px;
+        font-size: 1.5rem;
+        position: relative;
+        top: 20px;
+        left: -10px;
+        z-index: 5;
+        background-color: white;
+    
+    }
+    .icone {
+        margin-left: 20px;
+    }
+    .titre {
+        font-size: 1rem;
+    }
+}
+@media (min-width: 1200px) {
+
+    .para1 {
+       
+        margin-top: 20px;
+        font-size: 2.25rem;
+        text-align: center;
+    }
+    
+    .para2 {
+        font-size: 2.75rem;
+        color: #ffa300;
+        margin-bottom: 0rem;
+        text-align: center;
+    }
+
+    .rond {
+        border: 1px solid #ffa300;
+        color: #ffa300;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        padding-left: 20px;
+        padding-top: 5px;
+        font-size: 2rem;
+        position: relative;
+        top: 30px;
+        left: -10px;
+        z-index: 5;
+        background-color: white;
+
+
+    }
+    .icone {
+        margin-left: 15px;
+    }
+    .titre {
+        font-size: 1.1rem;
+    }
+}
