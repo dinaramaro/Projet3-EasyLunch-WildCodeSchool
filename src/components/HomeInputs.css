@@ -1,10 +1,50 @@
-.background {
-  height: 100%;
-  background-size: inherit;
-  background-repeat: no-repeat;
-}
-
-.banner {
-  height: 34vw;
+.banner{
   background-position: 50% 50%;
 }
+
+.background {
+  height: 34vw;
+  height: 110%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.search1 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 30%;
+  top: 55%;
+  width: 100px;
+
+  
+
+
+}
+
+.search2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 70%;
+  top: 55%;
+  width: 100px;
+
+}
+
+
+.border-text{
+  border-radius: 4px;
+  padding : 0.5% 1% 0.5% 2%;
+  color: white;
+  font-weight: bolder;
+  text-shadow: 1px 1px 1.2px #000000;
+  text-align: center;
+  font-size: 3vw;
+  font-family: 'arial', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  letter-spacing: 3px;
+  transform: translate(-50%, -50%);
+}
+

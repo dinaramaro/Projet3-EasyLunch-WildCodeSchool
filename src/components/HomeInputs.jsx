@@ -1,14 +1,16 @@
 import React from 'react';
 import './HomeInputs.css';
+import { Input } from 'reactstrap';
 
-const imgSrc = 'http://eglisecle.fr/lesite/uploads/2015/11/download-3-e1468838305470.jpg';
+const imgSrc = '/medias/hero-image.png';
 const HomeInputs = () => (
   <div className="banner">
-      <div fluid className="background img-fluid" style={{ backgroundImage: `url(${imgSrc})` }} >
-
-      </div>
+    <div className="background" style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}>
+      <h2 className="border-text banner-text">Gagnez du temps au restaurant !</h2>
+      <Input className="search1" placeholder="Nombre de personnes" style={{ width: '35vw' }} />
+      <Input className="search2" placeholder="Nom restaurant, quartier" style={{ width: '35vw' }} />
+    </div>
   </div>
-
 
 );
 
