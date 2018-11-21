@@ -32,8 +32,8 @@ export default class NavBar extends React.Component {
   render() {
     const { isOpen } = this.state;
     return (
-      <div className="navbar-div">
-        <Navbar dark expand="md">
+      <div className="nav-bar">
+        <Navbar className="navbar-div" dark expand="md">
           <NavbarBrand href="/">
             <img
               src="/medias/weblogo-easylunch-blanc.png"
@@ -68,7 +68,7 @@ export default class NavBar extends React.Component {
                     Le concept
                   </DropdownItem>
                   <DropdownItem style={{ color: 'white' }}>
-                    {'L\'équipe'}
+                    {"L'équipe"}
                   </DropdownItem>
                   <DropdownItem style={{ color: 'white' }}>
                     Contacts
