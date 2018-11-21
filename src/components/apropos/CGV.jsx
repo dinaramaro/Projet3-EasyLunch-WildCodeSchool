@@ -1,11 +1,9 @@
 import React from 'react';
 
-const CGV = () => {
-  return (
-    <div>
-
-    </div>
-  );
-}
+const CGV = () => (
+  <div>
+    Test
+  </div>
+);
 
 export default CGV;
