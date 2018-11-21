@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Concept from './components/apropos/Concept';
 import Equipe from './components/apropos/Equipe';
 import FAQ from './components/apropos/FAQ';
 import Contact from './components/apropos/Contact';
 import CGV from './components/apropos/CGV';
-import { Route, Switch } from 'react-router-dom'
+
 
 class App extends Component {
   render() {
