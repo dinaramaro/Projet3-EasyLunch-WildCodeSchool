@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contact.css';
+import './Contact.scss';
 import * as rs from 'reactstrap';
 
 const paragraph1Contact = 'Des questions, des suggestions, des conseils, des remarques, des demandes ? N’hésitez pas à nous contacter, nous sommes là pour vous aider. Nous vous apporterons une réponse avec plaisir dans les plus brefs délais.';
@@ -9,7 +9,7 @@ const paragraph3Contact = 'Vous pouvez nous contacter en remplissant le formulai
 const Contact = () => (
 
   <div className="section-contact">
-    <h2 className="titre-contact">NOUS CONTACT</h2>
+    <h2 className="titre-contact">NOUS CONTACTER</h2>
     <rs.Container className="contact">
       <p>
         {paragraph1Contact}
@@ -59,7 +59,7 @@ const Contact = () => (
 
 
         <div className="actualite">
-          <h1>Suivez notre actualité</h1>
+          <h2>Suivez notre actualité</h2>
           <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/Facebook.png" alt="Easy-Lunch-facebook" /></a>
           <a href="https://www.instagram.com/easy_lunch_fr/" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/instagram.png" alt="Easy-Lunch-instagram" /></a>
         </div>
