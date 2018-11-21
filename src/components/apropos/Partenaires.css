@@ -1,0 +1,33 @@
+.partenaires {
+    width : 200px;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) 
+{#image { width : 100%;
+  height : 25vw;
+  object-fit: cover; }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px)
+{#image { 
+  width : 100%;
+  height : 13vw;
+  object-fit: cover; 
+}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px)
+{#image { width : 100%;
+  height : 9vw;
+  object-fit: cover; }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px)
+{#image { width : 100%;
+  height : 9vw;
+  object-fit: cover; }
+}
