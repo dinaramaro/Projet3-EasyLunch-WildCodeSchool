@@ -1,38 +1,43 @@
-
 .Footer {
   margin: auto;
-  .footer{
-    background-image: linear-gradient(to bottom right, #F1C40F, #FFA300);
-    .row{
+  
+  .footer {
+    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+
+    .row {
       display: flex;
       justify-content: space-around;
       padding-top: 1%;
       padding-left: 5%;
-      .card{
-        background-color: transparent!important;
+
+      .card {
+        background-color: transparent;
         border: none;
-        .nav-link{
+
+        .nav-link {
           color: white;
-          .nav-link:hover{
-            color:whitesmoke;
+
+          .nav-link:hover {
+            color: whitesmoke;
           }
-        }  
+        }
       }
     }
-    .logoF{
+
+    .logoF {
       display: flex;
       justify-content: center;
-      .image{
+
+      .image {
         width: 75%;
-        padding-bottom: 5%; 
+        padding-bottom: 5%;
       }
     }
   }
-}        
-@media all and (max-width: 800px)
-    {
-      .image
-      {
-          display: none;
-      }
-    }
+}
+
+@media all and (max-width: 800px) {
+  .image {
+    display: none;
+  }
+}
