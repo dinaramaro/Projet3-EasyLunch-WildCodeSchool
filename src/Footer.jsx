@@ -16,15 +16,15 @@ const Footer = () => (
         <Row>
           <Col>
             <Card>
-              <NavLink href="#">Je Participe</NavLink>
-              <NavLink href="#">Connexion</NavLink>
-              <NavLink href="#">Espace Restaurant</NavLink>
+              <NavLink href="#">Contact Client</NavLink>
+              <NavLink href="#">Contact Restaurateur</NavLink>
+              <NavLink href="#">Nos Partenaires</NavLink>
             </Card>
           </Col>
           <Col>
             <Card>
-              <NavLink href="#">Contact</NavLink>
-              <NavLink href="#">FAQ</NavLink>
+              <NavLink href="#">Mentions légales</NavLink>
+              <NavLink href="#">politique de confidentialité</NavLink>
               <NavLink href="#">Conditions Générales</NavLink>
             </Card>
           </Col>
