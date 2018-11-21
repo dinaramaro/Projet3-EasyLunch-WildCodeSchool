@@ -1,8 +1,6 @@
 import React from 'react';
 import './Contact.css';
 import * as rs from 'reactstrap';
-import Facebook from '../../images/Facebook.png';
-import Instagram from '../../images/instagram.png';
 
 const paragraph1Contact = 'Des questions, des suggestions, des conseils, des remarques, des demandes ? N’hésitez pas à nous contacter, nous sommes là pour vous aider. Nous vous apporterons une réponse avec plaisir dans les plus brefs délais.';
 const paragraph2Contact = ' Toutes les informations dont vous nous ferez part nous permettrons d’améliorer le service Easy Lunch. nous sommes donc à l’écoute et impatiemment de vous lire 🙂';
@@ -62,8 +60,8 @@ const Contact = () => (
 
         <div className="actualite">
           <h1>Suivez notre actualité</h1>
-          <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src={Facebook} alt="Easy-Lunch-facebook" /></a>
-          <a href="https://www.instagram.com/easy_lunch_fr/" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src={Instagram} alt="Easy-Lunch-instagram" /></a>
+          <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/Facebook.png" alt="Easy-Lunch-facebook" /></a>
+          <a href="https://www.instagram.com/easy_lunch_fr/" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/instagram.png" alt="Easy-Lunch-instagram" /></a>
         </div>
 
       </section>
