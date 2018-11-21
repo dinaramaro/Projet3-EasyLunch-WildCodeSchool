@@ -1,0 +1,21 @@
+[{
+    "id": "1",
+    "question": "Qu'est-ce qu’Easy Lunch ?",
+    "reponse": "Easy Lunch est un service principalement destiné aux personnes qui souhaitent simplifier leur pause-déjeuner au restaurant. Easy Lunch vous permet de commander et de payer en quelques clics avant 11h30, d’être servi peu après votre arrivée au restaurant et de repartir à la fin du déjeuner sans passer par la caisse. Le service est disponible tous les midis du lundi au vendredi."
+  },
+  {
+    "id": "2",
+    "question": "Dois-je absolument créer un compte pour utiliser Easy Lunch?",
+    "reponse": "Vous n’êtes pas obligé de créer un compte pour découvrir Easy Lunch. En revanche, pour effectuer une commande sur Easy Lunch, la création d’un compte est alors obligatoire. En effet, nous devons être en mesure de vous joindre en cas de besoin (retard, indisponibilité d’un plat…)."
+  },
+  {
+    "id": "3",
+    "question": "Pourquoi n’ai-je pas accès à un restaurant particulier ?",
+    "reponse": "Il existe plusieurs raisons différentes : 1 / Le restaurant est complet et les commandes ne sont plus possibles 2 / Le restaurant est temporairement indisponible et a bloqué les commandes 3 / Le restaurant n’ a pas assez de places disponibles par rapport à votre demande(exemple: vous êtes 8 personnes et le restaurant n’ a plus que 7 places disponibles) 4 / Le restaurant ne propose pas de tables suffisamment grandes par rapport à votre demande(exemple: vous êtes 9 personnes et le restaurant accepte des tables de 8 personnes au maximum) 5 / Le restaurant n’ est pas ouvert 6 / Le restaurant ne fait pas parti de nos partenaires: vous pouvez sensibiliser vos restaurants préférés à se faire référencer sur Easy Lunch! En cas de doute, n’ hésitez pas à nous contacter par mail à l’ adresse contact@easy-lunch.fr "
+  },
+  {
+    "id": "4",
+    "question": "Comment puis-je commander sur Easy Lunch ?",
+    "reponse": "Il y a deux possibilités, soit vous organisez une réservation soit vous participez à une réservation déjà initiée. Quel que soit votre cas, commander son repas avec Easy Lunch est simple et rapide. Il faut savoir que chaque personne commande et paye individuellement."
+  }
+]
