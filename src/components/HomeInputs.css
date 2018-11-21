@@ -13,9 +13,11 @@
 .search1 {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 30%;
-  top: 55%;
+  left: 35%;
+  top: 70%;
   width: 100px;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
+
 
   
 
@@ -25,25 +27,101 @@
 .search2 {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 70%;
-  top: 55%;
+  left: 65%;
+  top: 70%;
   width: 100px;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
 
+
+}
+
+.search-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 200px!important;
+  font-size: 20px!important;
+  left: 50%;
+  top: 85%;
+  background-color: #ffa300!important;
+  border-radius: 7px!important;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
+
+}
+
+.participe-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 200px!important;
+  font-size: 20px!important;
+  left: 90%;
+  top: 12%;
+  background-color: #ffa300!important;
+  border-radius: 7px!important;
+  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
+}
+
+@media only screen and (max-width: 900px) {
+  .search-button {
+    width: 150px!important;
+    font-size: 15px!important;
+    top: 80%
+  }
+  .search1 {
+    left: 30%;
+    top: 60%;
+    width: 225px!important;
+   
+  }
+  .search2 {
+    left: 70%;
+    top: 60%;
+    width: 225px!important;
+
+  }
+  .border-text {
+    top: 23%!important;
+    font-size: 20px!important;
+  }
+  .participe-button {
+    display: none!important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .search-button {
+    width: 125px!important;
+    font-size: 10px!important;
+    top: 80%
+  }
+  .search1 {
+    left: 25%;
+    top: 42%;
+    width: 150px!important;
+  }
+  .search2 {
+    left: 75%;
+    top: 42%;
+    width: 150px!important;
+  }
+  .border-text {
+    display: none;
+  }
+  .participe-button {
+    display: none!important;
+  }
 }
 
 
 .border-text{
   border-radius: 4px;
-  padding : 0.5% 1% 0.5% 2%;
   color: white;
   font-weight: bolder;
-  text-shadow: 1px 1px 1.2px #000000;
+  text-shadow: 1px 1px 2px #000000;
   text-align: center;
-  font-size: 3vw;
+  font-size: 2vw;
   font-family: 'arial', sans-serif;
   position: absolute;
   left: 50%;
-  top: 15%;
+  top: 38%;
   letter-spacing: 3px;
   transform: translate(-50%, -50%);
 }
