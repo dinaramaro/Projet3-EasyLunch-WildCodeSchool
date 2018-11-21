@@ -11,7 +11,7 @@ class FAQ extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       collapse: false,
-      questionslist: fetchedQuestions,
+      questionsList: fetchedQuestions,
     };
   }
 
@@ -27,7 +27,7 @@ class FAQ extends Component {
   render() {
     return (
       <div className="conteneur">
-        <Question toggle={this.toggle} questions={this.state.questionslist} collapse={this.state.collapse} />
+        <Question toggle={this.toggle} questions={this.state.questionsList} collapse={this.state.collapse} />
       </div>
     );
   }
