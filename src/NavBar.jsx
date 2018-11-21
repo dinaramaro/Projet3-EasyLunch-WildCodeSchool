@@ -1,5 +1,5 @@
 import React from 'react';
-import './NavBar.css';
+import './NavBar.scss';
 
 import {
   Collapse,
@@ -12,7 +12,7 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
 } from 'reactstrap';
 
 export default class NavBar extends React.Component {
@@ -21,15 +21,16 @@ export default class NavBar extends React.Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
+
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.setState(prevState => ({ isOpen: !prevState.isOpen }));
   }
+
   render() {
+    const { isOpen } = this.state;
     return (
       <div className="navbar-div">
         <Navbar dark expand="md">
@@ -41,12 +42,12 @@ export default class NavBar extends React.Component {
             />
           </NavbarBrand>
           <NavItem className="je-participe d-md-none d-lg-none">
-                <NavLink href="/components/" style={{ color: 'white' }}>
-                  Je participe
-                </NavLink>
-              </NavItem>
+            <NavLink href="/components/" style={{ color: 'white' }}>
+              Je participe
+            </NavLink>
+          </NavItem>
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="/components/" style={{ color: 'white' }}>
@@ -67,7 +68,7 @@ export default class NavBar extends React.Component {
                     Le concept
                   </DropdownItem>
                   <DropdownItem style={{ color: 'white' }}>
-                    L'équipe
+                    {'L\'équipe'}
                   </DropdownItem>
                   <DropdownItem style={{ color: 'white' }}>
                     Contacts

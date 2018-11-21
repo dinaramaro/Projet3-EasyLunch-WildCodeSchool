@@ -16,6 +16,9 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "precommit": "npm run lint-jsx",
+    "lint": "eslint src",
+    "lint-jsx": "eslint src/**/*.jsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -29,5 +32,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "husky": "^1.2.0"
+  }
 }
