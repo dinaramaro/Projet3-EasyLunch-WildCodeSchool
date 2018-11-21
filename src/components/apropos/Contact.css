@@ -1,0 +1,23 @@
+.titre-contact{
+    background-color:#F8F9F9;
+    height: 60px;
+    padding-left: 200px;
+    padding-top:10px;
+    
+}
+
+.form{
+    text-align: center;
+    margin-top: 30px;
+    width: 60%;
+    margin:auto;
+}
+
+.text-color{
+    color:white;
+}
+
+.common-section{
+    margin-top: 30px;
+    text-align: center;
+}
