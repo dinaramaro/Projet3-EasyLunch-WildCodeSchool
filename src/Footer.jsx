@@ -7,10 +7,10 @@ import {
   Card,
   Container,
 } from 'reactstrap';
-import './Footer.css';
+import './Footer.scss';
 
 const Footer = () => (
-  <Container fluid>
+  <Container className="Footer" fluid>
     <Row className="footer">
       <Col md="9">
         <Row>
