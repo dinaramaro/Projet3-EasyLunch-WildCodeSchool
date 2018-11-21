@@ -61,34 +61,34 @@ class Explication extends Component {
               <Col className="col" xs="4" sm="4">
                 <div className="round">1</div>
                 <button type="button" className="bouton" data-toggle="collapse" data-target="#choose" onClick={this.toggleChoose}>
-                  <img className="icone" src="./medias/icon-time.svg" alt="Commandez avant 11h30" />
-                  <p className="title">COMMANDEZ AVANT 11H30</p>
+                  <img className="icone" src="./medias/icon-eat.svg" alt="Commandez avant 11h30" />
+                  <p className="title">Choisissez votre restaurant</p>
                   <img className="arrow" src="./medias/arrow-down.png" alt="fleche" />
                 </button>
                 <Collapse id="choose" isOpen={collapseChoose}>
-                  <p className="paraDetails">Choisissez parmi nos restaurants partenaires. Effectuez votre commande en ligne et payez en toute sécurité.</p>
+                  <p className="paraDetails">Trouvez un restaurant en fonction de vos critères de recherche.</p>
                 </Collapse>
               </Col>
               <Col className="col" xs="4" sm="4">
                 <div className="round">2</div>
                 <button type="button" className="bouton" data-toggle="collapse" data-target="#enjoy" onClick={this.toggleEnjoy}>
-                  <img className="icone" src="./medias/icon-smiley.svg" alt="Profitez de votre pause" />
-                  <p className="title">PROFITEZ DE VOTRE PAUSE</p>
+                  <img className="icone" src="./medias/icon-time.svg" alt="Profitez de votre pause" />
+                  <p className="title">Commandez et payer avant 11h30</p>
                   <img className="arrow" src="./medias/arrow-down.png" alt="fleche" />
                 </button>
                 <Collapse id="enjoy" isOpen={collapseEnjoy}>
-                  <p className="paraDetails">Easy Lunch transmet votre commande au restaurant. Détendez-vous et passez un bon moment ensemble.</p>
+                  <p className="paraDetails">Choisissez parmi les formules du jour et la carte, effectuez votre commande en ligne et payez en toute sécurité.</p>
                 </Collapse>
               </Col>
               <Col className="col" xs="4" sm="4">
                 <div className="round">3</div>
                 <button type="button" className="bouton" data-toggle="collapse" data-target="#share" onClick={this.toggleShare}>
-                  <img className="icone" src="./medias/icon-credit-card.svg" alt="Partez sans payer" />
-                  <p className="title">PARTEZ SANS PAYER</p>
+                  <img className="icone" src="./medias/icon-smiley.svg" alt="Partez sans payer" />
+                  <p className="title">Soyez servis dès votre arrivée</p>
                   <img className="arrow" src="./medias/arrow-down.png" alt="fleche" />
                 </button>
                 <Collapse id="share" isOpen={collapseShare}>
-                  <p className="paraDetails">Vous avez fini ? Vous avez déjà réglé et pouvez partir quand vous le souhaitez. Encore du temps gagné.</p>
+                  <p className="paraDetails">Rendez-vous au restaurant, votre table est prête, profitez de votre déjeuner et des personnes qui vous accompagnent et partez sans passer par la caisse dès que vous avez fini.</p>
                 </Collapse>
               </Col>
             </Row>
