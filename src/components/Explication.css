@@ -32,7 +32,7 @@
     padding: 10px 10px;
 }
 
-.fleche {
+.arrow {
     height: 25px;
 }
 
@@ -52,7 +52,7 @@
         color: #ffa300;
         
     }
-    .rond {
+    .round {
         border: 1px solid #ffa300;
         color: #ffa300;
         width: 45px;
@@ -83,7 +83,7 @@
         color: #ffa300;
         
     }
-    .rond {
+    .round {
         border: 1px solid #ffa300;
         color: #ffa300;
         width: 45px;
@@ -100,7 +100,7 @@
     
     
     }
-    .titre {
+    .title {
         font-size: 0.75rem;
     }
     .icone {
@@ -120,7 +120,7 @@
         color: #ffa300;
         
     }
-    .rond {
+    .round {
         border: 1px solid #ffa300;
         color: #ffa300;
         width: 50px;
@@ -137,7 +137,7 @@
     
     
     }
-    .titre {
+    .title {
         font-size: 1rem;
     }
     .icone {
@@ -156,7 +156,7 @@
         color: #ffa300;
         
     }
-    .rond {
+    .round {
         border: 1px solid #ffa300;
         color: #ffa300;
         width: 55px;
@@ -175,7 +175,7 @@
     .icone {
         margin-left: 20px;
     }
-    .titre {
+    .title {
         font-size: 1rem;
     }
 }
@@ -195,7 +195,7 @@
         text-align: center;
     }
 
-    .rond {
+    .round {
         border: 1px solid #ffa300;
         color: #ffa300;
         width: 60px;
@@ -215,7 +215,7 @@
     .icone {
         margin-left: 15px;
     }
-    .titre {
+    .title {
         font-size: 1.1rem;
     }
 }

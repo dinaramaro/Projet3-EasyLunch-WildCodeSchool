@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import Explication from './Explication';
+import React from 'react';
 import { Container } from 'reactstrap';
+import Explication from './Explication';
 
-class Accueil extends Component {
-    render() {
-        return (
-            <Container fluid={true}>
-                  <Explication />
-            </Container>
-          
 
-        )
-    }
-}
+const Accueil = () => (
+  <Container fluid>
+    <Explication />
+  </Container>
+);
 
 export default Accueil;
