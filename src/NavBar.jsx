@@ -40,6 +40,11 @@ export default class NavBar extends React.Component {
               className="navbar-logo"
             />
           </NavbarBrand>
+          <NavItem className="je-participe d-md-none d-lg-none">
+                <NavLink href="/components/" style={{ color: 'white' }}>
+                  Je participe
+                </NavLink>
+              </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
