@@ -5,6 +5,7 @@ import {
 import './Explication.scss';
 import Media from './Media';
 
+
 class Explication extends Component {
   constructor(props) {
     super(props);
@@ -15,27 +16,18 @@ class Explication extends Component {
   }
 
   toggleChoose() {
-    this.setState({ collapseChoose: !this.newMethod().collapseChoose });
-  }
-
-  newMethod() {
-    return this.state;
+    const { collapseChoose } = this.state;
+    this.setState({ collapseChoose: !collapseChoose });
   }
 
   toggleEnjoy() {
-    this.setState({ collapseEnjoy: !this.newMethod1().collapseEnjoy });
-  }
-
-  newMethod1() {
-    return this.state;
+    const { collapseEnjoy } = this.state;
+    this.setState({ collapseEnjoy: !collapseEnjoy });
   }
 
   toggleShare() {
-    this.setState({ collapseShare: !this.newMethod2().collapseShare });
-  }
-
-  newMethod2() {
-    return this.state;
+    const { collapseShare } = this.state;
+    this.setState({ collapseShare: !collapseShare });
   }
 
   render() {

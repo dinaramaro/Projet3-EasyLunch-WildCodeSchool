@@ -1,23 +1,18 @@
 .Explication {
-  .para1 {
-    
+
+  .para1 {    
     text-align: center;
     margin-top: 1%;
     font-size: 2vw;
-
     .para2 {
       font-size: 3vw;
-      color: #ffa300;
-      
+      color: #ffa300;     
     }
-
   }
 
   .col {
     width: 100%;
-
-    .bouton {
-      
+    .bouton {    
       background-color: white;
       border: 1px solid black;
       border-radius: 5%;
@@ -25,11 +20,9 @@
       &:hover {
         cursor: pointer;
       }
-
       .icone {
         width: 17%;
-        padding-top: 3%;
-        
+        padding-top: 3%;       
       }  
       .arrow {
         width: 10%;
@@ -38,13 +31,11 @@
         font-size: 1.25vw;
         margin-bottom: 0%;
       }
-    }
-  
+    }  
     .paraDetails {
       text-align: justify;
       padding: 5% 5%;
-    }
-  
+    }  
     .round {
       border: 1px solid #ffa300;
       color: #ffa300;
@@ -57,8 +48,7 @@
       top: 15px;
       left: -10px;
       z-index: 5;
-      background-color: white;
-  
+      background-color: white;  
     }
   }
 }
