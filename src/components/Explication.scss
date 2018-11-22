@@ -20,22 +20,27 @@
       &:hover {
         cursor: pointer;
       }
+
       .icone {
         width: 17%;
         padding-top: 3%;       
       }  
+
       .arrow {
         width: 10%;
       }
+      
       .title {
         font-size: 1.25vw;
         margin-bottom: 0%;
       }
     }  
+
     .paraDetails {
       text-align: justify;
       padding: 5% 5%;
     }  
+
     .round {
       border: 1px solid #ffa300;
       color: #ffa300;
@@ -57,6 +62,5 @@
   .video {
     display: none;
   } 
-
 }
 
