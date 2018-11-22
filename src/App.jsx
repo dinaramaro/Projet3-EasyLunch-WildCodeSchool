@@ -1,15 +1,15 @@
 import React from 'react';
-import Footer from './Footer';
-import './App.scss';
+import Accueil from './components/Accueil';
 import NavBar from './NavBar';
-import HomeInputs from './components/HomeInputs';
+import Footer from './Footer';
 
 const App = () => (
-  <div className="content">
+  <div>
     <NavBar />
-    <div />
-    <HomeInputs />
-    <Footer />
+    <div className="content">
+      <Accueil />
+      <Footer />
+    </div>
   </div>
 );
 
