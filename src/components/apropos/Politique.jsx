@@ -283,7 +283,7 @@ const Politique = () => (
       Services.
       `}
     </p>
-    <p>Les utilisateurs d’Easy Lunch disposent des droits suivants : </p>
+    <p>Les utilisateurs d’Easy Lunch disposent des droits suivants :</p>
     <ul>
       <li>droit d’accès à leurs données personnelles;</li>
       <li>doit de demander la rectification de leurs données personnelles;</li>
