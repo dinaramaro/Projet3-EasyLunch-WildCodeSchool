@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Collapse, Row, Col,
+  Container, Collapse, Row, Col,
 } from 'reactstrap';
 import './Explication.scss';
 import Media from './Media';
@@ -33,22 +33,12 @@ class Explication extends Component {
   render() {
     const { collapseChoose, collapseEnjoy, collapseShare } = this.state;
     return (
-      <div className="Explication">
+      <Container fluid className="Explication">
         <Row>
           <Col className="video" sm="4">
             <Media />
           </Col>
           <Col xs="12" sm="8">
-            <Row>
-              <Col sm="12">
-                <p className="para1">
-                    Utilisation en
-                  {' '}
-                  <span className="para2">3 étapes</span>
-                </p>
-
-              </Col>
-            </Row>
             <Row>
               <Col className="col" xs="4" sm="4">
                 <div className="round">1</div>
@@ -86,7 +76,7 @@ class Explication extends Component {
             </Row>
           </Col>
         </Row>
-      </div>
+      </Container>
     );
   }
 }

@@ -6,7 +6,7 @@ const imgSrc = '/medias/hero-image.png';
 
 const HomeInputs = () => (
   <div className="HomeInputs">
-    <div className="joel">
+    <div>
       <div className="background" style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}>
         <h2 className="border-text banner-text">Commandez et payez avant et soyez servis dès votre arrivé au restaurant</h2>
         <Input className="search1" placeholder="Restaurant" style={{ width: '25vw' }} />

@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 
 const Media = () => {
   const opts = {
-    height: '300',
+    height: '350',
     width: '100%',
     playerVars: { // différente configuration de lecture, d'affichage, d'utilisation//
       autoplay: 0,
