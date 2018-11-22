@@ -6,6 +6,7 @@ import FAQ from './components/apropos/FAQ';
 import Contact from './components/apropos/Contact';
 import CGV from './components/apropos/CGV';
 import Partenaires from './components/apropos/Partenaires';
+import Politique from './components/apropos/Politique';
 
 const App = () => (
   <div>
@@ -16,6 +17,7 @@ const App = () => (
       <Route path="/apropos/faq" component={FAQ} />
       <Route path="/apropos/contact" component={Contact} />
       <Route path="/apropos/partenaires" component={Partenaires} />
+      <Route path="/apropos/politique" component={Politique} />
     </Switch>
   </div>
 );
