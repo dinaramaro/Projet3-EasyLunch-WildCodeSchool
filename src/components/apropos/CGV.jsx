@@ -4,7 +4,7 @@ import './CGV.scss';
 const CGV = () => (
   <section className="global-content">
     <h1>Conditions générales de Service</h1>
-    <h2>Définitions</h2>
+    <h2 className="titre-center">Définitions</h2>
     <p>
       {`Sauf indication contraire dans les CGS, les mots au singulier inclue le pluriel et vice versa.
       `}
@@ -40,7 +40,7 @@ const CGV = () => (
       Le terme "Easy Lunch" désigne l'éditeur de l’Application, à savoir la société Easy Lunch, société par actions simplifiée au capital de 15 000 euros, dont le siège social est situé au 99 allée du Comte 33460 Arsac, immatriculée au Registre du Commerce et des Sociétés de Bordeaux sous le numéro d'identification unique RCS 839 795 176 – email : contact@easy-lunch.fr.
       `}
     </p>
-    <h2>Mentions légales</h2>
+    <h2 className="titre-center">Mentions légales</h2>
     <p>
       {`
       Les directeurs de la publication sont Arthur et Théo Del Piano.
@@ -51,7 +51,7 @@ const CGV = () => (
       Les Services sont hébergés par OVH SAS dont le siège social est situé au 2 rue Kellermann 59100 Roubaix.
       `}
     </p>
-    <h2>Objet des CGS</h2>
+    <h2 className="titre-center">Objet des CGS</h2>
     <p>
       {`
       Les présentes CGS définissent les conditions dans lesquelles l’Utilisateur peut accéder aux Services et les utiliser. Elles s'appliquent notamment à toute commande de Repas que le Client effectue sur l’Application, ce qui implique l'acceptation intégrale et sans réserve par l’Utilisateur des CGS.
