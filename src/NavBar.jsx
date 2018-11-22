@@ -36,7 +36,7 @@ export default class NavBar extends React.Component {
         <Navbar className="navbar-div" dark expand="md">
           <NavbarBrand href="/">
             <img
-              src="/medias/weblogo-easylunch-blanc.png"
+              src="medias/weblogo-easylunch-blanc.png"
               alt="navbarLogo"
               className="navbar-logo"
             />

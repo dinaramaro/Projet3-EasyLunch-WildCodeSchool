@@ -38,7 +38,7 @@ const Footer = () => (
         </Row>
       </Col>
       <Col className="logoF" md="3">
-        <img className="image" src="./medias/icone-easylunch-blanc.svg" alt="logo" />
+        <img className="image" src="medias/icone-easylunch-blanc.svg" alt="logo" />
       </Col>
     </Row>
   </Container>

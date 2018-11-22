@@ -2,7 +2,7 @@ import React from 'react';
 import './HomeInputs.scss';
 import { Input, Button } from 'reactstrap';
 
-const imgSrc = '/medias/hero-image.png';
+const imgSrc = 'medias/hero-image.png';
 
 const HomeInputs = () => (
   <div className="HomeInputs">
