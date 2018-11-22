@@ -44,7 +44,6 @@
       "react/prop-types": "off"
     }
   },
-  
   "browserslist": [
     ">0.2%",
     "not dead",
