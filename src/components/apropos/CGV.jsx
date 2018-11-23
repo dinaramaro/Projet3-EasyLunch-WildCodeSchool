@@ -3,7 +3,7 @@ import './CGV.scss';
 import { Container } from 'reactstrap';
 
 const CGV = () => (
-  <div className="section-cgv">
+  <div className="CGV">
     <h1>Conditions générales de Service</h1>
     <Container className="global-content">
       <h2 className="titre-center">Définitions</h2>

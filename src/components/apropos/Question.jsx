@@ -22,7 +22,7 @@ class Question extends Component {
     const { question, reponse } = this.props;
     const { collapse } = this.state;
     return (
-      <Container>
+      <Container className="Question">
         <Row>
           <Col xs="12">
             <Button onClick={this.toggle} style={{ marginBottom: '1rem' }} id="button">{question}</Button>
