@@ -55,8 +55,6 @@ const Contact = () => (
             </rs.Col>
           </rs.Row>
         </div>
-
-
         <div className="actualite">
           <h2>Suivez notre actualité</h2>
           <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/Facebook.png" alt="Easy-Lunch-facebook" /></a>
