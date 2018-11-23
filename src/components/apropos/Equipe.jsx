@@ -1,11 +1,11 @@
 import React from 'react';
-import { Col, Row } from 'reactstrap';
-import './Equipe.css';
+import { Col, Row, Container } from 'reactstrap';
+import './Equipe.scss';
 
 const Equipe = () => (
-  <section>
-    <h1 className="titre">L&#39;ÉQUIPE</h1>
-    <div className="conteneur">
+  <Container>
+    <section className="Equipe">
+      <h1 className="titre">L&#39;ÉQUIPE</h1>
       <Row className="equipe">
         <Col className="person">
           <img src="http://static8.viadeo-static.com/_oqZQQ8r004CbcMel3x0gYobYLw=/300x300/member/002unsgxp0sx8q3%3Fts%3D1413156530000" alt="Easy-lunch-Arthur" />
@@ -28,8 +28,8 @@ const Equipe = () => (
           </p>
         </Col>
       </Row>
-    </div>
-  </section>
+    </section>
+  </Container>
 );
 
 export default Equipe;

@@ -1,35 +1,35 @@
 import React from 'react';
-import { Col, Row, Button } from 'reactstrap';
+import {
+  Col, Row, Button, Container,
+} from 'reactstrap';
 import ResponsiveEmbed from 'react-responsive-embed';
 import { Link } from 'react-router-dom';
-import './Concept.css';
+import './Concept.scss';
 
 const Concept = () => (
-  <div>
+  <Container className="Concept">
     <section>
       <h1 className="titre">EASY LUNCH, L&#39;APPLI QUI SIMPLIFIE VOTRE PAUSE-DÉJEUNER AU RESTAURANT !</h1>
-      <div className="conteneur">
-        <Row>
-          <Col lg="4" className="box">
-            <img src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/Choisir-un-restaurant.png" alt="easy-lunch-choisir" />
+      <Row>
+        <Col lg="4" md="4" sm="12" className="box">
+          <img src="/medias/1-Choisir-un-restaurant.png" alt="easy-lunch-choisir" />
 
-          </Col>
-          <Col lg="4" className="box">
-            <img src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/Commander.png" alt="easy-lunch-commander" />
+        </Col>
+        <Col lg="4" md="4" sm="12" className="box">
+          <img src="/medias/2-Commander.png" alt="easy-lunch-commander" />
 
-          </Col>
-          <Col lg="4" className="box">
-            <img src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/Partager.png" alt="easy-lunch-partager" />
+        </Col>
+        <Col lg="4" md="4" sm="12" className="box">
+          <img src="/medias/3-Partager.png" alt="easy-lunch-partager" />
 
-          </Col>
-        </Row>
-      </div>
+        </Col>
+      </Row>
     </section>
     <section>
       <h1 className="titre">EASY LUNCH, C&#39;EST POUR QUI?</h1>
-      <div className="conteneur">
-        <p className="concept-text">
-          {`Vous souhaitez simplifier votre pause-déjeuner au restaurant ? Organiser un repas entre collègues mais cela prend du temps ? C’est compliqué ? Vous avez un timing serré à respecter tout en ayant la volonté de faire une vraie pause et de bien manger ?
+
+      <p className="concept-text">
+        {`Vous souhaitez simplifier votre pause-déjeuner au restaurant ? Organiser un repas entre collègues mais cela prend du temps ? C’est compliqué ? Vous avez un timing serré à respecter tout en ayant la volonté de faire une vraie pause et de bien manger ?
         
             Avec Easy Lunch, ne perdez plus de temps, commandez et payez avant sur l’application mobile et bénéficiez alors d’une nouvelle expérience au restaurant !
         
@@ -38,19 +38,19 @@ const Concept = () => (
             Easy Lunch vous permet donc de réduire le temps d’attente et de profiter pleinement de votre pause-déjeuner dans un restaurant partenaire Easy Lunch. Il est maintenant possible de manger vite et bien et de bénéficier d’une nouvelle expérience. Sortez de votre bureau et rendez plus agréable votre pause-déjeuner !
         
             Plus que le gain de temps, Easy Lunch simplifie votre pause-déjeuner et vos repas de groupe au restaurant !`}
-        </p>
-      </div>
+      </p>
+
     </section>
 
     <section>
       <h1 className="titre">L&#39;APPLI EASY LUNCH, COMMENT ÇA MARCHE?</h1>
-      <div className="conteneur">
-        <Row>
-          <Col>
-            <ResponsiveEmbed title="Easy-lunch" src="https://www.youtube.com/embed/RluXbJ4CZHU" allowFullScreen />
-          </Col>
-        </Row>
-        <div className="concept-text">
+      <Row>
+        <Col>
+          <ResponsiveEmbed title="Easy-lunch" src="https://www.youtube.com/embed/RluXbJ4CZHU" allowFullScreen />
+        </Col>
+      </Row>
+      <Row className="concept-text">
+        <Col>
           {`Il y a deux possibilités, soit vous organisez une réservation soit vous participez à une réservation déjà initiée.
             Quel que soit votre cas, commander son repas avec Easy Lunch est simple et rapide. Il faut notamment savoir que chaque personne commande et paye individuellement.
             Pour organiser une réservation :`}
@@ -92,45 +92,41 @@ const Concept = () => (
           </ul>
           {`Ensuite, présentez le code qui fait office de réservation lors de votre arrivée au restaurant 
           et profitez pleinement de votre pause-déjeuner.`}
-        </div>
-      </div>
+        </Col>
+      </Row>
     </section>
 
     <section>
-      <div className="conteneur">
-        <Row>
-          <Col>
-            <img src="https://www.easy-lunch.fr/wp-content/uploads/elementor/thumbs/Capture-d%E2%80%99e%CC%81cran-2018-03-12-a%CC%80-19.33.44-e1523440009916-nok6pki6hm0ipzapao761z0m69424qh2g9hwpbsur6.png" alt="Easy-lunch-logo" />
-            <p>Vous avez des questions sur Easy Lunch?</p>
-            <p> Des avis ou des expériences à nous partager? Ecrivez-nous!</p>
-            <Link to="/apropos/contact"><Button color="success">Nous contacter</Button></Link>
-          </Col>
-          <Col>
-            <img src="https://www.easy-lunch.fr/wp-content/uploads/elementor/thumbs/te%CC%81le%CC%81chargement-1-nsjf74kfxmcyey74par0xhohiixqiltud2d6p52q42.png" alt="Easy-lunch-partenaires" />
-            <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
-            <p>Vous  souhaitez en savoir plus sur Easy Lunch ?</p>
-            <Link to="/apropos/contact"><Button color="success">Devenir partenaire</Button></Link>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <a href="https://itunes.apple.com/fr/app/easy-lunch/id1407269785?mt=8" target="_blank" rel="noopener noreferrer"><img className="logo" src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/T%C3%A9l%C3%A9charger-dans-App-Store1-1024x303.png" alt="App-Store-Easy-Lunch" /></a>
-          </Col>
-          <Col>
-            <a href="https://play.google.com/store/apps/details?id=com.easy.lunch" target="_blank" rel="noopener noreferrer"><img className="logo" src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/google-play-badge1-1024x303.png" alt="Google-Store-Easy-Lunch" /></a>
-          </Col>
-        </Row>
-      </div>
-
+      <Row>
+        <Col>
+          <img src="/medias/nous-contacter.png" alt="Easy-lunch-logo" />
+          <p>Vous avez des questions sur Easy Lunch?</p>
+          <p> Des avis ou des expériences à nous partager? Ecrivez-nous!</p>
+          <Link to="/apropos/contact"><Button color="success">Nous contacter</Button></Link>
+        </Col>
+        <Col>
+          <img src="/medias/devenir-partenaire.png" alt="Easy-lunch-partenaires" />
+          <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
+          <p>Vous  souhaitez en savoir plus sur Easy Lunch ?</p>
+          <Link to="/apropos/contact"><Button color="success">Devenir partenaire</Button></Link>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <a href="https://itunes.apple.com/fr/app/easy-lunch/id1407269785?mt=8" target="_blank" rel="noopener noreferrer"><img className="logo" src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/T%C3%A9l%C3%A9charger-dans-App-Store1-1024x303.png" alt="App-Store-Easy-Lunch" /></a>
+        </Col>
+        <Col>
+          <a href="https://play.google.com/store/apps/details?id=com.easy.lunch" target="_blank" rel="noopener noreferrer"><img className="logo" src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/google-play-badge1-1024x303.png" alt="Google-Store-Easy-Lunch" /></a>
+        </Col>
+      </Row>
     </section>
     <section>
       <h1 className="actu">Suivez notre actualité</h1>
-      <div className="conteneur">
-        <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/Facebook.png" alt="Easy-Lunch-facebook" /></a>
-        <a href="https://www.instagram.com/easy_lunch_fr/" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/instagram.png" alt="Easy-Lunch-instagram" /></a>
-      </div>
+
+      <a href="https://www.facebook.com/EasyLunchBordeaux" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/Facebook.png" alt="Easy-Lunch-facebook" /></a>
+      <a href="https://www.instagram.com/easy_lunch_fr/" target="_blank" rel="noopener noreferrer"><img className="logo-sm" src="/medias/instagram.png" alt="Easy-Lunch-instagram" /></a>
     </section>
-  </div>
+  </Container>
 
 );
 

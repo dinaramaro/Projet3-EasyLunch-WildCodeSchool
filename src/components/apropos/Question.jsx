@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
-  Collapse, Button, CardBody, Card,
+  Collapse, Button, CardBody, Card, Container, Row, Col,
 } from 'reactstrap';
+import './Question.scss';
 
-const Questions = (props) => {
-  const { toggle, collapse, questions } = props;
-  return (
-    <div>
-      {questions.map(item => (
-        <div>
-          <Button color="primary" onClick={() => { toggle(item); }} style={{ marginBottom: '1rem' }}>{item.question}</Button>
-          <Collapse isOpen={collapse}>
-            <Card>
-              <CardBody>
-                {item.reponse}
-              </CardBody>
-            </Card>
-          </Collapse>
-        </div>
-      ))}
-    </div>
-  );
-};
+class Question extends Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      collapse: false,
+    };
+  }
 
-export default Questions;
+  toggle() {
+    const { collapse } = this.state;
+    this.setState({ collapse: !collapse });
+  }
+
+  render() {
+    const { question, reponse } = this.props;
+    const { collapse } = this.state;
+    return (
+      <Container>
+        <Row>
+          <Col xs="12">
+            <Button onClick={this.toggle} style={{ marginBottom: '1rem' }} id="button">{question}</Button>
+            <Collapse isOpen={collapse}>
+              <Card className="mb-3">
+                <CardBody className="reponse">
+                  {reponse}
+                </CardBody>
+              </Card>
+            </Collapse>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+}
+
+export default Question;

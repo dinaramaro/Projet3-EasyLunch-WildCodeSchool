@@ -17,5 +17,36 @@
     "id": "4",
     "question": "Comment puis-je commander sur Easy Lunch ?",
     "reponse": "Il y a deux possibilités, soit vous organisez une réservation soit vous participez à une réservation déjà initiée. Quel que soit votre cas, commander son repas avec Easy Lunch est simple et rapide. Il faut savoir que chaque personne commande et paye individuellement."
+  },
+  {
+    "id": "5",
+    "question": "Jusqu’à quand puis-je effectuer une commande ?",
+    "reponse": "Vous pouvez effectuer votre commande jusqu’à 11h30 du matin le jour de votre venue au restaurant. L’idéal étant bien évidemment d’anticiper au maximum. Vous avez la possibilité de commander à partir de minuit."
+  },
+  {
+    "id": "6",
+    "question": "Jusqu’à quand puis-je modifier ou annuler ma commande ?",
+    "reponse": "Une fois votre commande validée et payée, il n’est plus possible de la modifier ni de l’annuler."
+  },
+  {
+    "id": "7",
+    "question": "Que se passe-t-il si une personne n’a pas eu le temps de commander avant 11h30 ?",
+    "reponse": "Vous avez initié une commande pour cinq personnes et seules quatre ont eu le temps de commander ? La commande ne sera pas annulée mais elle sera validée uniquement pour quatre personnes."
+  },
+  {
+    "id": "8",
+    "question": "Puis-je passer une commande pour plusieurs personnes à la fois ?",
+    "reponse": "Vous pouvez réservez pour plusieurs personnes en indiquant le nombre de personnes à votre table ainsi que votre créneau horaire d’arrivée. En revanche, chaque personne commande et paye individuellement via le code généré par Easy Lunch."
+  },
+  {
+    "id": "9",
+    "question": "Comment puis-je payer sur Easy Lunch ?",
+    "reponse": "Vous pouvez régler en ligne depuis votre smartphone grâce à notre système de paiement. Nous acceptons les paiements par carte de crédit et carte titre restaurant. Nous prenons vos informations personnelles très au sérieux. Pour cette raison, vos données sont toujours cryptées afin d'assurer une protection maximale et ne seront jamais partagées. Nous travaillons actuellement sur la possibilité de vous permettre de payer via les titres restaurant au format papier mais cela n’est pas encore possible."
+  },
+  {
+    "id": "10",
+    "question": "Est-il possible de ne pas payer en ligne ?",
+    "reponse": "Non, le paiement en ligne est obligatoire pour valider votre commande pour deux raisons : 1/ Il garantit votre venue auprès des restaurateurs 2/ Il vous fait gagner du temps à vous, client, ainsi qu’au restaurateur à la fin du repas"
   }
+
 ]

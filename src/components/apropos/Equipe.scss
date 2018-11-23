@@ -1,0 +1,22 @@
+.Equipe {
+
+  .person {
+    text-align: center;
+
+    .person h1 {
+      font-size: 25px;
+      margin: 10px;
+      font-weight: bold;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 50%;
+    }
+
+    .text {
+      text-align: justify;
+    }
+  }
+
+}
