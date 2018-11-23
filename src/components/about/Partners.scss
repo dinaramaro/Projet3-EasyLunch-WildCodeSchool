@@ -1,6 +1,18 @@
 .Partners {
   text-align: center;
-  div.card {
+  .card {
     padding: 10px 10px 10px 10px;
-  }
+    .img-fluid {
+      width: 300px;
+      height: 180px;
+      max-width: 100%;
+      padding: 10%;
+    }
+    .card-text {
+      text-align: justify;
+    }
+    .card-body {
+      max-width: 100%;
+    }
+  } 
 }
