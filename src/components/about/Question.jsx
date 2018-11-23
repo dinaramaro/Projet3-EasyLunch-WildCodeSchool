@@ -25,7 +25,7 @@ class Question extends Component {
       <Container className="Question">
         <Row>
           <Col xs="12">
-            <Button onClick={this.toggle} style={{ marginBottom: '1rem' }} id="button">{question}</Button>
+            <Button onClick={this.toggle} className="button-faq">{question}</Button>
             <Collapse isOpen={collapse}>
               <Card className="mb-3">
                 <CardBody className="reponse">
