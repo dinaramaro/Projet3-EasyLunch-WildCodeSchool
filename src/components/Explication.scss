@@ -1,4 +1,10 @@
 .Explication {
+  .video-explication {
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
   .para1 {    
     text-align: center;
     margin-top: 1%;
@@ -11,7 +17,6 @@
   }
 
   .col {
-    width: 100%;
     .bouton {    
       background-color: white;
       border: 1px solid black;
@@ -58,9 +63,4 @@
   }
 }
 
-@media (max-width: 900px) {
-  .video {
-    display: none;
-  } 
-}
 
