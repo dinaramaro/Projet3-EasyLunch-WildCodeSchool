@@ -36,7 +36,7 @@ class Explication extends Component {
   render() {
     const { collapseChoose, collapseEnjoy, collapseShare } = this.state;
     return (
-      <Container fluid className="explication">
+      <Container fluid className="Explication">
         <Row>
           <Col className="col" xs="12" sm="4" md="4" lg="4">
             <div className="round">1</div>
