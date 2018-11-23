@@ -1,14 +1,13 @@
 import React from 'react';
 import {
-  Col, Row, Card, CardImg, CardText, CardBody, Button,
+  Col, Row, Card, CardImg, CardText, CardBody, Container,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import './Partenaires.css';
+import './Partenaires.scss';
 
 const Partenaires = () => (
-  <section>
-    <h1 className="titre">NOS PARTENAIRES</h1>
-    <div className="conteneur">
+  <Container>
+    <section className="Partenaires">
+      <h1 className="titre">NOS PARTENAIRES</h1>
       <Row>
         <Col lg="4" md="6">
           <Card>
@@ -44,17 +43,8 @@ const Partenaires = () => (
           </Card>
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <img src="https://www.easy-lunch.fr/wp-content/uploads/elementor/thumbs/te%CC%81le%CC%81chargement-1-nsjf74kfxmcyey74par0xhohiixqiltud2d6p52q42.png" alt="Easy-lunch-partenaires" />
-          <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
-          <p>Vous  souhaitez en savoir plus sur Easy Lunch ?</p>
-          <Link to="/apropos/contact"><Button color="success">Devenir partenaire</Button></Link>
-        </Col>
-      </Row>
-
-    </div>
-  </section>
+    </section>
+  </Container>
 );
 
 export default Partenaires;
