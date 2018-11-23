@@ -6,7 +6,7 @@ import './Partenaires.scss';
 
 const Partenaires = () => (
   <Container>
-    <section className="Partenaires">
+    <section className="Partners">
       <h1 className="titre">NOS PARTENAIRES</h1>
       <Row>
         <Col lg="4" sm="12" xs="12">

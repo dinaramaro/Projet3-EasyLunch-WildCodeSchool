@@ -12,7 +12,7 @@ import {
 } from 'reactstrap';
 
 const paragraph1Contact = 'Des questions, des suggestions, des conseils, des remarques, des demandes ? N’hésitez pas à nous contacter, nous sommes là pour vous aider. Nous vous apporterons une réponse avec plaisir dans les plus brefs délais.';
-const paragraph2Contact = ' Toutes les informations dont vous nous ferez part nous permettrons d’améliorer le service Easy Lunch. nous sommes donc à l’écoute et impatiemment de vous lire 🙂';
+const paragraph2Contact = ' Toutes les informations dont vous nous ferez part nous permettrons d’améliorer le service Easy Lunch, nous sommes donc à l’écoute et impatiemment de vous lire 🙂';
 const paragraph3Contact = 'Vous pouvez nous contacter en remplissant le formulaire ci-dessous ou directement par mail à l’adresse : contact@easy-lunch.fr';
 
 const Contact = () => (
@@ -24,45 +24,41 @@ const Contact = () => (
       <p>{paragraph3Contact}</p>
       <Form className="form">
         <FormGroup>
-          <Label className="email" htmlFor="votreEmail">
+          <Label className="email">
             VOTRE E-MAIL
           </Label>
           <Input
             required
             type="email"
-            name="votreEmail"
-            id="votreEmail"
+            name="email"
             placeholder="VOTRE E-MAIL"
           />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="sujet">SUJET</Label>
+          <Label>SUJET</Label>
           <Input
             required
             type="text"
-            name="sujet"
-            id="sujet"
+            name="subject"
             placeholder="SUJET"
           />
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="votreMessage">VOTRE MESSAGE</Label>
+          <Label>VOTRE MESSAGE</Label>
           <br />
           <Input
             type="textarea"
             name="text"
-            id="votreMessage"
             placeholder="VOTRE MESSAGE"
           />
         </FormGroup>
-
         <Button color="warning" className="text-color">
           ENVOYER
         </Button>
       </Form>
 
       <section className="common-section">
-        <div className="conteneur">
+        <div>
           <Row>
             <Col>
               <img
@@ -103,7 +99,7 @@ const Contact = () => (
             </Col>
           </Row>
         </div>
-        <div className="actualite">
+        <div>
           <h2>Suivez notre actualité</h2>
           <a
             href="https://www.facebook.com/EasyLunchBordeaux"
