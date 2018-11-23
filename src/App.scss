@@ -1,3 +1,11 @@
+$primaryColor: #f1c40f;
+$secondaryColor: #ffa300;
+$accentuationColor: #f9b522;
+
+.content{
+  min-height: calc(100vh - 220px);
+}
+
 .titre {
   background-image: radial-gradient(#F1CD00, #FEA400);
   color: #FFFFFF;
@@ -5,3 +13,4 @@
   font-size : 2vw;
   font-weight: bold;
 }
+

@@ -1,0 +1,66 @@
+.Explication {
+  .para1 {    
+    text-align: center;
+    margin-top: 1%;
+    font-size: 2vw;
+
+    .para2 {
+      font-size: 3vw;
+      color: #ffa300;     
+    }
+  }
+
+  .col {
+    width: 100%;
+    .bouton {    
+      background-color: white;
+      border: 1px solid black;
+      border-radius: 5%;
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+
+      .icone {
+        width: 17%;
+        padding-top: 3%;       
+      }  
+
+      .arrow {
+        width: 10%;
+      }
+      
+      .title {
+        font-size: 1.25vw;
+        margin-bottom: 0%;
+      }
+    }  
+
+    .paraDetails {
+      text-align: justify;
+      padding: 5% 5%;
+    }  
+
+    .round {
+      border: 1px solid #ffa300;
+      color: #ffa300;
+      width: 13%;
+      border-radius: 50%;
+      padding-left: 4.5%;
+      padding-top: 2%;
+      font-size: 1.5vw;
+      position: relative;
+      top: 15px;
+      left: -10px;
+      z-index: 5;
+      background-color: white;  
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .video {
+    display: none;
+  } 
+}
+

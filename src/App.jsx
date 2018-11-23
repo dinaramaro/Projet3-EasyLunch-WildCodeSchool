@@ -1,6 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
+import Accueil from './components/Accueil';
+import NavBar from './NavBar';
+import Footer from './Footer';
 import Concept from './components/apropos/Concept';
 import Equipe from './components/apropos/Equipe';
 import FAQ from './components/apropos/FAQ';
@@ -11,7 +14,10 @@ import Politique from './components/apropos/Politique';
 
 const App = () => (
   <div>
+    <NavBar />
+    <div className="content">
     <Switch>
+      <Route exact path="/" component={Accueil} />      
       <Route path="/apropos/concept" component={Concept} />
       <Route path="/apropos/equipe" component={Equipe} />
       <Route path="/apropos/cgv" component={CGV} />
@@ -20,7 +26,8 @@ const App = () => (
       <Route path="/apropos/partenaires" component={Partenaires} />
       <Route path="/apropos/politique" component={Politique} />
     </Switch>
-  </div>
-);
-
+    </div>
+    <Footer />
+    </div>
+)
 export default App;
