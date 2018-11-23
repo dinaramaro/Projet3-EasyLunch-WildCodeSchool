@@ -1,5 +1,5 @@
 .Contact {
-  h2 {
+  .titre2 {
     background-color: #f8f9f9;
     text-align: center;
   }
@@ -21,5 +21,16 @@
   .common-section {
     margin-top: 100px;
     text-align: center;
+  }
+  .logo {
+    width: 300px;
+    margin: 20px;
+  }
+  .actu {
+    text-align: center;
+    margin: 50px;
+  }
+  .logo-sm {
+    margin: 20px;
   }
 }

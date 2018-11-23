@@ -17,7 +17,7 @@ const paragraph3Contact = 'Vous pouvez nous contacter en remplissant le formulai
 
 const Contact = () => (
   <div className="Contact">
-    <h2>NOUS CONTACTER</h2>
+    <h2 className="titre2">NOUS CONTACTER</h2>
     <Container className="contact">
       <p>{paragraph1Contact}</p>
       {paragraph2Contact}
