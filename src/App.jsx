@@ -16,18 +16,18 @@ const App = () => (
   <div>
     <NavBar />
     <div className="content">
-    <Switch>
-      <Route exact path="/" component={Accueil} />      
-      <Route path="/apropos/concept" component={Concept} />
-      <Route path="/apropos/equipe" component={Equipe} />
-      <Route path="/apropos/cgv" component={CGV} />
-      <Route path="/apropos/faq" component={FAQ} />
-      <Route path="/apropos/contact" component={Contact} />
-      <Route path="/apropos/partenaires" component={Partenaires} />
-      <Route path="/apropos/politique" component={Politique} />
-    </Switch>
+      <Switch>
+        <Route exact path="/" component={Accueil} />
+        <Route path="/apropos/concept" component={Concept} />
+        <Route path="/apropos/equipe" component={Equipe} />
+        <Route path="/apropos/cgv" component={CGV} />
+        <Route path="/apropos/faq" component={FAQ} />
+        <Route path="/apropos/contact" component={Contact} />
+        <Route path="/apropos/partenaires" component={Partenaires} />
+        <Route path="/apropos/politique" component={Politique} />
+      </Switch>
     </div>
     <Footer />
-    </div>
-)
+  </div>
+);
 export default App;
