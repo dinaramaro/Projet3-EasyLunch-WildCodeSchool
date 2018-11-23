@@ -9,9 +9,9 @@ const Partenaires = () => (
     <section className="Partenaires">
       <h1 className="titre">NOS PARTENAIRES</h1>
       <Row>
-        <Col lg="4" md="6">
+        <Col lg="4" sm="12" xs="12">
           <Card>
-            <CardImg top width="100%" src="/medias/SQAL.png" alt="sqal" id="image" className="img-fluid" />
+            <CardImg top src="/medias/SQAL.png" alt="sqal" className="img-fluid" />
             <CardBody>
               <CardText>
                 {`SQAL est une agence spécialisée dans l’innovation. C’est elle qui a développé l’application mobile Easy Lunch. 
@@ -20,9 +20,9 @@ const Partenaires = () => (
             </CardBody>
           </Card>
         </Col>
-        <Col lg="4" md="6">
+        <Col lg="4" sm="12" xs="12">
           <Card>
-            <CardImg top width="100%" src="/medias/Wild-Code-School.png" alt="wild-code-school" id="image" className="img-fluid" />
+            <CardImg top src="/medias/Wild-Code-School.png" alt="wild-code-school" className="img-fluid" />
             <CardBody>
               <CardText>
                 {`La Wild Code School forme de futurs développeurs web grâce à une pédagogie innovante et des outils numériques permettant aux élèves de mettre en pratique les enseignements. 
@@ -31,9 +31,9 @@ const Partenaires = () => (
             </CardBody>
           </Card>
         </Col>
-        <Col lg="4" md="6">
+        <Col lg="4" sm="12" xs="12">
           <Card>
-            <CardImg top width="100%" src="/medias/logo-nouvelle-aquitaine.png" alt="region-nouvelle-aquitaine" id="image" />
+            <CardImg top className="img-fluid" src="/medias/logo-nouvelle-aquitaine.png" alt="region-nouvelle-aquitaine" />
             <CardBody>
               <CardText>
                 {`LoremIpsum..... Code School forme de futurs développeurs web grâce à une pédagogie innovante et des outils numériques permettant aux élèves de mettre en pratique les enseignements. 

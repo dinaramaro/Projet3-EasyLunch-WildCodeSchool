@@ -3,10 +3,10 @@ import { Col, Row, Container } from 'reactstrap';
 import './Equipe.scss';
 
 const Equipe = () => (
-  <Container>
-    <section className="Equipe">
-      <h1 className="titre">L&#39;ÉQUIPE</h1>
-      <Row className="equipe">
+  <Container className="Team">
+    <section>
+      <h1 className="title">L&#39;ÉQUIPE</h1>
+      <Row>
         <Col className="person">
           <img src="http://static8.viadeo-static.com/_oqZQQ8r004CbcMel3x0gYobYLw=/300x300/member/002unsgxp0sx8q3%3Fts%3D1413156530000" alt="Easy-lunch-Arthur" />
           <h1>Arthur Del Piano</h1>

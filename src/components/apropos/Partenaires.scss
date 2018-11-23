@@ -1,63 +1,6 @@
 .Partenaires {
   text-align: center;
-
-  /* Small devices (landscape phones, 576px and up) */
-  @media (min-width: 576px) {
-    #image {
-      width: 100%;
-      height: 32vw;
-      object-fit: cover;
-    }
-  }
-
-  @media (min-width: 638px) {
-    #image {
-      width: 100%;
-      height: 29vw;
-      object-fit: cover;
-    }
-  }
-
-  @media (min-width: 703px) {
-    #image {
-      width: 100%;
-      height: 26vw;
-      object-fit: cover;
-    }
-  }
-
-  /* Medium devices (tablets, 768px and up) */
-  @media (min-width: 768px) {
-    #image {
-      width: 100%;
-      height: 15vw;
-      object-fit: cover;
-    }
-  }
-
-  @media (min-width: 888px) {
-    #image {
-      width: 100%;
-      height: 13vw;
-      object-fit: cover;
-    }
-  }
-
-  /* Large devices (desktops, 992px and up) */
-  @media (min-width: 992px) {
-    #image {
-      width: 100%;
-      height: 11vw;
-      object-fit: cover;
-    }
-  }
-
-  /* Extra large devices (large desktops, 1200px and up) */
-  @media (min-width: 1200px) {
-    #image {
-      width: 100%;
-      height: 11vw;
-      object-fit: cover;
-    }
+  div.card {
+    padding: 10px 10px 10px 10px;
   }
 }
