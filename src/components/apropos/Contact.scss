@@ -1,25 +1,27 @@
 .section-contact{
 
-  .titre-contact{
-    background-color:#F8F9F9;
-    display: inline-block;
-    
+h2{
+  background-color:#F8F9F9;
+  text-align: center;
 }
-
+.contact{
+  margin-left: 50px;
+  margin-right: 50px;
+}
 .form{
-    text-align: center;
-    margin-top: 30px;
-    width: 60%;
-    margin:auto;
+  text-align: center;
+  margin-top: 30px;
+  width: 60%;
+  margin:auto;
 }
 
 .text-color{
-    color:white;
+  color:white;
 }
 
 .common-section{
-    margin-top: 30px;
-    text-align: center;
+  margin-top: 30px;
+  text-align: center;
 }
 
 }
