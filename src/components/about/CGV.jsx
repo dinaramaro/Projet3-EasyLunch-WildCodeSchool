@@ -6,7 +6,7 @@ const CGV = () => (
   <div className="CGV">
     <h1>Conditions générales de Service</h1>
     <Container className="global-content">
-      <h2 className="titre-center">Définitions</h2>
+      <h2 className="title-center">Définitions</h2>
       <p>
         {`Sauf indication contraire dans les CGS, les mots au singulier inclue le pluriel et vice versa.
         `}

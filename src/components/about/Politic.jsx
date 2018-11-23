@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Politique = () => (
+const Politic = () => (
   <div>
     <h1>Politique de confidentialité</h1>
     <br />
@@ -361,4 +361,4 @@ const Politique = () => (
   </div>
 );
 
-export default Politique;
+export default Politic;

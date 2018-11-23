@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row, Container } from 'reactstrap';
-import './Equipe.scss';
+import './Team.scss';
 
 const Equipe = () => (
   <Container className="Team">

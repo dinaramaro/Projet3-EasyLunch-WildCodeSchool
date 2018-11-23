@@ -12,7 +12,7 @@ const FAQ = () => (
   <Container className="FAQ">
     <Row>
       <Col>
-        <h1 className="titre">FAQ</h1>
+        <h1 className="title">FAQ</h1>
       </Col>
     </Row>
     <Row>

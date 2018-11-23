@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {
   Container, Collapse, Row, Col,
 } from 'reactstrap';
-import './Explication.scss';
+import './Explaination.scss';
 import Media from './Media';
 
-
-class Explication extends Component {
+class Explaination extends Component {
   constructor(props) {
     super(props);
     this.toggleChoose = this.toggleChoose.bind(this);
@@ -33,7 +32,7 @@ class Explication extends Component {
   render() {
     const { collapseChoose, collapseEnjoy, collapseShare } = this.state;
     return (
-      <Container fluid className="Explication">
+      <Container fluid className="Explaination">
         <Row>
           <Col className="video" sm="4">
             <Media />
@@ -81,4 +80,4 @@ class Explication extends Component {
   }
 }
 
-export default Explication;
+export default Explaination;

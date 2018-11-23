@@ -9,7 +9,7 @@ import './Concept.scss';
 const Concept = () => (
   <Container className="Concept">
     <section>
-      <h1 className="titre">EASY LUNCH, L&#39;APPLI QUI SIMPLIFIE VOTRE PAUSE-DÉJEUNER AU RESTAURANT !</h1>
+      <h1 className="title">EASY LUNCH, L&#39;APPLI QUI SIMPLIFIE VOTRE PAUSE-DÉJEUNER AU RESTAURANT !</h1>
       <Row>
         <Col lg="4" md="4" sm="12" className="box">
           <img src="/medias/1-Choisir-un-restaurant.png" alt="easy-lunch-choisir" />

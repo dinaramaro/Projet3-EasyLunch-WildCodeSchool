@@ -14,7 +14,6 @@ const Media = () => {
       showinfo: 0,
       modestbranding: 1,
     },
-
   };
 
   return (

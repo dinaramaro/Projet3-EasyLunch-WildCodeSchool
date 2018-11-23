@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Col, Row, Card, CardImg, CardText, CardBody, Container,
 } from 'reactstrap';
-import './Partenaires.scss';
+import './Partners.scss';
 
 const Partenaires = () => (
   <Container>
     <section className="Partners">
-      <h1 className="titre">NOS PARTENAIRES</h1>
+      <h1 className="title">NOS PARTENAIRES</h1>
       <Row>
         <Col lg="4" sm="12" xs="12">
           <Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contact.scss';
+import './Contacts.scss';
 import {
   Container,
   Row,
@@ -16,7 +16,7 @@ const paragraph2Contact = ' Toutes les informations dont vous nous ferez part no
 const paragraph3Contact = 'Vous pouvez nous contacter en remplissant le formulaire ci-dessous ou directement par mail à l’adresse : contact@easy-lunch.fr';
 
 const Contact = () => (
-  <div className="Contact">
+  <div className="Contacts">
     <h2 className="titre2">NOUS CONTACTER</h2>
     <Container className="contact">
       <p>{paragraph1Contact}</p>
