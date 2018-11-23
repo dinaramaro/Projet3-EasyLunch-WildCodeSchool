@@ -1,24 +1,29 @@
 .Footer {
   margin: auto;
   background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+  
   .row {
     display: flex;
     justify-content: space-around;
     padding-top: 1%;
     padding-left: 4%;
+    
     .card {
       display: flex;
       justify-content: center;
       background-color: transparent;
       border: none;
+      
       .nav-link{
         color: white;
+        
         .nav-link:hover {
           color: whitesmoke;
         }
       }
     }
   }
+  
   .image {
     width: 50%;
     height: auto;
