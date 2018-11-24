@@ -18,13 +18,13 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about/concept" component={Concept} />
-        <Route path="/about/team" component={Team} />
-        <Route path="/about/cgv" component={CGV} />
-        <Route path="/about/faq" component={FAQ} />
-        <Route path="/about/contact" component={Contacts} />
-        <Route path="/about/partners" component={Partners} />
-        <Route path="/about/politic" component={Politic} />
+        <Route path="/apropos/concept" component={Concept} />
+        <Route path="/apropos/equipe" component={Team} />
+        <Route path="/apropos/cgv" component={CGV} />
+        <Route path="/apropos/faq" component={FAQ} />
+        <Route path="/apropos/contact" component={Contacts} />
+        <Route path="/apropos/partenaires" component={Partners} />
+        <Route path="/apropos/politique" component={Politic} />
       </Switch>
     </div>
     <Footer />

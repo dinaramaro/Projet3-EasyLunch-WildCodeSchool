@@ -1,18 +1,14 @@
 .Partners {
-  text-align: center;
-  .card {
-    padding: 10px 10px 10px 10px;
-    .img-fluid {
-      width: 300px;
-      height: 180px;
-      max-width: 100%;
-      padding: 10%;
+  .div-img{
+    .img-sqal{
+      width: 80%;
+    } 
+    .img-wcs{
+      width: 90%;
+      margin-top: 1em;
     }
-    .card-text {
-      text-align: justify;
+    .img-na{
+      width: 100%;
     }
-    .card-body {
-      max-width: 100%;
-    }
-  } 
+  }
 }

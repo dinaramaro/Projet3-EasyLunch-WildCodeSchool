@@ -2,10 +2,7 @@ import React from 'react';
 import {
   Col,
   Row,
-  Card,
   CardImg,
-  CardText,
-  CardBody,
   Container,
 } from 'reactstrap';
 import './Partners.scss';
@@ -14,53 +11,32 @@ const Partners = () => (
   <Container className="Partners">
     <h1 className="title">NOS PARTENAIRES</h1>
     <Row>
-      <Col lg="4" sm="12" xs="12">
-        <Card>
+      <Col lg="4" md="6" sm="6" xs="12">
+        <div className="div-img">
           <CardImg
-            top
+            className="img-sqal"
             src="/medias/SQAL.png"
-            alt="sqal"
-            className="img-fluid"
+            alt="Card image cap"
           />
-          <CardBody>
-            <CardText>
-              {`SQAL est une agence spécialisée dans l’innovation. C’est elle qui a développé l’application mobile Easy Lunch. 
-              L’équipe est efficace, réactive et disponible. Elle s’adapte aux jeunes start-up comme la nôtre. Vous trouverez plus d’informations sur leur site Internet.`}
-            </CardText>
-          </CardBody>
-        </Card>
+        </div>
       </Col>
-      <Col lg="4" sm="12" xs="12">
-        <Card>
+      <Col lg="4" md="6" sm="6" xs="12">
+        <div className="div-img">
           <CardImg
-            top
+            className="img-wcs"
             src="/medias/Wild-Code-School.png"
-            alt="wild-code-school"
-            className="img-fluid"
+            alt="Card image cap"
           />
-          <CardBody>
-            <CardText>
-              {`La Wild Code School forme de futurs développeurs web grâce à une pédagogie innovante et des outils numériques permettant aux élèves de mettre en pratique les enseignements. 
-              Sept étudiants ont réalisé notre site web dans le cadre d'un projet d'école.`}
-            </CardText>
-          </CardBody>
-        </Card>
+        </div>
       </Col>
-      <Col lg="4" sm="12" xs="12">
-        <Card>
+      <Col lg="4" md="6" sm="6" xs="12">
+        <div className="div-img">
           <CardImg
-            top
-            className="img-fluid"
+            className="img-na"
             src="/medias/logo-nouvelle-aquitaine.png"
-            alt="region-nouvelle-aquitaine"
+            alt="Card image cap"
           />
-          <CardBody>
-            <CardText>
-              {`LoremIpsum..... Code School forme de futurs développeurs web grâce à une pédagogie innovante et des outils numériques permettant aux élèves de mettre en pratique les enseignements. 
-              Sept étudiants ont réalisé notre site web dans le cadre d'un projet d'école.`}
-            </CardText>
-          </CardBody>
-        </Card>
+        </div>
       </Col>
     </Row>
   </Container>
