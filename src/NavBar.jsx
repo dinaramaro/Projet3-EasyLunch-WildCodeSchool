@@ -111,7 +111,7 @@ export default class NavBar extends React.Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/components/">
+                <NavLink href="https://restaurateur.easy-lunch.fr/" target="_blank">
                   Espace restaurateurs
                 </NavLink>
               </NavItem>
