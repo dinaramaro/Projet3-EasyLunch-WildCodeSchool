@@ -11,7 +11,7 @@ const HomeInputs = () => (
       style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}
     >
       <h2 className="border-text banner-text">
-        Commandez et payez avant et soyez servis dès votre arrivé au restaurant
+        Commandez et payez avant et soyez servis dès votre arrivée au restaurant
       </h2>
       <Input
         className="search1"

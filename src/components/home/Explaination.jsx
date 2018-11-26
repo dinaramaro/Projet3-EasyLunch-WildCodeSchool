@@ -52,7 +52,7 @@ class Explaination extends Component {
                 src="./medias/icon-eat.svg"
                 alt="Commandez avant 11h30"
               />
-              <p className="title">Choisissez votre restaurant</p>
+              <p className="title-ex">Choisissez votre restaurant</p>
               <img
                 className="arrow"
                 src="./medias/arrow-down.png"
@@ -79,7 +79,7 @@ class Explaination extends Component {
                 src="./medias/icon-time.svg"
                 alt="Profitez de votre pause"
               />
-              <p className="title">Commandez et payer avant 11h30</p>
+              <p className="title-ex">Commandez et payez avant 11h30</p>
               <img
                 className="arrow"
                 src="./medias/arrow-down.png"
@@ -107,7 +107,7 @@ class Explaination extends Component {
                 src="./medias/icon-smiley.svg"
                 alt="Partez sans payer"
               />
-              <p className="title">Soyez servis dès votre arrivée</p>
+              <p className="title-ex">Soyez servi dès votre arrivée</p>
               <img
                 className="arrow"
                 src="./medias/arrow-down.png"
