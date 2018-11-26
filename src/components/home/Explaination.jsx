@@ -53,11 +53,6 @@ class Explaination extends Component {
                 alt="Commandez avant 11h30"
               />
               <p className="title-ex">Choisissez votre restaurant</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
             </button>
             <Collapse id="choose" isOpen={collapseChoose}>
               <p className="paraDetails">
@@ -80,11 +75,6 @@ class Explaination extends Component {
                 alt="Profitez de votre pause"
               />
               <p className="title-ex">Commandez et payez avant 11h30</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
             </button>
             <Collapse id="enjoy" isOpen={collapseEnjoy}>
               <p className="paraDetails">
@@ -108,11 +98,6 @@ class Explaination extends Component {
                 alt="Partez sans payer"
               />
               <p className="title-ex">Soyez servi dès votre arrivée</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
             </button>
             <Collapse id="share" isOpen={collapseShare}>
               <p className="para-details">

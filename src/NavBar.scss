@@ -18,16 +18,13 @@
         }
       }
     }
-    a{
-      color:white;
-      padding: .10rem .5rem .5rem .5rem;
-      &:hover{
+    a {
+      color: white;
+      padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+      &:hover {
         text-decoration: none;
         color: black;
       }
-    }
-    Collapse{
-      padding-top : 1em;
     }
     .dropdown-item:hover {
       background-color: transparent;
