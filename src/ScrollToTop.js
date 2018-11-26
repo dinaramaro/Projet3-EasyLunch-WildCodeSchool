@@ -1,0 +1,27 @@
+import { Component } from 'react';
+import { withRouter } from 'react-router';
+
+/* Retour scroll haut de page */
+class ScrollToTop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { location } = this.props;
+    if (location !== prevProps.location) {
+      // eslint-disable-next-line no-undef
+      window.scrollTo(0, 0);
+    }
+  }
+
+  render() {
+    const { children } = this.props;
+    return children;
+  }
+}
+
+export default withRouter(ScrollToTop);
