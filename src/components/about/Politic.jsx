@@ -1,7 +1,8 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 
 const Politic = () => (
-  <div>
+  <Container>
     <h1>Politique de confidentialité</h1>
     <br />
     <p>
@@ -358,7 +359,7 @@ const Politic = () => (
         <br />
       </li>
     </ul>
-  </div>
+  </Container>
 );
 
 export default Politic;

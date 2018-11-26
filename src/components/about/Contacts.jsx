@@ -16,9 +16,9 @@ const paragraph2Contact = ' Toutes les informations dont vous nous ferez part no
 const paragraph3Contact = 'Vous pouvez nous contacter en remplissant le formulaire ci-dessous ou directement par mail à l’adresse : contact@easy-lunch.fr';
 
 const Contact = () => (
-  <div className="Contacts">
-    <h2 className="titre2">NOUS CONTACTER</h2>
-    <Container className="contact">
+  <Container className="Contacts">
+    <h1 className="titre2">NOUS CONTACTER</h1>
+    <div className="contact">
       <p>{paragraph1Contact}</p>
       {paragraph2Contact}
       <p>{paragraph3Contact}</p>
@@ -125,8 +125,8 @@ const Contact = () => (
           </a>
         </div>
       </section>
-    </Container>
-  </div>
+    </div>
+  </Container>
 );
 
 export default Contact;

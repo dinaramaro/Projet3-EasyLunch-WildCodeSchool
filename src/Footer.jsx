@@ -9,20 +9,20 @@ import './Footer.scss';
 const Footer = () => (
   <Container className="Footer" fluid>
     <Row>
-      <Col xs="6" lg="3">
+      <Col xs="4" md="4" lg="3">
         <Card>
           <Link to="/apropos/contact">Contact Client</Link>
           <Link to="/">Contact Restaurateur</Link>
           <Link to="/apropos/partenaires">Nos Partenaires</Link>
         </Card>
       </Col>
-      <Col xs="6" lg="3">
+      <Col xs="4" md="4" lg="3">
         <Card>
           <NavLink href="#">Facebook</NavLink>
           <NavLink href="#">Instagram</NavLink>
         </Card>
       </Col>
-      <Col xs="12" lg="3">
+      <Col xs="4" md="4" lg="3">
         <Card>
           <Link to="/apropos/equipe">Equipe</Link>
           <Link to="/apropos/politique">Politique de confidentialité</Link>
