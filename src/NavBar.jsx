@@ -38,27 +38,17 @@ export default class NavBar extends React.Component {
               />
             </Link>
           </NavbarBrand>
-          <NavItem className="join d-md-none d-lg-none">
-            <Link to="/components/">
+          <NavItem tag={Link} to="/components/" className="join d-md-none d-lg-none">
               Je participe
-            </Link>
           </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Link
-                  to="/components/Jeparticipe"
-                >
+              <NavItem tag={Link} to="/components/Jeparticipe">
                   Je participe
-                </Link>
               </NavItem>
-              <NavItem>
-                <Link
-                  to="/components/Connexion"
-                >
+              <NavItem tag={Link} to="/components/Connexion">
                   Connexion
-                </Link>
               </NavItem>
               <NavItem>
                 <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
