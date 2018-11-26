@@ -41,8 +41,8 @@ export default class NavBar extends React.Component {
               className="navbar-logo"
             />
           </NavbarBrand>
-          <NavItem className="je-participe d-md-none d-lg-none">
-            <NavLink href="/components/" style={{ color: 'white' }}>
+          <NavItem className="join d-md-none d-lg-none">
+            <NavLink href="/components/">
               Je participe
             </NavLink>
           </NavItem>
@@ -50,37 +50,68 @@ export default class NavBar extends React.Component {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+                <NavLink
+                  href="/components/Jeparticipe"
+                >
                   Je participe
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+                <NavLink
+                  href="/components/Connexion"
+                >
                   Connexion
                 </NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret style={{ color: 'white' }}>
+                <DropdownToggle nav caret>
                   A propos
                 </DropdownToggle>
                 <DropdownMenu right className="nav-dropdown">
-                  <DropdownItem style={{ color: 'white' }}>
-                    Le concept
+                  <DropdownItem>
+                    <NavLink href="/apropos/concept">
+                      Le concept
+                    </NavLink>
                   </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    {"L'équipe"}
+                  <DropdownItem>
+                    <NavLink href="/apropos/equipe">
+                      {"L'équipe"}
+                    </NavLink>
                   </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    Contacts
+                  <DropdownItem>
+                    <NavLink href="/apropos/contact">
+                      Contacts
+                    </NavLink>
                   </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    Conditions générales
+                  <DropdownItem>
+                    <NavLink href="/apropos/cgv">
+                      Conditions générales
+                    </NavLink>
                   </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>FAQ</DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/apropos/confidentialite">
+                      Politique de confidentialité
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/apropos/restaurateur">
+                      Vous êtes restaurateur ?
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/apropos/partenaire">
+                      Nos partenaires
+                    </NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <NavLink href="/apropos/faq">
+                      FAQ
+                    </NavLink>
+                  </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+                <NavLink href="https://restaurateur.easy-lunch.fr/" target="_blank">
                   Espace restaurateurs
                 </NavLink>
               </NavItem>
