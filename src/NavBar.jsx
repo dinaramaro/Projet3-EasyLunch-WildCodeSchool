@@ -41,7 +41,7 @@ export default class NavBar extends React.Component {
               className="navbar-logo"
             />
           </NavbarBrand>
-          <NavItem className="je-participe d-md-none d-lg-none">
+          <NavItem className="join d-md-none d-lg-none">
             <NavLink href="/components/">
               Je participe
             </NavLink>
