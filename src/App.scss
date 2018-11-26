@@ -3,6 +3,14 @@ $secondaryColor: #ffa300;
 $accentuationColor: #f9b522;
 
 .content{
-  min-height: calc(100vh - 220px);
+  min-height: calc(100vh - 195px);
+}
+
+.title {
+  background-image: radial-gradient(#F1CD00, #FEA400);
+  color: #FFFFFF;
+  text-align: center;
+  font-size : 2em;
+  font-weight: bold;
 }
 
