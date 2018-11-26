@@ -1,0 +1,34 @@
+.Concept {
+
+  text-align: center;
+
+  .box img {
+    width: 80%;
+  }
+
+  .concept-text {
+    padding: 15px;
+    text-align: justify;
+
+    ul {
+      list-style-type: none;
+    }
+
+  }
+
+  .logo {
+    width: 300px;
+    margin: 20px;
+  }
+
+  .actu {
+    text-align: center;
+    margin: 50px;
+  }
+
+  .logo-sm {
+
+    margin: 20px;
+  }
+
+}

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   Container, Collapse, Row, Col,
 } from 'reactstrap';
-import './Explication.scss';
+import './Explaination.scss';
 import Media from './Media';
 
-class Explication extends Component {
+class Explaination extends Component {
   constructor(props) {
     super(props);
     this.toggleChoose = this.toggleChoose.bind(this);
@@ -36,7 +36,7 @@ class Explication extends Component {
   render() {
     const { collapseChoose, collapseEnjoy, collapseShare } = this.state;
     return (
-      <Container fluid className="Explication">
+      <Container fluid className="Explaination">
         <Row>
           <Col className="col" xs="12" sm="4" md="4" lg="4">
             <div className="round">1</div>
@@ -115,7 +115,7 @@ class Explication extends Component {
               />
             </button>
             <Collapse id="share" isOpen={collapseShare}>
-              <p className="paraDetails">
+              <p className="para-details">
                 Rendez-vous au restaurant, votre table est prête, profitez de
                 votre déjeuner et des personnes qui vous accompagnent et partez
                 sans passer par la caisse dès que vous avez fini.
@@ -123,14 +123,12 @@ class Explication extends Component {
             </Collapse>
           </Col>
         </Row>
-        <div className="video-explication">
-          <div className="d-xs-none" lg="12">
-            <Media />
-          </div>
+        <div className="video-ex">
+          <Media />
         </div>
       </Container>
     );
   }
 }
 
-export default Explication;
+export default Explaination;
