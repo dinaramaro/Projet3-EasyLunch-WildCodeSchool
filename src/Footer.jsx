@@ -33,7 +33,7 @@ const Footer = () => (
         </Card>
       </Col>
       <Col lg="3">
-        <img className="image" src="medias/icone-easylunch-blanc.svg" alt="logo" />
+        <img className="image d-none d-sm-none d-md-none d-lg-block d-xl-block" src="medias/icone-easylunch-blanc.svg" alt="logo" />
       </Col>
     </Row>
   </Container>
