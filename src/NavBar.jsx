@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.scss';
-
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -8,11 +8,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'reactstrap';
 
 export default class NavBar extends React.Component {
@@ -34,86 +29,41 @@ export default class NavBar extends React.Component {
     return (
       <div className="nav-bar">
         <Navbar className="navbar-div" dark expand="md">
-          <NavbarBrand href="/">
-            <img
-              src="/medias/weblogo-easylunch-blanc.png"
-              alt="navbarLogo"
-              className="navbar-logo"
-            />
+          <NavbarBrand>
+            <Link to="/">
+              <img
+                src="/medias/weblogo-easylunch-blanc.png"
+                alt="navbarLogo"
+                className="navbar-logo"
+              />
+            </Link>
           </NavbarBrand>
           <NavItem className="join d-md-none d-lg-none">
-            <NavLink href="/components/">
+            <Link to="/components/">
               Je participe
-            </NavLink>
+            </Link>
           </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink
-                  href="/components/Jeparticipe"
+                <Link
+                  to="/components/Jeparticipe"
                 >
                   Je participe
-                </NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink
-                  href="/components/Connexion"
+                <Link
+                  to="/components/Connexion"
                 >
                   Connexion
-                </NavLink>
+                </Link>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  A propos
-                </DropdownToggle>
-                <DropdownMenu right className="nav-dropdown">
-                  <DropdownItem>
-                    <NavLink href="/apropos/concept">
-                      Le concept
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/equipe">
-                      {"L'équipe"}
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/contact">
-                      Contacts
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/cgv">
-                      Conditions générales
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/confidentialite">
-                      Politique de confidentialité
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/restaurateur">
-                      Vous êtes restaurateur ?
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/partenaire">
-                      Nos partenaires
-                    </NavLink>
-                  </DropdownItem>
-                  <DropdownItem>
-                    <NavLink href="/apropos/faq">
-                      FAQ
-                    </NavLink>
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="https://restaurateur.easy-lunch.fr/" target="_blank">
+                <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
                   Espace restaurateurs
-                </NavLink>
+                </a>
               </NavItem>
             </Nav>
           </Collapse>

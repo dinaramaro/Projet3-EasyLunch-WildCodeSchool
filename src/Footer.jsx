@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
 import {
   NavLink,
   Row,
@@ -16,16 +17,16 @@ const Footer = () => (
         <Row>
           <Col>
             <Card>
-              <NavLink href="#">Contact Client</NavLink>
-              <NavLink href="#">Contact Restaurateur</NavLink>
-              <NavLink href="#">Nos Partenaires</NavLink>
+              <Link to="/apropos/contact">Contact Client</Link>
+              <Link to="/">Contact Restaurateur</Link>
+              <Link to="/apropos/partenaires">Nos Partenaires</Link>
             </Card>
           </Col>
           <Col>
             <Card>
-              <NavLink href="#">Mentions légales</NavLink>
-              <NavLink href="#">politique de confidentialité</NavLink>
-              <NavLink href="#">Conditions Générales</NavLink>
+              <Link to="/apropos/equipe">Equipe</Link>
+              <Link to="/apropos/politique">Politique de confidentialité</Link>
+              <Link to="/apropos/cgv">Conditions Générales</Link>
             </Card>
           </Col>
           <Col>
@@ -38,7 +39,7 @@ const Footer = () => (
         </Row>
       </Col>
       <Col className="logoF" md="3">
-        <img className="image d-xs-none" src="medias/icone-easylunch-blanc.svg" alt="logo" />
+        <img className="image d-xs-none" src="/medias/icone-easylunch-blanc.svg" alt="logo" />
       </Col>
     </Row>
   </Container>

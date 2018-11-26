@@ -1,26 +1,37 @@
 .nav-bar {
-  .navbar-logo {
-    height: 38px;
-  }
-
   .navbar-div {
     background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
-  }
+    .navbar-logo {
+      height: 38px;
+    }
 
-  .nav-dropdown {
-    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
-  }
+    .nav-dropdown {
+      background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+    }
 
-  .join {
-    list-style-type: none;
-  }
-
-  .navbar-dark .navbar-nav .nav-link{
-    color: white;
-  }
-
-  .dropdown-item:hover {
-    background-color: transparent;
-    cursor: pointer;
+    .join {
+      list-style-type: none;
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    a{
+      color:white;
+      padding: .10rem .5rem .5rem .5rem;
+      &:hover{
+        text-decoration: none;
+        color: black;
+      }
+    }
+    Collapse{
+      padding-top : 1em;
+    }
+    .dropdown-item:hover {
+      background-color: transparent;
+      cursor: pointer;
+    }
   }
 }
