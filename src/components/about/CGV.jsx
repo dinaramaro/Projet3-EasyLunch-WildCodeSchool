@@ -5,7 +5,7 @@ import { Container } from 'reactstrap';
 const CGV = () => (
   <Container className="CGV">
     <h1 className="title-center">Conditions générales de Service</h1>
-    <div className="global-content ">
+    <div className="global-content">
       <h2>Définitions</h2>
       <p>
         {`Sauf indication contraire dans les CGS, les mots au singulier inclue le pluriel et vice versa.

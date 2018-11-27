@@ -3,13 +3,6 @@ import { withRouter } from 'react-router';
 
 /* Retour scroll haut de page */
 class ScrollToTop extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   componentDidUpdate(prevProps) {
     const { location } = this.props;
     if (location !== prevProps.location) {
