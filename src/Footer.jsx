@@ -31,7 +31,7 @@ const Footer = () => (
           </li>
         </ul>
       </Col>
-      <Col xs="2" md="4" lg="4">
+      <Col xs="2" md="3" lg="4">
         <a
           href="https://www.facebook.com/EasyLunchBordeaux/"
           target="_blank"
@@ -51,7 +51,7 @@ const Footer = () => (
       <Col xs="1" md="1" lg="1">
         <Link to="/">
           <img
-            className="img-fluid"
+            width="50em"
             src="medias/icone-easylunch-blanc.svg"
             alt="logo"
           />
