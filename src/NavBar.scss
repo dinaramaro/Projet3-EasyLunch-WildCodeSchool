@@ -1,26 +1,34 @@
 .nav-bar {
-  .navbar-logo {
-    height: 38px;
-  }
-
   .navbar-div {
     background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
-  }
+    .navbar-logo {
+      height: 38px;
+    }
 
-  .nav-dropdown {
-    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
-  }
+    .nav-dropdown {
+      background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+    }
 
-  .join {
-    list-style-type: none;
-  }
-
-  .navbar-dark .navbar-nav .nav-link{
-    color: white;
-  }
-
-  .dropdown-item:hover {
-    background-color: transparent;
-    cursor: pointer;
+    .join {
+      list-style-type: none;
+      a {
+        color: white;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    a {
+      color: white;
+      padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+      &:hover {
+        text-decoration: none;
+        color: black;
+      }
+    }
+    .dropdown-item:hover {
+      background-color: transparent;
+      cursor: pointer;
+    }
   }
 }

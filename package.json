@@ -20,8 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "eslint src",
-    "lint-jsx": "eslint src/**/*.jsx",
+    "lint": "eslint src --ext js,jsx",
+    "lint-jsx": "eslint src --ext jsx",
     "precommit": "npm run lint-jsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -32,7 +32,8 @@
     "extends": "airbnb",
     "parser": "babel-eslint",
     "env": {
-      "es6": true
+      "es6": true,
+      "browser": true
     },
     "parserOptions": {
       "sourceType": "module"

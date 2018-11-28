@@ -3,10 +3,10 @@ import './CGV.scss';
 import { Container } from 'reactstrap';
 
 const CGV = () => (
-  <div className="CGV">
-    <h1>Conditions générales de Service</h1>
-    <Container className="global-content">
-      <h2 className="title-center">Définitions</h2>
+  <Container className="CGV">
+    <h1 className="title-center">Conditions générales de Service</h1>
+    <div className="global-content">
+      <h2>Définitions</h2>
       <p>
         {`Sauf indication contraire dans les CGS, les mots au singulier inclue le pluriel et vice versa.
         `}
@@ -548,8 +548,8 @@ const CGV = () => (
           Les présentes CGS et les opérations qui en découlent sont régies et soumises au droit français. Toutes difficultés relatives à la validité, l’application ou à l’interprétation des CGS seront soumises, à défaut d’accord amiable, au Tribunal de Grande Instance de Bordeaux.
         `}
       </p>
-    </Container>
-  </div>
+    </div>
+  </Container>
 );
 
 export default CGV;

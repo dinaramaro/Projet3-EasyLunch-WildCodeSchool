@@ -1,64 +1,67 @@
+@import '../../App.scss';
+
 .Explaination {
   .video-ex {
     display: flex;
     justify-content: center;
     padding-top: 2em;
     padding-bottom: 2em;
-}
-  .para1 {    
+  }
+  .para1 {
     text-align: center;
     margin-top: 1%;
     font-size: 2vw;
 
     .para2 {
       font-size: 3vw;
-      color: #ffa300;     
+      color: #ffa300;
     }
   }
 
   .col {
-    .bouton {    
+    position: relative;
+    margin-top:1em;
+    margin-bottom:1em;
+    .bouton {
       background-color: white;
-      border: 1px solid black;
       border-radius: 20px;
       width: 100%;
       &:hover {
         cursor: pointer;
       }
+      &:focus {
+        display: none;
+      }
 
       .icone {
         width: 17%;
-        padding-top: 3%;       
-      }  
+        padding-top: 3%;
+      }
 
       .arrow {
         width: 10%;
       }
-      
+
       .title-ex {
         font-size: 1em;
       }
-    }  
+    }
 
     .para-details {
       text-align: justify;
       padding: 5% 5%;
-    }  
+    }
 
     .round {
-      border: 1px solid #ffa300;
-      color: #ffa300;
-      width: 10%;
+      color: white;
+      width: 50px;
+      font-size: 2em;
+      text-align: center;
       border-radius: 50%;
-      padding-left: 3.2%;
-      font-size: 1.5vw;
-      position: relative;
-      top: 15px;
-      left: -10px;
-      z-index: 5;
-      background-color: white;  
+      position: absolute;
+      top: -5px;
+      left: 10px;
+      background-color: $secondaryColor;
     }
   }
 }
-
-
