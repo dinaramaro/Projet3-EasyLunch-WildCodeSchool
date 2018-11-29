@@ -11,6 +11,7 @@ import Contacts from './components/about/Contacts';
 import CGV from './components/about/CGV';
 import Partners from './components/about/Partners';
 import Politic from './components/about/Politic';
+import Restaurant from './components/about/Restaurant';
 
 const App = () => (
   <div>
@@ -25,6 +26,7 @@ const App = () => (
         <Route path="/apropos/contact" component={Contacts} />
         <Route path="/apropos/partenaires" component={Partners} />
         <Route path="/apropos/politique" component={Politic} />
+        <Route path="/apropos/Restaurant" component={Restaurant} />
       </Switch>
     </div>
     <Footer />

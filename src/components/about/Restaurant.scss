@@ -1,0 +1,29 @@
+.restaurant-title-h1 {
+  text-align: center;
+  padding: 2%;
+}
+
+.restaurant-title-h2 {
+  padding: 2%;
+}
+
+.paragraph-n1 {
+ text-align:justify; 
+}
+
+.form-title {
+  text-align: center;
+  padding: 2% 2% 0.5% 2%;
+}
+
+.form-div {
+  margin: 2%;
+}
+
+ul { 
+  list-style : none
+}
+
+.li-restaurant::before {content: "•"; color:#f9b522;
+  display: inline-block; width: 1em;
+  margin-left: -1em}
