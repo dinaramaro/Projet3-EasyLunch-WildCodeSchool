@@ -22,7 +22,6 @@
     "start": "react-scripts start",
     "lint": "eslint src --ext js,jsx",
     "lint-jsx": "eslint src --ext jsx",
-    "precommit": "npm run lint-jsx",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -58,5 +57,10 @@
   "devDependencies": {
     "husky": "^1.2.0",
     "eslint-config-airbnb": "^17.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-jsx"
+    }
   }
 }
