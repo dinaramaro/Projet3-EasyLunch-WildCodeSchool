@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Row, Col, Input, Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle
+  CardTitle, CardSubtitle,
 } from 'reactstrap';
 import './Restaurants.scss';
 import restaurants from '../../restaurantsList.json';

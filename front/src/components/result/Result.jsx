@@ -11,6 +11,6 @@ const Result = () => (
     </Row>
 
   </Container>
-)
+);
 
 export default Result;
