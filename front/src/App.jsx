@@ -12,6 +12,13 @@ import CGV from './components/about/CGV';
 import Partners from './components/about/Partners';
 import Politic from './components/about/Politic';
 import Restaurant from './components/about/Restaurant';
+import MenuAdmin from './components/admin/MenuAdmin';
+import AdminCVG from './components/admin/AdminCGV';
+import AdminPoli from './components/admin/AdminPoli';
+import AdminTeam from './components/admin/AdminTeam';
+import Login from './Login';
+import AdminPartners from './components/admin/AdminPartners';
+import AdminConcept from './components/admin/AdminConcept';
 
 const App = () => (
   <div>
@@ -27,6 +34,13 @@ const App = () => (
         <Route path="/apropos/partenaires" component={Partners} />
         <Route path="/apropos/politique" component={Politic} />
         <Route path="/apropos/restaurant" component={Restaurant} />
+        <Route path="/admin/MenuAdmin" component={MenuAdmin} />
+        <Route path="/admin/AdminCGV" component={AdminCVG} />
+        <Route path="/admin/AdminPolitique" component={AdminPoli} />
+        <Route path="/admin/AdminEquipe" component={AdminTeam} />
+        <Route path="/admin/AdminPartenaires" component={AdminPartners} />
+        <Route path="/admin/AdminConcept" component={AdminConcept} />
+        <Route path="/Login" component={Login} />
       </Switch>
     </div>
     <Footer />

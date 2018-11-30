@@ -7,9 +7,6 @@ const Media = () => {
     playerVars: {
       // différente configuration de lecture, d'affichage, d'utilisation//
       autoplay: 0,
-      start: 120,
-      end: 300,
-      controls: 0,
       rel: 0,
       showinfo: 0,
       modestbranding: 1,
