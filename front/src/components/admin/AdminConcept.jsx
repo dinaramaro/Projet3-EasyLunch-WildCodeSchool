@@ -13,8 +13,8 @@ const AdminConcept = () => (
     <h1>Concept</h1>
     <Form>
       <FormGroup>
-        <Label for="exampleUrl">Image du concept</Label>
-        <Input type="url" name="url" id="exampleUrl" placeholder="Mettez le lien de vos images de concept" />
+        <Label for="conceptPicture">Image du concept</Label>
+        <Input type="url" name="url" id="conceptPicture" placeholder="Mettez le lien de vos images de concept" />
       </FormGroup>
       <FormGroup>
         <Label>Description du concept</Label>
@@ -26,8 +26,8 @@ const AdminConcept = () => (
         />
       </FormGroup>
       <FormGroup>
-        <Label for="exampleUrl">Video du concept</Label>
-        <Input type="url" name="url" id="exampleUrl" placeholder="Mettez le lien de votre video concept" />
+        <Label for="movieConcept">Video du concept</Label>
+        <Input type="url" name="url" id="movieConcept" placeholder="Mettez le lien de votre video concept" />
       </FormGroup>
       <Button className="text-color">
         ENVOYER

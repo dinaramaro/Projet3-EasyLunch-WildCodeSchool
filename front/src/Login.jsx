@@ -18,14 +18,14 @@ const Login = () => (
       <Row form>
         <Col md={6}>
           <FormGroup>
-            <Label for="exampleEmail">Email</Label>
-            <Input type="email" placeholder="Mail" />
+            <Label for="Email">Email</Label>
+            <Input type="email" placeholder="Mail" id="Email" />
           </FormGroup>
         </Col>
         <Col md={6}>
           <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input type="password" placeholder="Mot De Passe" />
+            <Label for="Password">Password</Label>
+            <Input type="password" placeholder="Mot De Passe" id="Password" />
           </FormGroup>
         </Col>
       </Row>

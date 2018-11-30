@@ -13,8 +13,8 @@ const AdminTeam = () => (
     <h1>Donnée De L&#39;Equipe</h1>
     <Form>
       <FormGroup>
-        <Label for="exampleUrl">Photo d&#39;Equipe</Label>
-        <Input type="url" name="url" id="exampleUrl" placeholder="Mettez le lien de vos photos d'équipe" />
+        <Label for="teamPicture">Photo d&#39;Equipe</Label>
+        <Input type="url" name="url" id="teamPicture" placeholder="Mettez le lien de vos photos d'équipe" />
       </FormGroup>
       <FormGroup>
         <Label>Description d&#39;Equipe</Label>

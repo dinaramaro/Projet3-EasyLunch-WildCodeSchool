@@ -13,8 +13,8 @@ const AdminPartners = () => (
     <h1>Partenaire</h1>
     <Form>
       <FormGroup>
-        <Label for="exampleUrl">Image Partenaire</Label>
-        <Input type="url" name="url" id="exampleUrl" placeholder="Mettez le lien de vos photos d'équipe" />
+        <Label for="picturePartner">Image Partenaire</Label>
+        <Input type="url" name="url" id="picturePartner" placeholder="Mettez le lien de vos photos d'équipe" />
       </FormGroup>
       <Button>
         ENVOYER

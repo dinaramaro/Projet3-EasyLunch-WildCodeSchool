@@ -10,7 +10,7 @@ import {
 
 
 const Menu = () => (
-  <Container className="Menu">
+  <Container className="MenuAdmin">
     <Row>
       <Col>
         <Button>
