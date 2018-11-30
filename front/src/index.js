@@ -11,10 +11,10 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './ScrollToTop';
+import configureStore from './store/configStore';
 
+const store = configureStore()
 
-
-const store = createStore(allReducers, applyMiddleware(thunk));
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
