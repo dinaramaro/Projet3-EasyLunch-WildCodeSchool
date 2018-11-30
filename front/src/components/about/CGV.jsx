@@ -203,7 +203,7 @@ const CGV = () => (
           <li> les données de la carte bancaire utilisée auront été vérifiées ; </li>
           <li>
             {`
-            l&apos;autorisation de débit aura été reçue de la part de l'émetteur de la carte utilisée pour le paiement.
+            l'autorisation de débit aura été reçue de la part de l'émetteur de la carte utilisée pour le paiement.
             `}
           </li>
         </ul>
@@ -511,7 +511,7 @@ const CGV = () => (
         <ul>
           <li>
             {`
-              ne pas modifier la taille ou l&apos;apparence des marques, logos et autres signes distinctifs d’Easy Lunch; 
+              ne pas modifier la taille ou l'apparence des marques, logos et autres signes distinctifs d’Easy Lunch; 
             `}
           </li>
           <li>

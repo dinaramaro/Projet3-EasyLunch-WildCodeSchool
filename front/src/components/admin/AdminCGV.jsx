@@ -4,12 +4,12 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { fetchCGV } from '../../actions/admin';
-import varServeur from '../../constants';
+import { varServeur } from '../../constants';
 
 class FormAdmin extends Component {
   componentDidMount = () => {
     const { fetchCGV } = this.props;
-    fetchCGV(`${varServeur}/api/about/cgv`);
+    fetchCGV(`${varServeur}/about/cgv`);
   }
 
   render() {
