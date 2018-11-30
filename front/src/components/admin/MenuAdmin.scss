@@ -1,0 +1,13 @@
+.MenuAdmin {
+  padding: 10%;
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    padding: 10%;
+
+    .button {
+      margin-bottom: 1em;
+    }
+  }
+}
