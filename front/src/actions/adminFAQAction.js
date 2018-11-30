@@ -19,21 +19,10 @@ function handleErrors(response) {
   return response;
 }
 
-// export function getProductsHome() {
-//   return function dispatch() {
-//     dispatch(fetchFAQBegin());
-//     return fetch('http://localhost:4000/api/about/faq')
-//       .then(handleErrors)
-//       .then(res => res.json())
-//       .then(produits => dispatch(fetchFAQSuccess(produits)))
-//       .catch(error => dispatch(fetchFAQError(error)));
-//   };
-// }
-
 export function fetchFAQ() {
   return (dispatch) => {
     dispatch(fetchFAQBegin());
-    return fetch('http://localhost:3000/admin/produits')
+    return fetch('http://localhost:4000/api/about/faq')
       .then(handleErrors)
       .then(res => res.json())
       .then(produits => dispatch(fetchFAQSuccess(produits)))

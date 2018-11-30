@@ -30,6 +30,9 @@ const Menu = () => (
         <Button>
           <Link to="/admin/AdminEquipe">Equipe</Link>
         </Button>
+        <Button>
+          <Link to="/admin/AdminFAQ">FAQ</Link>
+        </Button>
       </Col>
     </Row>
   </Container>

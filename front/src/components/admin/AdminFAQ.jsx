@@ -1,23 +1,22 @@
-/* eslint-disable */
-
 import React, { Component } from 'react';
 import {
   Container, Row, Col,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchFAQ } from '../actions/adminFAQAction';
-import Question from './Question';
+import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
 class adminFAQ extends Component {
 
   componentDidMount() {
     const { fetchFAQ } = this.props;
-    { fetchFAQ } ('http://localhost:4000/api/about/faq')
+    fetchFAQ();
   }
 
   render() {
+    const { questions } = this.props;
+    
     return (
       <Container className="FAQ">
         <Row>
@@ -28,8 +27,11 @@ class adminFAQ extends Component {
         <Row>
           <Col>
             <p className="FAQ-text">
-              {`Vous avez une question concernant EasyLunch ? Découvrez ici toutes les réponses concernant le concept EasyLunch, les avantages, comment réserver un restaurant... 
-        Si toutefois vous ne trouviez pas réponse à votre question dans cette rubrique, n'hésitez pas à nous contacter par mail sur l'adresse contact@easy-lunch.fr`}
+              {questions.map(item =>  (
+                <p>
+               {item.question}
+                </p>
+                ))}
             </p>
           </Col>
         </Row>
@@ -44,7 +46,9 @@ class adminFAQ extends Component {
 }
 
 const mstp = state => ({
-  items: state.items,
+  questions:state.fetchFAQ.questions,
+  loading:state.fetchFAQ.loading,
+  error:state.fetchFAQ.error,
 });
 
 const mdtp = dispatch => (
