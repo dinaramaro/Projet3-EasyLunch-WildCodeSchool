@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavBar.scss';
-
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -8,11 +8,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
 } from 'reactstrap';
 
 export default class NavBar extends React.Component {
@@ -34,55 +29,31 @@ export default class NavBar extends React.Component {
     return (
       <div className="nav-bar">
         <Navbar className="navbar-div" dark expand="md">
-          <NavbarBrand href="/">
-            <img
-              src="medias/weblogo-easylunch-blanc.png"
-              alt="navbarLogo"
-              className="navbar-logo"
-            />
+          <NavbarBrand>
+            <Link to="/">
+              <img
+                src="/medias/weblogo-easylunch-blanc.png"
+                alt="navbarLogo"
+                className="navbar-logo"
+              />
+            </Link>
           </NavbarBrand>
-          <NavItem className="je-participe d-md-none d-lg-none">
-            <NavLink href="/components/" style={{ color: 'white' }}>
+          <NavItem tag={Link} to="/components/" className="join d-md-none d-lg-none">
               Je participe
-            </NavLink>
           </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+              <NavItem tag={Link} to="/components/Jeparticipe">
                   Je participe
-                </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+              <NavItem tag={Link} to="/components/Connexion">
                   Connexion
-                </NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret style={{ color: 'white' }}>
-                  A propos
-                </DropdownToggle>
-                <DropdownMenu right className="nav-dropdown">
-                  <DropdownItem style={{ color: 'white' }}>
-                    Le concept
-                  </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    {"L'équipe"}
-                  </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    Contacts
-                  </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>
-                    Conditions générales
-                  </DropdownItem>
-                  <DropdownItem style={{ color: 'white' }}>FAQ</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
               <NavItem>
-                <NavLink href="/components/" style={{ color: 'white' }}>
+                <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
                   Espace restaurateurs
-                </NavLink>
+                </a>
               </NavItem>
             </Nav>
           </Collapse>

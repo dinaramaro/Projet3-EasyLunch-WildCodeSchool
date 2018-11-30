@@ -1,44 +1,61 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  NavLink,
-  Row,
-  Col,
-  Card,
-  Container,
-} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Row, Col, Container } from 'reactstrap';
 import './Footer.scss';
 
 const Footer = () => (
   <Container className="Footer" fluid>
-    <Row className="footer">
-      <Col md="9">
-        <Row>
-          <Col>
-            <Card>
-              <NavLink href="#">Contact Client</NavLink>
-              <NavLink href="#">Contact Restaurateur</NavLink>
-              <NavLink href="#">Nos Partenaires</NavLink>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <NavLink href="#">Mentions légales</NavLink>
-              <NavLink href="#">politique de confidentialité</NavLink>
-              <NavLink href="#">Conditions Générales</NavLink>
-            </Card>
-          </Col>
-          <Col>
-            <Card>
-              <NavLink href="#">Facebook</NavLink>
-              <NavLink href="#">Instagram</NavLink>
-              <NavLink href="#">Twitter</NavLink>
-            </Card>
-          </Col>
-        </Row>
+    <Row>
+      <Col xs="8" md="7" lg="6" className="first-col">
+        <ul>
+          <li>
+            <Link to="/apropos/contact">Contact Client</Link>
+          </li>
+          <li>
+            <Link to="/">Contact Restaurateur</Link>
+          </li>
+          <li>
+            <Link to="/apropos/partenaires">Nos Partenaires</Link>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <Link to="/apropos/equipe">Equipe</Link>
+          </li>
+          <li>
+            <Link to="/apropos/politique">Politique de confidentialité</Link>
+          </li>
+          <li>
+            <Link to="/apropos/cgv">Conditions Générales</Link>
+          </li>
+        </ul>
       </Col>
-      <Col className="logoF" md="3">
-        <img className="image d-xs-none" src="medias/icone-easylunch-blanc.svg" alt="logo" />
+      <Col xs="2" md="3" lg="4">
+        <a
+          href="https://www.facebook.com/EasyLunchBordeaux/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Facebook
+        </a>
+        <br />
+        <a
+          href="https://www.instagram.com/easy_lunch_fr/?hl=fr"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+      </Col>
+      <Col xs="1" md="1" lg="1">
+        <Link to="/">
+          <img
+            width="50em"
+            src="medias/icone-easylunch-blanc.svg"
+            alt="logo"
+          />
+        </Link>
       </Col>
     </Row>
   </Container>

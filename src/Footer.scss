@@ -1,43 +1,15 @@
 .Footer {
-  margin: auto;
-  
-  .footer {
-    background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
-
-    .row {
-      display: flex;
-      justify-content: space-around;
-      padding-top: 1%;
-      padding-left: 5%;
-
-      .card {
-        background-color: transparent;
-        border: none;
-
-        .nav-link {
-          color: white;
-
-          .nav-link:hover {
-            color: whitesmoke;
-          }
-        }
-      }
-    }
-
-    .logoF {
-      display: flex;
-      justify-content: center;
-
-      .image {
-        width: 22%;
-        padding-bottom: 5%;
-      }
+  background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
     }
   }
-}
-
-@media all and (max-width: 800px) {
-  .image {
-    display: none;
+  ul {
+    list-style-type: none;
+  }
+  .first-col {
+    display: flex;
   }
 }

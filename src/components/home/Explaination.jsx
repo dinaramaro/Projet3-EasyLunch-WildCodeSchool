@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   Container, Collapse, Row, Col,
 } from 'reactstrap';
-import './Explication.scss';
+import './Explaination.scss';
 import Media from './Media';
 
-class Explication extends Component {
+class Explaination extends Component {
   constructor(props) {
     super(props);
     this.toggleChoose = this.toggleChoose.bind(this);
@@ -36,7 +36,7 @@ class Explication extends Component {
   render() {
     const { collapseChoose, collapseEnjoy, collapseShare } = this.state;
     return (
-      <Container fluid className="Explication">
+      <Container fluid className="Explaination">
         <Row>
           <Col className="col" xs="12" sm="4" md="4" lg="4">
             <div className="round">1</div>
@@ -52,12 +52,7 @@ class Explication extends Component {
                 src="./medias/icon-eat.svg"
                 alt="Commandez avant 11h30"
               />
-              <p className="title">Choisissez votre restaurant</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
+              <p className="title-ex">Choisissez votre restaurant</p>
             </button>
             <Collapse id="choose" isOpen={collapseChoose}>
               <p className="paraDetails">
@@ -79,12 +74,7 @@ class Explication extends Component {
                 src="./medias/icon-time.svg"
                 alt="Profitez de votre pause"
               />
-              <p className="title">Commandez et payer avant 11h30</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
+              <p className="title-ex">Commandez et payez avant 11h30</p>
             </button>
             <Collapse id="enjoy" isOpen={collapseEnjoy}>
               <p className="paraDetails">
@@ -107,15 +97,10 @@ class Explication extends Component {
                 src="./medias/icon-smiley.svg"
                 alt="Partez sans payer"
               />
-              <p className="title">Soyez servis dès votre arrivée</p>
-              <img
-                className="arrow"
-                src="./medias/arrow-down.png"
-                alt="fleche"
-              />
+              <p className="title-ex">Soyez servi dès votre arrivée</p>
             </button>
             <Collapse id="share" isOpen={collapseShare}>
-              <p className="paraDetails">
+              <p className="para-details">
                 Rendez-vous au restaurant, votre table est prête, profitez de
                 votre déjeuner et des personnes qui vous accompagnent et partez
                 sans passer par la caisse dès que vous avez fini.
@@ -123,14 +108,12 @@ class Explication extends Component {
             </Collapse>
           </Col>
         </Row>
-        <div className="video-explication">
-          <div className="d-xs-none" lg="12">
-            <Media />
-          </div>
+        <div className="video-ex">
+          <Media />
         </div>
       </Container>
     );
   }
 }
 
-export default Explication;
+export default Explaination;
