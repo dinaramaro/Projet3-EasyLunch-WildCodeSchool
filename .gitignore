@@ -3,11 +3,12 @@
 node_modules
 /.pnp
 .pnp.js
+#conf back (password)
+config.js
 #vscode
 .vscode
 # testing
 /coverage
-
 # production
 /build
 package-lock.json
