@@ -8,9 +8,12 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './ScrollToTop';
-import configureStore from './store/configStore'
+import { createStore, applyMiddleware } from 'redux';
+import allReducers from './reducers';
+import thunk from 'redux-thunk';
 
-const store = configureStore();
+
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
