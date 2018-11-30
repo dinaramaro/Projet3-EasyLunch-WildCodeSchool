@@ -1,13 +1,16 @@
 import express from 'express';
 
-// import connection from './conf'
+import connection from './conf';
 
 const router = express.Router();
 
-/* GET index page. */
-router.get('/', (req, res) => {
-  res.json({
-    title: 'Express'
+router.get('/cgv', (req, res) => {
+  connection.query('SELECT * FROM admin_cgv', (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur');
+    } else {
+      res.json(results);
+    }
   });
 });
 
