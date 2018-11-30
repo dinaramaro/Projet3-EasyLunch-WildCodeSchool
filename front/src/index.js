@@ -9,9 +9,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './ScrollToTop';
 import configureStore from './store/configStore'
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faStroopwafel } from '@fortawesome/free-solid-svg-icons';
-import 'font-awesome/css/font-awesome.min.css';
 
 const store = configureStore();
 

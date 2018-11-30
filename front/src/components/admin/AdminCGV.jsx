@@ -13,15 +13,14 @@ class FormAdmin extends Component {
 
   render() {
     const { CGV } = this.props;
-    const realCGV = CGV[0];
-    const vraiCGV = realCGV && realCGV.cgv;
+    const displayCGV = CGV[0] && CGV[0].cgv;
     return (
       <Container>
         <Form>
           <FormGroup>
             <Label>CVG</Label>
             <br />
-            <p>{vraiCGV}</p>
+            <p>{displayCGV}</p>
             <Input
               type="textarea"
               name="text"
