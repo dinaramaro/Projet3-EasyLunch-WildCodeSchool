@@ -11,7 +11,7 @@ import {
 import './Restaurant.scss';
 
 const Restaurant = () => (
-  <Container>
+  <Container className="Restaurant">
     <h1 className="restaurant-title-h1">VOUS ÊTES RESTAURATEUR?</h1>
     <div>
       <h2 className="restaurant-title-h2">EASY LUNCH, UNE SOLUTION CRÉÉE POUR ET PAR LES RESTAURATEURS</h2>
