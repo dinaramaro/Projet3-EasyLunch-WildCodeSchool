@@ -1,4 +1,5 @@
 import React from 'react';
+import './AdminConcept.scss';
 import {
   Container,
   Form,
@@ -9,8 +10,8 @@ import {
 } from 'reactstrap';
 
 const AdminConcept = () => (
-  <Container>
-    <h1>Concept</h1>
+  <Container className="AdminConcept">
+    <h2 className="title">Concept</h2>
     <Form>
       <FormGroup>
         <Label for="conceptPicture">Image du concept</Label>

@@ -1,4 +1,5 @@
 import React from 'react';
+import './AdminTeam.scss';
 import {
   Container,
   Form,
@@ -9,8 +10,8 @@ import {
 } from 'reactstrap';
 
 const AdminTeam = () => (
-  <Container>
-    <h1>Donnée De L&#39;Equipe</h1>
+  <Container className="AdminTeam">
+    <h2 className="title">Donnée De L&#39;Equipe</h2>
     <Form>
       <FormGroup>
         <Label for="teamPicture">Photo d&#39;Equipe</Label>
