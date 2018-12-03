@@ -11,7 +11,7 @@ import Contacts from './components/about/Contacts';
 import CGV from './components/about/CGV';
 import Partners from './components/about/Partners';
 import Politic from './components/about/Politic';
-import MenuAdmin from './components/admin/MenuAdmin';
+import MealAdmin from './components/admin/MealAdmin';
 import AdminCVG from './components/admin/AdminCGV';
 import AdminPoli from './components/admin/AdminPoli';
 import AdminTeam from './components/admin/AdminTeam';
@@ -32,12 +32,12 @@ const App = () => (
         <Route path="/apropos/contact" component={Contacts} />
         <Route path="/apropos/partenaires" component={Partners} />
         <Route path="/apropos/politique" component={Politic} />
-        <Route path="/admin/MenuAdmin" component={MenuAdmin} />
-        <Route path="/admin/AdminCGV" component={AdminCVG} />
-        <Route path="/admin/AdminPolitique" component={AdminPoli} />
-        <Route path="/admin/AdminEquipe" component={AdminTeam} />
-        <Route path="/admin/AdminPartenaires" component={AdminPartners} />
-        <Route path="/admin/AdminConcept" component={AdminConcept} />
+        <Route path="/admin/Meal-admin" component={MealAdmin} />
+        <Route path="/admin/Admin-cgv" component={AdminCVG} />
+        <Route path="/admin/Admin-politique" component={AdminPoli} />
+        <Route path="/admin/Admin-equipe" component={AdminTeam} />
+        <Route path="/admin/Admin-partenaires" component={AdminPartners} />
+        <Route path="/admin/Admin-concept" component={AdminConcept} />
         <Route path="/Login" component={Login} />
       </Switch>
     </div>

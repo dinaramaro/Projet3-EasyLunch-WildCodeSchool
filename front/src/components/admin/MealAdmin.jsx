@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './MenuAdmin.scss';
+import './MealAdmin.scss';
 import {
   Container,
   Row,
@@ -8,27 +8,27 @@ import {
 } from 'reactstrap';
 
 
-const Menu = () => (
-  <Container className="MenuAdmin">
+const MealAdmin = () => (
+  <Container className="MealAdmin">
     <h2 className="title">Menu Administrateur</h2>
     <Row>
-      <NavItem tag={Link} to="/admin/AdminCGV">
+      <NavItem tag={Link} to="/admin/Admin-cgv">
         CGV
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminConcept">
+      <NavItem tag={Link} to="/admin/Admin-concept">
         Concept
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminPartenaires">
+      <NavItem tag={Link} to="/admin/Admin-partenaires">
         Partenaires
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminPolitique">
+      <NavItem tag={Link} to="/admin/Admin-politique">
         Politique de Confidentialité
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminEquipe">
+      <NavItem tag={Link} to="/admin/Admin-equipe">
         Equipe
       </NavItem>
     </Row>
   </Container>
 );
 
-export default Menu;
+export default MealAdmin;
