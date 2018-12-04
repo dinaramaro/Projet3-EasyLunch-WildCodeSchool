@@ -1,30 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './MenuAdmin.scss';
+import './AdminMenu.scss';
 import {
   Container,
   Row,
   NavItem,
 } from 'reactstrap';
 
-
 const Menu = () => (
-  <Container className="MenuAdmin">
+  <Container className="AdminMenu">
     <h2 className="title">Menu Administrateur</h2>
     <Row>
-      <NavItem tag={Link} to="/admin/AdminCGV">
+      <NavItem tag={Link} to="/admin/admin-cgv">
         CGV
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminConcept">
+      <NavItem tag={Link} to="/admin/admin-concept">
         Concept
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminPartenaires">
+      <NavItem tag={Link} to="/admin/admin-partenaires">
         Partenaires
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminPolitique">
+      <NavItem tag={Link} to="/admin/admin-politique">
         Politique de Confidentialité
       </NavItem>
-      <NavItem tag={Link} to="/admin/AdminEquipe">
+      <NavItem tag={Link} to="/admin/admin-equipe">
         Equipe
       </NavItem>
     </Row>
