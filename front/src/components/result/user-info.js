@@ -4,9 +4,7 @@ const UserInfo = (props) => {
   const { info } = props;
   return (
     <div>
-      <div>
-        {info}
-      </div>
+      {info}
     </div>
   );
 };

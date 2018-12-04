@@ -37,7 +37,6 @@ class Mapresult extends Component {
       longitudeuser: 0,
       popupUser: null,
     };
-    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +55,10 @@ class Mapresult extends Component {
         },
       );
     });
+  }
+
+  onClickMarker(key, value) {
+    this.setState({ [key]: value });
   }
 
   updateViewport = (viewport) => {
@@ -77,7 +80,7 @@ class Mapresult extends Component {
       longitude={resto.lon}
       latitude={resto.lat}
     >
-      <RestoPin size={45} onClick={() => this.setState({ popupInfo: resto })} />
+      <RestoPin size={45} onClick={() => this.onClickMarker('popupInfo', resto)} />
     </Marker>
   )
 
@@ -90,7 +93,7 @@ class Mapresult extends Component {
         longitude={longitudeuser}
         latitude={latitudeuser}
       >
-        <UserPin size={45} onClick={() => this.setState({ popupUser: 'Vous êtes ici' })} />
+        <UserPin size={45} onClick={() => this.onClickMarker('popupUser', 'Vous êtes ici')} />
       </Marker>
     );
   }
@@ -104,7 +107,7 @@ class Mapresult extends Component {
           anchor="top"
           longitude={popupInfo.lon}
           latitude={popupInfo.lat}
-          onClose={() => this.setState({ popupInfo: null })}
+          onClose={() => this.onClickMarker('popupInfo', null)}
         >
           <RestoInfo info={popupInfo} />
         </Popup>
@@ -122,7 +125,7 @@ class Mapresult extends Component {
           anchor="top"
           longitude={longitudeuser}
           latitude={latitudeuser}
-          onClose={() => this.setState({ popupUser: null })}
+          onClose={() => this.onClickMarker('popupUser', null)}
         >
           <UserInfo info={popupUser} />
         </Popup>

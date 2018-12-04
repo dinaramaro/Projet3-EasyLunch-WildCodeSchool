@@ -6,9 +6,7 @@ const RestoInfo = (props) => {
 
   return (
     <div>
-      <div>
-        {displayName}
-      </div>
+      {displayName}
     </div>
   );
 };

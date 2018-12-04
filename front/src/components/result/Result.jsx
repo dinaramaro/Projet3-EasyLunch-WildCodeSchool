@@ -1,7 +1,7 @@
 import React from 'react';
 import './Result.scss';
 import { Container, Row, Col } from 'reactstrap';
-import Mapresult from '../../containers/result/Mapresult';
+import MapResult from '../../containers/result/MapResult';
 
 
 const Result = () => (
@@ -11,7 +11,7 @@ const Result = () => (
         Resultats
       </Col>
       <Col md={12} lg={4}>
-        <Mapresult />
+        <MapResult />
       </Col>
     </Row>
   </Container>
