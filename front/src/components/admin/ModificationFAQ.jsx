@@ -36,6 +36,7 @@ class ModficationFAQ extends Component {
   }
 
   handleSubmit(e) {
+    const { match } = this.props;
     e.preventDefault();
     const config = {
       method: 'PUT',
@@ -44,7 +45,7 @@ class ModficationFAQ extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    fetch(`http://localhost:4000/api/about/faq/${this.props.match.params.id}`, config)
+    fetch(`http://localhost:4000/api/about/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
         if (res.error) {
@@ -54,13 +55,12 @@ class ModficationFAQ extends Component {
         }
       }).catch((err) => {
         console.error(err);
-        alert('Erreur lors de la modification de la question')
+        alert('Erreur lors de la modification de la question');
       });
   }
 
   render() {
     const { questionOne } = this.props;
-    console.log('composant', questionOne);
     return (
       <div>
         <h2>Modifier une question</h2>

@@ -8,22 +8,9 @@ import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
 class adminFAQ extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      questionId: 1,
-    };
-  }
-
   componentDidMount() {
     const { getFetchFAQ } = this.props;
     getFetchFAQ();
-  }
-
-  getQuestionId(id) {
-    this.setState({
-      questionId: id,
-    });
   }
 
   render() {
