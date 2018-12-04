@@ -6,7 +6,8 @@ import logger from 'morgan';
 import path from 'path';
 // import favicon from 'serve-favicon';
 
-import CGV from './routes/CGV';
+import CGV from './routes/cgv';
+import search from './routes/search';
 
 const app = express();
 const debug = Debug('back:app');
@@ -29,7 +30,8 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/about', CGV);
+app.use('/', CGV);
+app.use('/', search);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

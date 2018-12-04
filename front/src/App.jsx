@@ -19,6 +19,7 @@ import AdminTeam from './components/admin/AdminTeam';
 import Login from './Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';
+import Result from './components/result/Result';
 
 const App = () => (
   <div>
@@ -41,6 +42,8 @@ const App = () => (
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/login" component={Login} />
+        <Route path="/resultat" component={Result} />
+
       </Switch>
     </div>
     <Footer />
