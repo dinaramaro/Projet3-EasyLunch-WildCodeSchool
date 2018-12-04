@@ -31,7 +31,7 @@ const Menu = () => (
           <Link to="/admin/AdminEquipe">Equipe</Link>
         </Button>
         <Button>
-          <Link to="/admin/AdminFAQ">FAQ</Link>
+          <Link to="/admin/Adminfaq">FAQ</Link>
         </Button>
       </Col>
     </Row>

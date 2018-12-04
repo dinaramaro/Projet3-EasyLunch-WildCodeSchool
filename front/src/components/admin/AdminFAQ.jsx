@@ -1,7 +1,6 @@
-/*eslint-disable*/
 import React, { Component } from 'react';
 import {
-  Container, Row, Col,
+  Container, Row, Col, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,15 +8,13 @@ import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
 class adminFAQ extends Component {
-
   componentDidMount() {
-    const { fetchFAQ } = this.props;
-    fetchFAQ();
+    const { getFetchFAQ } = this.props;
+    getFetchFAQ();
   }
 
   render() {
     const { questions } = this.props;
-    
     return (
       <Container className="FAQ">
         <Row>
@@ -26,20 +23,29 @@ class adminFAQ extends Component {
           </Col>
         </Row>
         <Row>
-          <Col>
-            <p className="FAQ-text">
-              {questions.map(item =>  (
-                <p>
-               {item.question}
-                </p>
-                ))}
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            
-          </Col>
+          <table className="tablefaq">
+            <tr>
+              <th>Liste des questions</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
+            </tr>
+
+            {questions.map(item => (
+              <tr>
+                <td>
+                  {item.question}
+                </td>
+                <td>
+                  <Button>Modifier</Button>
+                </td>
+                <td>
+                  <Button>Supprimer</Button>
+                </td>
+              </tr>
+            ))}
+
+
+          </table>
         </Row>
       </Container>
     );
@@ -47,14 +53,14 @@ class adminFAQ extends Component {
 }
 
 const mstp = state => ({
-  questions:state.fetchFAQ.questions,
-  loading:state.fetchFAQ.loading,
-  error:state.fetchFAQ.error,
+  questions: state.fetchFAQ.questions,
+  loading: state.fetchFAQ.loading,
+  error: state.fetchFAQ.error,
 });
 
 const mdtp = dispatch => (
   bindActionCreators({
-    fetchFAQ,
+    getFetchFAQ: fetchFAQ,
   }, dispatch)
 );
 

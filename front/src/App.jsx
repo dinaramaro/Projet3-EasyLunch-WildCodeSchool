@@ -39,7 +39,7 @@ const App = () => (
         <Route path="/admin/AdminEquipe" component={AdminTeam} />
         <Route path="/admin/AdminPartenaires" component={AdminPartners} />
         <Route path="/admin/AdminConcept" component={AdminConcept} />
-        <Route path="/admin/AdminFAQ" component={AdminFAQ} />
+        <Route path="/admin/Adminfaq" component={AdminFAQ} />
         <Route path="/Login" component={Login} />
       </Switch>
     </div>
