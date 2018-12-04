@@ -1,16 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600');
+
 $primaryColor: #f1c40f;
 $secondaryColor: #ffa300;
 $accentuationColor: #f9b522;
 
-.content{
-  min-height: calc(100vh - 158px);
+.App{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  .content{
+    min-height: calc(100vh - 158px);
+  }
+  .title {
+    background-color: #f9f9f9;
+    color: #F9B522;
+    text-align: center;
+    font-size : 2em;
+    font-weight: bold;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;  
+    margin-bottom: 1em;
+  }
 }
 
-.title {
-  background-image: radial-gradient(#F1CD00, #FEA400);
-  color: #FFFFFF;
-  text-align: center;
-  font-size : 2em;
-  font-weight: bold;
-}
 

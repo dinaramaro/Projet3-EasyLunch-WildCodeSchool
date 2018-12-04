@@ -6,32 +6,38 @@ import './Footer.scss';
 
 const Footer = () => (
   <Container className="Footer" fluid>
-    <Row>
-      <Col xs="8" md="7" lg="6" className="first-col">
-        <ul>
-          <li>
-            <Link to="/a-propos/contact">Contact Client</Link>
-          </li>
-          <li>
-            <Link to="/a-propos/restaurateur">Contact Restaurateur</Link>
-          </li>
-          <li>
-            <Link to="/a-propos/partenaires">Nos Partenaires</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/a-propos/equipe">Equipe</Link>
-          </li>
-          <li>
-            <Link to="/a-propos/politique">Politique de confidentialité</Link>
-          </li>
-          <li>
-            <Link to="/a-propos/cgv">Conditions Générales</Link>
-          </li>
-        </ul>
+    <Row className="d-flex justify-content-around">
+      <Col>
+        <li>
+          <Link to="/a-propos/contact">Contact Client</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/restaurateur">Contact Restaurateur</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/partenaires">Nos Partenaires</Link>
+        </li>
       </Col>
-      <Col xs="2" md="3" lg="4">
+      <Col>
+        <li>
+          <Link to="/a-propos/concept">Concept</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/equipe">Equipe</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/politique">Politique de confidentialité</Link>
+        </li>
+      </Col>
+      <Col>
+        <li>
+          <Link to="/a-propos/cgv">Conditions Générales</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/faq">FAQ</Link>
+        </li>
+      </Col>
+      <Col>
         <a
           href="https://www.facebook.com/EasyLunchBordeaux/"
           target="_blank"
@@ -47,15 +53,6 @@ const Footer = () => (
         >
           Instagram
         </a>
-      </Col>
-      <Col xs="1" md="1" lg="1">
-        <Link to="/">
-          <img
-            width="50em"
-            src="medias/icone-easylunch-blanc.svg"
-            alt="logo"
-          />
-        </Link>
       </Col>
     </Row>
   </Container>
