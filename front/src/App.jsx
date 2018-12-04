@@ -19,6 +19,7 @@ import Login from './Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';
 import AdminFAQ from './components/admin/AdminFAQ';
+import ModificationFAQ from './components/admin/ModificationFAQ';
 
 const App = () => (
   <div>
@@ -39,6 +40,7 @@ const App = () => (
         <Route path="/admin/AdminEquipe" component={AdminTeam} />
         <Route path="/admin/AdminPartenaires" component={AdminPartners} />
         <Route path="/admin/AdminConcept" component={AdminConcept} />
+        <Route path="/admin/adminfaq/question/:id" component={ModificationFAQ} />
         <Route path="/admin/Adminfaq" component={AdminFAQ} />
         <Route path="/Login" component={Login} />
       </Switch>

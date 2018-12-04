@@ -8,9 +8,22 @@ import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
 class adminFAQ extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      questionId: 1,
+    };
+  }
+
   componentDidMount() {
     const { getFetchFAQ } = this.props;
     getFetchFAQ();
+  }
+
+  getQuestionId(id) {
+    this.setState({
+      questionId: id,
+    });
   }
 
   render() {
@@ -29,11 +42,11 @@ class adminFAQ extends Component {
               <th>Modifier</th>
               <th>Supprimer</th>
             </tr>
-
             {questions.map(item => (
               <tr>
                 <td>
                   {item.question}
+                  {item.id}
                 </td>
                 <td>
                   <Button>Modifier</Button>
@@ -43,8 +56,6 @@ class adminFAQ extends Component {
                 </td>
               </tr>
             ))}
-
-
           </table>
         </Row>
       </Container>
