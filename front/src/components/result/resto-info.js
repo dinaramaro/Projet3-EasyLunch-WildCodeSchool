@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-export default class RestoInfo extends PureComponent {
-  render() {
-    const { info } = this.props;
-    const displayName = `${info.titre}`;
+const RestoInfo = (props) => {
+  const { info } = props;
+  const displayName = `${info.titre}`;
 
-    return (
+  return (
+    <div>
       <div>
-        <div>
-          {displayName}
-        </div>
+        {displayName}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default RestoInfo;

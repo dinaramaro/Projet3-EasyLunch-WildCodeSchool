@@ -1,16 +1,14 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
-export default class UserInfo extends PureComponent {
-  render() {
-    const { info } = this.props;
-
-
-    return (
+const UserInfo = (props) => {
+  const { info } = props;
+  return (
+    <div>
       <div>
-        <div>
-          {info}
-        </div>
+        {info}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default UserInfo;

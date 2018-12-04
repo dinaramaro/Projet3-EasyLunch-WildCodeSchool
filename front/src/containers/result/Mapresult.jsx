@@ -3,6 +3,7 @@ import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
+
 import classnames from 'classnames';
 import RestoPin from '../../components/result/resto-pin';
 import RestoInfo from '../../components/result/resto-info';
@@ -96,34 +97,38 @@ class Mapresult extends Component {
 
   renderPopup() {
     const { popupInfo } = this.state;
-
-    return popupInfo && (
-      <Popup
-        tipSize={10}
-        anchor="top"
-        longitude={popupInfo.lon}
-        latitude={popupInfo.lat}
-        onClose={() => this.setState({ popupInfo: null })}
-      >
-        <RestoInfo info={popupInfo} />
-      </Popup>
-    );
+    if (popupInfo !== null) {
+      return (
+        <Popup
+          tipSize={10}
+          anchor="top"
+          longitude={popupInfo.lon}
+          latitude={popupInfo.lat}
+          onClose={() => this.setState({ popupInfo: null })}
+        >
+          <RestoInfo info={popupInfo} />
+        </Popup>
+      );
+    }
+    return popupInfo;
   }
 
   renderPopupUser() {
     const { latitudeuser, longitudeuser, popupUser } = this.state;
-
-    return popupUser && (
-      <Popup
-        tipSize={10}
-        anchor="top"
-        longitude={longitudeuser}
-        latitude={latitudeuser}
-        onClose={() => this.setState({ popupUser: null })}
-      >
-        <UserInfo info={popupUser} />
-      </Popup>
-    );
+    if (popupUser !== null) {
+      return (
+        <Popup
+          tipSize={10}
+          anchor="top"
+          longitude={longitudeuser}
+          latitude={latitudeuser}
+          onClose={() => this.setState({ popupUser: null })}
+        >
+          <UserInfo info={popupUser} />
+        </Popup>
+      );
+    }
+    return popupUser;
   }
 
   render() {
@@ -133,7 +138,7 @@ class Mapresult extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="Mapresult">
         <Nav tabs>
           <NavItem>
             <NavLink
