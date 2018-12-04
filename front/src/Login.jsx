@@ -30,7 +30,7 @@ const Login = () => (
           </FormGroup>
         </Col>
       </Row>
-      <NavItem tag={Link} to="/admin/MenuAdmin">
+      <NavItem tag={Link} to="/admin/Meal-admin">
         Connexion
       </NavItem>
     </Form>

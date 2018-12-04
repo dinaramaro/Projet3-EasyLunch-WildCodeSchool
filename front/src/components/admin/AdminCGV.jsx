@@ -7,7 +7,7 @@ import { fetchCGV } from '../../actions/admin';
 import { varServeur } from '../../constants';
 import './AdminCGV.scss';
 
-class FormAdmin extends Component {
+class AdminCGV extends Component {
   componentDidMount = () => {
     const { fetchCGV } = this.props;
     fetchCGV(`${varServeur}/about/cgv`);
@@ -51,4 +51,4 @@ function mdtp(dispatch) {
 export default connect(
   mstp,
   mdtp,
-)(FormAdmin);
+)(AdminCGV);
