@@ -1,11 +1,12 @@
 import React from 'react';
+import './Login.scss';
 import { Link } from 'react-router-dom';
 import {
   Col,
   Row,
   Form,
   FormGroup,
-  Button,
+  NavItem,
   Label,
   Input,
   Container,
@@ -13,7 +14,7 @@ import {
 
 const Login = () => (
   <Container className="Login">
-    <h1>Login Administrateur</h1>
+    <h2 className="title">Login Administrateur</h2>
     <Form>
       <Row form>
         <Col md={6}>
@@ -29,9 +30,9 @@ const Login = () => (
           </FormGroup>
         </Col>
       </Row>
-      <Button>
-        <Link to="/admin/MenuAdmin">Connexion</Link>
-      </Button>
+      <NavItem tag={Link} to="/admin/Meal-admin">
+        Connexion
+      </NavItem>
     </Form>
   </Container>
 );

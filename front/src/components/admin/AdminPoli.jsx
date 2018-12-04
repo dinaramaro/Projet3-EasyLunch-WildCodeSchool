@@ -1,19 +1,18 @@
 import React from 'react';
+import './AdminPoli.scss';
 import {
   Container,
   Form,
   FormGroup,
-  Label,
   Input,
   Button,
 } from 'reactstrap';
 
 const AdminPoli = () => (
-  <Container>
-    <h1>Politique de Confidentialité</h1>
+  <Container className="AdminPoli">
+    <h2 className="title">Politique de Confidentialité</h2>
     <Form>
       <FormGroup>
-        <Label>Politique de Confidentialité Modification</Label>
         <br />
         <Input
           type="textarea"

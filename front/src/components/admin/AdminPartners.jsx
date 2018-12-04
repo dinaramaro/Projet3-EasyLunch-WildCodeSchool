@@ -1,4 +1,5 @@
 import React from 'react';
+import './AdminPartners.scss';
 import {
   Container,
   Form,
@@ -9,8 +10,8 @@ import {
 } from 'reactstrap';
 
 const AdminPartners = () => (
-  <Container>
-    <h1>Partenaire</h1>
+  <Container className="AdminPartners">
+    <h2 className="title">Partenaire</h2>
     <Form>
       <FormGroup>
         <Label for="picturePartner">Image Partenaire</Label>

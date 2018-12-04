@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Container, Form, FormGroup, Label, Input, Button,
+  Container, Form, FormGroup, Input, Button,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { fetchCGV } from '../../actions/admin';
 import { varServeur } from '../../constants';
+import './AdminCGV.scss';
 
-class FormAdmin extends Component {
+class AdminCGV extends Component {
   componentDidMount = () => {
     const { fetchCGV } = this.props;
     fetchCGV(`${varServeur}/about/cgv`);
@@ -16,10 +17,10 @@ class FormAdmin extends Component {
     const { CGV } = this.props;
     const displayCGV = CGV[0] && CGV[0].cgv;
     return (
-      <Container>
+      <Container className="AdminCGV">
+        <h2 className="title">CGV</h2>
         <Form>
           <FormGroup>
-            <Label>CVG</Label>
             <br />
             <p>{displayCGV}</p>
             <Input
@@ -50,4 +51,4 @@ function mdtp(dispatch) {
 export default connect(
   mstp,
   mdtp,
-)(FormAdmin);
+)(AdminCGV);
