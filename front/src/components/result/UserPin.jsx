@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 const ICON = `M15.8,0.9c-8.3,0-15,6.7-15,15c0,6.5,9.4,18.3,13.3,23c1,1.2,1.7,2,1.7,2s0.7-0.7,1.7-2
 c3.9-4.7,13.3-16.5,13.3-23C30.8,7.7,24.1,0.9,15.8,0.9z M17.4,27.4c0-0.4,0-0.8,0-1.2c0-0.1,0-0.1,0-0.2c0-0.4,0-1.1,0.8-1.5
@@ -16,19 +16,19 @@ const pinStyle = {
   stroke: 'none',
 };
 
-export default class UserPin extends PureComponent {
-  render() {
-    const { size = 50, onClick } = this.props;
+const UserPin = (props) => {
+  const { size = 50, onClick } = props;
 
-    return (
-      <svg
-        height={size}
-        viewBox="0 0 40 40"
-        style={{ ...pinStyle, transform: `translate(${-size / 2}px,${-size}px)` }}
-        onClick={onClick}
-      >
-        <path d={ICON} />
-      </svg>
-    );
-  }
-}
+  return (
+    <svg
+      height={size}
+      viewBox="0 0 40 40"
+      style={{ ...pinStyle, transform: `translate(${-size / 2}px,${-size}px)` }}
+      onClick={onClick}
+    >
+      <path d={ICON} />
+    </svg>
+  );
+};
+
+export default UserPin;

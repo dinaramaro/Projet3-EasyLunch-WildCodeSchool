@@ -5,10 +5,10 @@ import {
 } from 'reactstrap';
 
 import classnames from 'classnames';
-import RestoPin from '../../components/result/resto-pin';
-import RestoInfo from '../../components/result/resto-info';
-import UserPin from '../../components/result/user-pin';
-import UserInfo from '../../components/result/user-info';
+import RestoPin from '../../components/result/RestoPin';
+import RestoInfo from '../../components/result/RestoInfo';
+import UserPin from '../../components/result/UserPin';
+import UserInfo from '../../components/result/UserInfo';
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
 
