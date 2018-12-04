@@ -10,24 +10,24 @@ const Footer = () => (
       <Col xs="8" md="7" lg="6" className="first-col">
         <ul>
           <li>
-            <Link to="/apropos/contact">Contact Client</Link>
+            <Link to="/a-propos/contact">Contact Client</Link>
           </li>
           <li>
-            <Link to="/">Contact Restaurateur</Link>
+            <Link to="/a-propos/restaurateur">Contact Restaurateur</Link>
           </li>
           <li>
-            <Link to="/apropos/partenaires">Nos Partenaires</Link>
+            <Link to="/a-propos/partenaires">Nos Partenaires</Link>
           </li>
         </ul>
         <ul>
           <li>
-            <Link to="/apropos/equipe">Equipe</Link>
+            <Link to="/a-propos/equipe">Equipe</Link>
           </li>
           <li>
-            <Link to="/apropos/politique">Politique de confidentialité</Link>
+            <Link to="/a-propos/politique">Politique de confidentialité</Link>
           </li>
           <li>
-            <Link to="/apropos/cgv">Conditions Générales</Link>
+            <Link to="/a-propos/cgv">Conditions Générales</Link>
           </li>
         </ul>
       </Col>
