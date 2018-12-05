@@ -4,6 +4,7 @@ import './App.scss';
 import Home from './components/home/Home';
 import NavBar from './NavBar';
 import Footer from './Footer';
+import Result from './components/result/Result';
 import Concept from './components/about/Concept';
 import Team from './components/about/Team';
 import FAQ from './components/about/FAQ';
@@ -26,6 +27,7 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/resultat" component={Result} />
         <Route path="/a-propos/concept" component={Concept} />
         <Route path="/a-propos/equipe" component={Team} />
         <Route path="/a-propos/cgv" component={CGV} />
