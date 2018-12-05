@@ -7,7 +7,7 @@ import './Restaurants.scss';
 import restaurants from '../../restaurantsList.json';
 
 const Restaurants = () => (
-  <div className="Restaurant">
+  <div className="Restaurants">
     <Row>
       <Col xs="6" className="padding">
         <Input
@@ -37,7 +37,7 @@ const Restaurants = () => (
     <Row>
       {restaurants.map(item => (
         <Col sm="12" md="6" xl="4">
-          <Card className="cardrestaurant">
+          <Card className="cardre-restaurant">
             <CardImg top width="100%" src={item.image} alt="Card image cap" />
             <CardBody>
               <CardTitle>{item.name}</CardTitle>
