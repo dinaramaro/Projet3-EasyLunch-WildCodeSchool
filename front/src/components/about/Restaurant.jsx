@@ -78,7 +78,7 @@ const Restaurant = () => (
             <br />
             <Input type="textarea" name="text" />
           </FormGroup>
-          <Button color="warning" className="text-color">
+          <Button color="warning" className="all-btn">
             ENVOYER
           </Button>
         </Form>
