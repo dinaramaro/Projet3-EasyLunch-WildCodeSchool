@@ -1,15 +1,19 @@
 import React from 'react';
+import './Result.scss';
 import { Col, Row, Container } from 'reactstrap';
 import Restaurants from './Restaurants';
+import MapResult from '../../containers/result/MapResult';
 
 const Result = () => (
-  <Container>
+  <Container fluid className="Result">
     <Row>
-      <Col xs="8">
+      <Col md={12} lg={8}>
         <Restaurants />
       </Col>
+      <Col md={12} lg={4}>
+        <MapResult />
+      </Col>
     </Row>
-
   </Container>
 );
 
