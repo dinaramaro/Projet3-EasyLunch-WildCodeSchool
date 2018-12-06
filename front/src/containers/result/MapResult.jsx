@@ -136,7 +136,7 @@ class Mapresult extends Component {
     } = this.state;
     const { searchResults: { results } } = this.props;
     return (
-      <div className="Mapresult">
+      <div className="MapResult">
         <Nav tabs>
           <NavItem>
             <NavLink
