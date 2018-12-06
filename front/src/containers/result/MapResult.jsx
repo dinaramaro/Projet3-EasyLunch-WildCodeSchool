@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
+import { connect } from 'react-redux';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
@@ -18,12 +19,6 @@ const navStyle = {
   left: 0,
   padding: '10px',
 };
-
-const restos = [
-  { titre: 'Cromagnon', lat: 44.84328199999999, lon: -0.5813342000000148 },
-  { titre: 'Le monologue', lat: 44.84287820000001, lon: -0.5816670000000386 },
-
-];
 
 
 class Mapresult extends Component {
@@ -139,7 +134,7 @@ class Mapresult extends Component {
       viewport,
       activeTab,
     } = this.state;
-
+    const { searchResults: { results } } = this.props;
     return (
       <div className="Mapresult">
         <Nav tabs>
@@ -174,7 +169,7 @@ class Mapresult extends Component {
                   mapboxApiAccessToken={TOKEN}
                 >
 
-                  {restos.map(this.renderRestoMarker)}
+                  {results.map(this.renderRestoMarker)}
                   {this.renderUserMarker()}
                   {this.renderPopup()}
                   {this.renderPopupUser()}
@@ -205,4 +200,10 @@ class Mapresult extends Component {
   }
 }
 
-export default Mapresult;
+function mstp(state) {
+  return {
+    searchResults: state.searchResults,
+  };
+}
+
+export default connect(mstp)(Mapresult);
