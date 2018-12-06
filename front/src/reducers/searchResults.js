@@ -8,7 +8,7 @@ const searchResults = (state = initialState, action) => {
   switch (action.type) {
     case 'SEARCH_FAILED':
       return {
-        ...initialState,
+        ...state,
         error: action.error,
       };
     case 'SEARCH_SUCCESS':
