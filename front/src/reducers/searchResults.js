@@ -13,12 +13,13 @@ const searchResults = (state = initialState, action) => {
       };
     case 'SEARCH_SUCCESS':
       return {
-        ...initialState,
         results: action.items,
+        loading: false,
+        error: null,
       };
     case 'SEARCH_LOADING':
       return {
-        ...initialState,
+        ...state,
         loading: true,
       };
     default:
