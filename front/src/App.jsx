@@ -4,7 +4,6 @@ import './App.scss';
 import Home from './components/home/Home';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import Result from './components/result/Result';
 import Concept from './components/about/Concept';
 import Team from './components/about/Team';
 import FAQ from './components/about/FAQ';
@@ -20,6 +19,7 @@ import AdminTeam from './components/admin/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';
+import Result from './components/result/Result';
 
 const App = () => (
   <div className="App">
