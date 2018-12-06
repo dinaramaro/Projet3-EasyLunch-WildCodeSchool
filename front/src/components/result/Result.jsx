@@ -13,9 +13,20 @@ class Result extends Component {
   }
 
   render() {
+    const { searchResults: {results} } = this.props;
+
     return (
       <div>
-        coucou
+        <ul>
+          {
+            results.map(result => (
+              <li>
+                {`${result.name} : ${result.description}`}
+                 
+              </li>
+            ))
+          }
+        </ul>
       </div>
     );
   }
