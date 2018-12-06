@@ -30,7 +30,6 @@ class HomeInputs extends Component {
 
   render() {
     const { keyword, personCapacity } = this.state;
-    console.log(personCapacity);
     return (
       <div className="HomeInputs">
         <div
