@@ -27,7 +27,6 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/resultat" component={Result} />
         <Route path="/a-propos/concept" component={Concept} />
         <Route path="/a-propos/equipe" component={Team} />
         <Route path="/a-propos/cgv" component={CGV} />
@@ -43,6 +42,7 @@ const App = () => (
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/login" component={Login} />
+        <Route path="/resultat" component={Result} />
       </Switch>
     </div>
     <Footer />

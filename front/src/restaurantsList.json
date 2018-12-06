@@ -1,0 +1,36 @@
+[{
+  "id": "1",
+  "image" : "/medias/Les-Drôles-3.png",
+  "name": "Les Drôles",
+  "adress": "21 rue Saint-Rémi",
+  "town" : "33000 Bordeaux"
+},
+{
+  "id": "2",
+  "image" : "/medias/mancuso-autre-photo.png",
+  "name": "Café Mancuso",
+  "adress": "24 rue Ravez",
+  "town" : "33000 Bordeaux"
+},
+{
+  "id": "3",
+  "image" : "medias/Le-clandestin-extérieur.jpg",
+  "name": "Le Clandestin",
+  "adress": "56 Rue du Hamel",
+  "town" : "33800 Bordeaux"
+},
+{
+  "id": "4",
+  "image" : "medias/Le-Lion-Lilas-FB.jpg",
+  "name": "Le Lion Lilas",
+  "adress": "6 rue Bouquière",
+  "town" : "33000 Bordeaux"
+},
+{
+  "id": "5",
+  "image" : "/medias/Le-Veneto-extérieur.png",
+  "name": "Le Veneto",
+  "adress": "25 allée de Tourny",
+  "town" : "33000 Bordeaux"
+}
+]
