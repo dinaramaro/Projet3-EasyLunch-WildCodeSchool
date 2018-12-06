@@ -89,31 +89,6 @@ const Contact = () => (
               </Col>
             </Row>
           </div>
-          <div>
-            <h2>Suivez notre actualité</h2>
-            <a
-              href="https://www.facebook.com/EasyLunchBordeaux"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="logo-sm"
-                src="/medias/Facebook.png"
-                alt="Easy-Lunch-facebook"
-              />
-            </a>
-            <a
-              href="https://www.instagram.com/easy_lunch_fr/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img
-                className="logo-sm"
-                src="/medias/instagram.png"
-                alt="Easy-Lunch-instagram"
-              />
-            </a>
-          </div>
         </section>
       </div>
     </Container>

@@ -13,4 +13,38 @@
   li {
     list-style-type: none;
   }
+  .fb{
+    margin-right:1em;
+    padding: 15px;
+    transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    color: whitesmoke;
+    &:hover{
+      transform: scale(1.4);
+      -moz-transform: scale(1.4);
+      -o-transform: scale(1.4);
+      color: #3B5998; 
+    }
+  }
+  .insta{
+    margin-right:1em;
+    padding: 15px;
+    transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    color: whitesmoke; 
+    &:hover{
+      transform: scale(1.4);
+      -moz-transform: scale(1.4);
+      -o-transform: scale(1.4);
+      color: #D9317A; 
+    }
+  }
 }

@@ -109,7 +109,7 @@ const Concept = () => (
             <img src="/medias/nous-contacter.png" alt="Easy-lunch-logo" />
             <p>Vous avez des questions sur Easy Lunch?</p>
             <p> Des avis ou des expériences à nous partager? Ecrivez-nous!</p>
-            <Link to="/apropos/contact">
+            <Link to="/a-propos/contact">
               <Button color="success">Nous contacter</Button>
             </Link>
           </Col>
@@ -153,32 +153,6 @@ const Concept = () => (
             </a>
           </Col>
         </Row>
-      </section>
-      <section>
-        <h1 className="actu">Suivez notre actualité</h1>
-
-        <a
-          href="https://www.facebook.com/EasyLunchBordeaux"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo-sm"
-            src="/medias/Facebook.png"
-            alt="Easy-Lunch-facebook"
-          />
-        </a>
-        <a
-          href="https://www.instagram.com/easy_lunch_fr/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo-sm"
-            src="/medias/instagram.png"
-            alt="Easy-Lunch-instagram"
-          />
-        </a>
       </section>
     </Container>
   </div>

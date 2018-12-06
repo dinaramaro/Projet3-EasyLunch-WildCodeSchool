@@ -20,8 +20,8 @@ class AdminCGV extends Component {
       <div className="AdminCGV">
         <h1 className="title">CGV</h1>
         <Container>
-          <Form>
-            <FormGroup>
+          <FormGroup>
+            <Form>
               <br />
               <p>{displayCGV}</p>
               <Input
@@ -29,9 +29,9 @@ class AdminCGV extends Component {
                 name="text"
                 placeholder="Conditions Générales"
               />
-            </FormGroup>
-            <Button>ENVOYER</Button>
-          </Form>
+            </Form>
+          </FormGroup>
+          <Button>ENVOYER</Button>
         </Container>
       </div>
     );
