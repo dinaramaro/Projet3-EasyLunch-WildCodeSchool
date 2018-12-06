@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
+import './Result.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { dataResults } from '../../actions/search';
+import { Col, Row, Container } from 'reactstrap';
+import Restaurants from './Restaurants';
+import MapResult from '../../containers/result/MapResult';
 import { varServeur } from '../../constants';
+import { dataResults } from '../../actions/search';
+
 
 class Result extends Component {
   componentDidMount() {
     const { location: { search }, dataResults } = this.props;
     const searchWord = search.replace('?keyword=', '');
-
     dataResults(`${varServeur}search/${searchWord}`);
   }
 
   render() {
-    const { searchResults: {results} } = this.props;
-
     return (
-      <div>
-        <ul>
-          {
-            results.map(result => (
-              <li>
-                {`${result.name} : ${result.description}`}
-                 
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      <Container fluid className="Result">
+        <Row>
+          <Col md={12} lg={8}>
+            <Restaurants />
+          </Col>
+          <Col md={12} lg={4}>
+            <MapResult />
+          </Col>
+        </Row>
+      </Container>
     );
   }
-}
-
-function mstp(state) {
-  return {
-    searchResults: state.searchResults,
-  };
 }
 
 function mdtp(dispatch) {
   return bindActionCreators({ dataResults }, dispatch);
 }
 
-export default connect(mstp, mdtp)(Result);
+export default connect(null, mdtp)(Result);

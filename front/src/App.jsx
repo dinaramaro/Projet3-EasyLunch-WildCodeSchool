@@ -43,7 +43,6 @@ const App = () => (
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/login" component={Login} />
         <Route path="/resultat" component={Result} />
-
       </Switch>
     </div>
     <Footer />
