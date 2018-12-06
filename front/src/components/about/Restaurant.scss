@@ -1,10 +1,5 @@
 .Restaurant {
   
-  .restaurant-title-h1 {
-    text-align: center;
-    padding: 2%;
-  }
-  
   .restaurant-title-h2 {
     padding: 2%;
   }
@@ -26,8 +21,11 @@
     list-style : none
   }
   
-  .li-restaurant::before {content: "•"; color:#f9b522;
-    display: inline-block; width: 1em;
-    margin-left: -1em}
+  .li-restaurant::before {
+    content: "•"; color:#f9b522;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em
+  }
 }
 

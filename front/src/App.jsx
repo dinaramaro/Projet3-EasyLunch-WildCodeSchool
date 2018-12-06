@@ -17,12 +17,12 @@ import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
 import AdminPoli from './components/admin/AdminPoli';
 import AdminTeam from './components/admin/AdminTeam';
-import Login from './Login';
+import Login from './components/Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';
 
 const App = () => (
-  <div>
+  <div className="App">
     <NavBar />
     <div className="content">
       <Switch>
