@@ -33,6 +33,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', CGV);
 app.use('/', search);
 
+// Uncomment on pre-prod/prod
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
