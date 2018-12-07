@@ -12,12 +12,9 @@
     position: relative;
     margin-top: 1em;
     margin-bottom: 1em;
-    left: 5px;
 
     .button1 {
-      background-image: url("https://ak9.picdn.net/shutterstock/videos/1815689/thumb/1.jpg");
-      border-radius: 10px;
-      border: none;
+      border-radius: 20px;
       height: 160px;
       width: 100%;
       position: relative;
@@ -58,9 +55,7 @@
     }
 
     .button2 {
-      background-image: url("https://ak9.picdn.net/shutterstock/videos/1815689/thumb/1.jpg");
       border-radius: 20px;
-      border: 2px solid white;
       height: 160px;
       width: 100%;
       position: relative;
@@ -85,7 +80,7 @@
       padding: 5% 5%;
       opacity: 0;
       position: absolute;
-      top: 10%;
+      top: 17%;
       transition-duration: 0.3s;
     }
 
@@ -101,9 +96,7 @@
     }
 
     .button3 {
-      background-image: url("https://ak9.picdn.net/shutterstock/videos/1815689/thumb/1.jpg");
       border-radius: 20px;
-      border: 2px solid white;
       height: 160px;
       width: 100%;
       position: relative;
@@ -128,7 +121,7 @@
       padding: 5% 5%;
       opacity: 0;
       position: absolute;
-      bottom: -15%;
+      bottom: -10%;
       transition-duration: 0.3s;
     }
 
@@ -143,20 +136,16 @@
       }
     }
 
-
-
     .round {
-      color: #6b6b47;
+      color: whitesmoke;
       width: 50px;
       font-size: 2em;
       text-align: center;
       border-radius: 50%;
       position: absolute;
-      top: -20px;
-      left: 0px;
-      background-image: radial-gradient(circle at center, whitesmoke 5%
-      , #f1c40f, #ffa300
-    100%);
+      top: -10px;
+      left: 10px;
+      background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
       z-index: 1;
     }
   }

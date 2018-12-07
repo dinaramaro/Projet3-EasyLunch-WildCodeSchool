@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
-
+import './MapResult.scss';
 import classnames from 'classnames';
 import RestoPin from '../../components/result/RestoPin';
 import RestoInfo from '../../components/result/RestoInfo';
