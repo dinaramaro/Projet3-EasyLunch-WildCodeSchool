@@ -4,6 +4,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
@@ -33,10 +34,9 @@ class adminFAQ extends Component {
               <tr>
                 <td>
                   {item.question}
-                  {item.id}
                 </td>
                 <td>
-                  <Button>Modifier</Button>
+                  <Link to={`/admin/adminfaq/question/${item.id}`}><Button>Modifier</Button></Link>
                 </td>
                 <td>
                   <Button>Supprimer</Button>

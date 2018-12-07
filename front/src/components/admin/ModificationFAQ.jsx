@@ -25,8 +25,13 @@ class ModficationFAQ extends Component {
   }
 
   componentDidMount() {
-    const { getFetchFAQ, match } = this.props;
+    const { getFetchFAQ, match, questionOne } = this.props;
+    console.log(questionOne);
     getFetchFAQ(match.params.id);
+    this.setState({
+      question: questionOne.length ? questionOne[0].question : 'cdm',
+      answer: questionOne.length ? questionOne[0].answer : '',
+    });
   }
 
   handleChange(e) {
@@ -34,6 +39,13 @@ class ModficationFAQ extends Component {
       [e.target.name]: e.target.value,
     });
   }
+
+  // handleChange(e) {
+  //   console.log(e.target.value);
+  //   this.setState({
+  //     [e.target.name]: ...e.target.value+this.state.question,
+  //   });
+  // }
 
   handleSubmit(e) {
     const { match } = this.props;
@@ -45,9 +57,11 @@ class ModficationFAQ extends Component {
       },
       body: JSON.stringify(this.state),
     };
+    console.log('before-fetch', this.state);
     fetch(`http://localhost:4000/api/about/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
+        console.log('after-fetch', res);
         if (res.error) {
           alert(res.error);
         } else {
@@ -60,7 +74,9 @@ class ModficationFAQ extends Component {
   }
 
   render() {
-    const { questionOne } = this.props;
+    // const { questionOne } = this.props;
+    const { question } = this.state;
+    const { answer } = this.state;
     return (
       <div>
         <h2>Modifier une question</h2>
@@ -73,7 +89,7 @@ class ModficationFAQ extends Component {
                 type="text"
                 name="question"
                 id="question"
-                value={questionOne.length ? questionOne[0].question : ''}
+                value={question}
               />
             </FormGroup>
 
@@ -84,11 +100,11 @@ class ModficationFAQ extends Component {
                 type="text"
                 name="answer"
                 id="answer"
-                value={questionOne.length ? questionOne[0].answer : ''}
+                value={answer}
               />
             </FormGroup>
             <div className="text-center">
-              <Button color="primary font2" className="mb-3">Modifier</Button>
+              <Button onClick={this.handleSubmit} color="primary font2" className="mb-3">Modifier</Button>
             </div>
           </Form>
         </Container>
