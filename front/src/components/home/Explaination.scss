@@ -1,0 +1,152 @@
+@import '../../App.scss';
+
+.Explaination {
+  .video-ex {
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+
+  .col {
+    position: relative;
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+    .button1 {
+      border-radius: 20px;
+      height: 160px;
+      width: 100%;
+      position: relative;
+      &:focus {
+        display: none;
+      }
+
+      .icone1 {
+        width: 17%;
+        padding-top: 3%;
+        opacity: 1;
+        transition-duration: 0.2s;
+      }
+
+      .title-ex1 {
+        font-size: 1em;
+        opacity: 1;
+        transition-duration: 0.3s;
+      }
+    }
+    .para-details1 {
+      padding: 5% 5%;
+      opacity: 0;
+      position: absolute;
+      top: 20%;
+      transition-duration: 0.3s;
+    }
+
+    .button1:hover .para-details1 {
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
+
+    .button1:hover {
+      .icone1, .title-ex1 {
+        opacity: 0;
+      }
+    }
+
+    .button2 {
+      border-radius: 20px;
+      height: 160px;
+      width: 100%;
+      position: relative;
+      &:focus {
+        display: none;
+      }
+
+      .icone2 {
+        width: 17%;
+        padding-top: 3%;
+        opacity: 1;
+        transition-duration: 0.2s;
+      }
+
+      .title-ex2 {
+        font-size: 1em;
+        opacity: 1;
+        transition-duration: 0.3s;
+      }
+    }
+    .para-details2 {
+      padding: 5% 5%;
+      opacity: 0;
+      position: absolute;
+      top: 17%;
+      transition-duration: 0.3s;
+    }
+
+    .button2:hover .para-details2 {
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
+
+    .button2:hover {
+      .icone2, .title-ex2 {
+        opacity: 0;
+      }
+    }
+
+    .button3 {
+      border-radius: 20px;
+      height: 160px;
+      width: 100%;
+      position: relative;
+      &:focus {
+        display: none;
+      }
+
+      .icone3 {
+        width: 17%;
+        padding-top: 3%;
+        opacity: 1;
+        transition-duration: 0.2s;
+      }
+
+      .title-ex3 {
+        font-size: 1em;
+        opacity: 1;
+        transition-duration: 0.3s;
+      }
+    }
+    .para-details3 {
+      padding: 5% 5%;
+      opacity: 0;
+      position: absolute;
+      bottom: -10%;
+      transition-duration: 0.3s;
+    }
+
+    .button3:hover .para-details3 {
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
+
+    .button3:hover {
+      .icone3, .title-ex3 {
+        opacity: 0;
+      }
+    }
+
+    .round {
+      color: whitesmoke;
+      width: 50px;
+      font-size: 2em;
+      text-align: center;
+      border-radius: 50%;
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+      z-index: 1;
+    }
+  }
+}
