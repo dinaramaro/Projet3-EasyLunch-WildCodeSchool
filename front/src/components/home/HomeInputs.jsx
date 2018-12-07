@@ -11,6 +11,7 @@ class HomeInputs extends Component {
     super(props);
     this.state = {
       keyword: '',
+      personCapacity: 0,
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -28,8 +29,7 @@ class HomeInputs extends Component {
   }
 
   render() {
-    const { keyword } = this.state;
-
+    const { keyword, personCapacity } = this.state;
     return (
       <div className="HomeInputs">
         <div
@@ -52,6 +52,9 @@ class HomeInputs extends Component {
             type="select"
             placeholder="Nombre de personnes"
             style={{ width: '25vw' }}
+            name="personCapacity"
+            value={personCapacity}
+            onChange={this.onChange}
           >
             <option>Pour combien ?</option>
             <option>1</option>

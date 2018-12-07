@@ -11,9 +11,9 @@ import { dataResults } from '../../actions/search';
 
 class Result extends Component {
   componentDidMount() {
-    const { location: { search }, dataResults } = this.props;
+    const { location: { search }, resultRestaurants } = this.props;
     const searchWord = search.replace('?keyword=', '');
-    dataResults(`${varServeur}search/${searchWord}`);
+    resultRestaurants(`${varServeur}search/${searchWord}`);
   }
 
   render() {
@@ -33,7 +33,7 @@ class Result extends Component {
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ dataResults }, dispatch);
+  return bindActionCreators({ resultRestaurants: dataResults }, dispatch);
 }
 
 export default connect(null, mdtp)(Result);

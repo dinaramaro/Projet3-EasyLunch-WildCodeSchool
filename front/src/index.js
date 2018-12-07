@@ -11,6 +11,7 @@ import ScrollToTop from './ScrollToTop';
 import { createStore, applyMiddleware } from 'redux';
 import allReducers from './reducers';
 import thunk from 'redux-thunk';
+import 'font-awesome/css/font-awesome.min.css';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 

@@ -39,19 +39,18 @@ const Footer = () => (
       </Col>
       <Col>
         <a
-          href="https://www.facebook.com/EasyLunchBordeaux/"
+          href="https://www.facebook.com/EasyLunchBordeaux"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Facebook
+          <i className="fa fa-facebook-square fa-3x social fb" />
         </a>
-        <br />
         <a
-          href="https://www.instagram.com/easy_lunch_fr/?hl=fr"
+          href="https://www.instagram.com/easy_lunch_fr/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Instagram
+          <i className="fa fa-instagram fa-3x social insta" />
         </a>
       </Col>
     </Row>
