@@ -18,7 +18,7 @@ const pinStyle = {
 };
 
 const RestoPin = (props) => {
-  const { size = 50, onClick } = props;
+  const { size, onClick } = props;
 
   return (
     <div className="RestoPin">
@@ -26,7 +26,7 @@ const RestoPin = (props) => {
         className="animated bounceInDown"
         height={size}
         viewBox="0 0 40 40"
-        style={{ ...pinStyle, transform: `translate(${-size / 2}px,${-size}px)` }}
+        style={{ ...pinStyle }}
         onClick={onClick}
       >
         <path d={ICON} />

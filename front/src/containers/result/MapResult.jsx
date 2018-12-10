@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText, Row, Col,
@@ -76,8 +77,11 @@ class Mapresult extends Component {
         key={`marker-${index}`}
         longitude={lonNumber}
         latitude={latNumber}
+        anchor="top"
+        offsetLeft={-25}
+        offsetTop={10}
       >
-        <RestoPin size={45} onClick={() => this.onClickMarker('popupInfo', resto)} />
+        <RestoPin size={40} onClick={() => this.onClickMarker('popupInfo', resto)} />
       </Marker>
     );
   }
@@ -90,6 +94,9 @@ class Mapresult extends Component {
         key={`marker-${index}`}
         longitude={longitudeuser}
         latitude={latitudeuser}
+        anchor="bottom-right"
+        offsetLeft={0}
+        offsetTop={0}
       >
         <UserPin onClick={() => this.onClickMarker()} />
       </Marker>

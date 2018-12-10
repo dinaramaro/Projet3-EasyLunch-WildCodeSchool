@@ -23,29 +23,29 @@
 
   0% {
       opacity: 0;
-      -webkit-transform: translate3d(0, -3000px, 0);
-      transform: translate3d(0, -3000px, 0);
+      -webkit-transform: translate3d(0, -2000px, 0);
+      transform: translate3d(0, -2000px, 0);
   }
 
   60% {
       opacity: 1;
-      -webkit-transform: translate3d(0, 25px, 0);
-      transform: translate3d(0, 25px, 0);
+      -webkit-transform: translate3d(0, -100px, -100px);
+      transform: translate3d(0, -100px, -100px);
   }
 
   75% {
-      -webkit-transform: translate3d(0, -10px, 0);
-      transform: translate3d(0, -10px, 0);
+      -webkit-transform: translate3d(0, -60px, -60px);
+      transform: translate3d(0, -60px, -60px);
   }
 
   90% {
-      -webkit-transform: translate3d(0, 5px, 0);
-      transform: translate3d(0, 5px, 0);
+      -webkit-transform: translate3d(0, -55px, -55px);
+      transform: translate3d(0, -55px, -55px);
   }
 
   to {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, -45px, -45px);
+      transform: translate3d(0, -45px, -45px);
   }
 }
 

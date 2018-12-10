@@ -106,7 +106,7 @@ function mstp(state) {
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ 
+  return bindActionCreators({
     resultRestaurants: dataResults,
     menuRestoInfos,
     menuResto,
