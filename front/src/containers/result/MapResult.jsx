@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import { connect } from 'react-redux';
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
+  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
 import './MapResult.scss';
 import classnames from 'classnames';
@@ -20,7 +20,6 @@ const navStyle = {
   padding: '10px',
 };
 
-
 class Mapresult extends Component {
   constructor(props) {
     super(props);
@@ -35,21 +34,21 @@ class Mapresult extends Component {
   }
 
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      this.setState(
-        {
-          viewport: {
-            latitude: pos.coords.latitude,
-            longitude: pos.coords.longitude,
-            zoom: 13,
-            bearing: 0,
-            pitch: 0,
-          },
-          latitudeuser: pos.coords.latitude,
-          longitudeuser: pos.coords.longitude,
+  //  navigator.geolocation.getCurrentPosition((pos) => {
+    this.setState(
+      {
+        viewport: {
+          latitude: 44.849407,
+          longitude: -0.5749776999999767,
+          zoom: 13,
+          bearing: 0,
+          pitch: 0,
         },
-      );
-    });
+        latitudeuser: 44.849407,
+        longitudeuser: -0.5749776999999767,
+      },
+    );
+  //  });
   }
 
   onClickMarker(key, value) {
@@ -69,15 +68,19 @@ class Mapresult extends Component {
     }
   }
 
-  renderRestoMarker = (resto, index) => (
-    <Marker
-      key={`marker-${index}`}
-      longitude={resto.lon}
-      latitude={resto.lat}
-    >
-      <RestoPin size={45} onClick={() => this.onClickMarker('popupInfo', resto)} />
-    </Marker>
-  )
+  renderRestoMarker = (resto, index) => {
+    const lonNumber = parseFloat(resto.lon);
+    const latNumber = parseFloat(resto.lat);
+    return (
+      <Marker
+        key={`marker-${index}`}
+        longitude={lonNumber}
+        latitude={latNumber}
+      >
+        <RestoPin size={45} onClick={() => this.onClickMarker('popupInfo', resto)} />
+      </Marker>
+    );
+  }
 
   renderUserMarker = (index) => {
     const { longitudeuser, latitudeuser } = this.state;
@@ -88,7 +91,7 @@ class Mapresult extends Component {
         longitude={longitudeuser}
         latitude={latitudeuser}
       >
-        <UserPin size={45} onClick={() => this.onClickMarker('popupUser', 'Vous êtes ici')} />
+        <UserPin onClick={() => this.onClickMarker()} />
       </Marker>
     );
   }
@@ -134,7 +137,17 @@ class Mapresult extends Component {
       viewport,
       activeTab,
     } = this.state;
-    const { searchResults: { results } } = this.props;
+    const {
+      searchResults: { results },
+      menuRestoInfos: { infos },
+      menuResto: { menus },
+    } = this.props;
+    const openings = infos.schedule;
+    let days = [];
+    if ((openings !== undefined) && (openings !== null)) {
+      days = openings.substring(1, openings.length - 1).split(',');
+    }
+
     return (
       <div className="MapResult">
         <Nav tabs>
@@ -187,9 +200,44 @@ class Mapresult extends Component {
             <Row>
               <Col sm="12">
                 <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>Text</CardText>
-                  <Button>Go somewhere</Button>
+                  <CardTitle>{infos.name}</CardTitle>
+                  <CardText>{infos.address}</CardText>
+                  <CardText>{infos.city}</CardText>
+                  <CardText>
+                    {days.map((day, index) => {
+                      let concatDays = '';
+                      if (index === 0) {
+                        concatDays = `${concatDays}Ouverture : `;
+                      }
+                      switch (day) {
+                        case '0':
+                          return `${concatDays} Lundi `;
+                        case '1':
+                          return `${concatDays} Mardi `;
+                        case '2':
+                          return `${concatDays} Mercredi `;
+                        case '3':
+                          return `${concatDays} Jeudi `;
+                        case '4':
+                          return `${concatDays} Vendredi `;
+                        case '5':
+                          return `${concatDays} Samedi `;
+                        case '6':
+                          return `${concatDays} Dimanche `;
+                        default:
+                          return concatDays;
+                      }
+                    })}
+                  </CardText>
+                  {menus.map(menu => (
+                    <CardText key={menu.id}>
+                      {menu.name}
+                      {' '}
+                      {menu.price}
+                      {' '}
+                      €
+                    </CardText>
+                  ))}
                 </Card>
               </Col>
             </Row>
@@ -203,6 +251,8 @@ class Mapresult extends Component {
 function mstp(state) {
   return {
     searchResults: state.searchResults,
+    menuRestoInfos: state.menuRestoInfos,
+    menuResto: state.menuResto,
   };
 }
 

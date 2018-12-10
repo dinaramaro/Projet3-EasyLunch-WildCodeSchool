@@ -8,6 +8,7 @@ import path from 'path';
 
 import CGV from './routes/cgv';
 import search from './routes/search';
+import restaurant from './routes/restaurant';
 
 const app = express();
 const debug = Debug('back:app');
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', CGV);
 app.use('/', search);
+app.use('/restaurant', restaurant);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
