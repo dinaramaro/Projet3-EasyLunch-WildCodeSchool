@@ -16,7 +16,8 @@ class Restaurants extends Component {
     super(props);
     const { location: { search } } = this.props;
     this.state = {
-      keyword: search.replace('?keyword=', ''),
+      keyword: search.replace('?keyword=', '').replace('&personcapacity', '').replace(/[^]\d/, ''),
+      personCapacity: search.replace(/\D+/g, ''),
     };
     this.onChange = this.onChange.bind(this);
     this.searchSubmit = this.searchSubmit.bind(this);
@@ -29,15 +30,15 @@ class Restaurants extends Component {
   }
 
   searchSubmit() {
-    const { keyword } = this.state;
+    const { keyword, personCapacity } = this.state;
     const { resultRestaurants } = this.props;
-    resultRestaurants(`${varServeur}search/${keyword}`);
+    resultRestaurants(`${varServeur}search/?keyword=${keyword}&personcapacity=${personCapacity}`);
   }
 
 
   render() {
     const { searchResults: { results } } = this.props;
-    const { keyword } = this.state;
+    const { keyword, personCapacity } = this.state;
     return (
       <div className="Restaurants">
         <Row>
@@ -55,6 +56,10 @@ class Restaurants extends Component {
               type="select"
               className="search2"
               placeholder="Nombre de personnes"
+              value={personCapacity}
+              onChange={this.onChange}
+              name="personCapacity"
+
             >
               <option>Pour combien ?</option>
               <option>1</option>
@@ -74,7 +79,7 @@ class Restaurants extends Component {
           {results.map(item => (
             <Col sm="12" md="6" xl="4">
               <Card className="card-restaurant">
-                <CardImg top width="100%" src={item.picture} alt="Card image cap" />
+                <CardImg top width="400px" height="175px" src={item.picture} alt="Card image cap" />
                 <CardBody>
                   <CardTitle>{item.name}</CardTitle>
                   <CardSubtitle>{item.address}</CardSubtitle>

@@ -30,8 +30,8 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/cgv', CGV);
-app.use('/search', search);
+app.use('/api/admin', CGV);
+app.use('/api/search', search);
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

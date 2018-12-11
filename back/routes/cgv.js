@@ -3,7 +3,7 @@ import connection from './config';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/cgv', (req, res) => {
   connection.query('SELECT * FROM admin_cgv', (err, results) => {
     if (err) {
       res.status(500).send('Erreur');

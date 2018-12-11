@@ -10,7 +10,7 @@ import './AdminCGV.scss';
 class AdminCGV extends Component {
   componentDidMount = () => {
     const { fetchCGV } = this.props;
-    fetchCGV(`${varServeur}/about/cgv`);
+    fetchCGV(`${varServeur}admin/cgv`);
   };
 
   render() {

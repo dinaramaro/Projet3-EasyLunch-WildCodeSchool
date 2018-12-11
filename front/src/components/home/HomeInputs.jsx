@@ -23,9 +23,9 @@ class HomeInputs extends Component {
   }
 
   pageResult() {
-    const { keyword } = this.state;
+    const { keyword, personCapacity } = this.state;
     const { history } = this.props;
-    history.push(`/resultat?keyword=${keyword}`);
+    history.push(`/result?keyword=${keyword}&personcapacity=${personCapacity}`);
   }
 
   render() {
@@ -65,7 +65,7 @@ class HomeInputs extends Component {
             <option>6</option>
             <option>7</option>
           </Input>
-          <Button onClick={() => this.pageResult(keyword)} className="search-button btn-submit">Rechercher</Button>
+          <Button onClick={() => this.pageResult(keyword, personCapacity)} className="search-button btn-submit">Rechercher</Button>
           <Button className="participe-button">Je participe</Button>
         </div>
       </div>
