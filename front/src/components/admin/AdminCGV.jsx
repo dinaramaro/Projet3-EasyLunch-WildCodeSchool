@@ -41,7 +41,10 @@ class AdminCGV extends Component {
       body: JSON.stringify({ cgv }),
     }).then((response) => {
       if (response.ok) {
-        window.location.reload();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
       }
     });
   }

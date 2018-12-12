@@ -7,7 +7,7 @@ import path from 'path';
 import cors from 'cors';
 // import favicon from 'serve-favicon';
 
-import CGV from './routes/cgv';
+import CGV from './routes/admin/cgv';
 import search from './routes/search';
 
 const app = express();
