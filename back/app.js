@@ -8,10 +8,7 @@ import cors from 'cors';
 // import favicon from 'serve-favicon';
 
 import CGV from './routes/admin/cgv';
-<<<<<<< HEAD
 import team from './routes/admin/team';
-=======
->>>>>>> dev
 import search from './routes/search';
 
 const app = express();
