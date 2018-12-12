@@ -1,27 +1,86 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './AdminPartners.scss';
 import {
-  Container, Form, FormGroup, Label, Input, Button,
+  Container,
+  Table,
 } from 'reactstrap';
+import { varServeur } from '../../constants';
 
-const AdminPartners = () => (
-  <div className="AdminPartners">
-    <h1 className="title">Partenaire</h1>
-    <Container>
-      <Form>
-        <FormGroup>
-          <Label for="picturePartner">Image Partenaire</Label>
-          <Input
-            type="url"
-            name="url"
-            id="picturePartner"
-            placeholder="Mettez le lien de vos photos d'équipe"
-          />
-        </FormGroup>
-        <Button>ENVOYER</Button>
-      </Form>
-    </Container>
-  </div>
-);
+
+class AdminPartners extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      allPartners: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch(`${varServeur}admin/partners`)
+      .then(results => results.json())
+      .then((data) => {
+        this.setState({
+          allPartners: data,
+        });
+      });
+  }
+
+  deletePartner = (id) => {
+    fetch(`${varServeur}admin/deletepartner/${id}`, {
+      method: 'DELETE',
+    }).then((response) => {
+      if (response.ok) {
+        window.location.reload();
+      }
+    });
+  }
+
+  render() {
+    const { allPartners } = this.state;
+    let count = 0;
+    return (
+      <div className="AdminPartners">
+        <h1 className="title">Partenaire</h1>
+        <Container fluid>
+          <Table bordered>
+            <thead>
+              <tr>
+                <th>n°</th>
+                <th>Nom</th>
+                <th>Aperçu image</th>
+                <th>lien</th>
+                <th>Supprimer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                allPartners.map((partner) => {
+                  count += 1;
+                  return (
+                    <tr key={partner.id}>
+                      <td>{count}</td>
+                      <td>{partner.name}</td>
+                      <td>
+                        <img width="200px" height="100px" src={partner.picture_partners} alt="partner logo" />
+                      </td>
+                      <td>
+                        <a href={partner.link}>{partner.link}</a>
+                      </td>
+                      <td className="trash-icon">
+                        <button type="submit" onClick={() => this.deletePartner(partner.id)}>
+                          <i className="fa fa-trash fa-2x" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })
+              }
+            </tbody>
+          </Table>
+        </Container>
+      </div>
+    );
+  }
+}
 
 export default AdminPartners;

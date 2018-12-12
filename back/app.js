@@ -8,6 +8,7 @@ import cors from 'cors';
 // import favicon from 'serve-favicon';
 
 import CGV from './routes/admin/cgv';
+import partners from './routes/admin/partners';
 import search from './routes/search';
 
 const app = express();
@@ -28,7 +29,9 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/admin', CGV);
+app.use('/api/admin', partners);
 app.use('/api/search', search);
+
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

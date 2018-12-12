@@ -4,4 +4,16 @@
     background-image: radial-gradient(#F1CD00, #FEA400);
     border: none;
   }
+
+  Table{
+    text-align: center;
+    .tr{
+      position: relative;
+      .td{
+        position: absolute;
+        bottom: 150px;
+      }
+    }
+  }
+  
 }
