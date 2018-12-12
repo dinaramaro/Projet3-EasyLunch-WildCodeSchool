@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './HomeInputs.scss';
 import { Input, Button, Form } from 'reactstrap';
 import { withRouter } from 'react-router';
+import queryString from 'query-string';
 
 const imgSrc = 'medias/hero-image.png';
 
@@ -10,7 +11,7 @@ class HomeInputs extends Component {
     super(props);
     this.state = {
       keyword: '',
-      personCapacity: 0,
+      personcapacity: 0,
     };
     this.onChange = this.onChange.bind(this);
   }
@@ -22,13 +23,13 @@ class HomeInputs extends Component {
   }
 
   pageResult() {
-    const { keyword, personCapacity } = this.state;
     const { history } = this.props;
-    history.push(`/result?keyword=${keyword}&personcapacity=${personCapacity}`);
+    const query = queryString.stringify(this.state);
+    history.push(`/result?${query}`);
   }
 
   render() {
-    const { keyword, personCapacity } = this.state;
+    const { keyword, personcapacity } = this.state;
     return (
       <div className="HomeInputs">
         <Form onSubmit={() => this.pageResult()}>
@@ -54,8 +55,8 @@ class HomeInputs extends Component {
               type="select"
               placeholder="Nombre de personnes"
               style={{ width: '25vw' }}
-              name="personCapacity"
-              value={personCapacity}
+              name="personcapacity"
+              value={personcapacity}
               onChange={this.onChange}
             >
               <option>Pour combien ?</option>

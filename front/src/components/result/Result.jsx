@@ -3,7 +3,6 @@ import './Result.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Col, Row, Container } from 'reactstrap';
-import queryString from 'query-string';
 import Restaurants from './Restaurants';
 import MapResult from '../../containers/result/MapResult';
 import { varServeur } from '../../constants';
@@ -13,8 +12,7 @@ import { dataResults } from '../../actions/search';
 class Result extends Component {
   componentDidMount() {
     const { location: { search }, resultRestaurants } = this.props;
-    const { keyword, personcapacity } = queryString.parse(search);
-    resultRestaurants(`${varServeur}search/?keyword=${keyword}&personcapacity=${personcapacity}`);
+    resultRestaurants(`${varServeur}search/${search}`);
   }
 
   render() {

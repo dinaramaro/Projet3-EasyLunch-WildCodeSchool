@@ -41,9 +41,9 @@ class Restaurants extends Component {
 
   searchSubmit(e) {
     e.preventDefault();
-    const { keyword, personCapacity } = this.state;
     const { resultRestaurants } = this.props;
-    resultRestaurants(`${varServeur}search/?keyword=${keyword}&personcapacity=${personCapacity}`);
+    const query = queryString.stringify(this.state);
+    resultRestaurants(`${varServeur}search/?${query}`);
   }
 
   render() {
@@ -69,7 +69,7 @@ class Restaurants extends Component {
                 placeholder="Nombre de personnes"
                 value={personcapacity}
                 onChange={this.onChange}
-                name="personCapacity"
+                name="personcapacity"
               >
                 <option>Pour combien ?</option>
                 <option>1</option>
