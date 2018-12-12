@@ -13,4 +13,16 @@ router.get('/cgv', (req, res) => {
   });
 });
 
+router.put('/updatecgv', (req, res) => {
+  const { cgv } = req.body;
+  connection.query('UPDATE admin_cgv SET cgv = ? WHERE id = 1', cgv, (err) => {
+    if (err) {
+      res.status(500).send('Erreur');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+
 export default router;

@@ -14,6 +14,7 @@ import {
   Button,
   Form,
 } from 'reactstrap';
+import queryString from 'query-string';
 import './Restaurants.scss';
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
@@ -22,15 +23,11 @@ import { dataResults } from '../../actions/search';
 class Restaurants extends Component {
   constructor(props) {
     super(props);
-    const {
-      location: { search },
-    } = this.props;
+    const { location: { search } } = props;
+    const { keyword, personCapacity } = queryString.parse(search);
     this.state = {
-      keyword: search
-        .replace('?keyword=', '')
-        .replace('&personcapacity', '')
-        .replace(/[^]\d/, ''),
-      personCapacity: search.replace(/\D+/g, ''),
+      keyword,
+      personCapacity,
     };
     this.onChange = this.onChange.bind(this);
     this.searchSubmit = this.searchSubmit.bind(this);
