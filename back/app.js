@@ -4,9 +4,10 @@ import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
 import path from 'path';
+import cors from 'cors';
 // import favicon from 'serve-favicon';
 
-import CGV from './routes/cgv';
+import CGV from './routes/admin/cgv';
 import search from './routes/search';
 
 const app = express();
@@ -20,18 +21,14 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use(cookieParser());
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+app.use(cookieParser());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/cgv', CGV);
-app.use('/search', search);
+app.use('/api/admin', CGV);
+app.use('/api/search', search);
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {
