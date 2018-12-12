@@ -2,20 +2,29 @@ import React, { Component } from 'react';
 import {
   Container, Row, Col, Button,
 } from 'reactstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+// import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { fetchFAQ } from '../../actions/adminFAQAction';
+// import { fetchFAQ } from '../../actions/adminFAQAction';
 
 
 class adminFAQ extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      listfaq: [],
+    };
+  }
+
   componentDidMount() {
-    const { getFetchFAQ } = this.props;
-    getFetchFAQ();
+    window.scroll();
+    fetch('http://localhost:4000/api/about/faq')
+      .then(response => response.json())
+      .then(data => this.setState({ listfaq: data }));
   }
 
   render() {
-    const { questions } = this.props;
+    const { listfaq } = this.state;
     return (
       <Container className="FAQ">
         <Row>
@@ -30,7 +39,7 @@ class adminFAQ extends Component {
               <th>Modifier</th>
               <th>Supprimer</th>
             </tr>
-            {questions.map(item => (
+            {listfaq.map(item => (
               <tr>
                 <td>
                   {item.question}
@@ -50,16 +59,4 @@ class adminFAQ extends Component {
   }
 }
 
-const mstp = state => ({
-  questions: state.fetchFAQ.questions,
-  loading: state.fetchFAQ.loading,
-  error: state.fetchFAQ.error,
-});
-
-const mdtp = dispatch => (
-  bindActionCreators({
-    getFetchFAQ: fetchFAQ,
-  }, dispatch)
-);
-
-export default connect(mstp, mdtp)(adminFAQ);
+export default adminFAQ;

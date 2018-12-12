@@ -4,13 +4,11 @@ import {
   Form,
   FormGroup,
   Label,
-  Input,
+  textarea,
   Container,
 }
   from 'reactstrap';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchFAQId } from '../../actions/adminFAQId';
+import './ModificationFAQ.scss';
 
 
 class ModficationFAQ extends Component {
@@ -25,13 +23,14 @@ class ModficationFAQ extends Component {
   }
 
   componentDidMount() {
-    const { getFetchFAQ, match, questionOne } = this.props;
-    console.log(questionOne);
-    getFetchFAQ(match.params.id);
-    this.setState({
-      question: questionOne.length ? questionOne[0].question : 'cdm',
-      answer: questionOne.length ? questionOne[0].answer : '',
-    });
+    const { match } = this.props;
+    window.scroll();
+    fetch(`http://localhost:4000/api/about/faq/${match.params.id}`)
+      .then(response => response.json())
+      .then((data) => {
+        console.log('data', data);
+        this.setState({ question: data[0].question, answer: data[0].answer });
+      });
   }
 
   handleChange(e) {
@@ -40,15 +39,8 @@ class ModficationFAQ extends Component {
     });
   }
 
-  // handleChange(e) {
-  //   console.log(e.target.value);
-  //   this.setState({
-  //     [e.target.name]: ...e.target.value+this.state.question,
-  //   });
-  // }
-
   handleSubmit(e) {
-    const { match } = this.props;
+    const { match, history } = this.props;
     e.preventDefault();
     const config = {
       method: 'PUT',
@@ -57,15 +49,14 @@ class ModficationFAQ extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    console.log('before-fetch', this.state);
     fetch(`http://localhost:4000/api/about/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
-        console.log('after-fetch', res);
         if (res.error) {
           alert(res.error);
         } else {
-          alert('Erreur lors de la modification de la question');
+          alert('La question a bien été modifiée');
+          history.push('/admin/adminfaq');
         }
       }).catch((err) => {
         console.error(err);
@@ -74,17 +65,16 @@ class ModficationFAQ extends Component {
   }
 
   render() {
-    // const { questionOne } = this.props;
     const { question } = this.state;
     const { answer } = this.state;
     return (
       <div>
         <h2>Modifier une question</h2>
-        <Container>
+        <Container className="ModificationFAQ">
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="question">Question</Label>
-              <Input
+              <textarea
                 onChange={this.handleChange}
                 type="text"
                 name="question"
@@ -95,7 +85,7 @@ class ModficationFAQ extends Component {
 
             <FormGroup>
               <Label for="answer">Réponse</Label>
-              <Input
+              <textarea
                 onChange={this.handleChange}
                 type="text"
                 name="answer"
@@ -113,16 +103,4 @@ class ModficationFAQ extends Component {
   }
 }
 
-const mstp = state => ({
-  questionOne: state.fetchFAQ.questions,
-  loading: state.fetchFAQ.loading,
-  error: state.fetchFAQ.error,
-});
-
-const mdtp = dispatch => (
-  bindActionCreators({
-    getFetchFAQ: fetchFAQId,
-  }, dispatch)
-);
-
-export default connect(mstp, mdtp)(ModficationFAQ);
+export default ModficationFAQ;

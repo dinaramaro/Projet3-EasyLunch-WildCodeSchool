@@ -27,6 +27,7 @@ router.get('/faq/:id', (req, res) => {
   });
 });
 
+/* PUT MODIFIER Question. */
 router.put('/faq/:id', (req, res) => {
   const idQuestion = req.params.id;
   const formData = req.body;
