@@ -24,10 +24,10 @@ class Restaurants extends Component {
   constructor(props) {
     super(props);
     const { location: { search } } = props;
-    const { keyword, personCapacity } = queryString.parse(search);
+    const { keyword, personcapacity } = queryString.parse(search);
     this.state = {
       keyword,
-      personCapacity,
+      personcapacity,
     };
     this.onChange = this.onChange.bind(this);
     this.searchSubmit = this.searchSubmit.bind(this);
@@ -48,7 +48,7 @@ class Restaurants extends Component {
 
   render() {
     const { searchResults: { results } } = this.props;
-    const { keyword, personCapacity } = this.state;
+    const { keyword, personcapacity } = this.state;
     return (
       <div className="Restaurants">
         <Form onSubmit={this.searchSubmit}>
@@ -67,7 +67,7 @@ class Restaurants extends Component {
                 type="select"
                 className="search2"
                 placeholder="Nombre de personnes"
-                value={personCapacity}
+                value={personcapacity}
                 onChange={this.onChange}
                 name="personCapacity"
               >
