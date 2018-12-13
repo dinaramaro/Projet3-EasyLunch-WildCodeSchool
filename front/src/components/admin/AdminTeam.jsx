@@ -12,7 +12,9 @@ import {
   FormGroup,
   Label,
   Input,
+  Row,
 } from 'reactstrap';
+import AdminTeamEdit from './AdminTeamEdit';
 import { varServeur } from '../../constants';
 
 class AdminTeam extends Component {
@@ -20,13 +22,14 @@ class AdminTeam extends Component {
     super(props);
     this.state = {
       team: [],
+      memberEdit: false,
+      currentIndex: 0,
     };
-    this.changeteam = this.changeteam.bind(this);
-    this.updateteam = this.updateteam.bind(this);
+    this.getMember = this.getMember.bind(this);
   }
 
   componentDidMount() {
-    fetch(`${varServeur}admin/team`)
+    fetch(`${varServeur}admin/getmembers`)
       .then(response => response.json())
       .then((data) => {
         this.setState({
@@ -35,32 +38,8 @@ class AdminTeam extends Component {
       });
   }
 
-  changeCGV = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  updateteam = () => {
-    const { team } = this.state;
-    fetch(`${varServeur}admin/updateteam`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ team }),
-    }).then((response) => {
-      if (response.ok) {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      }
-    });
-  }
-
-  deleteTeam = (id) => {
-    fetch(`${varServeur}admin/deletepartners/${id}`, {
+  deleteMember = (id) => {
+    fetch(`${varServeur}admin/deletemember/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {
@@ -68,45 +47,76 @@ class AdminTeam extends Component {
       });
   }
 
+  getMember = (id) => {
+    const { memberEdit } = this.state;
+    this.setState({
+      memberEdit: !memberEdit,
+      currentIndex: id,
+    });
+  }
+
   render() {
-    const { team } = this.state;
+    const { team, currentIndex, memberEdit } = this.state;
+    console.log(currentIndex);
     return (
       <div className="AdminTeam">
         <h2 className="title">Donnée De L&#39;Equipe</h2>
         <Container>
-          {team.map(partie => (
-            <Card key={partie.id}>
-              <CardImg top src={partie.picture_team} alt="Card image" />
-              <CardBody>
-                <CardTitle>{partie.name_team}</CardTitle>
-                <CardSubtitle>{partie.fonction_team}</CardSubtitle>
-                <Button onClick={this.changeCGV} color="warning" className="all-btn">Modifier</Button>
-                <Button submit="submit" onClick={() => this.deleteTeam} color="warning" className="all-btn">Supprimer</Button>
-              </CardBody>
-            </Card>
-          ))}
-          <Form>
-            <FormGroup>
-              <Label for="teamPicture">Photo d&#39;Equipe</Label>
-              <Input
-                type="url"
-                name="url"
-                id="teamPicture"
-                placeholder="Mettez le lien de vos photos d'équipe"
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Description d&#39;Equipe</Label>
-              <br />
-              <Input
-                type="textarea"
-                name="text"
-                placeholder="VOTRE MESSAGE"
-                onChange={this.changeCGV}
-              />
-            </FormGroup>
-            <Button>ENVOYER</Button>
-          </Form>
+          <Row>
+            {team.map(member => (
+              <Card key={member.id}>
+                <CardImg top src={member.picture} alt="Card image" />
+                <CardBody>
+                  <CardTitle>{member.name}</CardTitle>
+                  <CardSubtitle>{member.fonction}</CardSubtitle>
+                  <Button onClick={() => this.getMember(member.id)} color="warning" className="all-btn">Modifier</Button>
+                  <Button onClick={() => this.deleteMember(member.id)} color="warning" className="all-btn">Supprimer</Button>
+                </CardBody>
+              </Card>
+            ))}
+          </Row>
+          {
+            memberEdit ? <AdminTeamEdit idEdit={currentIndex} /> : (
+              <Form>
+                <FormGroup>
+                  <Label for="teamName">Nom</Label>
+                  <Input
+                    type="text"
+                    name="text"
+                    id="teamName"
+                    placeholder="Mettez le nom de la personne"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="teamFonction">Fonction</Label>
+                  <Input
+                    type="text"
+                    name="text"
+                    id="teamFonction"
+                    placeholder="Mettez la fonction de la personne"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="teamPicture">Photo d&#39;Equipe</Label>
+                  <Input
+                    type="url"
+                    name="url"
+                    id="teamPicture"
+                    placeholder="Mettez le lien de vos photos d'équipe"
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Label>Description d&#39;Equipe</Label>
+                  <br />
+                  <Input
+                    type="textarea"
+                    name="text"
+                    placeholder="VOTRE MESSAGE"
+                  />
+                </FormGroup>
+                <Button>ENVOYER</Button>
+              </Form>
+            )}
         </Container>
       </div>
     );
