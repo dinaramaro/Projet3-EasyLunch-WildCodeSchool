@@ -7,15 +7,11 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
   Row,
 } from 'reactstrap';
 import AdminTeamEdit from './AdminTeamEdit';
 import { varServeur } from '../../../constants';
+import AdminTeamNew from './AdminTeamNew';
 
 class AdminTeam extends Component {
   constructor(props) {
@@ -63,7 +59,6 @@ class AdminTeam extends Component {
 
   render() {
     const { team, currentIndex, memberEdit } = this.state;
-    console.log(currentIndex);
     return (
       <div className="AdminTeam">
         <h2 className="title">Donnée De L&#39;Equipe</h2>
@@ -83,45 +78,7 @@ class AdminTeam extends Component {
           </Row>
           {
             memberEdit ? <AdminTeamEdit cancelEdit={this.cancelEdit} idEdit={currentIndex} /> : (
-              <Form>
-                <FormGroup>
-                  <Label for="teamName">Nom</Label>
-                  <Input
-                    type="text"
-                    name="text"
-                    id="teamName"
-                    placeholder="Mettez le nom de la personne"
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="teamFonction">Fonction</Label>
-                  <Input
-                    type="text"
-                    name="text"
-                    id="teamFonction"
-                    placeholder="Mettez la fonction de la personne"
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="teamPicture">Photo d&#39;Equipe</Label>
-                  <Input
-                    type="url"
-                    name="url"
-                    id="teamPicture"
-                    placeholder="Mettez le lien de vos photos d'équipe"
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label>Description d&#39;Equipe</Label>
-                  <br />
-                  <Input
-                    type="textarea"
-                    name="text"
-                    placeholder="VOTRE MESSAGE"
-                  />
-                </FormGroup>
-                <Button className="all-btn">ENVOYER</Button>
-              </Form>
+              <AdminTeamNew />
             )}
         </Container>
       </div>

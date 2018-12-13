@@ -24,6 +24,17 @@ router.get('/getmember/:id', (req, res) => {
   });
 });
 
+router.post('/postmember', (req, res) => {
+  const newMember = req.body;
+  connection.query('INSERT INTO admin_team SET ?', newMember, (err) => {
+    if (err) {
+      res.status(500).send('Erreur');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 router.put('/putmember/:id', (req, res) => {
   const id = req.params.id;
   const team = req.body;

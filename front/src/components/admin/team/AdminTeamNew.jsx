@@ -9,96 +9,73 @@ import {
 } from 'reactstrap';
 import { varServeur } from '../../../constants';
 
-class AdminTeamEdit extends Component {
+class AdminTeamNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      picture: '',
-      description: '',
       name: '',
       fonction: '',
+      picture: '',
+      description: '',
     };
-    this.onChangeEdit = this.onChangeEdit.bind(this);
-    this.putMember = this.putMember.bind(this);
+    this.onChangeNew = this.onChangeNew.bind(this);
   }
 
-  componentDidMount() {
-    const { idEdit } = this.props;
-    fetch(`${varServeur}admin/getmember/${idEdit}`)
-      .then(response => response.json())
-      .then((data) => {
-        const {
-          picture, name, description, fonction,
-        } = data;
-        this.setState({
-          picture,
-          description,
-          name,
-          fonction,
-        });
-      });
-  }
-
-  onChangeEdit(e) {
+  onChangeNew(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
 
-  putMember() {
-    const { idEdit } = this.props;
-    fetch(`${varServeur}admin/putmember/${idEdit}`, {
-      method: 'PUT',
+  postMember = () => {
+    fetch(`${varServeur}admin/postmember/`, {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.state),
     })
-      .then((response) => {
-        if (response.ok) {
-          window.location.reload();
-        }
+      .then(() => {
+        window.location.reload();
       });
   }
 
-
   render() {
     const {
-      picture, description, name, fonction,
+      name, fonction, picture, description,
     } = this.state;
-    const { cancelEdit } = this.props;
     return (
       <Container>
         <Form>
           <FormGroup>
-            <Label>Nom</Label>
+            <Label for="teamName">Nom</Label>
             <Input
               type="text"
               name="name"
               placeholder="Mettez le nom de la personne"
               value={name}
-              onChange={this.onChangeEdit}
+              onChange={this.onChangeNew}
             />
           </FormGroup>
           <FormGroup>
-            <Label>Fonction</Label>
+            <Label for="teamFonction">Fonction</Label>
             <Input
               type="text"
               name="fonction"
               placeholder="Mettez la fonction de la personne"
               value={fonction}
-              onChange={this.onChangeEdit}
+              onChange={this.onChangeNew}
             />
           </FormGroup>
           <FormGroup>
-            <Label>Photo d&#39;Equipe</Label>
+            <Label for="teamPicture">Photo d&#39;Equipe</Label>
             <Input
               type="url"
               name="picture"
               placeholder="Mettez le lien de vos photos d'équipe"
               value={picture}
-              onChange={this.onChangeEdit}
+              onChange={this.onChangeNew}
             />
           </FormGroup>
           <FormGroup>
@@ -109,15 +86,14 @@ class AdminTeamEdit extends Component {
               name="description"
               placeholder="VOTRE MESSAGE"
               value={description}
-              onChange={this.onChangeEdit}
+              onChange={this.onChangeNew}
             />
           </FormGroup>
-          <Button className="all-btn" onClick={this.putMember}>VALIDER</Button>
-          <Button className="all-btn" onClick={cancelEdit}>ANNULER</Button>
+          <Button className="all-btn" onClick={this.postMember}>ENVOYER</Button>
         </Form>
       </Container>
     );
   }
 }
 
-export default AdminTeamEdit;
+export default AdminTeamNew;
