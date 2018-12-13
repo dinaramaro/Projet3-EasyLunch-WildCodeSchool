@@ -40,4 +40,17 @@ router.put('/faq/:id', (req, res) => {
   });
 });
 
+/* DELETE Question. */
+router.delete('/faq/:id', (req, res) => {
+  const idQuestion = req.params.id;
+  connection.query('DELETE FROM about_FAQ WHERE id = ?', [idQuestion], (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la suppression d'un employé");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 export default router;

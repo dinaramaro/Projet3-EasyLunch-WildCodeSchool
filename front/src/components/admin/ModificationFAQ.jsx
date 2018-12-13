@@ -28,7 +28,6 @@ class ModficationFAQ extends Component {
     fetch(`http://localhost:4000/api/about/faq/${match.params.id}`)
       .then(response => response.json())
       .then((data) => {
-        console.log('data', data);
         this.setState({ question: data[0].question, answer: data[0].answer });
       });
   }
