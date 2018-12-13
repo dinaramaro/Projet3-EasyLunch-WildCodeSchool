@@ -15,7 +15,7 @@ import AdminMenu from './components/admin/AdminMenu';
 import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
 import AdminPoli from './components/admin/AdminPoli';
-import AdminTeam from './components/admin/AdminTeam';
+import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';

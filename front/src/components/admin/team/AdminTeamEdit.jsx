@@ -7,7 +7,7 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 
 class AdminTeamEdit extends Component {
   constructor(props) {
@@ -67,6 +67,7 @@ class AdminTeamEdit extends Component {
     const {
       picture, description, name, fonction,
     } = this.state;
+    const { cancelEdit } = this.props;
     return (
       <Container>
         <Form>
@@ -111,7 +112,8 @@ class AdminTeamEdit extends Component {
               onChange={this.onChangeEdit}
             />
           </FormGroup>
-          <Button onClick={this.putMember}>MODIFIER</Button>
+          <Button className="all-btn" onClick={this.putMember}>VALIDER</Button>
+          <Button className="all-btn" onClick={cancelEdit}>ANNULER</Button>
         </Form>
       </Container>
     );
