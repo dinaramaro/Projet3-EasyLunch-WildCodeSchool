@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import {
   Container, Form, FormGroup, Input, Button,
 } from 'reactstrap';
+import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
 import './AdminCGV.scss';
+import 'react-quill/dist/quill.snow.css';
 
 class AdminCGV extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cgv: [],
+      getcgv: '',
     };
     this.changeCGV = this.changeCGV.bind(this);
     this.updateCGV = this.updateCGV.bind(this);
@@ -25,21 +28,21 @@ class AdminCGV extends Component {
       });
   }
 
-  changeCGV(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  changeCGV(value) {
+    this.setState({ getcgv: value });
+    console.log(this.state.getcgv)
   }
 
   updateCGV() {
-    const { cgv } = this.state;
+    const { getcgv } = this.state;
     fetch(`${varServeur}admin/updatecgv`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ cgv }),
+      body: JSON.stringify({ getcgv }),
     }).then((response) => {
+      console.log("coucou")
       if (response.ok) {
         window.scrollTo({
           top: 0,
@@ -50,8 +53,8 @@ class AdminCGV extends Component {
   }
 
   render() {
-    const { cgv } = this.state;
-    const displayCGV = cgv[0] && cgv[0].cgv;
+    const { cgv, getcgv } = this.state;
+    const displaycgv = cgv[0] && cgv[0].cgv;
     return (
       <div className="AdminCGV">
         <h1 className="title">CGV</h1>
@@ -59,11 +62,12 @@ class AdminCGV extends Component {
           <Form>
             <FormGroup>
               <br />
-              <Input
+              <ReactQuill
+                theme="snow"
                 type="textarea"
                 name="cgv"
                 placeholder="Conditions Générales"
-                value={displayCGV}
+                value={getcgv || displaycgv}
                 onChange={this.changeCGV}
                 className="input-CGV"
               />
@@ -75,5 +79,6 @@ class AdminCGV extends Component {
     );
   }
 }
+
 
 export default AdminCGV;
