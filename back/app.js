@@ -32,8 +32,8 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/cgv', CGV);
-app.use('/search', search);
-app.use('/restaurant', restaurant);
+app.use('/api/search', search);
+app.use('/api/restaurant', restaurant);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

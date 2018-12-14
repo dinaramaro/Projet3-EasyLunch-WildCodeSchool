@@ -1,7 +1,7 @@
 const initialState = {
   loading: false,
   error: null,
-  menus: [],
+  cartes: [],
 };
 
 const menuResto = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const menuResto = (state = initialState, action) => {
       };
     case 'MENU_RESTO_SUCCESS':
       return {
-        menus: action.infos,
+        cartes: action.infos,
         loading: false,
         error: null,
       };

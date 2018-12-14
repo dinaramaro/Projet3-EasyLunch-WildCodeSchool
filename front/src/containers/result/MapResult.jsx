@@ -35,21 +35,21 @@ class Mapresult extends Component {
   }
 
   componentDidMount() {
-  //  navigator.geolocation.getCurrentPosition((pos) => {
-    this.setState(
-      {
-        viewport: {
-          latitude: 44.849407,
-          longitude: -0.5749776999999767,
-          zoom: 13,
-          bearing: 0,
-          pitch: 0,
+    navigator.geolocation.getCurrentPosition((pos) => {
+      this.setState(
+        {
+          viewport: {
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude,
+            zoom: 11,
+            bearing: 0,
+            pitch: 0,
+          },
+          latitudeuser: pos.coords.latitude,
+          longitudeuser: pos.coords.longitude,
         },
-        latitudeuser: 44.849407,
-        longitudeuser: -0.5749776999999767,
-      },
-    );
-  //  });
+      );
+    });
   }
 
   onClickMarker(key, value) {
@@ -146,14 +146,26 @@ class Mapresult extends Component {
     } = this.state;
     const {
       searchResults: { results },
-      menuRestoInfos: { infos },
-      menuResto: { menus },
+      menuResto: { cartes: { restoInfos, menus } },
     } = this.props;
-    const openings = infos.schedule;
     let days = [];
-    if ((openings !== undefined) && (openings !== null)) {
-      days = openings.substring(1, openings.length - 1).split(',');
+    let restoName = '';
+    let restoAddress = '';
+    let restoCity = '';
+    let restoMenus = [];
+    if (restoInfos !== undefined) {
+      if ((restoInfos.schedule !== undefined) && (restoInfos.schedule !== null)) {
+        days = restoInfos.schedule.substring(1, restoInfos.schedule.length - 1).split(',');
+      }
+      restoName = restoInfos.name;
+      restoAddress = restoInfos.address;
+      restoCity = restoInfos.city;
     }
+    if (menus !== undefined) {
+      restoMenus = menus;
+      console.log(restoMenus);
+    }
+
 
     return (
       <div className="MapResult">
@@ -207,9 +219,15 @@ class Mapresult extends Component {
             <Row>
               <Col sm="12">
                 <Card body>
-                  <CardTitle>{infos.name}</CardTitle>
-                  <CardText>{infos.address}</CardText>
-                  <CardText>{infos.city}</CardText>
+                  <CardText>
+                    { restoName }
+                  </CardText>
+                  <CardText>
+                    { restoAddress }
+                  </CardText>
+                  <CardText>
+                    { restoCity }
+                  </CardText>
                   <CardText>
                     {days.map((day, index) => {
                       let concatDays = '';
@@ -236,18 +254,21 @@ class Mapresult extends Component {
                       }
                     })}
                   </CardText>
-                  {menus.map(menu => (
-                    <CardText key={menu.id}>
-                      {menu.name}
-                      {' '}
-                      {menu.price}
-                      {' '}
-                      €
-                    </CardText>
-                  ))}
                 </Card>
               </Col>
             </Row>
+            {restoMenus.map(menu => (
+              <Nav key={menu.id_plat} tabs>
+                <NavItem>
+                  <NavLink
+                    className={classnames({ active: activeTab === '1' })}
+                    onClick={() => { this.toggle('1'); }}
+                  >
+                    {menu.name}
+                  </NavLink>
+                </NavItem>
+              </Nav>
+            ))}
           </TabPane>
         </TabContent>
       </div>
@@ -258,7 +279,6 @@ class Mapresult extends Component {
 function mstp(state) {
   return {
     searchResults: state.searchResults,
-    menuRestoInfos: state.menuRestoInfos,
     menuResto: state.menuResto,
   };
 }
