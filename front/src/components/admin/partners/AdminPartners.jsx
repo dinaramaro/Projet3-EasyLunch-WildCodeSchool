@@ -3,6 +3,10 @@ import './AdminPartners.scss';
 import {
   Container,
   Table,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from 'reactstrap';
 import FormPartners from './FormPartners';
 import { varServeur } from '../../../constants';
@@ -13,6 +17,8 @@ class AdminPartners extends Component {
     super(props);
     this.state = {
       allPartners: [],
+      modal: false,
+      currentIndex: 0,
     };
   }
 
@@ -36,8 +42,19 @@ class AdminPartners extends Component {
     });
   }
 
+  toggle(id) {
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+      currentIndex: id,
+    });
+  }
+
   render() {
-    const { allPartners } = this.state;
+    const { allPartners, modal, currentIndex } = this.state;
+    const currentName = allPartners
+      .filter(jeu => jeu.id === currentIndex)
+      .map(jeu => jeu.name);
     let count = 0;
     return (
       <div className="AdminPartners">
@@ -65,10 +82,10 @@ class AdminPartners extends Component {
                         <img width="200px" height="100px" className="img-fluid" src={partner.picture} alt="partner logo" />
                       </td>
                       <td>
-                        <a href={partner.link}>Lien</a>
+                        <a href={partner.link} rel="noopener noreferrer" target="_blank">Lien</a>
                       </td>
                       <td className="trash-icon">
-                        <button type="submit" onClick={() => this.deletePartner(partner.id)}>
+                        <button type="submit" onClick={() => this.toggle(partner.id)}>
                           <i className="fa fa-trash fa-2x" />
                         </button>
                       </td>
@@ -78,6 +95,15 @@ class AdminPartners extends Component {
               }
             </tbody>
           </Table>
+          <Modal isOpen={modal}>
+            <ModalBody>
+              {`Etes vous sur de vouloir supprimer le partenaire ${currentName}`}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={() => this.deletePartner(currentIndex)}>Confirmer</Button>
+              <Button color="secondary" onClick={() => this.toggle(0)}>Annuler</Button>
+            </ModalFooter>
+          </Modal>
         </Container>
         <FormPartners />
       </div>
