@@ -4,7 +4,8 @@ import {
   Container,
   Table,
 } from 'reactstrap';
-import { varServeur } from '../../constants';
+import FormPartners from './FormPartners';
+import { varServeur } from '../../../constants';
 
 
 class AdminPartners extends Component {
@@ -78,6 +79,7 @@ class AdminPartners extends Component {
             </tbody>
           </Table>
         </Container>
+        <FormPartners />
       </div>
     );
   }

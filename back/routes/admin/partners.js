@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/partners', (req, res) => {
   connection.query('SELECT * FROM admin_partners', (err, results) => {
     if (err) {
-      res.status(500).send('Erreur');
+      res.status(500).send('Erreur lors de la recupération des partenaires');
     } else {
       res.json(results);
     }
@@ -17,7 +17,18 @@ router.delete('/deletepartner/:id', (req, res) => {
   const id = req.params.id;
   connection.query('DELETE FROM admin_partners WHERE id = ?', id, (err) => {
     if (err) {
-      res.status(500).send('Erreur');
+      res.status(500).send('Erreur lors de la suppression d\'un partenaire');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+router.post('/postpartner', (req, res) => {
+  const formData = req.body;
+  connection.query('INSERT INTO admin_partners SET ?', formData, (err) => {
+    if (err) {
+      res.status(500).send("Erreur lors de la sauvegarde d'une personne");
     } else {
       res.sendStatus(200);
     }
