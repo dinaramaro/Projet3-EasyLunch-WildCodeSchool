@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Container, Form, FormGroup, Input, Button,
+  Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
@@ -11,8 +11,7 @@ class AdminCGV extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cgv: [],
-      getcgv: '',
+      cgv: '',
     };
     this.changeCGV = this.changeCGV.bind(this);
     this.updateCGV = this.updateCGV.bind(this);
@@ -21,28 +20,24 @@ class AdminCGV extends Component {
   componentDidMount() {
     fetch(`${varServeur}admin/cgv`)
       .then(results => results.json())
-      .then((data) => {
-        this.setState({
-          cgv: data,
-        });
+      .then((cgv) => {
+        this.setState({ cgv });
       });
   }
 
   changeCGV(value) {
-    this.setState({ getcgv: value });
-    console.log(this.state.getcgv)
+    this.setState({ cgv: value });
   }
 
   updateCGV() {
-    const { getcgv } = this.state;
+    const { cgv } = this.state;
     fetch(`${varServeur}admin/updatecgv`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ getcgv }),
+      body: JSON.stringify({ cgv }),
     }).then((response) => {
-      console.log("coucou")
       if (response.ok) {
         window.scrollTo({
           top: 0,
@@ -53,8 +48,7 @@ class AdminCGV extends Component {
   }
 
   render() {
-    const { cgv, getcgv } = this.state;
-    const displaycgv = cgv[0] && cgv[0].cgv;
+    const { cgv } = this.state;
     return (
       <div className="AdminCGV">
         <h1 className="title">CGV</h1>
@@ -67,7 +61,7 @@ class AdminCGV extends Component {
                 type="textarea"
                 name="cgv"
                 placeholder="Conditions Générales"
-                value={getcgv || displaycgv}
+                value={cgv}
                 onChange={this.changeCGV}
                 className="input-CGV"
               />
