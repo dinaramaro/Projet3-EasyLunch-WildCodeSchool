@@ -24,7 +24,7 @@ class AdminTeamEdit extends Component {
 
   componentDidMount() {
     const { idEdit } = this.props;
-    fetch(`${varServeur}admin/getmember/${idEdit}`)
+    fetch(`${varServeur}admin/team/${idEdit}`)
       .then(response => response.json())
       .then((data) => {
         const {
@@ -47,7 +47,7 @@ class AdminTeamEdit extends Component {
 
   putMember() {
     const { idEdit } = this.props;
-    fetch(`${varServeur}admin/putmember/${idEdit}`, {
+    fetch(`${varServeur}admin/team/update/${idEdit}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',

@@ -8,6 +8,10 @@ import {
   CardTitle,
   CardSubtitle,
   Row,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Button,
 } from 'reactstrap';
 import AdminTeamEdit from './AdminTeamEdit';
 import { varServeur } from '../../../constants';
@@ -20,13 +24,15 @@ class AdminTeam extends Component {
       team: [],
       memberEdit: false,
       currentIndex: 0,
+      modal: false,
     };
     this.getMember = this.getMember.bind(this);
     this.cancelEdit = this.cancelEdit.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   componentDidMount() {
-    fetch(`${varServeur}admin/getmembers`)
+    fetch(`${varServeur}admin/team/`)
       .then(response => response.json())
       .then((data) => {
         this.setState({
@@ -36,7 +42,7 @@ class AdminTeam extends Component {
   }
 
   deleteMember = (id) => {
-    fetch(`${varServeur}admin/deletemember/${id}`, {
+    fetch(`${varServeur}admin/team/delete/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {
@@ -57,8 +63,18 @@ class AdminTeam extends Component {
     });
   }
 
+  toggle() {
+    const { modal } = this.state;
+    this.setState({
+      modal: !modal,
+    });
+  }
+
   render() {
-    const { team, currentIndex, memberEdit } = this.state;
+    const {
+      team, currentIndex, memberEdit, modal,
+    } = this.state;
+
     return (
       <div className="AdminTeam">
         <h2 className="title">Donnée De L&#39;Equipe</h2>
@@ -72,8 +88,17 @@ class AdminTeam extends Component {
                   <CardSubtitle>{member.fonction}</CardSubtitle>
                   <Row className="contenairbutton">
                     <button className="buttonicone" type="button" onClick={() => this.getMember(member.id)}><i className="fa fa-edit" /></button>
-                    <button className="buttonicone" type="button" onClick={() => this.deleteMember(member.id)}><i className="fa fa-trash" /></button>
+                    <button className="buttonicone" type="button" onClick={() => this.toggle()}><i className="fa fa-trash" /></button>
                   </Row>
+                  <Modal isOpen={modal}>
+                    <ModalBody>
+                      {`Etes vous sûr de vouloir supprimer ${member.name} de l'équipe ?`}
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" onClick={() => this.deleteMember(member.id)}>Confirmer</Button>
+                      <Button color="secondary" onClick={this.toggle}>Annuler</Button>
+                    </ModalFooter>
+                  </Modal>
                 </CardBody>
               </Card>
             ))}

@@ -29,7 +29,7 @@ class AdminTeamNew extends Component {
   }
 
   postMember = () => {
-    fetch(`${varServeur}admin/postmember/`, {
+    fetch(`${varServeur}admin/team/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

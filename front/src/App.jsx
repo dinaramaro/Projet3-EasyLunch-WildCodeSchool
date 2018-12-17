@@ -18,7 +18,7 @@ import AdminPoli from './components/admin/AdminPoli';
 import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/AdminPartners';
-import AdminConcept from './components/admin/AdminConcept';
+import AdminConcept from './components/admin/concept/AdminConcept';
 import Result from './components/result/Result';
 
 const App = () => (
