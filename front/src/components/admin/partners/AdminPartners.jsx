@@ -62,10 +62,10 @@ class AdminPartners extends Component {
                       <td>{count}</td>
                       <td>{partner.name}</td>
                       <td>
-                        <img width="200px" height="100px" src={partner.picture} alt="partner logo" />
+                        <img width="200px" height="100px" className="img-fluid" src={partner.picture} alt="partner logo" />
                       </td>
                       <td>
-                        <a href={partner.link}>{partner.link}</a>
+                        <a href={partner.link}>Lien</a>
                       </td>
                       <td className="trash-icon">
                         <button type="submit" onClick={() => this.deletePartner(partner.id)}>

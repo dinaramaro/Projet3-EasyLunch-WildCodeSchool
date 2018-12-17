@@ -43,7 +43,7 @@ class FormPartner extends Component {
       <Container fluid className="FormPartners">
         <Form className="form" onSubmit={this.postPartner}>
           <Row>
-            <Col lg="4">
+            <Col lg="4" md="4" xs="4">
               <Input
                 type="name"
                 name="name"
@@ -52,7 +52,7 @@ class FormPartner extends Component {
                 placeholder="Nom du partenaire"
               />
             </Col>
-            <Col lg="4">
+            <Col lg="4" md="4" xs="4">
               <Input
                 type="url"
                 name="picture"
@@ -61,7 +61,7 @@ class FormPartner extends Component {
                 placeholder="Lien de l'image du partenaire"
               />
             </Col>
-            <Col lg="4">
+            <Col lg="4" md="4" xs="4">
               <Input
                 type="url"
                 name="link"
