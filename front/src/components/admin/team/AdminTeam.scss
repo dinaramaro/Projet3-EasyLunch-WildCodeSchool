@@ -1,5 +1,14 @@
 .AdminTeam{
   .card{
     width: 300px;
+    justify-content: center;
+    padding: 2%;
+    margin: auto;
+    .card-button{
+      margin: auto;
+    }
+    .buttonicone{
+      justify-content: center;
+    }
   }
 }

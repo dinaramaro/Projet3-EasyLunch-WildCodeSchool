@@ -3,7 +3,7 @@ import connection from '../config';
 
 const router = express.Router();
 
-router.get('/getmembers', (req, res) => {
+router.get('/', (req, res) => {
   connection.query('SELECT * FROM admin_team', (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
@@ -13,7 +13,7 @@ router.get('/getmembers', (req, res) => {
   });
 });
 
-router.get('/getmember/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.id;
   connection.query('SELECT * FROM admin_team WHERE id = ?', id, (err, results) => {
     if (err) {
@@ -24,7 +24,7 @@ router.get('/getmember/:id', (req, res) => {
   });
 });
 
-router.post('/postmember', (req, res) => {
+router.post('/create', (req, res) => {
   const newMember = req.body;
   connection.query('INSERT INTO admin_team SET ?', newMember, (err) => {
     if (err) {
@@ -35,7 +35,7 @@ router.post('/postmember', (req, res) => {
   });
 });
 
-router.put('/putmember/:id', (req, res) => {
+router.put('/update/:id', (req, res) => {
   const id = req.params.id;
   const team = req.body;
   connection.query('UPDATE admin_team SET ? WHERE id = ?', [team, id], (err) => {
@@ -47,7 +47,7 @@ router.put('/putmember/:id', (req, res) => {
   });
 });
 
-router.delete('/deletemember/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
   connection.query('DELETE FROM admin_team WHERE id = ?', id, (err) => {
     if (err) {

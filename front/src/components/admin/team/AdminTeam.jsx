@@ -70,8 +70,10 @@ class AdminTeam extends Component {
                 <CardBody>
                   <CardTitle>{member.name}</CardTitle>
                   <CardSubtitle>{member.fonction}</CardSubtitle>
-                  <button type="button" onClick={() => this.getMember(member.id)}><i className="fa fa-edit" /></button>
-                  <button type="button" onClick={() => this.deleteMember(member.id)}><i className="fa fa-trash" /></button>
+                  <Row className="contenairbutton">
+                    <button className="buttonicone" type="button" onClick={() => this.getMember(member.id)}><i className="fa fa-edit" /></button>
+                    <button className="buttonicone" type="button" onClick={() => this.deleteMember(member.id)}><i className="fa fa-trash" /></button>
+                  </Row>
                 </CardBody>
               </Card>
             ))}
