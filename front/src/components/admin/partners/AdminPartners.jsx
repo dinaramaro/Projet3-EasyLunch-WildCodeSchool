@@ -27,7 +27,7 @@ class AdminPartners extends Component {
   }
 
   deletePartner = (id) => {
-    fetch(`${varServeur}admin/deletepartner/${id}`, {
+    fetch(`${varServeur}admin/partners/delete/${id}`, {
       method: 'DELETE',
     }).then((response) => {
       if (response.ok) {

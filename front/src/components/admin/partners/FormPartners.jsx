@@ -18,7 +18,7 @@ class FormPartner extends Component {
 
   postPartner = (e) => {
     e.preventDefault();
-    fetch(`${varServeur}admin/postpartner/`, {
+    fetch(`${varServeur}admin/partners/create/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

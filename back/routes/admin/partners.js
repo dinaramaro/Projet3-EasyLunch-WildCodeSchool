@@ -3,7 +3,7 @@ import connection from '../config';
 
 const router = express.Router();
 
-router.get('/partners', (req, res) => {
+router.get('/', (req, res) => {
   connection.query('SELECT * FROM admin_partners', (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la recupération des partenaires');
@@ -13,7 +13,7 @@ router.get('/partners', (req, res) => {
   });
 });
 
-router.delete('/deletepartner/:id', (req, res) => {
+router.delete('/delete/:id', (req, res) => {
   const id = req.params.id;
   connection.query('DELETE FROM admin_partners WHERE id = ?', id, (err) => {
     if (err) {
@@ -24,7 +24,7 @@ router.delete('/deletepartner/:id', (req, res) => {
   });
 });
 
-router.post('/postpartner', (req, res) => {
+router.post('/create', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO admin_partners SET ?', formData, (err) => {
     if (err) {

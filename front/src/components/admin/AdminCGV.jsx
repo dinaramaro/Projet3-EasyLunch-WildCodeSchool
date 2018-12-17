@@ -33,7 +33,7 @@ class AdminCGV extends Component {
 
   updateCGV() {
     const { cgv } = this.state;
-    fetch(`${varServeur}admin/updatecgv`, {
+    fetch(`${varServeur}admin/update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

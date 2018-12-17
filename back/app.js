@@ -28,8 +28,8 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/admin', CGV);
-app.use('/api/admin', partners);
+app.use('/api/admin/cgv', CGV);
+app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 
 
