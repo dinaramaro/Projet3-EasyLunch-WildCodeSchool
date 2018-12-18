@@ -31,7 +31,7 @@ class AdminCGV extends Component {
 
   updateCGV() {
     const { cgv } = this.state;
-    fetch(`${varServeur}admin/updatecgv`, {
+    fetch(`${varServeur}admin/cgv/update`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -39,9 +39,9 @@ class AdminCGV extends Component {
       body: JSON.stringify({ cgv }),
     }).then((response) => {
       if (response.ok) {
+        window.location.reload();
         window.scrollTo({
           top: 0,
-          behavior: 'smooth',
         });
       }
     });
