@@ -27,8 +27,8 @@ class AdminTeam extends Component {
       modal: false,
     };
     this.getMember = this.getMember.bind(this);
-    this.cancelEdit = this.cancelEdit.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.cancelEdit = this.cancelEdit.bind(this);
   }
 
   componentDidMount() {
@@ -41,20 +41,20 @@ class AdminTeam extends Component {
       });
   }
 
+  getMember(id) {
+    this.setState({
+      memberEdit: true,
+      currentIndex: id,
+    });
+  }
+
   deleteMember = (id) => {
-    fetch(`${varServeur}admin/team/delete/${id}`, {
+    fetch(`${varServeur}admin/team/${id}`, {
       method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) window.location.reload();
       });
-  }
-
-  getMember = (id) => {
-    this.setState({
-      memberEdit: true,
-      currentIndex: id,
-    });
   }
 
   cancelEdit() {
@@ -63,10 +63,11 @@ class AdminTeam extends Component {
     });
   }
 
-  toggle() {
+  toggle(id) {
     const { modal } = this.state;
     this.setState({
       modal: !modal,
+      currentIndex: id,
     });
   }
 
@@ -74,6 +75,9 @@ class AdminTeam extends Component {
     const {
       team, currentIndex, memberEdit, modal,
     } = this.state;
+    const currentName = team
+      .filter(mate => mate.id === currentIndex)
+      .map(mate => mate.name);
 
     return (
       <div className="AdminTeam">
@@ -86,23 +90,21 @@ class AdminTeam extends Component {
                 <CardBody>
                   <CardTitle>{member.name}</CardTitle>
                   <CardSubtitle>{member.fonction}</CardSubtitle>
-                  <Row className="contenairbutton">
-                    <button className="buttonicone" type="button" onClick={() => this.getMember(member.id)}><i className="fa fa-edit" /></button>
-                    <button className="buttonicone" type="button" onClick={() => this.toggle()}><i className="fa fa-trash" /></button>
-                  </Row>
-                  <Modal isOpen={modal}>
-                    <ModalBody>
-                      {`Etes vous sûr de vouloir supprimer ${member.name} de l'équipe ?`}
-                    </ModalBody>
-                    <ModalFooter>
-                      <Button color="primary" onClick={() => this.deleteMember(member.id)}>Confirmer</Button>
-                      <Button color="secondary" onClick={this.toggle}>Annuler</Button>
-                    </ModalFooter>
-                  </Modal>
+                  <button className="button-trash" type="button" onClick={() => this.getMember(member.id)}><i className="fa fa-edit" /></button>
+                  <button type="button" onClick={() => this.toggle(member.id)}><i className="fa fa-trash" /></button>
                 </CardBody>
               </Card>
             ))}
           </Row>
+          <Modal isOpen={modal}>
+            <ModalBody>
+              {`Etes vous sûr de vouloir supprimer ${currentName} de l'équipe ?`}
+            </ModalBody>
+            <ModalFooter>
+              <Button color="primary" onClick={() => this.deleteMember(currentIndex)}>Confirmer</Button>
+              <Button color="secondary" onClick={this.toggle}>Annuler</Button>
+            </ModalFooter>
+          </Modal>
           {
             memberEdit ? <AdminTeamEdit cancelEdit={this.cancelEdit} idEdit={currentIndex} /> : (
               <AdminTeamNew />

@@ -4,10 +4,10 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Input,
 } from 'reactstrap';
 import { varServeur } from '../../../constants';
+import './AdminTeamEdit.scss';
 
 class AdminTeamEdit extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class AdminTeamEdit extends Component {
 
   putMember() {
     const { idEdit } = this.props;
-    fetch(`${varServeur}admin/team/update/${idEdit}`, {
+    fetch(`${varServeur}admin/team/${idEdit}`, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -69,10 +69,9 @@ class AdminTeamEdit extends Component {
     } = this.state;
     const { cancelEdit } = this.props;
     return (
-      <Container>
-        <Form>
+      <Container className="AdminTeamEdit">
+        <Form className="form-edit-team">
           <FormGroup>
-            <Label>Nom</Label>
             <Input
               type="text"
               name="name"
@@ -80,9 +79,7 @@ class AdminTeamEdit extends Component {
               value={name}
               onChange={this.onChangeEdit}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label>Fonction</Label>
+            <br />
             <Input
               type="text"
               name="fonction"
@@ -90,9 +87,7 @@ class AdminTeamEdit extends Component {
               value={fonction}
               onChange={this.onChangeEdit}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label>Photo d&#39;Equipe</Label>
+            <br />
             <Input
               type="url"
               name="picture"
@@ -100,9 +95,6 @@ class AdminTeamEdit extends Component {
               value={picture}
               onChange={this.onChangeEdit}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label>Description d&#39;Equipe</Label>
             <br />
             <Input
               type="textarea"
@@ -112,8 +104,8 @@ class AdminTeamEdit extends Component {
               onChange={this.onChangeEdit}
             />
           </FormGroup>
-          <Button className="all-btn" onClick={this.putMember}>VALIDER</Button>
-          <Button className="all-btn" onClick={cancelEdit}>ANNULER</Button>
+          <Button className="all-btn send-mate" onClick={this.putMember}>VALIDER</Button>
+          <Button className="all-btn edit-mate" onClick={cancelEdit}>ANNULER</Button>
         </Form>
       </Container>
     );

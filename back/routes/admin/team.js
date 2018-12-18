@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
   const newMember = req.body;
   connection.query('INSERT INTO admin_team SET ?', newMember, (err) => {
     if (err) {
@@ -35,7 +35,7 @@ router.post('/create', (req, res) => {
   });
 });
 
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const id = req.params.id;
   const team = req.body;
   connection.query('UPDATE admin_team SET ? WHERE id = ?', [team, id], (err) => {
@@ -47,7 +47,7 @@ router.put('/update/:id', (req, res) => {
   });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id;
   connection.query('DELETE FROM admin_team WHERE id = ?', id, (err) => {
     if (err) {

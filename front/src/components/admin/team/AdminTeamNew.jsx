@@ -4,10 +4,10 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Input,
 } from 'reactstrap';
 import { varServeur } from '../../../constants';
+import './AdminTeamNew.scss';
 
 
 class AdminTeamNew extends Component {
@@ -29,7 +29,7 @@ class AdminTeamNew extends Component {
   }
 
   postMember = () => {
-    fetch(`${varServeur}admin/team/create/`, {
+    fetch(`${varServeur}admin/team/`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -47,10 +47,9 @@ class AdminTeamNew extends Component {
       name, fonction, picture, description,
     } = this.state;
     return (
-      <Container>
-        <Form>
+      <Container className="AdminTeamNew">
+        <Form className="form-team">
           <FormGroup>
-            <Label for="teamName">Nom</Label>
             <Input
               type="text"
               name="name"
@@ -58,9 +57,7 @@ class AdminTeamNew extends Component {
               value={name}
               onChange={this.onChangeNew}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label for="teamFonction">Fonction</Label>
+            <br />
             <Input
               type="text"
               name="fonction"
@@ -68,9 +65,7 @@ class AdminTeamNew extends Component {
               value={fonction}
               onChange={this.onChangeNew}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label for="teamPicture">Photo d&#39;Equipe</Label>
+            <br />
             <Input
               type="url"
               name="picture"
@@ -78,9 +73,6 @@ class AdminTeamNew extends Component {
               value={picture}
               onChange={this.onChangeNew}
             />
-          </FormGroup>
-          <FormGroup>
-            <Label>Description d&#39;Equipe</Label>
             <br />
             <Input
               type="textarea"
@@ -90,7 +82,7 @@ class AdminTeamNew extends Component {
               onChange={this.onChangeNew}
             />
           </FormGroup>
-          <Button className="all-btn" onClick={this.postMember}>ENVOYER</Button>
+          <Button className="all-btn send-mate" onClick={this.postMember}>ENVOYER</Button>
         </Form>
       </Container>
     );
