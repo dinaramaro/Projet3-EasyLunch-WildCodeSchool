@@ -1,5 +1,4 @@
 import React from 'react';
-import './AdminPoli.scss';
 import {
   Container, Form, FormGroup, Input, Button,
 } from 'reactstrap';

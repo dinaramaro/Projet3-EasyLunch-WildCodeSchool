@@ -58,7 +58,7 @@ const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTPS server.
  */
 
 const server = https.createServer(options, app);
