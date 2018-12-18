@@ -25,7 +25,7 @@ class ModficationFAQ extends Component {
   componentDidMount() {
     const { match } = this.props;
     window.scroll();
-    fetch(`http://localhost:4000/api/about/faq/${match.params.id}`)
+    fetch(`http://localhost:4000/api/admin/faq/${match.params.id}`)
       .then(response => response.json())
       .then((data) => {
         this.setState({ question: data[0].question, answer: data[0].answer });
@@ -48,7 +48,7 @@ class ModficationFAQ extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    fetch(`http://localhost:4000/api/about/faq/${match.params.id}`, config)
+    fetch(`http://localhost:4000/api/admin/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
         if (res.error) {
@@ -93,7 +93,7 @@ class ModficationFAQ extends Component {
               />
             </FormGroup>
             <div className="text-center">
-              <Button onClick={this.handleSubmit} color="primary font2" className="mb-3">Modifier</Button>
+              <Button onClick={this.handleSubmit} className="mb-3">Modifier</Button>
             </div>
           </Form>
         </Container>

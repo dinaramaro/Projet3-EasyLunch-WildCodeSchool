@@ -18,8 +18,9 @@ import AdminTeam from './components/admin/AdminTeam';
 import Login from './Login';
 import AdminPartners from './components/admin/AdminPartners';
 import AdminConcept from './components/admin/AdminConcept';
-import AdminFAQ from './components/admin/AdminFAQ';
-import ModificationFAQ from './components/admin/ModificationFAQ';
+import AdminFAQ from './components/admin/FAQ/AdminFAQ';
+import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
+import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 
 const App = () => (
   <div>
@@ -41,6 +42,7 @@ const App = () => (
         <Route path="/admin/AdminPartenaires" component={AdminPartners} />
         <Route path="/admin/AdminConcept" component={AdminConcept} />
         <Route path="/admin/adminfaq/question/:id" component={ModificationFAQ} />
+        <Route path="/admin/adminfaq/question" component={AjoutFAQ} />
         <Route path="/admin/Adminfaq" component={AdminFAQ} />
         <Route path="/Login" component={Login} />
       </Switch>

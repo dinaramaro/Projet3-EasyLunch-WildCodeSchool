@@ -6,7 +6,7 @@ import {
 // import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 // import { fetchFAQ } from '../../actions/adminFAQAction';
-import './ModificationFAQ.scss';
+import './AdminFAQ.scss';
 
 
 class adminFAQ extends Component {
@@ -20,26 +20,25 @@ class adminFAQ extends Component {
 
   componentDidMount() {
     window.scroll();
-    fetch('http://localhost:4000/api/about/faq')
+    fetch('http://localhost:4000/api/admin/faq')
       .then(response => response.json())
       .then(data => this.setState({ listfaq: data }));
   }
 
-  deleteQuestion(id) {
-    const { document } = this.props;
-    fetch(`http://localhost:4000/api/about/faq/${id}`, {
+  deleteQuestion = (id) => {
+    fetch(`http://localhost:4000/api/admin/faq/${id}`, {
       method: 'DELETE',
     }).then(res => res.text())
       .then((res) => {
         if (res.error) {
           alert(res.error);
         } else {
-          alert('Question a été supprimé');
-          document.location.reload(true);
+          alert('La question a bien été supprimée');
+          window.location.reload();
         }
       }).catch((e) => {
         console.error(e);
-        alert('TestErreur lors de la suppression de la question');
+        alert('Erreur lors de la suppression de la question');
       });
   }
 
@@ -51,6 +50,9 @@ class adminFAQ extends Component {
           <Col>
             <h1 className="title">FAQ</h1>
           </Col>
+        </Row>
+        <Row className="bouton">
+          <Link to="/admin/adminfaq/question"><Button className="mb-3">Ajouter une question</Button></Link>
         </Row>
         <Row className="table">
           <table className="tablefaq">
@@ -68,7 +70,7 @@ class adminFAQ extends Component {
                   <Link to={`/admin/adminfaq/question/${item.id}`}><Button>Modifier</Button></Link>
                 </td>
                 <td>
-                  <Button onClick={() => { if (window.confirm('Delete the item?')) { this.deleteQuestion(item.id); } }}>Supprimer</Button>
+                  <Button onClick={() => { if (window.confirm('Souhaitez-vous supprimer la question?')) { this.deleteQuestion(item.id); } }}>Supprimer</Button>
                 </td>
               </tr>
             ))}
