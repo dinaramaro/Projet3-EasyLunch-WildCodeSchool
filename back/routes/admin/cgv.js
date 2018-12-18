@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.put('/update', (req, res) => {
+router.put('/', (req, res) => {
   const { cgv } = req.body;
   connection.query('UPDATE admin_cgv SET cgv = ? WHERE id = 1', cgv, (err) => {
     if (err) {

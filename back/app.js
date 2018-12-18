@@ -9,6 +9,8 @@ import cors from 'cors';
 
 import CGV from './routes/admin/cgv';
 import politic from './routes/admin/politic';
+import partners from './routes/admin/partners';
+import team from './routes/admin/team';
 import search from './routes/search';
 
 const app = express();
@@ -22,7 +24,6 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-
 app.use(cookieParser());
 app.use(cors());
 
@@ -30,7 +31,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/admin/cgv', CGV);
 app.use('/api/admin/politic', politic);
+app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
+app.use('/api/admin/team', team);
+
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {
