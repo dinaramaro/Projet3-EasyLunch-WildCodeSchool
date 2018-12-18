@@ -1,12 +1,12 @@
 import express from 'express';
 
-import connection from './conf';
+import connection from '../config';
 
 const router = express.Router();
 
 /* GET index page. */
-router.get('/faq', (req, res) => {
-  connection.query('SELECT * FROM about_FAQ', (err, results) => {
+router.get('/', (req, res) => {
+  connection.query('SELECT * FROM admin_faq', (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {
@@ -16,9 +16,9 @@ router.get('/faq', (req, res) => {
 });
 
 /* GET id Question. */
-router.get('/faq/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const questionId = req.params.id;
-  connection.query(`SELECT * FROM about_FAQ WHERE id = ${questionId}`, (err, results) => {
+  connection.query(`SELECT * FROM admin_faq WHERE id = ${questionId}`, (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {
@@ -28,10 +28,10 @@ router.get('/faq/:id', (req, res) => {
 });
 
 /* PUT MODIFIER Question. */
-router.put('/faq/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const idQuestion = req.params.id;
   const formData = req.body;
-  connection.query('UPDATE about_FAQ SET? WHERE id = ?', [formData, idQuestion], (err) => {
+  connection.query('UPDATE admin_faq SET? WHERE id = ?', [formData, idQuestion], (err) => {
     if (err) {
       res.status(500).send("Erreur lors de la modification d'une question");
     } else {
@@ -41,12 +41,24 @@ router.put('/faq/:id', (req, res) => {
 });
 
 /* DELETE Question. */
-router.delete('/faq/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const idQuestion = req.params.id;
-  connection.query('DELETE FROM about_FAQ WHERE id = ?', [idQuestion], (err) => {
+  connection.query('DELETE FROM admin_faq WHERE id = ?', [idQuestion], (err) => {
     if (err) {
       console.log(err);
       res.status(500).send("Erreur lors de la suppression d'un employé");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+router.post('/', (req, res) => {
+  const formData = req.body;
+  connection.query('INSERT INTO admin_faq SET ?', formData, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la sauvegarde d'un voyage");
     } else {
       res.sendStatus(200);
     }

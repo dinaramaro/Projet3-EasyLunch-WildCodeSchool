@@ -7,7 +7,7 @@ import path from 'path';
 import cors from 'cors';
 // import favicon from 'serve-favicon';
 
-import FAQ from './routes/FAQ';
+import FAQ from './routes/admin/FAQ';
 
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api/about', FAQ);
+app.use('/api/admin/faq', FAQ);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
