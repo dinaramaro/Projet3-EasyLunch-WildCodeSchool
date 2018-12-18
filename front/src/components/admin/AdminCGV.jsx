@@ -5,7 +5,6 @@ import {
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
 import './AdminCGV.scss';
-import 'react-quill/dist/quill.snow.css';
 
 class AdminCGV extends Component {
   constructor(props) {

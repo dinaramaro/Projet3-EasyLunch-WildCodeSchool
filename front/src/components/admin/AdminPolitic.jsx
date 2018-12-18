@@ -5,7 +5,6 @@ import {
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
 import './AdminPolitic.scss';
-import 'react-quill/dist/quill.snow.css';
 
 class AdminPolitic extends Component {
   constructor(props) {
