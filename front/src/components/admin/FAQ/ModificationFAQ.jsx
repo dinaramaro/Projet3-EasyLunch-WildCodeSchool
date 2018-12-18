@@ -8,6 +8,7 @@ import {
   Container,
 }
   from 'reactstrap';
+import { varServeur } from '../../../constants';
 import './ModificationFAQ.scss';
 
 
@@ -25,7 +26,7 @@ class ModficationFAQ extends Component {
   componentDidMount() {
     const { match } = this.props;
     window.scroll();
-    fetch(`http://localhost:4000/api/admin/faq/${match.params.id}`)
+    fetch(`${varServeur}admin/faq/${match.params.id}`)
       .then(response => response.json())
       .then((data) => {
         this.setState({ question: data[0].question, answer: data[0].answer });
@@ -48,7 +49,7 @@ class ModficationFAQ extends Component {
       },
       body: JSON.stringify(this.state),
     };
-    fetch(`http://localhost:4000/api/admin/faq/${match.params.id}`, config)
+    fetch(`${varServeur}admin/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
         if (res.error) {

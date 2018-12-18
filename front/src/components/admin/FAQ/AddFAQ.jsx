@@ -7,6 +7,7 @@ import {
   Container,
 }
   from 'reactstrap';
+import { varServeur } from '../../../constants';
 
 class AjoutFAQ extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class AjoutFAQ extends Component {
   handleSubmit(event) {
     const { history } = this.props;
     event.preventDefault();
-    const url = 'http://localhost:4000/api/admin/faq';
+    const url = `${varServeur}admin/faq/`;
     const config = {
       method: 'POST',
       headers: {

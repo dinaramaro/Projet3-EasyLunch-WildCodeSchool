@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import {
   Container, Row, Col, Button,
 } from 'reactstrap';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-// import { fetchFAQ } from '../../actions/adminFAQAction';
+import { varServeur } from '../../../constants';
 import './AdminFAQ.scss';
 
 
@@ -19,14 +17,15 @@ class adminFAQ extends Component {
   }
 
   componentDidMount() {
-    window.scroll();
-    fetch('http://localhost:4000/api/admin/faq')
-      .then(response => response.json())
-      .then(data => this.setState({ listfaq: data }));
+    fetch(`${varServeur}admin/faq`)
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      }).then(data => this.setState({ listfaq: data }));
   }
 
   deleteQuestion = (id) => {
-    fetch(`http://localhost:4000/api/admin/faq/${id}`, {
+    fetch(`${varServeur}admin/faq/${id}`, {
       method: 'DELETE',
     }).then(res => res.text())
       .then((res) => {
