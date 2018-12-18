@@ -15,10 +15,10 @@ import AdminMenu from './components/admin/AdminMenu';
 import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
 import AdminPoli from './components/admin/AdminPoli';
-import AdminTeam from './components/admin/AdminTeam';
+import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
-import AdminConcept from './components/admin/AdminConcept';
+import AdminConcept from './components/admin/concept/AdminConcept';
 import Result from './components/result/Result';
 
 const App = () => (
