@@ -14,7 +14,7 @@ import Politic from './components/about/Politic';
 import AdminMenu from './components/admin/AdminMenu';
 import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
-import AdminPoli from './components/admin/AdminPoli';
+import AdminPolitic from './components/admin/AdminPolitic';
 import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
@@ -37,7 +37,7 @@ const App = () => (
         <Route path="/a-propos/restaurateur" component={Restaurant} />
         <Route path="/admin/admin-menu" component={AdminMenu} />
         <Route path="/admin/admin-cgv" component={AdminCVG} />
-        <Route path="/admin/admin-politique" component={AdminPoli} />
+        <Route path="/admin/admin-politique" component={AdminPolitic} />
         <Route path="/admin/admin-equipe" component={AdminTeam} />
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
