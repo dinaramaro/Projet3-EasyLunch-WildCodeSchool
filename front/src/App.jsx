@@ -17,7 +17,7 @@ import Restaurant from './components/about/Restaurant';
 import AdminPoli from './components/admin/AdminPoli';
 import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
-import AdminPartners from './components/admin/AdminPartners';
+import AdminPartners from './components/admin/partners/AdminPartners';
 import AdminConcept from './components/admin/concept/AdminConcept';
 import Result from './components/result/Result';
 
