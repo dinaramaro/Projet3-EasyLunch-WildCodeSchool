@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
   const id = req.params.id;
   connection.query('DELETE FROM admin_partners WHERE id = ?', id, (err) => {
     if (err) {
@@ -24,7 +24,7 @@ router.delete('/delete/:id', (req, res) => {
   });
 });
 
-router.post('/create', (req, res) => {
+router.post('/', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO admin_partners SET ?', formData, (err) => {
     if (err) {

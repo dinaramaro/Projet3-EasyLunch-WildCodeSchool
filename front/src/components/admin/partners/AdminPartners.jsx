@@ -33,7 +33,7 @@ class AdminPartners extends Component {
   }
 
   deletePartner = (id) => {
-    fetch(`${varServeur}admin/partners/delete/${id}`, {
+    fetch(`${varServeur}admin/partners/${id}`, {
       method: 'DELETE',
     }).then((response) => {
       if (response.ok) {
@@ -58,7 +58,7 @@ class AdminPartners extends Component {
     let count = 0;
     return (
       <div className="AdminPartners">
-        <h1 className="title">Partenaire</h1>
+        <h1 className="title">Partenaires</h1>
         <Container fluid>
           <Table bordered>
             <thead>
