@@ -11,6 +11,7 @@ import CGV from './routes/admin/cgv';
 import politic from './routes/admin/politic';
 import partners from './routes/admin/partners';
 import team from './routes/admin/team';
+import concept from './routes/admin/concept';
 import search from './routes/search';
 
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/admin/politic', politic);
 app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
+app.use('/api/admin/concept', concept);
 
 
 // Uncomment on pre-prod/prod

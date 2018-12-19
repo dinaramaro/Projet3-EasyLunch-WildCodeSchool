@@ -3,7 +3,7 @@ import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 import './AdminPolitic.scss';
 
 class AdminPolitic extends Component {
