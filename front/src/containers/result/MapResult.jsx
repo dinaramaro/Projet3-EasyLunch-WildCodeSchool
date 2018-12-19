@@ -11,6 +11,7 @@ import RestoPin from '../../components/result/RestoPin';
 import RestoInfo from '../../components/result/RestoInfo';
 import UserPin from '../../components/result/UserPin';
 import UserInfo from '../../components/result/UserInfo';
+import DisplayMeals from '../../components/result/DisplayMeals';
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
 
@@ -28,7 +29,6 @@ class Mapresult extends Component {
       viewport: {},
       popupInfo: null,
       activeTab: '1',
-      activessTab: '10',
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
@@ -66,15 +66,6 @@ class Mapresult extends Component {
     if (activeTab !== tab) {
       this.setState({
         activeTab: tab,
-      });
-    }
-  }
-
-  togglessTab(tab) {
-    const { activessTab } = this.state;
-    if (activessTab !== tab) {
-      this.setState({
-        activessTab: tab,
       });
     }
   }
@@ -162,11 +153,10 @@ class Mapresult extends Component {
     let restoName = '';
     let restoAddress = '';
     let restoCity = '';
-    let restoMenus = [];
-    let tempId = 0;
-    let tempMeal = 9;
-    let typeMeal = '';
-    let tempTypeMeal = '';
+    let listEnt = [];
+    let listMain = [];
+    let listDessert = [];
+
 
     if (restoInfos !== undefined) {
       if ((restoInfos.schedule !== undefined) && (restoInfos.schedule !== null)) {
@@ -176,8 +166,11 @@ class Mapresult extends Component {
       restoAddress = restoInfos.address;
       restoCity = restoInfos.city;
     }
+
     if (menus !== undefined) {
-      restoMenus = menus;
+      listEnt = menus.filter(item => item.plat === 0);
+      listMain = menus.filter(item => item.plat === 1);
+      listDessert = menus.filter(item => item.plat === 2);
     }
 
     return (
@@ -233,13 +226,13 @@ class Mapresult extends Component {
               <Col sm="12">
                 <Card body>
                   <h3>
-                    { restoName }
+                    {restoName}
                   </h3>
                   <CardText>
-                    { restoAddress }
+                    {restoAddress}
                   </CardText>
                   <CardText>
-                    { restoCity }
+                    {restoCity}
                   </CardText>
                   <CardText>
                     {days.map((day, index) => {
@@ -268,110 +261,13 @@ class Mapresult extends Component {
                     })}
                   </CardText>
                   <br />
+                  <DisplayMeals text="Entrée" meals={listEnt} />
+                  <DisplayMeals text="Plat" meals={listMain} />
+                  <DisplayMeals text="Dessert" meals={listDessert} />
+
                   <CardText>
-                    {restoMenus.map((item) => {
-                      tempMeal = item.plat;
-                      switch (tempMeal) {
-                        case 0:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Entrée')) {
-                            tempTypeMeal = 'Entrée';
-                            typeMeal = 'Entrée';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 1:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Plat')) {
-                            tempTypeMeal = 'Plat';
-                            typeMeal = 'Plat';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 2:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Dessert')) {
-                            tempTypeMeal = 'Dessert';
-                            typeMeal = 'Dessert';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 3:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Boisson')) {
-                            tempTypeMeal = 'Boisson';
-                            typeMeal = 'Boisson';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 4:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Entrée du jour')) {
-                            tempTypeMeal = 'Entrée du jour';
-                            typeMeal = 'Entrée du jour';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 5:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Plat du jour')) {
-                            tempTypeMeal = 'Plat du jour';
-                            typeMeal = 'Plat du jour';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        case 6:
-                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Dessert du jour')) {
-                            tempTypeMeal = 'Dessert du jour';
-                            typeMeal = 'Dessert du jour';
-                          } else {
-                            typeMeal = '';
-                          }
-                          break;
-                        default:
-                          typeMeal = '';
-                      }
-                      if (tempId !== item.id) {
-                        tempId = item.id;
-                        let tempNbMeals = '';
-                        switch (item.nbmeals) {
-                          case 1:
-                            tempNbMeals = '';
-                            break;
-                          case 2:
-                            tempNbMeals = 'Entrée | Plat ou Plat | Dessert';
-                            break;
-                          case 3:
-                            tempNbMeals = 'Entrée | Plat | Dessert';
-                            break;
-                          default:
-                            tempNbMeals = '';
-                        }
-                        return (
-                          <div key={`${item.id}${item.id_plat}`}>
-                            <h5>
-                              {item.menu_name}
-                              {' '}
-                              {item.menu_price}
-                              €
-                              {' '}
-                            </h5>
-                            <p className="number-meals">{tempNbMeals}</p>
-                            <br />
-                            <p className="type-meal">{typeMeal}</p>
-                            <p>{item.meals_name}</p>
-                          </div>
-                        );
-                      }
-                      return (
-                        <div>
-                          <p className="type-meal">{typeMeal}</p>
-                          <p>{item.meals_name}</p>
-                        </div>
-                      );
-                    })}
+                    Choisir ce restaurant pour plus de détails...
                   </CardText>
-                  <p>Choisir ce restaurant pour plus de détails...</p>
                   <br />
                   <Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button>
                 </Card>
