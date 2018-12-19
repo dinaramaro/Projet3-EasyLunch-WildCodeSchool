@@ -202,7 +202,7 @@ class Mapresult extends Component {
 
 function mstp(state) {
   return {
-    searchResults: state.menuRestoInfos,
+    searchResults: state.searchResults,
   };
 }
 
