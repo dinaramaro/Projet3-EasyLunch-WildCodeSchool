@@ -12,7 +12,7 @@ export const menuRestoSuccess = infos => ({
   infos,
 });
 
-export const menuResto = (url) => {
+export function menuResto(url) {
   return (dispatch) => {
     dispatch(menuRestoLoading());
     fetch(url)
@@ -28,4 +28,4 @@ export const menuResto = (url) => {
       })
       .catch(error => dispatch(menuRestoFailed(error)));
   };
-};
+}

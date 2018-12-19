@@ -77,19 +77,18 @@ class Restaurants extends Component {
         </Row>
         <Row>
           {results.map(item => (
-            <Col key={item.id} sm="12" md="6" xl="4">
-              <Card className="card-restaurant">
-                <CardImg top width="100%" src={item.picture} alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardSubtitle>{item.address}</CardSubtitle>
-                  <CardText>{item.city}</CardText>
-                  <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
-                    Voir la carte du restaurant
-                  </button>
-                </CardBody>
-              </Card>
-            </Col>
+            <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
+              <Col key={item.id} sm="12" md="6" xl="4">
+                <Card className="card-restaurant">
+                  <CardImg top width="100%" src={item.picture} alt="Card image cap" />
+                  <CardBody>
+                    <CardTitle>{item.name}</CardTitle>
+                    <CardSubtitle>{item.address}</CardSubtitle>
+                    <CardText>{item.city}</CardText>
+                  </CardBody>
+                </Card>
+              </Col>
+            </button>
           ))}
         </Row>
       </div>

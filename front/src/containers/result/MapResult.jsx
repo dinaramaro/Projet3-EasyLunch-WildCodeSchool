@@ -3,7 +3,7 @@ import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText, Row, Col,
+  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardText, Row, Col, Button,
 } from 'reactstrap';
 import './MapResult.scss';
 import classnames from 'classnames';
@@ -28,6 +28,7 @@ class Mapresult extends Component {
       viewport: {},
       popupInfo: null,
       activeTab: '1',
+      activessTab: '10',
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
@@ -65,6 +66,15 @@ class Mapresult extends Component {
     if (activeTab !== tab) {
       this.setState({
         activeTab: tab,
+      });
+    }
+  }
+
+  togglessTab(tab) {
+    const { activessTab } = this.state;
+    if (activessTab !== tab) {
+      this.setState({
+        activessTab: tab,
       });
     }
   }
@@ -153,6 +163,11 @@ class Mapresult extends Component {
     let restoAddress = '';
     let restoCity = '';
     let restoMenus = [];
+    let tempId = 0;
+    let tempMeal = 9;
+    let typeMeal = '';
+    let tempTypeMeal = '';
+
     if (restoInfos !== undefined) {
       if ((restoInfos.schedule !== undefined) && (restoInfos.schedule !== null)) {
         days = restoInfos.schedule.substring(1, restoInfos.schedule.length - 1).split(',');
@@ -163,9 +178,7 @@ class Mapresult extends Component {
     }
     if (menus !== undefined) {
       restoMenus = menus;
-      console.log(restoMenus);
     }
-
 
     return (
       <div className="MapResult">
@@ -219,9 +232,9 @@ class Mapresult extends Component {
             <Row>
               <Col sm="12">
                 <Card body>
-                  <CardText>
+                  <h3>
                     { restoName }
-                  </CardText>
+                  </h3>
                   <CardText>
                     { restoAddress }
                   </CardText>
@@ -254,21 +267,116 @@ class Mapresult extends Component {
                       }
                     })}
                   </CardText>
+                  <br />
+                  <CardText>
+                    {restoMenus.map((item) => {
+                      tempMeal = item.plat;
+                      switch (tempMeal) {
+                        case 0:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Entrée')) {
+                            tempTypeMeal = 'Entrée';
+                            typeMeal = 'Entrée';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 1:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Plat')) {
+                            tempTypeMeal = 'Plat';
+                            typeMeal = 'Plat';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 2:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Dessert')) {
+                            tempTypeMeal = 'Dessert';
+                            typeMeal = 'Dessert';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 3:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Boisson')) {
+                            tempTypeMeal = 'Boisson';
+                            typeMeal = 'Boisson';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 4:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Entrée du jour')) {
+                            tempTypeMeal = 'Entrée du jour';
+                            typeMeal = 'Entrée du jour';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 5:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Plat du jour')) {
+                            tempTypeMeal = 'Plat du jour';
+                            typeMeal = 'Plat du jour';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        case 6:
+                          if ((tempTypeMeal === '') || (tempTypeMeal !== 'Dessert du jour')) {
+                            tempTypeMeal = 'Dessert du jour';
+                            typeMeal = 'Dessert du jour';
+                          } else {
+                            typeMeal = '';
+                          }
+                          break;
+                        default:
+                          typeMeal = '';
+                      }
+                      if (tempId !== item.id) {
+                        tempId = item.id;
+                        let tempNbMeals = '';
+                        switch (item.nbmeals) {
+                          case 1:
+                            tempNbMeals = '';
+                            break;
+                          case 2:
+                            tempNbMeals = 'Entrée | Plat ou Plat | Dessert';
+                            break;
+                          case 3:
+                            tempNbMeals = 'Entrée | Plat | Dessert';
+                            break;
+                          default:
+                            tempNbMeals = '';
+                        }
+                        return (
+                          <div key={`${item.id}${item.id_plat}`}>
+                            <h5>
+                              {item.menu_name}
+                              {' '}
+                              {item.menu_price}
+                              €
+                              {' '}
+                            </h5>
+                            <p className="number-meals">{tempNbMeals}</p>
+                            <br />
+                            <p className="type-meal">{typeMeal}</p>
+                            <p>{item.meals_name}</p>
+                          </div>
+                        );
+                      }
+                      return (
+                        <div>
+                          <p className="type-meal">{typeMeal}</p>
+                          <p>{item.meals_name}</p>
+                        </div>
+                      );
+                    })}
+                  </CardText>
+                  <p>Choisir ce restaurant pour plus de détails...</p>
+                  <br />
+                  <Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button>
                 </Card>
               </Col>
             </Row>
-            {restoMenus.map(menu => (
-              <Nav key={menu.id_plat} tabs>
-                <NavItem>
-                  <NavLink
-                    className={classnames({ active: activeTab === '1' })}
-                    onClick={() => { this.toggle('1'); }}
-                  >
-                    {menu.name}
-                  </NavLink>
-                </NavItem>
-              </Nav>
-            ))}
           </TabPane>
         </TabContent>
       </div>
