@@ -13,7 +13,7 @@ import { varServeur } from '../../../constants';
 import './AdminFAQ.scss';
 
 
-class adminFAQ extends Component {
+class AdminFAQ extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,4 +97,4 @@ class adminFAQ extends Component {
   }
 }
 
-export default adminFAQ;
+export default AdminFAQ;
