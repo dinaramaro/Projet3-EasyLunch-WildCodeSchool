@@ -1,0 +1,18 @@
+import express from 'express';
+import connection from './config';
+
+const router = express.Router();
+
+router.get('/:search', (req, res) => {
+  const keyword = `%${req.query.keyword}%`;
+  const search = `%${req.params.search}%`;
+  connection.query('SELECT name, description, lat, lon, address, picture FROM public_restaurants WHERE name LIKE ?', search, (err, results) => {
+    if (err) {
+      res.status(500).send('Erreur');
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+export default router;

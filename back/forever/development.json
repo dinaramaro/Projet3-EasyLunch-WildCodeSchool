@@ -1,0 +1,7 @@
+{
+  "uid": "easylunch",
+  "append": true,
+  "watch": true,
+  "script": "start",
+  "sourceDir": "/home/staffbdx/Bureau/workspace/bordeaux-0918-js-easylunch/back/bin"
+}

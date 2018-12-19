@@ -2,18 +2,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as serviceWorker from './serviceWorker';
 import ScrollToTop from './ScrollToTop';
+import { createStore, applyMiddleware } from 'redux';
+import allReducers from './reducers';
+import thunk from 'redux-thunk';
+import 'font-awesome/css/font-awesome.min.css';
+
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
+  <Provider store={store}>
     <BrowserRouter>
       <ScrollToTop>
         <App />
       </ScrollToTop>
-    </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );
 

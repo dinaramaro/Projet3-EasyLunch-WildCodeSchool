@@ -6,56 +6,52 @@ import './Footer.scss';
 
 const Footer = () => (
   <Container className="Footer" fluid>
-    <Row>
-      <Col xs="8" md="7" lg="6" className="first-col">
-        <ul>
-          <li>
-            <Link to="/apropos/contact">Contact Client</Link>
-          </li>
-          <li>
-            <Link to="/">Contact Restaurateur</Link>
-          </li>
-          <li>
-            <Link to="/apropos/partenaires">Nos Partenaires</Link>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <Link to="/apropos/equipe">Equipe</Link>
-          </li>
-          <li>
-            <Link to="/apropos/politique">Politique de confidentialité</Link>
-          </li>
-          <li>
-            <Link to="/apropos/cgv">Conditions Générales</Link>
-          </li>
-        </ul>
+    <Row className="d-flex justify-content-around left">
+      <Col lg={{ offset: 1, size: 3 }}>
+        <li>
+          <Link to="/a-propos/contact">Contact Client</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/restaurateur">Contact Restaurateur</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/politique">Politique de confidentialité</Link>
+        </li>
       </Col>
-      <Col xs="2" md="3" lg="4">
+      <Col>
+        <li>
+          <Link to="/a-propos/concept">Concept</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/equipe">Equipe</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/partenaires">Partenaires</Link>
+        </li>
+      </Col>
+      <Col>
+        <li>
+          <Link to="/a-propos/cgv">CGV</Link>
+        </li>
+        <li>
+          <Link to="/a-propos/faq">FAQ</Link>
+        </li>
+      </Col>
+      <Col>
         <a
-          href="https://www.facebook.com/EasyLunchBordeaux/"
+          href="https://www.facebook.com/EasyLunchBordeaux"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Facebook
+          <i className="fa fa-facebook-square fa-3x social fb" />
         </a>
-        <br />
         <a
-          href="https://www.instagram.com/easy_lunch_fr/?hl=fr"
+          href="https://www.instagram.com/easy_lunch_fr/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Instagram
+          <i className="fa fa-instagram fa-3x social insta" />
         </a>
-      </Col>
-      <Col xs="1" md="1" lg="1">
-        <Link to="/">
-          <img
-            width="50em"
-            src="medias/icone-easylunch-blanc.svg"
-            alt="logo"
-          />
-        </Link>
       </Col>
     </Row>
   </Container>

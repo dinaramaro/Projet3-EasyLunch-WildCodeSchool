@@ -9,6 +9,8 @@ import cors from 'cors';
 
 import FAQ from './routes/admin/FAQ';
 
+import CGV from './routes/admin/cgv';
+import search from './routes/search';
 
 const app = express();
 const debug = Debug('back:app');
@@ -27,7 +29,22 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/api/admin/cgv', CGV);
+app.use('/api/search', search);
 app.use('/api/admin/faq', FAQ);
+
+// Uncomment on pre-prod/prod
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
