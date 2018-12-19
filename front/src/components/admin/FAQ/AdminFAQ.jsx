@@ -6,7 +6,7 @@ import {
   Button,
   Modal,
   ModalBody,
-  ModalFooter
+  ModalFooter,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { varServeur } from '../../../constants';

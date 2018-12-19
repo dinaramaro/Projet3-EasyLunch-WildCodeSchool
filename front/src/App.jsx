@@ -30,22 +30,9 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/apropos/concept" component={Concept} />
-        <Route path="/apropos/equipe" component={Team} />
-        <Route path="/apropos/cgv" component={CGV} />
-        <Route path="/apropos/faq" component={FAQ} />
-        <Route path="/apropos/contact" component={Contacts} />
-        <Route path="/apropos/partenaires" component={Partners} />
-        <Route path="/apropos/politique" component={Politic} />
-        <Route path="/admin/AdminCGV" component={AdminCVG} />
-        <Route path="/admin/AdminPolitique" component={AdminPolitic} />
-        <Route path="/admin/AdminEquipe" component={AdminTeam} />
-        <Route path="/admin/AdminPartenaires" component={AdminPartners} />
-        <Route path="/admin/AdminConcept" component={AdminConcept} />
         <Route path="/admin/adminfaq/question/:id" component={ModificationFAQ} />
         <Route path="/admin/adminfaq/question" component={AjoutFAQ} />
         <Route path="/admin/Adminfaq" component={AdminFAQ} />
-        <Route path="/Login" component={Login} />
         <Route path="/a-propos/concept" component={Concept} />
         <Route path="/a-propos/equipe" component={Team} />
         <Route path="/a-propos/cgv" component={CGV} />
