@@ -50,15 +50,9 @@ class ModficationFAQ extends Component {
     fetch(`${varServeur}admin/faq/${match.params.id}`, config)
       .then(res => res.text())
       .then((res) => {
-        if (res.error) {
-          alert(res.error);
-        } else {
-          alert('La question a bien été modifiée');
+        if (res === 'OK') {
           history.push('/admin/adminfaq');
         }
-      }).catch((err) => {
-        console.error(err);
-        alert('Erreur lors de la modification de la question');
       });
   }
 

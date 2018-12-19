@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {
-      res.json(results);
+      const result = results[0];
+      res.json(result.cgv);
     }
   });
 });

@@ -41,15 +41,9 @@ class AddFAQ extends Component {
     fetch(url, config)
       .then(res => res.text())
       .then((res) => {
-        if (res.error) {
-          alert(res.error);
-        } else {
-          alert('La question a été bien été créée');
+        if (res === 'OK') {
           history.push('/admin/adminfaq');
         }
-      }).catch((e) => {
-        console.error(e);
-        alert('Erreur lors de la création de la question');
       });
   }
 
