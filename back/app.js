@@ -7,6 +7,7 @@ import path from 'path';
 import cors from 'cors';
 // import favicon from 'serve-favicon';
 
+import FAQ from './routes/admin/faq';
 import CGV from './routes/admin/cgv';
 import politic from './routes/admin/politic';
 import partners from './routes/admin/partners';
@@ -30,6 +31,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/admin/cgv', CGV);
+app.use('/api/admin/faq', FAQ);
 app.use('/api/admin/politic', politic);
 app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
