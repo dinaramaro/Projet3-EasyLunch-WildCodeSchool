@@ -7,9 +7,11 @@ import path from 'path';
 import cors from 'cors';
 // import favicon from 'serve-favicon';
 
-import FAQ from './routes/admin/FAQ';
-
+import FAQ from './routes/admin/faq';
 import CGV from './routes/admin/cgv';
+import politic from './routes/admin/politic';
+import partners from './routes/admin/partners';
+import team from './routes/admin/team';
 import search from './routes/search';
 
 const app = express();
@@ -24,22 +26,17 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(cookieParser());
-
 app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
-
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/api/admin/cgv', CGV);
-app.use('/api/search', search);
 app.use('/api/admin/faq', FAQ);
+app.use('/api/admin/politic', politic);
+app.use('/api/admin/partners', partners);
+app.use('/api/search', search);
+app.use('/api/admin/team', team);
+
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

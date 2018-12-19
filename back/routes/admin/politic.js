@@ -4,20 +4,19 @@ import connection from '../config';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  connection.query('SELECT * FROM admin_cgv', (err, results) => {
+  connection.query('SELECT politic FROM admin_politic', (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {
-      res.json(results);
+      const result = results[0];
+      res.json(result.politic);
     }
   });
 });
 
 router.put('/', (req, res) => {
-  const {
-    cgv
-  } = req.body;
-  connection.query('UPDATE admin_cgv SET cgv = ? WHERE id = 1', cgv, (err) => {
+  const { politic } = req.body;
+  connection.query('UPDATE admin_politic SET politic = ? WHERE id = 1', politic, (err) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {
@@ -25,5 +24,6 @@ router.put('/', (req, res) => {
     }
   });
 });
+
 
 export default router;

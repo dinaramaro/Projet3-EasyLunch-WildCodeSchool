@@ -3,10 +3,10 @@ import connection from './config';
 
 const router = express.Router();
 
-router.get('/:search', (req, res) => {
+router.get('/', (req, res) => {
   const keyword = `%${req.query.keyword}%`;
-  const search = `%${req.params.search}%`;
-  connection.query('SELECT name, description, lat, lon, address, picture FROM public_restaurants WHERE name LIKE ?', search, (err, results) => {
+  const personcapacity = req.query.personcapacity;
+  connection.query('SELECT DISTINCT name, description, lat, lon, address, picture, person_capacity FROM public_restaurants WHERE name LIKE ? AND person_capacity >= ?', [keyword, personcapacity], (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {

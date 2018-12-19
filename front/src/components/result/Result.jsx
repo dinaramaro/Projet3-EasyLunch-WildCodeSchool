@@ -12,8 +12,7 @@ import { dataResults } from '../../actions/search';
 class Result extends Component {
   componentDidMount() {
     const { location: { search }, resultRestaurants } = this.props;
-    const searchWord = search.replace('?keyword=', '');
-    resultRestaurants(`${varServeur}search/${searchWord}`);
+    resultRestaurants(`${varServeur}search/${search}`);
   }
 
   render() {

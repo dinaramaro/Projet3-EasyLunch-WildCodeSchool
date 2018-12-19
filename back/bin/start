@@ -13,7 +13,22 @@ require('babel-polyfill');
 
 const app = require('../app').default;
 const debug = require('debug')('back:server');
-const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+
+let options = {};
+
+try {
+  const key = fs.readFileSync(path.resolve(__dirname, './encryption/server.key'));
+  const cert = fs.readFileSync(path.resolve(__dirname, './encryption/server.cert'));
+  options = {
+    key,
+    cert,
+  };
+} catch (e) {
+  console.log('error certiication files', e);
+}
 
 /**
  * Normalize a port into a number, string, or false.
@@ -43,10 +58,10 @@ const port = normalizePort(process.env.PORT || '4000');
 app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTPS server.
  */
 
-const server = http.createServer(app);
+const server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.

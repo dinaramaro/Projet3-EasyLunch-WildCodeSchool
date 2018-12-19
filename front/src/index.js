@@ -12,6 +12,7 @@ import { createStore, applyMiddleware } from 'redux';
 import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import 'font-awesome/css/font-awesome.min.css';
+import 'react-quill/dist/quill.snow.css';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 

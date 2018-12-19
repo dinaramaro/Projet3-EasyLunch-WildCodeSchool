@@ -14,11 +14,11 @@ import Politic from './components/about/Politic';
 import AdminMenu from './components/admin/AdminMenu';
 import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
-import AdminPoli from './components/admin/AdminPoli';
-import AdminTeam from './components/admin/AdminTeam';
+import AdminPolitic from './components/admin/AdminPolitic';
+import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
-import AdminPartners from './components/admin/AdminPartners';
-import AdminConcept from './components/admin/AdminConcept';
+import AdminPartners from './components/admin/partners/AdminPartners';
+import AdminConcept from './components/admin/concept/AdminConcept';
 import AdminFAQ from './components/admin/FAQ/AdminFAQ';
 import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
@@ -38,7 +38,7 @@ const App = () => (
         <Route path="/apropos/partenaires" component={Partners} />
         <Route path="/apropos/politique" component={Politic} />
         <Route path="/admin/AdminCGV" component={AdminCVG} />
-        <Route path="/admin/AdminPolitique" component={AdminPoli} />
+        <Route path="/admin/AdminPolitique" component={AdminPolitic} />
         <Route path="/admin/AdminEquipe" component={AdminTeam} />
         <Route path="/admin/AdminPartenaires" component={AdminPartners} />
         <Route path="/admin/AdminConcept" component={AdminConcept} />
@@ -56,12 +56,12 @@ const App = () => (
         <Route path="/a-propos/restaurateur" component={Restaurant} />
         <Route path="/admin/admin-menu" component={AdminMenu} />
         <Route path="/admin/admin-cgv" component={AdminCVG} />
-        <Route path="/admin/admin-politique" component={AdminPoli} />
+        <Route path="/admin/admin-politique" component={AdminPolitic} />
         <Route path="/admin/admin-equipe" component={AdminTeam} />
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/login" component={Login} />
-        <Route path="/resultat" component={Result} />
+        <Route path="/result" component={Result} />
       </Switch>
     </div>
     <Footer />
