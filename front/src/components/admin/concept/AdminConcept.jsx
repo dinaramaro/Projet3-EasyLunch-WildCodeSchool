@@ -39,9 +39,6 @@ class AdminConcept extends Component {
     }).then((response) => {
       if (response.ok) {
         window.location.reload();
-        window.scrollTo({
-          top: 0,
-        });
       }
     });
   }

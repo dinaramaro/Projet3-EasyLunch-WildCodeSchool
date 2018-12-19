@@ -38,9 +38,7 @@ class AdminPolitic extends Component {
       body: JSON.stringify({ politic }),
     }).then((response) => {
       if (response.ok) {
-        window.scrollTo({
-          top: 0,
-        });
+        window.location.reload();
       }
     });
   }
