@@ -4,7 +4,6 @@ import {
   Form,
   FormGroup,
   Label,
-  textarea,
   Container,
 }
   from 'reactstrap';
@@ -25,7 +24,6 @@ class ModficationFAQ extends Component {
 
   componentDidMount() {
     const { match } = this.props;
-    window.scroll();
     fetch(`${varServeur}admin/faq/${match.params.id}`)
       .then(response => response.json())
       .then((data) => {

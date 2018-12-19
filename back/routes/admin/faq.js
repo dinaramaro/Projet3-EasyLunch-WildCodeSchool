@@ -17,8 +17,8 @@ router.get('/', (req, res) => {
 
 /* GET id Question. */
 router.get('/:id', (req, res) => {
-  const questionId = req.params.id;
-  connection.query(`SELECT * FROM admin_faq WHERE id = ${questionId}`, (err, results) => {
+  const idQuestion = req.params.id;
+  connection.query('SELECT * FROM admin_faq WHERE id = ?', [idQuestion], (err, results) => {
     if (err) {
       res.status(500).send('Erreur');
     } else {

@@ -8,8 +8,9 @@ import {
 }
   from 'reactstrap';
 import { varServeur } from '../../../constants';
+import './AddFAQ.scss';
 
-class AjoutFAQ extends Component {
+class AddFAQ extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +58,7 @@ class AjoutFAQ extends Component {
     return (
       <div>
         <h2>Ajouter une question</h2>
-        <Container className="ModificationFAQ">
+        <Container className="AddFAQ">
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="question">Question</Label>
@@ -90,4 +91,4 @@ class AjoutFAQ extends Component {
   }
 }
 
-export default AjoutFAQ;
+export default AddFAQ;

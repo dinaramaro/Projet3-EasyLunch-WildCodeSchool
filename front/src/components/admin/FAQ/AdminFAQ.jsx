@@ -18,10 +18,8 @@ class adminFAQ extends Component {
 
   componentDidMount() {
     fetch(`${varServeur}admin/faq`)
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      }).then(data => this.setState({ listfaq: data }));
+      .then(response => response.json())
+      .then(data => this.setState({ listfaq: data }));
   }
 
   deleteQuestion = (id) => {
@@ -50,7 +48,7 @@ class adminFAQ extends Component {
             <h1 className="title">FAQ</h1>
           </Col>
         </Row>
-        <Row className="bouton">
+        <Row className="button">
           <Link to="/admin/adminfaq/question"><Button className="mb-3">Ajouter une question</Button></Link>
         </Row>
         <Row className="table">
