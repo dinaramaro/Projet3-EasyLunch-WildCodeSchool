@@ -19,6 +19,7 @@ import './Restaurants.scss';
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
 import { dataResults } from '../../actions/search';
+import { menuResto } from '../../actions/menuResto';
 
 class Restaurants extends Component {
   constructor(props) {
@@ -44,6 +45,12 @@ class Restaurants extends Component {
     const { resultRestaurants } = this.props;
     const query = queryString.stringify(this.state);
     resultRestaurants(`${varServeur}search/?${query}`);
+  }
+
+
+  infoResto(id) {
+    const { menuResto } = this.props;
+    menuResto(`${varServeur}restaurant/menus/${id}`);
   }
 
   render() {
@@ -93,22 +100,18 @@ class Restaurants extends Component {
         </Form>
         <Row>
           {results.map(item => (
-            <Col sm="12" md="6" xl="4">
-              <Card className="card-restaurant">
-                <CardImg
-                  top
-                  width="400px"
-                  height="175px"
-                  src={item.picture}
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardTitle>{item.name}</CardTitle>
-                  <CardSubtitle>{item.address}</CardSubtitle>
-                  <CardText>{item.city}</CardText>
-                </CardBody>
-              </Card>
-            </Col>
+            <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
+              <Col key={item.id} sm="12" md="6" xl="4">
+                <Card className="card-restaurant">
+                  <CardImg top width="100%" src={item.picture} alt="Card image cap" />
+                  <CardBody>
+                    <CardTitle>{item.name}</CardTitle>
+                    <CardSubtitle>{item.address}</CardSubtitle>
+                    <CardText>{item.city}</CardText>
+                  </CardBody>
+                </Card>
+              </Col>
+            </button>
           ))}
         </Row>
       </div>
@@ -123,7 +126,11 @@ function mstp(state) {
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ resultRestaurants: dataResults }, dispatch);
+  return bindActionCreators({
+    resultRestaurants: dataResults,
+    menuResto,
+  },
+  dispatch);
 }
 
 export default withRouter(

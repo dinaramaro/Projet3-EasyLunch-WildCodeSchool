@@ -13,6 +13,7 @@ import politic from './routes/admin/politic';
 import partners from './routes/admin/partners';
 import team from './routes/admin/team';
 import search from './routes/search';
+import restaurant from './routes/restaurant';
 
 const app = express();
 const debug = Debug('back:app');
@@ -30,6 +31,7 @@ app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/restaurant', restaurant);
 app.use('/api/admin/cgv', CGV);
 app.use('/api/admin/faq', FAQ);
 app.use('/api/admin/politic', politic);
