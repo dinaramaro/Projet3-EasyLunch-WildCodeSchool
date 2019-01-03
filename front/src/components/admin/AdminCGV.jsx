@@ -5,6 +5,7 @@ import {
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
 import './AdminCGV.scss';
+import AdminMenu from './AdminMenu';
 
 class AdminCGV extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class AdminCGV extends Component {
     const { cgv } = this.state;
     return (
       <div className="AdminCGV">
+        <AdminMenu />
         <h1 className="title">CGV</h1>
         <Container>
           <Form>

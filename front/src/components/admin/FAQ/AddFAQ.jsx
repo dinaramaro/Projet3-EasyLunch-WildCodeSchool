@@ -9,6 +9,7 @@ import {
   from 'reactstrap';
 import { varServeur } from '../../../constants';
 import './AddFAQ.scss';
+import AdminMenu from '../AdminMenu';
 
 class AddFAQ extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class AddFAQ extends Component {
       .then(res => res.text())
       .then((res) => {
         if (res === 'OK') {
-          history.push('/admin/adminfaq');
+          history.push('/admin/admin-faq');
         }
       });
   }
@@ -51,6 +52,7 @@ class AddFAQ extends Component {
     const { question, answer } = this.state;
     return (
       <div>
+        <AdminMenu />
         <h2>Ajouter une question</h2>
         <Container className="AddFAQ">
           <Form onSubmit={this.handleSubmit}>

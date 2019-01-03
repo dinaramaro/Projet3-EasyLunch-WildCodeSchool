@@ -5,6 +5,7 @@ import {
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../constants';
 import './AdminPolitic.scss';
+import AdminMenu from './AdminMenu';
 
 class AdminPolitic extends Component {
   constructor(props) {
@@ -49,6 +50,7 @@ class AdminPolitic extends Component {
     const { politic } = this.state;
     return (
       <div className="AdminPolitic">
+        <AdminMenu />
         <h1 className="title">Politique de confidentialité</h1>
         <Container>
           <Form>

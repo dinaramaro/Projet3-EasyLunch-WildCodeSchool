@@ -30,9 +30,6 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/admin/adminfaq/question/:id" component={ModificationFAQ} />
-        <Route path="/admin/adminfaq/question" component={AjoutFAQ} />
-        <Route path="/admin/Adminfaq" component={AdminFAQ} />
         <Route path="/a-propos/concept" component={Concept} />
         <Route path="/a-propos/equipe" component={Team} />
         <Route path="/a-propos/cgv" component={CGV} />
@@ -47,6 +44,9 @@ const App = () => (
         <Route path="/admin/admin-equipe" component={AdminTeam} />
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
+        <Route path="/admin/admin-faq" component={AdminFAQ} />
+        <Route path="/admin/admin-faq/question/:id" component={ModificationFAQ} />
+        <Route path="/admin/admin-faq/question" component={AjoutFAQ} />
         <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
       </Switch>

@@ -8,9 +8,11 @@ import {
   Input,
   Button,
 } from 'reactstrap';
+import AdminMenu from '../AdminMenu';
 
 const AdminConcept = () => (
   <div>
+    <AdminMenu />
     <h2 className="title">Concept</h2>
     <Container className="AdminConcept">
       <Form>
