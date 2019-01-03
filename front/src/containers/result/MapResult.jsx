@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
+  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardText, Row, Col, Button,
 } from 'reactstrap';
 import './MapResult.scss';
 import classnames from 'classnames';
@@ -10,6 +11,7 @@ import RestoPin from '../../components/result/RestoPin';
 import RestoInfo from '../../components/result/RestoInfo';
 import UserPin from '../../components/result/UserPin';
 import UserInfo from '../../components/result/UserInfo';
+import DisplayMeals from '../../components/result/DisplayMeals';
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
 
@@ -19,7 +21,6 @@ const navStyle = {
   left: 0,
   padding: '10px',
 };
-
 
 class Mapresult extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Mapresult extends Component {
           viewport: {
             latitude: pos.coords.latitude,
             longitude: pos.coords.longitude,
-            zoom: 13,
+            zoom: 11,
             bearing: 0,
             pitch: 0,
           },
@@ -69,15 +70,22 @@ class Mapresult extends Component {
     }
   }
 
-  renderRestoMarker = (resto, index) => (
-    <Marker
-      key={`marker-${index}`}
-      longitude={resto.lon}
-      latitude={resto.lat}
-    >
-      <RestoPin size={45} onClick={() => this.onClickMarker('popupInfo', resto)} />
-    </Marker>
-  )
+  renderRestoMarker = (resto, index) => {
+    const lonNumber = parseFloat(resto.lon);
+    const latNumber = parseFloat(resto.lat);
+    return (
+      <Marker
+        key={`marker-${index}`}
+        longitude={lonNumber}
+        latitude={latNumber}
+        anchor="top"
+        offsetLeft={-25}
+        offsetTop={10}
+      >
+        <RestoPin size={40} onClick={() => this.onClickMarker('popupInfo', resto)} />
+      </Marker>
+    );
+  }
 
   renderUserMarker = (index) => {
     const { longitudeuser, latitudeuser } = this.state;
@@ -87,8 +95,11 @@ class Mapresult extends Component {
         key={`marker-${index}`}
         longitude={longitudeuser}
         latitude={latitudeuser}
+        anchor="bottom-right"
+        offsetLeft={0}
+        offsetTop={0}
       >
-        <UserPin size={45} onClick={() => this.onClickMarker('popupUser', 'Vous êtes ici')} />
+        <UserPin onClick={() => this.onClickMarker()} />
       </Marker>
     );
   }
@@ -134,7 +145,34 @@ class Mapresult extends Component {
       viewport,
       activeTab,
     } = this.state;
-    const { searchResults: { results } } = this.props;
+    const {
+      searchResults: { results },
+      menuResto: { cartes: { restoInfos, menus } },
+    } = this.props;
+    let days = [];
+    let restoName = '';
+    let restoAddress = '';
+    let restoCity = '';
+    let listEnt = [];
+    let listMain = [];
+    let listDessert = [];
+
+
+    if (restoInfos !== undefined) {
+      if ((restoInfos.schedule !== undefined) && (restoInfos.schedule !== null)) {
+        days = restoInfos.schedule.substring(1, restoInfos.schedule.length - 1).split(',');
+      }
+      restoName = restoInfos.name;
+      restoAddress = restoInfos.address;
+      restoCity = restoInfos.city;
+    }
+
+    if (menus !== undefined) {
+      listEnt = menus.filter(item => item.plat === 0);
+      listMain = menus.filter(item => item.plat === 1);
+      listDessert = menus.filter(item => item.plat === 2);
+    }
+
     return (
       <div className="MapResult">
         <Nav tabs>
@@ -187,9 +225,51 @@ class Mapresult extends Component {
             <Row>
               <Col sm="12">
                 <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>Text</CardText>
-                  <Button>Go somewhere</Button>
+                  <h3>
+                    {restoName}
+                  </h3>
+                  <CardText>
+                    {restoAddress}
+                  </CardText>
+                  <CardText>
+                    {restoCity}
+                  </CardText>
+                  <CardText>
+                    {days.map((day, index) => {
+                      let concatDays = '';
+                      if (index === 0) {
+                        concatDays = `${concatDays}Ouverture : `;
+                      }
+                      switch (day) {
+                        case '0':
+                          return `${concatDays} Lundi `;
+                        case '1':
+                          return `${concatDays} Mardi `;
+                        case '2':
+                          return `${concatDays} Mercredi `;
+                        case '3':
+                          return `${concatDays} Jeudi `;
+                        case '4':
+                          return `${concatDays} Vendredi `;
+                        case '5':
+                          return `${concatDays} Samedi `;
+                        case '6':
+                          return `${concatDays} Dimanche `;
+                        default:
+                          return concatDays;
+                      }
+                    })}
+                  </CardText>
+                  <br />
+                  <DisplayMeals text="Entrée" meals={listEnt} />
+                  <DisplayMeals text="Plat" meals={listMain} />
+                  <DisplayMeals text="Dessert" meals={listDessert} />
+
+                  <CardText>
+                    Choisir ce restaurant pour plus de détails...
+                  </CardText>
+                  <br />
+                  <Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button>
                 </Card>
               </Col>
             </Row>
@@ -203,6 +283,7 @@ class Mapresult extends Component {
 function mstp(state) {
   return {
     searchResults: state.searchResults,
+    menuResto: state.menuResto,
   };
 }
 

@@ -1,0 +1,53 @@
+.RestoPin {
+
+  .animated {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+  }
+
+  .bounceInDown {
+      animation-name: bounceInDown;
+  }
+}
+
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -2000px, 0);
+      transform: translate3d(0, -2000px, 0);
+  }
+
+  60% {
+      opacity: 1;
+      -webkit-transform: translate3d(0, -100px, -100px);
+      transform: translate3d(0, -100px, -100px);
+  }
+
+  75% {
+      -webkit-transform: translate3d(0, -60px, -60px);
+      transform: translate3d(0, -60px, -60px);
+  }
+
+  90% {
+      -webkit-transform: translate3d(0, -55px, -55px);
+      transform: translate3d(0, -55px, -55px);
+  }
+
+  to {
+      -webkit-transform: translate3d(0, -45px, -45px);
+      transform: translate3d(0, -45px, -45px);
+  }
+}
+
+
+
