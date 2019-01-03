@@ -3,7 +3,7 @@ import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 import './AdminPolitic.scss';
 
 class AdminPolitic extends Component {
@@ -38,9 +38,7 @@ class AdminPolitic extends Component {
       body: JSON.stringify({ politic }),
     }).then((response) => {
       if (response.ok) {
-        window.scrollTo({
-          top: 0,
-        });
+        window.location.reload();
       }
     });
   }
