@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Container,
   Row,
-  Col,
   Button,
   Modal,
   ModalBody,
@@ -57,7 +56,7 @@ class AdminFAQ extends Component {
         <h1 className="title">FAQ</h1>
         <Container>
           <Row className="button">
-            <Link to="/admin/admin-faq/question"><Button className="mb-3">Ajouter une question</Button></Link>
+            <Link to="/admin/ajout-faq"><Button className="mb-3">Ajouter une question</Button></Link>
           </Row>
           <Row className="table">
             <table className="tablefaq">
@@ -72,7 +71,7 @@ class AdminFAQ extends Component {
                     {item.question}
                   </td>
                   <td>
-                    <Link to={`/admin/admin-faq/question/${item.id}`}><Button>Modifier</Button></Link>
+                    <Link to={`/admin/modif-faq/${item.id}`}><Button>Modifier</Button></Link>
                   </td>
                   <td>
                     <Button onClick={() => this.toggle(item.id)}>Supprimer</Button>
