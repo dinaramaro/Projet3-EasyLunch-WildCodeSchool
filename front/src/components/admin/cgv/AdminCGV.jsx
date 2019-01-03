@@ -3,9 +3,9 @@ import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 import './AdminCGV.scss';
-import AdminMenu from './AdminMenu';
+import AdminMenu from '../AdminMenu';
 
 class AdminCGV extends Component {
   constructor(props) {
