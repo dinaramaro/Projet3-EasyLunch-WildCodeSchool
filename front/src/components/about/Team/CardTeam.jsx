@@ -1,11 +1,13 @@
 import React from 'react';
 
 const CardTeam = ({
-  img, name, fonction, description,
+  mate: {
+    picture, name, fonction, description,
+  },
 }) => (
   <div className="CardTeam">
     <img
-      src={img}
+      src={picture}
       alt="Easy-lunch-Arthur"
     />
     <h1>{name}</h1>

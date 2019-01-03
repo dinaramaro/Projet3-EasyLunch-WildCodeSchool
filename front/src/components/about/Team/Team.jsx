@@ -25,17 +25,14 @@ class Equipe extends Component {
     const { team } = this.state;
     return (
       <div className="Team">
-        <h1 className="title partners_title">NOTRE EQUIPE</h1>
+        <h1 className="title">NOTRE EQUIPE</h1>
         <Container>
           <Row>
             {
-            team.map(team => (
+            team.map(mate => (
               <Col className="person" lg="6">
                 <CardTeam
-                  img={team.picture}
-                  name={team.name}
-                  fonction={team.fonction}
-                  description={team.description}
+                  mate={mate}
                 />
               </Col>
             ))

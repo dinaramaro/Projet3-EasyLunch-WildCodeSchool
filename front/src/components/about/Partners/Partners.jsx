@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Col, Row, Container,
 } from 'reactstrap';
-import './Partners.scss';
 import { varServeur } from '../../../constants';
 import CardPartner from './CardPartner';
 
@@ -27,13 +26,13 @@ class Partners extends Component {
     const { partners } = this.state;
     return (
       <div className="Partners">
-        <h1 className="title partners_title">NOS PARTENAIRES</h1>
+        <h1 className="title">NOS PARTENAIRES</h1>
         <Container>
           <Row>
             {
             partners.map(partner => (
               <Col lg="4" md="6" sm="6" xs="12">
-                <CardPartner link={partner.link} img={partner.picture} />
+                <CardPartner partner={partner} />
               </Col>
             ))
           }

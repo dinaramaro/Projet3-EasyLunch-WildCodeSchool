@@ -30,7 +30,7 @@ class Concept extends Component {
     const { concept } = this.state;
     return (
       <div className="Concept">
-        <h1 className="title concept_title">
+        <h1 className="title concept-title">
           EASY LUNCH, L&#39;APPLI QUI SIMPLIFIE VOTRE PAUSE-DÉJEUNER AU RESTAURANT !
         </h1>
         <Container>

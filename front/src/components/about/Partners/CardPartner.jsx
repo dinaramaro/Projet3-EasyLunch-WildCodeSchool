@@ -3,7 +3,7 @@ import { CardImg } from 'reactstrap';
 import './CardPartner.scss';
 
 
-const CardsPartners = ({ link, img }) => (
+const CardsPartners = ({ partner: { link, picture } }) => (
   <div className="CardPartner">
     <div className="div-img">
       <a
@@ -13,7 +13,7 @@ const CardsPartners = ({ link, img }) => (
       >
         <CardImg
           className="img-sqal"
-          src={img}
+          src={picture}
           alt="Card image cap"
         />
       </a>
