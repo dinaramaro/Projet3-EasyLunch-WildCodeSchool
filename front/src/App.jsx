@@ -16,10 +16,13 @@ import AdminCVG from './components/admin/AdminCGV';
 import Restaurant from './components/about/Restaurant';
 import AdminPolitic from './components/admin/AdminPolitic';
 import AdminTeam from './components/admin/team/AdminTeam';
-import Login from './components/Login';
+import LoginAdmin from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
 import AdminConcept from './components/admin/concept/AdminConcept';
 import Result from './components/result/Result';
+import OrderOne from './components/result/OrderOne';
+import OrderTwo from './containers/result/OrderTwo';
+
 
 const App = () => (
   <div className="App">
@@ -41,8 +44,10 @@ const App = () => (
         <Route path="/admin/admin-equipe" component={AdminTeam} />
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
-        <Route path="/login" component={Login} />
+        <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/result" component={Result} />
+        <Route path="/commande1" component={OrderOne} />
+        <Route path="/commande2" component={OrderTwo} />
       </Switch>
     </div>
     <Footer />

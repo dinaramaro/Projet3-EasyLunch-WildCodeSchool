@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
 import {
-  TabContent, TabPane, Nav, NavItem, NavLink, Card, CardText, Row, Col, Button,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  CardText,
+  Row,
+  Col,
+  Button,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import './MapResult.scss';
 import classnames from 'classnames';
 import RestoPin from '../../components/result/RestoPin';
-import RestoInfo from '../../components/result/RestoInfo';
+import RestoInfoPin from '../../components/result/RestoInfoPin';
 import UserPin from '../../components/result/UserPin';
 import UserInfo from '../../components/result/UserInfo';
 import DisplayMeals from '../../components/result/DisplayMeals';
+import RestoInfos from './RestoInfos';
+
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
 
@@ -115,7 +128,7 @@ class Mapresult extends Component {
           latitude={popupInfo.lat}
           onClose={() => this.onClickMarker('popupInfo', null)}
         >
-          <RestoInfo info={popupInfo} />
+          <RestoInfoPin info={popupInfo} />
         </Popup>
       );
     }
@@ -147,27 +160,14 @@ class Mapresult extends Component {
     } = this.state;
     const {
       searchResults: { results },
-      menuResto: { cartes: { restoInfos, menus } },
+      menuResto: { resto },
     } = this.props;
-    let days = [];
-    let restoName = '';
-    let restoAddress = '';
-    let restoCity = '';
     let listEnt = [];
     let listMain = [];
     let listDessert = [];
 
-
-    if (restoInfos !== undefined) {
-      if ((restoInfos.schedule !== undefined) && (restoInfos.schedule !== null)) {
-        days = restoInfos.schedule.substring(1, restoInfos.schedule.length - 1).split(',');
-      }
-      restoName = restoInfos.name;
-      restoAddress = restoInfos.address;
-      restoCity = restoInfos.city;
-    }
-
-    if (menus !== undefined) {
+    if (!_.isEmpty(resto)) {
+      const { menus } = resto;
       listEnt = menus.filter(item => item.plat === 0);
       listMain = menus.filter(item => item.plat === 1);
       listDessert = menus.filter(item => item.plat === 2);
@@ -225,51 +225,14 @@ class Mapresult extends Component {
             <Row>
               <Col sm="12">
                 <Card body>
-                  <h3>
-                    {restoName}
-                  </h3>
-                  <CardText>
-                    {restoAddress}
-                  </CardText>
-                  <CardText>
-                    {restoCity}
-                  </CardText>
-                  <CardText>
-                    {days.map((day, index) => {
-                      let concatDays = '';
-                      if (index === 0) {
-                        concatDays = `${concatDays}Ouverture : `;
-                      }
-                      switch (day) {
-                        case '0':
-                          return `${concatDays} Lundi `;
-                        case '1':
-                          return `${concatDays} Mardi `;
-                        case '2':
-                          return `${concatDays} Mercredi `;
-                        case '3':
-                          return `${concatDays} Jeudi `;
-                        case '4':
-                          return `${concatDays} Vendredi `;
-                        case '5':
-                          return `${concatDays} Samedi `;
-                        case '6':
-                          return `${concatDays} Dimanche `;
-                        default:
-                          return concatDays;
-                      }
-                    })}
-                  </CardText>
-                  <br />
+                  <RestoInfos />
                   <DisplayMeals text="Entrée" meals={listEnt} />
                   <DisplayMeals text="Plat" meals={listMain} />
                   <DisplayMeals text="Dessert" meals={listDessert} />
 
-                  <CardText>
-                    Choisir ce restaurant pour plus de détails...
-                  </CardText>
+                  <CardText>Choisir ce restaurant pour plus de détails...</CardText>
                   <br />
-                  <Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button>
+                  <Link to="/commande1"><Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button></Link>
                 </Card>
               </Col>
             </Row>
