@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
+
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../../constants';
 import './AdminConcept.scss';
+import AdminMenu from '../AdminMenu';
 
 class AdminConcept extends Component {
   constructor(props) {
@@ -67,6 +69,7 @@ class AdminConcept extends Component {
 
     return (
       <div className="AdminConcept">
+        <AdminMenu />
         <h1 className="title">Concept</h1>
         <Container>
           <Form>

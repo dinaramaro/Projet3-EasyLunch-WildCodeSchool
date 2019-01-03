@@ -51,7 +51,7 @@ class ModficationFAQ extends Component {
       .then(res => res.text())
       .then((res) => {
         if (res === 'OK') {
-          history.push('/admin/adminfaq');
+          history.push('/admin/admin-faq');
         }
       });
   }
