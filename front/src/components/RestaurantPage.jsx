@@ -7,7 +7,6 @@ class RestaurantPage extends Component {
     this.state = {
       restos: [],
     };
-    this.fetchRestos = this.fetchRestos.bind(this);
   }
 
   componentDidMount() {

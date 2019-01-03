@@ -117,6 +117,7 @@ class Restaurants extends Component {
 }
 
 function mstp(state) {
+  console.log(state);
   return {
     searchResults: state.searchResults,
   };

@@ -15,6 +15,10 @@ class Concept extends Component {
   }
 
   componentDidMount() {
+    this.fetchConcept();
+  }
+
+  fetchConcept() {
     fetch(`${varServeur}admin/concept`)
       .then(results => results.json())
       .then((concept) => {
@@ -62,7 +66,7 @@ class Concept extends Component {
               />
               <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
               <p>Vous souhaitez en savoir plus sur Easy Lunch ?</p>
-              <Link to="/a-propos/contact">
+              <Link to="/a-propos/partenaires">
                 <Button color="success">Devenir partenaire</Button>
               </Link>
             </Col>

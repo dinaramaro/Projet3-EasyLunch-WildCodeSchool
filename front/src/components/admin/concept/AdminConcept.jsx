@@ -17,6 +17,10 @@ class AdminConcept extends Component {
   }
 
   componentDidMount() {
+    this.fetchAdminConcept();
+  }
+
+  fetchAdminConcept() {
     fetch(`${varServeur}admin/concept`)
       .then(results => results.json())
       .then((concept) => {
@@ -70,7 +74,7 @@ class AdminConcept extends Component {
               <br />
               <ReactQuill
                 theme="snow"
-                modules={{toolbar: toolbarOptions }}
+                modules={{ toolbar: toolbarOptions }}
                 formats={formats}
                 type="textarea"
                 name="concept"
