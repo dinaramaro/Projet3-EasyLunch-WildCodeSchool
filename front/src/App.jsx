@@ -19,6 +19,9 @@ import AdminTeam from './components/admin/team/AdminTeam';
 import Login from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
 import AdminConcept from './components/admin/concept/AdminConcept';
+import AdminFAQ from './components/admin/FAQ/AdminFAQ';
+import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
+import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import Result from './components/result/Result';
 
 const App = () => (
@@ -27,6 +30,9 @@ const App = () => (
     <div className="content">
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/admin/adminfaq/question/:id" component={ModificationFAQ} />
+        <Route path="/admin/adminfaq/question" component={AjoutFAQ} />
+        <Route path="/admin/Adminfaq" component={AdminFAQ} />
         <Route path="/a-propos/concept" component={Concept} />
         <Route path="/a-propos/equipe" component={Team} />
         <Route path="/a-propos/cgv" component={CGV} />
