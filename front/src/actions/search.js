@@ -13,7 +13,7 @@ export const searchSuccess = items => ({
 });
 
 
-export const dataResults = (url) => {
+export function dataResults(url) {
   return (dispatch) => {
     dispatch(searchLoading());
     fetch(url)
@@ -29,4 +29,4 @@ export const dataResults = (url) => {
       })
       .catch(error => dispatch(searchFailed(error)));
   };
-};
+}
