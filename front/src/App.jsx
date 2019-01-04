@@ -45,8 +45,8 @@ const App = () => (
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/admin/admin-faq" component={AdminFAQ} />
-        <Route path="/admin/admin-faq/question/:id" component={ModificationFAQ} />
-        <Route path="/admin/admin-faq/question" component={AjoutFAQ} />
+        <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
+        <Route path="/admin/ajout-faq" component={AjoutFAQ} />
         <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
       </Switch>
