@@ -16,7 +16,7 @@ const ChooseOnMenus = (props) => {
         meals.length > 0
           ? (
             <div>
-              <p>{meals[0].menu_name}</p>
+              <p>{`${meals[0].menu_name} ${meals[0].menu_price} €`}</p>
               <Label for={text}>{text}</Label>
             </div>)
           : ''
@@ -27,11 +27,11 @@ const ChooseOnMenus = (props) => {
             <CustomInput
               type="checkbox"
               value={item.meals_name}
-              name={text}
-              id={item.id}
-              label={`${item.meals_name} ${item.menu_price} ${'€'}`}
+              name="name"
+              id={item.id_plat}
+              label={item.meals_name}
               onChange={(e) => {
-                handleChoose(e, item.menu_price, text, item.id);
+                handleChoose(e, item.menu_price, text, item.id_plat);
               }}
             />
           </div>

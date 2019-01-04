@@ -48,14 +48,6 @@ class OrderMenu extends Component {
         total,
       },
     } = this.props;
-    console.log('cartes', cartes);
-    console.log('menus', menus);
-    if (error) {
-      return <div>Error! {error.message}</div>;
-    }
-    if (loading) {
-      return <div>Loading...</div>;
-    }
 
     let listEnt = [];
     let listMain = [];
@@ -84,10 +76,6 @@ class OrderMenu extends Component {
       listDayEnt = cartes.filter(item => item.plat === 4);
       listDayMain = cartes.filter(item => item.plat === 5);
       listDayDessert = cartes.filter(item => item.plat === 6);
-      console.log('listDayEnt', listDayEnt);
-      console.log('listDayMain', listDayMain);
-      console.log('listDayDessert', listDayDessert);
-
     }
 
     if (error) {
@@ -106,7 +94,7 @@ class OrderMenu extends Component {
         <Nav tabs>
           <NavItem>
             {
-              (listDayEnt.length > 0 || listDayMain.length > 0 || listDayDessert > 0) && (
+              listMOD.length > 0 && (
               <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
                 Menu du jour
               </NavLink>
