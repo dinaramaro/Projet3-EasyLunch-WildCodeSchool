@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
@@ -7,7 +8,8 @@ import {
 import classnames from 'classnames';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
-import ChooseMeals from './ChooseMeals';
+import ChooseOnCards from './ChooseOnCards';
+import ChooseOnMenus from './ChooseOnMenus';
 import MyMeal from './MyMeal';
 
 
@@ -20,7 +22,7 @@ class OrderMenu extends Component {
   }
 
   componentDidMount() {
-    const { menuResto: { resto: { restoInfos } } } = this.props;
+    const { menuResto: { resto: { restoInfos } }, cardResto } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cartes/${restoInfos.id}`);
     }
@@ -37,7 +39,17 @@ class OrderMenu extends Component {
 
   render() {
     const { activeTab } = this.state;
-    const { menuResto: { menus }, cardResto: { loading, error, cartes }, chooseMeals: { total } } = this.props;
+    const {
+      menus,
+      cartes,
+      error,
+      loading,
+      chooseMeals: {
+        total,
+      },
+    } = this.props;
+    console.log('cartes', cartes);
+    console.log('menus', menus);
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -72,10 +84,14 @@ class OrderMenu extends Component {
       listDayEnt = cartes.filter(item => item.plat === 4);
       listDayMain = cartes.filter(item => item.plat === 5);
       listDayDessert = cartes.filter(item => item.plat === 6);
+      console.log('listDayEnt', listDayEnt);
+      console.log('listDayMain', listDayMain);
+      console.log('listDayDessert', listDayDessert);
+
     }
 
     if (error) {
-      return <div>Error!{' '}{error.message}</div>;
+      return <div>{`Error!'} ${error.message}`}</div>;
     }
 
     if (loading) {
@@ -89,34 +105,52 @@ class OrderMenu extends Component {
         <p>(uniquement pour vous)</p>
         <Nav tabs>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-              Menu du jour
-            </NavLink>
+            {
+              (listDayEnt.length > 0 || listDayMain.length > 0 || listDayDessert > 0) && (
+              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+                Menu du jour
+              </NavLink>
+              )}
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-              Entrées
-            </NavLink>
+            {
+              listEnt.length > 0 && (
+              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                Entrées
+              </NavLink>
+              )}
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-              Plats
-            </NavLink>
+            {
+              listMain.length > 0 && (
+              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                Plats
+              </NavLink>
+              )}
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-              Desserts
-            </NavLink>
+            {
+              listDessert.length > 0 && (
+              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                Desserts
+              </NavLink>
+              )}
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-              Boissons
-            </NavLink>
+            {
+              listDrink.length > 0 && (
+              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                Boissons
+              </NavLink>
+              )}
           </NavItem>
           <NavItem>
-            <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-              Formules
-            </NavLink>
+            {
+              (listEntForm.length > 0 || listMainForm.length > 0 || listDessertForm.length > 0) && (
+              <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
+                Formules
+              </NavLink>
+              )}
           </NavItem>
         </Nav>
         <Form>
@@ -126,13 +160,13 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="Entrées du jour" meals={listDayEnt} />
+                      <ChooseOnMenus text="Entrées du jour" meals={listDayEnt} />
                     </FormGroup>
                     <FormGroup>
-                      <ChooseMeals text="Plats du jour" meals={listDayMain} />
+                      <ChooseOnMenus text="Plats du jour" meals={listDayMain} />
                     </FormGroup>
                     <FormGroup>
-                      <ChooseMeals text="Desserts du jour" meals={listDayDessert} />
+                      <ChooseOnMenus text="Desserts du jour" meals={listDayDessert} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -143,7 +177,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="" meals={listEnt} />
+                      <ChooseOnCards text="Entrée" meals={listEnt} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -154,7 +188,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="" meals={listMain} />
+                      <ChooseOnCards text="Plat" meals={listMain} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -165,7 +199,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="" meals={listDessert} />
+                      <ChooseOnCards text="Dessert" meals={listDessert} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -176,7 +210,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="" meals={listDrink} />
+                      <ChooseOnCards text="Boisson" meals={listDrink} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -187,13 +221,13 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseMeals text="Entrées" meals={listEntForm} />
+                      <ChooseOnMenus text="Entrées" meals={listEntForm} />
                     </FormGroup>
                     <FormGroup>
-                      <ChooseMeals text="Plats" meals={listMainForm} />
+                      <ChooseOnMenus text="Plats" meals={listMainForm} />
                     </FormGroup>
                     <FormGroup>
-                      <ChooseMeals text="Desserts" meals={listDessertForm} />
+                      <ChooseOnMenus text="Desserts" meals={listDessertForm} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -208,16 +242,15 @@ class OrderMenu extends Component {
           <Row>
             <Col sm={2}>
               Total :
-            </Col> 
+            </Col>
             <Col sm={4}>
-              {total} €
+              {`${total} €`}
             </Col>
             <Col sm={6}>
               <Button type="submit">Payer</Button>
             </Col>
           </Row>
         </Form>
-        
       </div>
     );
   }
@@ -227,10 +260,21 @@ function mstp(state) {
   console.log(state);
   return {
     menuResto: state.menuResto,
-    cardResto: state.cardResto,
+    menus: state.cardResto.menus,
+    cartes: state.cardResto.cartes,
+    error: state.cardResto.error,
+    loading: state.cardResto.loading,
     chooseMeals: state.chooseMeals,
 
   };
 }
 
-export default connect(mstp)(OrderMenu);
+function mdtp(dispatch) {
+  return bindActionCreators({
+    cardResto,
+  },
+  dispatch);
+}
+
+
+export default connect(mstp, mdtp)(OrderMenu);

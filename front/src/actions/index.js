@@ -3,8 +3,10 @@ export const handleChangeOrder = e => ({
   e,
 });
 
-export const handleChoose = (e, price) => ({
+export const handleChoose = (e, price, text, id) => ({
   type: 'CHOOSE',
   e,
   price,
+  text,
+  id,
 });

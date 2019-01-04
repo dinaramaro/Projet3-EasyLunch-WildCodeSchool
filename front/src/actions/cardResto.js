@@ -14,16 +14,12 @@ export const cardRestoSuccess = infos => ({
 
 export function cardResto(url) {
   return (dispatch) => {
-    console.log('dispatch');
     dispatch(cardRestoLoading());
     fetch(url)
       .then((response) => {
-        console.log('response', response);
         if (!response.ok) {
-          console.log('response KO')
           throw Error(response.statusText);
         }
-        console.log('response', response);
         return response;
       })
       .then(res => res.json())

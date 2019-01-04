@@ -7,13 +7,10 @@ const MyMeal = (props) => {
   return (
     <div className="MyMeal">
       <p>Mon repas</p>
-      {tabs.map(item => 
-        <p>{item.name} {' '} {item.price} €</p>
-      )}
+      {tabs.map(item => <p key={item.id}>{`${item.text} : ${item.name} ${item.price} ${'€'}`}</p>)}
     </div>
   );
-
-}
+};
 
 function mstp(state) {
   return {

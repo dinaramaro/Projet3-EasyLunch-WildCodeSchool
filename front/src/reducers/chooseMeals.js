@@ -11,27 +11,37 @@ const chooseMeals = (state = initialState, action) => {
       const tempObj = {};
       const resultFind = tempTab.find(item => item.value === action.e.target.value);
       let tempTotal = 0;
-      const reducer = (accumulator, currentValue) => accumulator.price + currentValue.price;
-
+      let tempTotalRound = 0;
       if (resultFind === undefined) {
+        tempObj.id = action.id;
         tempObj[action.e.target.name] = action.e.target.value;
         tempObj.price = action.price;
+        tempObj.text = action.text;
         tempTab = [...state.tabs, tempObj];
-        tempTotal = tempTab.reduce(reducer);
+        tempTotal = state.total + action.price;
+        tempTotalRound = Math.round(tempTotal * 100) / 100;
         newState = {
           ...state,
           tabs: tempTab,
-          total: tempTotal,
+          total: tempTotalRound,
         };
       } else {
+        const reducer = (accumulator, currentValue) => {
+          console.log('accu', accumulator);
+          console.log('curr', currentValue);
+          return accumulator.price + currentValue.price;
+        };
+        console.log('action', action.e.target.value);
         const resultFilter = tempTab.filter(item => item.value !== action.e.target.value);
         tempTotal = resultFilter.reduce(reducer);
+        tempTotalRound = Math.round(tempTotal * 100) / 100;
         newState = {
           ...state,
           tabs: resultFilter,
-          total: tempTotal,
+          total: tempTotalRound,
         };
       }
+      console.log('chooseMeals', newState);
       return newState;
     }
     default: {
