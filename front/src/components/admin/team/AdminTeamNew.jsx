@@ -48,12 +48,14 @@ class AdminTeamNew extends Component {
     } = this.state;
     return (
       <Container className="AdminTeamNew">
+        <h2 className="title-team">Ajouter un membre</h2>
+        <br />
         <Form className="form-team">
           <FormGroup>
             <Input
               type="text"
               name="name"
-              placeholder="Mettez le nom de la personne"
+              placeholder="Nom"
               value={name}
               onChange={this.onChangeNew}
             />
@@ -61,7 +63,7 @@ class AdminTeamNew extends Component {
             <Input
               type="text"
               name="fonction"
-              placeholder="Mettez la fonction de la personne"
+              placeholder="Fonction / poste"
               value={fonction}
               onChange={this.onChangeNew}
             />
@@ -69,7 +71,7 @@ class AdminTeamNew extends Component {
             <Input
               type="url"
               name="picture"
-              placeholder="Mettez le lien de vos photos d'équipe"
+              placeholder="url photo"
               value={picture}
               onChange={this.onChangeNew}
             />
@@ -77,7 +79,7 @@ class AdminTeamNew extends Component {
             <Input
               type="textarea"
               name="description"
-              placeholder="VOTRE MESSAGE"
+              placeholder="Description"
               value={description}
               onChange={this.onChangeNew}
             />
