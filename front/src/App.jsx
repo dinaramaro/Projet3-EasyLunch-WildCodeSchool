@@ -23,6 +23,9 @@ import AdminFAQ from './components/admin/FAQ/AdminFAQ';
 import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import Result from './components/result/Result';
+import Register from './components/Register';
+import MyAccount from './components/MyAccount';
+import PrivateRoute from './PrivateRoute';
 
 const App = () => (
   <div className="App">
@@ -47,8 +50,10 @@ const App = () => (
         <Route path="/admin/admin-faq" component={AdminFAQ} />
         <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
         <Route path="/admin/ajout-faq" component={AjoutFAQ} />
-        <Route path="/login" component={Login} />
+        <Route path="/connexion" component={Login} />
         <Route path="/result" component={Result} />
+        <Route path="/inscription" component={Register} />
+        <PrivateRoute path="/mon-compte" component={MyAccount} />
       </Switch>
     </div>
     <Footer />
