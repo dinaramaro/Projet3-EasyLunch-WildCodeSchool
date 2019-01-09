@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
         .json({ message: "Erreur de Mot de Passe ou d'adresse mail" });
     }
     const { password, ...user } = data;
-    const token = jwt.sign(user, secret, {expiresIn: });
+    const token = jwt.sign(user, secret, { expiresIn: 300 });
     connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error) => {
       if (error) {
         res.status(500).send(`${err}`);

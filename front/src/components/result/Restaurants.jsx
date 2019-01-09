@@ -103,7 +103,7 @@ class Restaurants extends Component {
             <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
               <Col key={item.id} sm="12" md="6" xl="4">
                 <Card className="card-restaurant">
-                  <CardImg top width="100%" src={item.picture} alt="Card image cap" />
+                  <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{item.name}</CardTitle>
                     <CardSubtitle>{item.address}</CardSubtitle>
