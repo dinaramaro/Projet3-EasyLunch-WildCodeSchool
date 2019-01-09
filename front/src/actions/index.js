@@ -3,10 +3,34 @@ export const handleChangeOrder = e => ({
   e,
 });
 
-export const handleChoose = (e, price, text, id) => ({
-  type: 'CHOOSE',
+export const handleChooseOnMenus = (
+  e,
+  idmenu,
+  menuname,
+  menuprice,
+  text,
+  idmeal,
+  mealprice,
+  plat,
+  nbmeals,
+) => ({
+  type: 'CHOOSEONMENUS',
+  e,
+  idmenu,
+  menuname,
+  menuprice,
+  text,
+  idmeal,
+  mealprice,
+  plat,
+  nbmeals,
+});
+
+export const handleChooseOnCards = (e, price, text, id, plat) => ({
+  type: 'CHOOSEONCARDS',
   e,
   price,
   text,
   id,
+  plat,
 });

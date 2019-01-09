@@ -8,7 +8,7 @@ import InfoGe from './InfoGe';
 import OrderMenu from './OrderMenu';
 
 
-const OrderTwo = () => (
+const OrderPageTwo = () => (
   <Container fluid className="OrderTwo">
     <Row>
       <Col sm={4}>
@@ -28,4 +28,4 @@ function mstp(state) {
   };
 }
 
-export default connect(mstp)(OrderTwo);
+export default connect(mstp)(OrderPageTwo);

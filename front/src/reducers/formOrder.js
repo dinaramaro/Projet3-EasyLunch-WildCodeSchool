@@ -1,8 +1,8 @@
 const initialState = {
   formulaire: {
     date: '',
-    hour: '',
-    nb: '',
+    schedule: '',
+    nb_users: '',
   },
 };
 

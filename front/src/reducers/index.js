@@ -3,14 +3,18 @@ import searchResults from './searchResults';
 import menuResto from './menuResto';
 import formOrder from './formOrder';
 import cardResto from './cardResto';
-import chooseMeals from './chooseMeals';
+import chooseByUser from './chooseByUser';
+import sendOrder from './sendOrder';
+
 
 const allReducers = combineReducers({
   searchResults,
   menuResto,
   formOrder,
   cardResto,
-  chooseMeals,
+  chooseByUser,
+  sendOrder,
+
 });
 
 export default allReducers;

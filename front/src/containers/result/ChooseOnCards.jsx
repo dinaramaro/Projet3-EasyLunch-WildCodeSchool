@@ -2,43 +2,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  Label,
   CustomInput,
 } from 'reactstrap';
 import './ChooseOnCards.scss';
-import { handleChoose } from '../../actions';
+import { handleChooseOnCards } from '../../actions';
 
 const ChooseOnCards = (props) => {
-  const { handleChoose, text, meals } = props;
+  const { handleChooseOnCards, text, meals } = props;
+  let tempPrice = '';
   return (
     <div className="ChooseOnCards">
       {
-        meals.length > 0
-          ? <Label for={text}>{text}</Label>
-          : ''
-      }
-      {
-        meals.map(item => (
-          <div className="checkbox" key={`${item.id}${item.name}`}>
-            <CustomInput
-              type="checkbox"
-              value={item.name}
-              name="name"
-              id={item.id}
-              label={`${item.name} ${item.price} ${'€'}`}
-              onChange={(e) => {
-                handleChoose(e, item.price, text, item.id);
-              }}
-            />
-          </div>
-        ))
+        meals.map((item) => {
+          if ((text !== 'Entrée du jour') && (text !== 'Plat du jour') && (text !== 'Dessert du jour')) {
+            tempPrice = `${item.price} €`;
+          }
+          return (
+            <div className="checkbox" key={`${item.id}${item.name}`}>
+              <CustomInput
+                type="checkbox"
+                label={`${item.name} ${tempPrice}`}
+                value={item.name}
+                name={text}
+                id={item.id}
+                onChange={(e) => {
+                  handleChooseOnCards(e, item.price, text, item.id, item.plat);
+                }}
+              />
+            </div>
+          )
+        })
       }
     </div>
   );
 };
 
 function mdtp(dispatch) {
-  return bindActionCreators({ handleChoose }, dispatch);
+  return bindActionCreators({ handleChooseOnCards }, dispatch);
 }
 
 export default connect(null, mdtp)(ChooseOnCards);

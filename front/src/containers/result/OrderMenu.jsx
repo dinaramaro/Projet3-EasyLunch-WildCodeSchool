@@ -9,8 +9,9 @@ import classnames from 'classnames';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
-import ChooseOnMenus from './ChooseOnMenus';
 import MyMeal from './MyMeal';
+import DisplayMenus from '../../components/result/DisplayMenus';
+import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 
 
 class OrderMenu extends Component {
@@ -44,7 +45,7 @@ class OrderMenu extends Component {
       cartes,
       error,
       loading,
-      chooseMeals: {
+      chooseByUser: {
         total,
       },
     } = this.props;
@@ -56,16 +57,12 @@ class OrderMenu extends Component {
     let listDayEnt = [];
     let listDayMain = [];
     let listDayDessert = [];
-    let listEntForm = [];
-    let listMainForm = [];
-    let listDessertForm = [];
+    let listForm = [];
     let listMOD = [];
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
-      listEntForm = menus.filter(item => item.plat === 0 && item.mod === 0);
-      listMainForm = menus.filter(item => item.plat === 1 && item.mod === 0);
-      listDessertForm = menus.filter(item => item.plat === 2 && item.mod === 0);
+      listForm = menus.filter(item => item.mod === 0);
     }
 
     if (cartes !== undefined) {
@@ -94,49 +91,49 @@ class OrderMenu extends Component {
         <Nav tabs>
           <NavItem>
             {
-              listMOD.length > 0 && (
+              listForm.length > 0 && (
               <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                Menu du jour
+                { 'Formules' }
+              </NavLink>
+              )}
+          </NavItem>
+          <NavItem>
+            {
+              listMOD.length > 0 && (
+              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                { 'Menu du jour' }
               </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listEnt.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                Entrées
+              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                { 'Entrées' }
               </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMain.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-                Plats
+              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                { 'Plats' }
               </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDessert.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-                Desserts
+              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                { 'Desserts' }
               </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDrink.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                Boissons
-              </NavLink>
-              )}
-          </NavItem>
-          <NavItem>
-            {
-              (listEntForm.length > 0 || listMainForm.length > 0 || listDessertForm.length > 0) && (
               <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-                Formules
+                { 'Boissons' }
               </NavLink>
               )}
           </NavItem>
@@ -147,20 +144,41 @@ class OrderMenu extends Component {
               <Row>
                 <Col>
                   <Card body>
-                    <FormGroup>
-                      <ChooseOnMenus text="Entrées du jour" meals={listDayEnt} />
-                    </FormGroup>
-                    <FormGroup>
-                      <ChooseOnMenus text="Plats du jour" meals={listDayMain} />
-                    </FormGroup>
-                    <FormGroup>
-                      <ChooseOnMenus text="Desserts du jour" meals={listDayDessert} />
-                    </FormGroup>
+                    <DisplayMenus list={listForm} />
                   </Card>
                 </Col>
               </Row>
             </TabPane>
             <TabPane tabId="2">
+              <Row>
+                <Col>
+                  <Card body>
+                    {
+                      listMOD.length > 0 && (
+                        <p>{listMOD[0].menu_name}</p>
+                      )
+                    }
+                    <DisplaySubTitleMenu list={listMOD} />
+                    {
+                      listMOD.length > 0 && (
+                        <div>
+                          <FormGroup>
+                            <ChooseOnCards text="Entrée du jour" meals={listDayEnt} />
+                          </FormGroup>
+                          <FormGroup>
+                            <ChooseOnCards text="Plat du jour" meals={listDayMain} />
+                          </FormGroup>
+                          <FormGroup>
+                            <ChooseOnCards text="Dessert du jour" meals={listDayDessert} />
+                          </FormGroup>
+                        </div>
+                      )
+                    }
+                  </Card>
+                </Col>
+              </Row>
+            </TabPane>
+            <TabPane tabId="3">
               <Row>
                 <Col>
                   <Card body>
@@ -171,7 +189,7 @@ class OrderMenu extends Component {
                 </Col>
               </Row>
             </TabPane>
-            <TabPane tabId="3">
+            <TabPane tabId="4">
               <Row>
                 <Col>
                   <Card body>
@@ -182,7 +200,7 @@ class OrderMenu extends Component {
                 </Col>
               </Row>
             </TabPane>
-            <TabPane tabId="4">
+            <TabPane tabId="5">
               <Row>
                 <Col>
                   <Card body>
@@ -193,29 +211,12 @@ class OrderMenu extends Component {
                 </Col>
               </Row>
             </TabPane>
-            <TabPane tabId="5">
-              <Row>
-                <Col>
-                  <Card body>
-                    <FormGroup>
-                      <ChooseOnCards text="Boisson" meals={listDrink} />
-                    </FormGroup>
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
             <TabPane tabId="6">
               <Row>
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnMenus text="Entrées" meals={listEntForm} />
-                    </FormGroup>
-                    <FormGroup>
-                      <ChooseOnMenus text="Plats" meals={listMainForm} />
-                    </FormGroup>
-                    <FormGroup>
-                      <ChooseOnMenus text="Desserts" meals={listDessertForm} />
+                      <ChooseOnCards text="Boisson" meals={listDrink} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -229,7 +230,7 @@ class OrderMenu extends Component {
           </FormGroup>
           <Row>
             <Col sm={2}>
-              Total :
+              { 'Total :' }
             </Col>
             <Col sm={4}>
               {`${total} €`}
@@ -252,7 +253,7 @@ function mstp(state) {
     cartes: state.cardResto.cartes,
     error: state.cardResto.error,
     loading: state.cardResto.loading,
-    chooseMeals: state.chooseMeals,
+    chooseByUser: state.chooseByUser,
 
   };
 }

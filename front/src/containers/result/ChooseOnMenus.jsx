@@ -6,32 +6,32 @@ import {
   CustomInput,
 } from 'reactstrap';
 import './ChooseOnMenus.scss';
-import { handleChoose } from '../../actions';
+import { handleChooseOnMenus } from '../../actions';
 
 const ChooseOnMenus = (props) => {
-  const { handleChoose, text, meals } = props;
+  const { handleChooseOnMenus, text, meals } = props;
+  console.log(meals);
   return (
     <div className="ChooseOnMenus">
       {
         meals.length > 0
           ? (
             <div>
-              <p>{`${meals[0].menu_name} ${meals[0].menu_price} €`}</p>
-              <Label for={text}>{text}</Label>
+              <Label for={text}>{`${text} : `}</Label>
             </div>)
           : ''
       }
       {
         meals.map(item => (
-          <div className="checkbox" key={`${item.id_plat}${item.meals_name}`}>
+          <div className="radio" key={`${item.id_plat}${item.meals_name}`}>
             <CustomInput
-              type="checkbox"
+              type="radio"
               value={item.meals_name}
-              name="name"
-              id={item.id_plat}
+              name={text}
+              id={`${item.id_plat}${item.id}`}
               label={item.meals_name}
               onChange={(e) => {
-                handleChoose(e, item.menu_price, text, item.id_plat);
+                handleChooseOnMenus(e, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals);
               }}
             />
           </div>
@@ -42,7 +42,7 @@ const ChooseOnMenus = (props) => {
 };
 
 function mdtp(dispatch) {
-  return bindActionCreators({ handleChoose }, dispatch);
+  return bindActionCreators({ handleChooseOnMenus }, dispatch);
 }
 
 export default connect(null, mdtp)(ChooseOnMenus);

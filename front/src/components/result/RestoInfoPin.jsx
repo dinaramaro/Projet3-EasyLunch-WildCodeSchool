@@ -22,7 +22,7 @@ const RestoInfoPin = (props) => {
 
   const { menuResto: { loading, error } } = props;
   if (error) {
-    return <div>Error! {error.message}</div>;
+    return <div>{`Error! ${error.message}`}</div>;
   }
   if (loading) {
     return <div>Loading...</div>;

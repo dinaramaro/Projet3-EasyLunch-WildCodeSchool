@@ -23,6 +23,7 @@ import RestoInfoPin from '../../components/result/RestoInfoPin';
 import UserPin from '../../components/result/UserPin';
 import UserInfo from '../../components/result/UserInfo';
 import DisplayMeals from '../../components/result/DisplayMeals';
+import DisplayTitleMenu from '../../components/result/DisplayTitleMenu';
 import RestoInfos from './RestoInfos';
 
 
@@ -226,13 +227,14 @@ class Mapresult extends Component {
               <Col sm="12">
                 <Card body>
                   <RestoInfos />
+                  <DisplayTitleMenu ent={listEnt} main={listMain} dessert={listDessert} />
                   <DisplayMeals text="Entrée" meals={listEnt} />
                   <DisplayMeals text="Plat" meals={listMain} />
                   <DisplayMeals text="Dessert" meals={listDessert} />
 
                   <CardText>Choisir ce restaurant pour plus de détails...</CardText>
                   <br />
-                  <Link to="/commande1"><Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button></Link>
+                  <Link to="/commande-page1"><Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button></Link>
                 </Card>
               </Col>
             </Row>

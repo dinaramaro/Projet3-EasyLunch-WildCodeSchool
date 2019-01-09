@@ -8,7 +8,7 @@ import { handleChangeOrder } from '../../actions';
 
 
 const FormOrder = (props) => {
-  const { formulaire: { date, hour, nb }, handleChangeOrder } = props;
+  const { formulaire: { date, hour, nb_users }, handleChangeOrder } = props;
   return (
     <div className="OrderOne">
       <p>Commande (1/2)</p>
@@ -27,7 +27,7 @@ const FormOrder = (props) => {
         <FormGroup row>
           <Label for="hour" sm={3}>Heure</Label>
           <Col sm={4}>
-            <Input type="select" name="hour" id="hour" value={hour} onChange={e => handleChangeOrder(e)}>
+            <Input type="select" name="schedule" id="hour" value={hour} onChange={e => handleChangeOrder(e)}>
               <option>Veuillez sélectionner</option>
               <option value="12h00">12h00</option>
               <option value="12h15">12h15</option>
@@ -42,7 +42,7 @@ const FormOrder = (props) => {
         <FormGroup row>
           <Label for="nb" sm={3}>Nombre de personnes</Label>
           <Col sm={4}>
-            <Input type="select" name="nb" id="nb" value={nb} onChange={e => handleChangeOrder(e)}>
+            <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e)}>
               <option>Veuillez sélectionner</option>
               <option value="1">1</option>
               <option value="2">2</option>

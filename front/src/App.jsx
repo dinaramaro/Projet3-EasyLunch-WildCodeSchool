@@ -20,8 +20,8 @@ import LoginAdmin from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
 import AdminConcept from './components/admin/concept/AdminConcept';
 import Result from './components/result/Result';
-import OrderOne from './components/result/OrderOne';
-import OrderTwo from './containers/result/OrderTwo';
+import OrderPageOne from './components/result/OrderPageOne';
+import OrderPageTwo from './containers/result/OrderPageTwo';
 
 
 const App = () => (
@@ -46,8 +46,8 @@ const App = () => (
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/result" component={Result} />
-        <Route path="/commande1" component={OrderOne} />
-        <Route path="/commande2" component={OrderTwo} />
+        <Route path="/commande-page1" component={OrderPageOne} />
+        <Route path="/commande-page2" component={OrderPageTwo} />
       </Switch>
     </div>
     <Footer />

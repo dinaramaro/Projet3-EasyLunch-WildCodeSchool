@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 
 const InfoGe = (props) => {
-  const { formulaire: { date, hour, nb } } = props;
+  const { formulaire: { date, schedule, nb_users } } = props;
 
   return (
     <div className="InfoGe">
       <p>Informations générales</p>
-      <p>Date : {date}</p>
-      <p>Heure : {hour}</p>
-      <p>Nombre de personnes : {nb} </p>
+      <p>{`Date : ${date}`}</p>
+      <p>{`Heure : ${schedule}`}</p>
+      <p>{`Nombre de personnes : ${nb_users}`}</p>
     </div>
   );
 };

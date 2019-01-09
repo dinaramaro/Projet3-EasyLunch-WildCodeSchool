@@ -5,7 +5,7 @@ const DisplayMeals = ({ text, meals }) => (
   <div>
     {
       meals.length > 0
-        ? <p>{text}</p>
+        ? <p>{`${text} : `}</p>
         : ''
     }
     {

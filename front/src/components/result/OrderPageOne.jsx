@@ -8,7 +8,7 @@ import InfoGe from '../../containers/result/InfoGe';
 import FormOrder from '../../containers/result/FormOrder';
 
 
-const OrderOne = () => (
+const OrderPageOne = () => (
   <Container fluid className="OrderOne">
     <Row>
       <Col sm={4}>
@@ -17,10 +17,10 @@ const OrderOne = () => (
       </Col>
       <Col sm={8}>
         <FormOrder />
-        <Link to="/commande2"><Button>Continuer</Button></Link>
+        <Link to="/commande-page2"><Button>Continuer</Button></Link>
       </Col>
     </Row>
   </Container>
 );
 
-export default OrderOne;
+export default OrderPageOne;
