@@ -9,6 +9,7 @@ import {
   Input,
   Container,
 } from 'reactstrap';
+import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -47,6 +48,7 @@ class Login extends Component {
       .then((data) => {
         if (data.user) {
           setUser(data.user, data.token);
+          Cookies.set('token', data.token);
           const { from } = state || { from: { pathname: '/mon-compte' } };
           history.push(from.pathname);
         }

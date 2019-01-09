@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 class MyAccount extends Component {
   constructor(props) {
@@ -26,6 +28,8 @@ class MyAccount extends Component {
         { phone }
         date:
         { date }
+
+        <Link to="/connexion">conn</Link>
       </div>
     );
   }
