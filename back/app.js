@@ -17,6 +17,7 @@ import search from './routes/search';
 import restaurant from './routes/restaurant';
 import signUp from './routes/log/signUp';
 import signIn from './routes/log/signIn';
+import checkConnected from './routes/log/checkConnected';
 
 const app = express();
 const debug = Debug('back:app');
@@ -44,6 +45,7 @@ app.use('/api/admin/team', team);
 app.use('/api/admin/concept', concept);
 app.use('/api/signup', signUp);
 app.use('/api/signin', signIn);
+app.use('/api/checked', checkConnected);
 
 
 // Uncomment on pre-prod/prod

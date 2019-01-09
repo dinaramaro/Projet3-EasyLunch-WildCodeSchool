@@ -51,7 +51,21 @@ router.post('/', (req, res) => {
         .json({ message: "Erreur de Mot de Passe ou d'adresse mail" });
     }
     const { password, ...user } = data;
-    const token = jwt.sign(user, secret);
+    const token = jwt.sign(user, secret, {expiresIn: });
+    connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error) => {
+      if (error) {
+        res.status(500).send(`${err}`);
+      } else {
+        res.status(200);
+      }
+    });
+    connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error) => {
+      if (error) {
+        res.status(500).send(`${err} dans le login`);
+      } else {
+        res.status(200);
+      }
+    });
     return res.json({ user, token });
   })(req, res);
 });

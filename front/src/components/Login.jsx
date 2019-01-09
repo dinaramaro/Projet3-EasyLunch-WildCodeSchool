@@ -9,6 +9,7 @@ import {
   Input,
   Container,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -88,6 +89,7 @@ class Login extends Component {
             </Row>
             <Button className="all-btn" type="submit">Connexion</Button>
           </Form>
+          <Link to="/mon-compte">compte</Link>
         </Container>
       </div>
     );
