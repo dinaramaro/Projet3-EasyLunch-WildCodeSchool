@@ -27,10 +27,15 @@ const chooseByUser = (state = initialState, action) => {
         tempTab = [...resultFilter, tempObj];
       }
       tempTabSorted = tempTab.sort((a, b) => a.plat - b.plat);
+      const totalFixed = action.menuprice;
+      console.log('totalFixed', totalFixed);
+
+      const totalNumber = parseInt(totalFixed, 10);
+      console.log('totalNumber', totalNumber);
       newState = {
         ...state,
         tabs: tempTabSorted,
-        total: action.menuprice,
+        total: totalNumber,
       };
       return newState;
     }
@@ -55,10 +60,11 @@ const chooseByUser = (state = initialState, action) => {
         tempTotal -= action.mealprice;
       }
       const tempTotalRound = Math.round(tempTotal * 100) / 100;
+      const totalNumber = parseInt(tempTotalRound, 10);
       newState = {
         ...state,
         tabs: tempTabSorted,
-        total: tempTotalRound,
+        total: totalNumber,
       };
       return newState;
     }

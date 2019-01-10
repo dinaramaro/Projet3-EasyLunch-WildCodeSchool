@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {
   Nav, NavItem, NavLink, Card, Col, Row, TabPane, TabContent, Form, FormGroup, Input, Button,
 } from 'reactstrap';
+import StripeCheckout from 'react-stripe-checkout';
 import classnames from 'classnames';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
@@ -21,6 +22,7 @@ class OrderMenu extends Component {
     this.state = {
       activeTab: '1',
     };
+    this.onToken = this.onToken.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,16 @@ class OrderMenu extends Component {
       cardResto(`${varServeur}cartes/${restoInfos.id}`);
     }
   }
+
+
+  onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    }).then((data) => {
+      console.log('data', data);
+    });
+  };
 
   toggle(tab) {
     const { activeTab } = this.state;
@@ -51,7 +63,9 @@ class OrderMenu extends Component {
       },
       handleChangeSpecial,
     } = this.props;
-
+    const totalSend = total * 100 / 100;
+    console.log('total', totalSend);
+    console.log('total100', Math.round(totalSend * 100));
     let listEnt = [];
     let listMain = [];
     let listDessert = [];
@@ -238,7 +252,14 @@ class OrderMenu extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Button type="submit">Payer</Button>
+              <StripeCheckout
+                token={this.onToken}
+                stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+                amount={Math.round(totalSend * 100)}
+                currency="EUR"
+              >
+                <Button type="button">Payer</Button>
+              </StripeCheckout>
             </Col>
           </Row>
         </Form>
@@ -256,7 +277,6 @@ function mstp(state) {
     error: state.cardResto.error,
     loading: state.cardResto.loading,
     chooseByUser: state.chooseByUser,
-    sendOrder: state.sendOrder,
 
   };
 }

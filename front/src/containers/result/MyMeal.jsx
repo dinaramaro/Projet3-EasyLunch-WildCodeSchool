@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 const MyMeal = (props) => {
   const { chooseByUser: { tabs } } = props;
-  console.log('tabs', tabs);
   let subtitle = '';
   if (tabs[0] !== undefined) {
     switch (tabs[0].nbmeals) {
