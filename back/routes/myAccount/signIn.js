@@ -56,14 +56,13 @@ router.post('/', (req, res) => {
       if (error) {
         res.status(500).send(`${err}`);
       } else {
-        res.status(200);
-      }
-    });
-    connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error) => {
-      if (error) {
-        res.status(500).send(`${err} dans le login`);
-      } else {
-        res.status(200);
+        connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error) => {
+          if (error) {
+            res.status(500).send(`${err} dans le login`);
+          } else {
+            res.status(200);
+          }
+        });
       }
     });
     return res.json({ user, token });

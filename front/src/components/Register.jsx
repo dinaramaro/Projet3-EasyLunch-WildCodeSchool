@@ -4,6 +4,7 @@ import {
   Container, Input, Button, Form,
 } from 'reactstrap';
 import { withRouter } from 'react-router';
+import { varServeur } from '../constants';
 
 class Register extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch('https://localhost:4000/api/signup', {
+    fetch(`${varServeur}signup`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

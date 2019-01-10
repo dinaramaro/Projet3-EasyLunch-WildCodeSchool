@@ -15,7 +15,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser } from '../actions/logIn';
-
+import { varServeur } from '../constants';
 
 class Login extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const { setUser, history, location: { state } } = this.props;
-    fetch('https://localhost:4000/api/signin', {
+    fetch(`${varServeur}signin`, {
       method: 'POST',
       headers: new Headers({
         'Content-Type': 'application/json',

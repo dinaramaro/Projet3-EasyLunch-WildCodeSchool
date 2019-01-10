@@ -77,8 +77,8 @@ class NavBar extends Component {
                         Mon Compte
                       </DropdownToggle>
                       <DropdownMenu className="drop">
-                        <DropdownItem className="drop" href="/mon-compte" active>Mes Informations</DropdownItem>
-                        <DropdownItem className="drop" href="/mon-compte/historique" active>Historique de Commande</DropdownItem>
+                        <DropdownItem className="drop" tag={Link} to="/mon-compte" active>Mes Informations</DropdownItem>
+                        <DropdownItem className="drop" tag={Link} to="/mon-compte/historique" active>Historique de Commande</DropdownItem>
                         <DropdownItem onClick={this.logout} tag="a" className="drop" active>Déconnexion</DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
