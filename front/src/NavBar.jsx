@@ -18,6 +18,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from './actions/logIn';
+import { mailAdmin } from './constants';
 
 class NavBar extends Component {
   constructor(props) {
@@ -56,19 +57,19 @@ class NavBar extends Component {
             </Link>
           </NavbarBrand>
           <NavItem tag={Link} to="/components/" className="join d-md-none d-lg-none">
-              Je participe
+            Je participe
           </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem tag={Link} to="/components/Jeparticipe">
-                  Je participe
+                Je participe
               </NavItem>
               {
                 (_.isEmpty(user))
                   ? (
                     <NavItem tag={Link} to="/connexion">
-                    Connexion
+                      Connexion
                     </NavItem>
                   )
                   : (
@@ -79,21 +80,20 @@ class NavBar extends Component {
                       <DropdownMenu className="drop">
                         <DropdownItem className="drop" tag={Link} to="/mon-compte" active>Mes Informations</DropdownItem>
                         <DropdownItem className="drop" tag={Link} to="/mon-compte/historique" active>Historique de Commande</DropdownItem>
-                        <DropdownItem onClick={this.logout} tag="a" className="drop" active>Déconnexion</DropdownItem>
                         {
-                          (user === 'easylunch@easylunch.com')
-                          ? (
-                            <div></div>
-                          )
-                          : (
-                            
-                          )
+                          (user.mail === mailAdmin)
+                            ? (
+                              <DropdownItem className="drop" tag={Link} to="/admin/admin-cgv" active>Administrateur</DropdownItem>
+                            )
+                            : (
+                              <div />
+                            )
                         }
+                        <DropdownItem onClick={this.logout} tag="a" className="drop" active>Déconnexion</DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   )
               }
-
               <NavItem>
                 <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
                   Espace restaurateurs
