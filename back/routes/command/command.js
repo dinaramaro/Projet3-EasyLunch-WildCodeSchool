@@ -23,23 +23,21 @@ router.post('/', (req, res) => {
             if (err3) {
               res.status(500).send(`Erreur public booking: ${err3}`);
             } else {
-              // eslint-disable-next-line camelcase
-              const booking_id = results3.insertId;
+              const bookingId = results3.insertId;
               const { tableCommand } = req.body;
               const newCommand = {
                 ...tableCommand,
-                booking_id
+                booking_id: bookingId,
               };
               connection.query('INSERT INTO public_command SET ?', newCommand, (err4, results4) => {
                 if (err4) {
                   res.status(500).send(`Erreur public command: ${err4}`);
                 } else {
-                  // eslint-disable-next-line camelcase
-                  const command_id = results4.insertId;
+                  const commandId = results4.insertId;
                   const { tablePayment } = req.body;
                   const newPayment = {
                     ...tablePayment,
-                    command_id
+                    command_id: commandId,
                   };
                   connection.query('INSERT INTO public_payment SET ?', newPayment, (err5) => {
                     if (err5) {
