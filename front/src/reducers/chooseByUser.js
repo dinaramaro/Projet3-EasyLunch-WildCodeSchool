@@ -38,7 +38,6 @@ const chooseByUser = (state = initialState, action) => {
       const tempObj = {};
       const resultFind = tempTab.find(item => item[item.text] === action.e.target.value);
       let tempTotal = state.total;
-      let tempTotalRound = 0;
       if (resultFind === undefined) {
         tempObj.id = action.id;
         tempObj[action.e.target.name] = action.e.target.value;
@@ -49,19 +48,13 @@ const chooseByUser = (state = initialState, action) => {
         tempObj.nbmeals = '';
         tempTab = [...state.tabs, tempObj];
         tempTabSorted = tempTab.sort((a, b) => a.plat - b.plat);
-        tempTotal = state.total + action.price;
-        tempTotalRound = Math.round(tempTotal * 100) / 100;
-        newState = {
-          ...state,
-          tabs: tempTabSorted,
-          total: tempTotalRound,
-        };
+        tempTotal += action.mealprice;
       } else {
         const resultFilter = tempTab.filter(item => item[item.text] !== action.e.target.value);
         tempTabSorted = resultFilter.sort((a, b) => a.plat - b.plat);
-        tempTotal -= action.price;
-        tempTotalRound = Math.round(tempTotal * 100) / 100;
+        tempTotal -= action.mealprice;
       }
+      const tempTotalRound = Math.round(tempTotal * 100) / 100;
       newState = {
         ...state,
         tabs: tempTabSorted,

@@ -8,7 +8,7 @@ import { handleChangeOrder } from '../../actions';
 
 
 const FormOrder = (props) => {
-  const { formulaire: { date, hour, nb_users }, handleChangeOrder } = props;
+  const { formulaire: { date, schedule, nb_users }, handleChangeOrder, menuResto: { resto: { restoInfos }} } = props;
   return (
     <div className="OrderOne">
       <p>Commande (1/2)</p>
@@ -18,8 +18,7 @@ const FormOrder = (props) => {
         <FormGroup row>
           <Label for="date" sm={3}>Date</Label>
           <Col sm={4}>
-            <Input type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e)}>
-              <option>Veuillez sélectionner</option>
+            <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e, restoInfos.id)}>
               <option value="Aujourd'hui">Aujourd'hui</option>
             </Input>
           </Col>
@@ -27,7 +26,7 @@ const FormOrder = (props) => {
         <FormGroup row>
           <Label for="hour" sm={3}>Heure</Label>
           <Col sm={4}>
-            <Input type="select" name="schedule" id="hour" value={hour} onChange={e => handleChangeOrder(e)}>
+            <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e, restoInfos.id)}>
               <option>Veuillez sélectionner</option>
               <option value="12h00">12h00</option>
               <option value="12h15">12h15</option>
@@ -42,7 +41,7 @@ const FormOrder = (props) => {
         <FormGroup row>
           <Label for="nb" sm={3}>Nombre de personnes</Label>
           <Col sm={4}>
-            <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e)}>
+            <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e, restoInfos.id)}>
               <option>Veuillez sélectionner</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -62,6 +61,7 @@ const FormOrder = (props) => {
 function mstp(state) {
   return {
     formulaire: state.formOrder.formulaire,
+    menuResto: state.menuResto,
   };
 }
 

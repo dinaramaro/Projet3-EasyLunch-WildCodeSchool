@@ -12,6 +12,7 @@ import ChooseOnCards from './ChooseOnCards';
 import MyMeal from './MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
+import { handleChangeSpecial } from '../../actions';
 
 
 class OrderMenu extends Component {
@@ -48,6 +49,7 @@ class OrderMenu extends Component {
       chooseByUser: {
         total,
       },
+      handleChangeSpecial,
     } = this.props;
 
     let listEnt = [];
@@ -226,7 +228,7 @@ class OrderMenu extends Component {
           <MyMeal />
           <FormGroup>
             <p>Instructions spéciales</p>
-            <Input type="textarea" name="text" />
+            <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e)} />
           </FormGroup>
           <Row>
             <Col sm={2}>
@@ -254,6 +256,7 @@ function mstp(state) {
     error: state.cardResto.error,
     loading: state.cardResto.loading,
     chooseByUser: state.chooseByUser,
+    sendOrder: state.sendOrder,
 
   };
 }
@@ -261,6 +264,7 @@ function mstp(state) {
 function mdtp(dispatch) {
   return bindActionCreators({
     cardResto,
+    handleChangeSpecial,
   },
   dispatch);
 }

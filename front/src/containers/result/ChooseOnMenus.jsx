@@ -10,7 +10,6 @@ import { handleChooseOnMenus } from '../../actions';
 
 const ChooseOnMenus = (props) => {
   const { handleChooseOnMenus, text, meals } = props;
-  console.log(meals);
   return (
     <div className="ChooseOnMenus">
       {

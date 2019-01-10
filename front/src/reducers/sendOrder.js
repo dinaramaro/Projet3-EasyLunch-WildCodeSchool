@@ -1,6 +1,7 @@
 const initialState = {
   sendOrder: {},
   tabs: [],
+  total: 0,
 };
 
 const formOrder = (state = initialState, action) => {
@@ -8,13 +9,13 @@ const formOrder = (state = initialState, action) => {
   let tempTab = [...state.tabs];
   switch (action.type) {
     case 'CHANGEORDER': {
-      const tempFormChange = { ...state.sendOrder.tableBooking };
-      tempFormChange[action.e.target.name] = action.e.target.value;
+      const tempBooking = { ...state.sendOrder.tableBooking };
+      tempBooking[action.e.target.name] = action.e.target.value;
       const tableBooking = {};
       tableBooking.master_user_id = '';
-      tableBooking.nb_users = tempFormChange.nb_users;
-      tableBooking.schedule = tempFormChange.schedule;
-      tableBooking.code = '';
+      tableBooking.nb_users = tempBooking.nb_users;
+      tableBooking.schedule = tempBooking.schedule;
+      tableBooking.restaurant_id = action.idresto;
       const tempTable = { tableBooking };
       newState = {
         ...state,
@@ -22,6 +23,21 @@ const formOrder = (state = initialState, action) => {
       };
       return newState;
     }
+    case 'CHANGESPECIAL': {
+      const tempFormChange = { ...state.sendOrder };
+      const tempBooking = tempFormChange.tableBooking;
+      const tempCommand = tempFormChange.tableCommand;
+      tempCommand[action.e.target.name] = action.e.target.value;
+      const tableCommand = tempCommand;
+      const tableBooking = tempBooking;
+      const tempTable = { tableBooking, tableCommand };
+      newState = {
+        ...state,
+        sendOrder: tempTable,
+      };
+      return newState;
+    }
+
     case 'CHOOSEONMENUS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
@@ -52,21 +68,68 @@ const formOrder = (state = initialState, action) => {
       tableCommand.user_id = '';
       tableCommand.price = action.menuprice;
       const tempMenu = {};
-      const tempMealsPrices = tempTab.map(item => item.mealprice);
+      const tempMealsPrices = tempTab.filter(item => item.mealprice > 0).map(item => item.mealprice);
       tempMenu[action.idmenu] = tempMealsPrices;
       tableCommand.menu = JSON.stringify(tempMenu);
 
-      let tableBooking = [];
-      tableBooking = tempBooking;
+      const tableBooking = tempBooking;
       const tempUnion = { tableBooking, tableCommand };
       newState = {
         ...state,
         sendOrder: tempUnion,
         tabs: tempTab,
+        total: action.mealprice,
       };
-      console.log('newState', newState);
       return newState;
     }
+    case 'CHOOSEONCARDS': {
+      const tempObj = {};
+      tempObj.text = action.text;
+      tempObj.idmeal = action.idmeal;
+      tempObj.mealprice = 0;
+      let tableCommand = {};   
+      tableCommand.user_id = '';
+
+      const tempFormChange = { ...state.sendOrder };
+      const tempBooking = tempFormChange.tableBooking;
+      const tempCommand = tempFormChange.tableCommand;
+      let tempTotal = tempCommand.price;
+
+      if (tempCommand !== undefined) {
+        let tempTabMeal = tempCommand.meal_id;
+        const resultFind = tempTab.find(item => item.idmeal === action.idmeal);
+        if (resultFind === undefined) {
+          tempTab = [...tempTab, tempObj];
+          tempTabMeal.push(action.idmeal);
+          tempTotal += action.mealprice;
+        } else {
+          const resultFilter = tempTab.filter(item => item.idmeal !== action.idmeal);
+          tempTab = [...resultFilter];
+          const resultFilterMeal = tempTab.map(item => item.idmeal);
+          tempTabMeal = [...resultFilterMeal];
+          tempTotal -= action.mealprice;
+        }
+        tempCommand.meal_id = tempTabMeal;
+        tableCommand = tempCommand;
+      } else {
+        tempTotal += action.mealprice;
+        tableCommand.meal_id = [action.idmeal];
+        tempTab = [tempObj];
+      }
+      const tempTotalRound = Math.round(tempTotal * 100) / 100; 
+      tempCommand.price = tempTotalRound;
+      const tableBooking = tempBooking;
+      const tempUnion = { tableBooking, tableCommand };
+            
+      newState = {
+        ...state,
+        sendOrder: tempUnion,
+        tabs: tempTab,
+        total: tempTotalRound,
+      };
+      return newState;
+    }
+
     default: {
       return state;
     }

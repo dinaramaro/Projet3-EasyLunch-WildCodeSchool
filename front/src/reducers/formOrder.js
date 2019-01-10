@@ -1,6 +1,6 @@
 const initialState = {
   formulaire: {
-    date: '',
+    date: "Aujourd'hui",
     schedule: '',
     nb_users: '',
   },
@@ -16,7 +16,7 @@ const formOrder = (state = initialState, action) => {
         ...state,
         formulaire: tempFormChange,
       };
-      return newState;
+      return newState;  
     }
     default: {
       return state;
