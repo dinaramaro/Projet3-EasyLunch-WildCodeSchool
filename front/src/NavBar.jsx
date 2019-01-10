@@ -80,6 +80,15 @@ class NavBar extends Component {
                         <DropdownItem className="drop" tag={Link} to="/mon-compte" active>Mes Informations</DropdownItem>
                         <DropdownItem className="drop" tag={Link} to="/mon-compte/historique" active>Historique de Commande</DropdownItem>
                         <DropdownItem onClick={this.logout} tag="a" className="drop" active>Déconnexion</DropdownItem>
+                        {
+                          (user === 'easylunch@easylunch.com')
+                          ? (
+                            <div></div>
+                          )
+                          : (
+                            
+                          )
+                        }
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   )
