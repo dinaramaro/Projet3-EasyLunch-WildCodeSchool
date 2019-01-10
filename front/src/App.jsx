@@ -24,6 +24,7 @@ import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
+import AdminContactRestaurant from './components/admin/contactRestaurant/AdminContactRestaurant';
 
 const App = () => (
   <div className="App">
@@ -49,6 +50,7 @@ const App = () => (
         <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
         <Route path="/admin/ajout-faq" component={AjoutFAQ} />
         <Route path="/admin/admin-contact" component={AdminContact} />
+        <Route path="/admin/admin-restaurant" component={AdminContactRestaurant} />
         <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
       </Switch>
