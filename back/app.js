@@ -19,7 +19,6 @@ import signUp from './routes/log/signUp';
 import signIn from './routes/log/signIn';
 import checkConnected from './routes/log/checkConnected';
 import command from './routes/command/command';
-import createCode from './routes/command/createCode';
 
 const app = express();
 const debug = Debug('back:app');
@@ -49,7 +48,6 @@ app.use('/api/signup', signUp);
 app.use('/api/signin', signIn);
 app.use('/api/checked', checkConnected);
 app.use('/api/command', command);
-app.use('/api/createcode', createCode);
 
 
 // Uncomment on pre-prod/prod
