@@ -15,6 +15,7 @@ import team from './routes/admin/team';
 import concept from './routes/admin/concept';
 import search from './routes/search';
 import restaurant from './routes/restaurant';
+import contact from './routes/admin/contact';
 
 const app = express();
 const debug = Debug('back:app');
@@ -40,6 +41,7 @@ app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
 app.use('/api/admin/concept', concept);
+app.use('/api/admin/contact', contact);
 
 
 // Uncomment on pre-prod/prod

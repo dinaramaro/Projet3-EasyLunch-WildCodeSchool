@@ -25,6 +25,9 @@ const AdminMenu = () => (
       <NavItem className="sidenav" tag={Link} to="/admin/admin-faq">
         FAQ
       </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-contact">
+        Contact
+      </NavItem>
     </Nav>
   </div>
 );
