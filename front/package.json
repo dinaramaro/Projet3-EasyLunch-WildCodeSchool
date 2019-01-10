@@ -37,7 +37,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf /var/www/html/easylunch/* && mv ./build/* /var/www/html/easylunch"
+    "build-preprod": "npm run build && rm ./build/static/**/*.map && rm -rf ../back/public/* && mv ./build/* ../back/public/"
   },
   "eslintConfig": {
     "extends": "airbnb",
