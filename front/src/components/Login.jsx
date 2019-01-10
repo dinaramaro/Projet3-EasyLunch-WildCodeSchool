@@ -49,7 +49,7 @@ class Login extends Component {
       .then((data) => {
         if (data.user) {
           setUser(data.user, data.token);
-          Cookies.set('token', data.token);
+          Cookies.set('token', data.token, { expires: 1 });
           const { from } = state || { from: { pathname: '/mon-compte' } };
           history.push(from.pathname);
         }
@@ -60,7 +60,7 @@ class Login extends Component {
     const { mail, password } = this.state;
     return (
       <div className="Login">
-        <h1 className="title">Login Administrateur</h1>
+        <h1 className="title">Connexion</h1>
         <Container>
           <Form onSubmit={this.handleSubmit}>
             <Row>
@@ -89,7 +89,7 @@ class Login extends Component {
             </Row>
             <Button className="all-btn" type="submit">Connexion</Button>
           </Form>
-          <Link to="/mon-compte">compte</Link>
+          <Button className="all-btn" tag={Link} to="/inscription">Créer un compte</Button>
         </Container>
       </div>
     );

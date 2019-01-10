@@ -43,7 +43,7 @@ class Register extends Component {
     } = this.state;
     return (
       <div className="Register">
-        <h1 className="title">Inscription pour les gros batards</h1>
+        <h1 className="title">Inscription</h1>
         <Container>
           <Form onSubmit={this.handleSubmit}>
             <Input
