@@ -117,7 +117,7 @@ class MyAccount extends Component {
               <Button className="all-btn" type="submit">Modifier</Button>
             </Row>
           </Form>
-              <p>{flash}</p>
+          <p>{flash}</p>
         </Container>
       </div>
     );
