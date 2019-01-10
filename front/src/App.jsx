@@ -22,6 +22,7 @@ import AdminConcept from './components/admin/concept/AdminConcept';
 import AdminFAQ from './components/admin/FAQ/AdminFAQ';
 import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
+import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
@@ -51,6 +52,8 @@ const App = () => (
         <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
         <Route path="/admin/ajout-faq" component={AjoutFAQ} />
         <Route path="/connexion" component={Login} />
+        <Route path="/admin/admin-contact" component={AdminContact} />
+        <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
