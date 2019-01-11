@@ -5,8 +5,9 @@
       height: 38px;
     }
 
-    .nav-dropdown {
-      background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+    .drop {
+      background-color: #ffa300;
+      cursor: pointer;
     }
 
     .join {
@@ -18,6 +19,8 @@
         }
       }
     }
+
+    
     a {
       color: white;
       padding: 0.07rem 0.5rem 0.5rem 0.5rem;
@@ -26,9 +29,8 @@
         color: black;
       }
     }
-    .dropdown-item:hover {
-      background-color: transparent;
-      cursor: pointer;
-    }
+   .dropdown-toggle:hover {
+     cursor: pointer
+   }
   }
 }

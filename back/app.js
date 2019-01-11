@@ -7,13 +7,21 @@ import path from 'path';
 import cors from 'cors';
 // import favicon from 'serve-favicon';
 
+import FAQ from './routes/admin/faq';
 import CGV from './routes/admin/cgv';
 import politic from './routes/admin/politic';
 import partners from './routes/admin/partners';
 import team from './routes/admin/team';
+import concept from './routes/admin/concept';
 import search from './routes/search';
 import restaurant from './routes/restaurant';
 import cartes from './routes/cartes';
+import signUp from './routes/myAccount/signUp';
+import signIn from './routes/myAccount/signIn';
+import checkConnected from './routes/myAccount/checkConnected';
+import command from './routes/command/command';
+import changePassword from './routes/myAccount/changePassword';
+import contact from './routes/admin/contact';
 
 const app = express();
 const debug = Debug('back:app');
@@ -33,11 +41,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/restaurant', restaurant);
 app.use('/api/admin/cgv', CGV);
+app.use('/api/admin/faq', FAQ);
 app.use('/api/admin/politic', politic);
 app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
 app.use('/api/cartes', cartes);
+app.use('/api/admin/concept', concept);
+app.use('/api/signup', signUp);
+app.use('/api/signin', signIn);
+app.use('/api/checked', checkConnected);
+app.use('/api/command', command);
+app.use('/api/changepassword', changePassword);
+app.use('/api/admin/contact', contact);
+
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

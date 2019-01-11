@@ -16,6 +16,7 @@ import {
 import AdminTeamEdit from './AdminTeamEdit';
 import { varServeur } from '../../../constants';
 import AdminTeamNew from './AdminTeamNew';
+import AdminMenu from '../AdminMenu';
 
 class AdminTeam extends Component {
   constructor(props) {
@@ -81,6 +82,7 @@ class AdminTeam extends Component {
 
     return (
       <div className="AdminTeam">
+        <AdminMenu />
         <h2 className="title">Donnée De L&#39;Equipe</h2>
         <Container>
           <Row>

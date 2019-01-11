@@ -6,6 +6,7 @@ import cardResto from './cardResto';
 import chooseByUser from './chooseByUser';
 import sendOrder from './sendOrder';
 
+import log from './log';
 
 const allReducers = combineReducers({
   searchResults,
@@ -14,7 +15,7 @@ const allReducers = combineReducers({
   cardResto,
   chooseByUser,
   sendOrder,
-
+  log,
 });
 
 export default allReducers;

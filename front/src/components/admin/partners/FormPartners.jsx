@@ -41,6 +41,8 @@ class FormPartner extends Component {
     const { name, picture, link } = this.state;
     return (
       <Container fluid className="FormPartners">
+        <h2>Ajouter un partenaire</h2>
+        <br />
         <Form className="form" onSubmit={this.postPartner}>
           <Row>
             <Col lg="4" md="4" xs="4">

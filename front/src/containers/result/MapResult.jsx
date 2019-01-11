@@ -201,8 +201,8 @@ class Mapresult extends Component {
                 <MapGL
                   className="Mapresult"
                   {...viewport}
-                  width="100%"
-                  height="650px"
+                  width="38vw"
+                  height="35vw"
                   mapStyle="mapbox://styles/mapbox/light-v9"
                   onViewportChange={this.updateViewport}
                   mapboxApiAccessToken={TOKEN}

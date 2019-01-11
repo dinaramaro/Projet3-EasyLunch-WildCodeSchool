@@ -10,6 +10,7 @@ import {
 } from 'reactstrap';
 import FormPartners from './FormPartners';
 import { varServeur } from '../../../constants';
+import AdminMenu from '../AdminMenu';
 
 
 class AdminPartners extends Component {
@@ -58,6 +59,7 @@ class AdminPartners extends Component {
     let count = 0;
     return (
       <div className="AdminPartners">
+        <AdminMenu />
         <h1 className="title">Partenaires</h1>
         <Container fluid>
           <Table bordered>
