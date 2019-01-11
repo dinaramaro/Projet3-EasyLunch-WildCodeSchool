@@ -25,7 +25,7 @@ class Politic extends Component {
       <div className="Politic">
         <h1 className="title">Politique de confidentialité</h1>
         <Container>
-          <div dangerouslySetInnerHTML={{ __html: politic }} />
+          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: politic }} />
         </Container>
       </div>
     );

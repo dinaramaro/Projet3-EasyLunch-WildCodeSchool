@@ -24,7 +24,6 @@ class AdminContactRestaurant extends Component {
   }
 
   changeContact(value) {
-    console.log(value);
     this.setState({
       text: value,
     });
@@ -50,6 +49,21 @@ class AdminContactRestaurant extends Component {
 
   render() {
     const { text } = this.state;
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
+
     return (
       <div>
         <AdminMenu />
@@ -62,9 +76,12 @@ class AdminContactRestaurant extends Component {
               name="contact-restaurant"
               placeholder="Vous êtes restaurateur"
               value={text}
+              modules={{ toolbar: toolbarOptions }}
+              formats={formats}
               onChange={this.changeContact}
+              className="input-contactRestaurant"
             />
-            <Button onClick={this.updateContact} color="warning" className="btn-submit all-btn">ENVOYER</Button>
+            <Button onClick={this.updateContact} className="btn-submit all-btn">ENVOYER</Button>
           </p>
         </Container>
       </div>

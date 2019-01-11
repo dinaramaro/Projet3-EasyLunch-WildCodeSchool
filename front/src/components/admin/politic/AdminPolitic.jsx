@@ -45,6 +45,20 @@ class AdminPolitic extends Component {
   }
 
   render() {
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
     const { politic } = this.state;
     return (
       <div className="AdminPolitic">
@@ -60,6 +74,8 @@ class AdminPolitic extends Component {
                 name="politic"
                 placeholder="Politique de Confidentialité"
                 value={politic}
+                modules={{ toolbar: toolbarOptions }}
+                formats={formats}
                 onChange={this.changePolitic}
                 className="input-politic"
               />

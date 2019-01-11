@@ -50,6 +50,21 @@ class AdminContact extends Component {
 
   render() {
     const { contactText } = this.state;
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
+
     return (
       <div className="Contact">
         <AdminMenu />
@@ -63,6 +78,8 @@ class AdminContact extends Component {
                 name="contact"
                 placeholder="Nous contacter"
                 value={contactText}
+                modules={{ toolbar: toolbarOptions }}
+                formats={formats}
                 onChange={this.changeContact}
               />
               <Button onClick={this.updateContact} color="warning" className="btn-submit all-btn">ENVOYER</Button>

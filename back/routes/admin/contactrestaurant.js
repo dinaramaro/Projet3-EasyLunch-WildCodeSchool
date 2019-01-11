@@ -14,4 +14,15 @@ router.get('/', (req, res) => {
   });
 });
 
+router.put('/', (req, res) => {
+  const { text } = req.body;
+  connection.query('UPDATE admin_contact_restaurant_text SET text= ? WHERE id = 1', text, (err) => {
+    if (err) {
+      res.status(500).send('Erreur');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 export default router;
