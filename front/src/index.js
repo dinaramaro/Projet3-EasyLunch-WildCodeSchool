@@ -13,18 +13,21 @@ import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import 'font-awesome/css/font-awesome.min.css';
 import 'react-quill/dist/quill.snow.css';
+import CheckToken from './CheckToken';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <ScrollToTop>
-        <App />
-      </ScrollToTop>
-    </BrowserRouter>
+    <CheckToken>
+      <BrowserRouter>
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
+      </BrowserRouter>
+    </CheckToken>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

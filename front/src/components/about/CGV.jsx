@@ -25,7 +25,7 @@ class CGV extends Component {
       <div className="CGV">
         <h1 className="title">Conditions générales de Service</h1>
         <Container>
-          <div dangerouslySetInnerHTML={{ __html: cgv }} />
+          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: cgv }} />
         </Container>
       </div>
     );

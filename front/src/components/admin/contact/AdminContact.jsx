@@ -1,50 +1,55 @@
+
 import React, { Component } from 'react';
 import {
-  Container, Form, FormGroup, Button,
+  Container,
+  Button,
+  Form,
+  FormGroup,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../../constants';
-import './AdminPolitic.scss';
+import './AdminContact.scss';
 import AdminMenu from '../AdminMenu';
 
-class AdminPolitic extends Component {
+class AdminContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      politic: '',
+      contactText: '',
     };
-    this.changePolitic = this.changePolitic.bind(this);
-    this.updatePolitic = this.updatePolitic.bind(this);
+    this.changeContact = this.changeContact.bind(this);
+    this.updateContact = this.updateContact.bind(this);
   }
 
   componentDidMount() {
-    fetch(`${varServeur}admin/politic`)
+    fetch(`${varServeur}admin/contact`)
       .then(results => results.json())
-      .then((politic) => {
-        this.setState({ politic });
-      });
+      .then(data => this.setState({ contactText: data }));
   }
 
-  changePolitic(value) {
-    this.setState({ politic: value });
+  changeContact(data) {
+    this.setState({ contactText: data });
   }
 
-  updatePolitic() {
-    const { politic } = this.state;
-    fetch(`${varServeur}admin/politic`, {
+  updateContact() {
+    const { contactText } = this.state;
+    const config = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ politic }),
-    }).then((response) => {
-      if (response.ok) {
-        window.location.reload();
-      }
-    });
+      body: JSON.stringify({ contactText }),
+    };
+    fetch(`${varServeur}admin/contact`, config)
+      .then((res) => {
+        if (res.ok) {
+          window.location.reload();
+        }
+      });
   }
 
   render() {
+    const { contactText } = this.state;
     const toolbarOptions = [
       [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
       [{ align: ['', 'center', 'right', 'justify'] }],
@@ -59,27 +64,25 @@ class AdminPolitic extends Component {
       'list', 'bullet', 'indent',
       'link', 'image', 'video',
     ];
-    const { politic } = this.state;
+
     return (
-      <div className="AdminPolitic">
+      <div className="Contact">
         <AdminMenu />
-        <h1 className="title">Politique de confidentialité</h1>
+        <h1 className="title">Nous contacter</h1>
         <Container>
           <Form>
             <FormGroup>
-              <br />
               <ReactQuill
                 theme="snow"
                 type="textarea"
-                name="politic"
-                placeholder="Politique de Confidentialité"
-                value={politic}
+                name="contact"
+                placeholder="Nous contacter"
+                value={contactText}
                 modules={{ toolbar: toolbarOptions }}
                 formats={formats}
-                onChange={this.changePolitic}
-                className="input-politic"
+                onChange={this.changeContact}
               />
-              <Button onClick={this.updatePolitic} color="warning" className="btn-submit all-btn btn-politic">ENVOYER</Button>
+              <Button onClick={this.updateContact} color="warning" className="btn-submit all-btn">ENVOYER</Button>
             </FormGroup>
           </Form>
         </Container>
@@ -88,4 +91,4 @@ class AdminPolitic extends Component {
   }
 }
 
-export default AdminPolitic;
+export default AdminContact;

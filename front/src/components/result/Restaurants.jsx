@@ -63,7 +63,7 @@ class Restaurants extends Component {
             <Col xs="4" className="padding">
               <Input
                 className="search1"
-                placeholder="Restaurant"
+                placeholder="Restaurant, ville, adresse ou type de restaurant"
                 value={keyword}
                 onChange={this.onChange}
                 name="keyword"
@@ -103,7 +103,7 @@ class Restaurants extends Component {
             <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
               <Col key={item.id} sm="12" md="6" xl="4">
                 <Card className="card-restaurant">
-                  <CardImg top width="100%" src={item.picture} alt="Card image cap" />
+                  <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{item.name}</CardTitle>
                     <CardSubtitle>{item.address}</CardSubtitle>

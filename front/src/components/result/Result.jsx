@@ -19,10 +19,10 @@ class Result extends Component {
     return (
       <Container fluid className="Result">
         <Row>
-          <Col md={12} lg={8}>
+          <Col md={12} lg={7}>
             <Restaurants />
           </Col>
-          <Col md={12} lg={4}>
+          <Col md={12} lg={5}>
             <MapResult />
           </Col>
         </Row>
