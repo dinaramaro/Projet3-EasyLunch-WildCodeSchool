@@ -29,6 +29,7 @@ import OrderPageTwo from './containers/result/OrderPageTwo';
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
+import PrivateRouteAdmin from './PrivateRouteAdmin';
 
 const App = () => (
   <div className="App">
@@ -44,20 +45,19 @@ const App = () => (
         <Route path="/a-propos/partenaires" component={Partners} />
         <Route path="/a-propos/politique" component={Politic} />
         <Route path="/a-propos/restaurateur" component={Restaurant} />
-        <Route path="/admin/admin-menu" component={AdminMenu} />
-        <Route path="/admin/admin-cgv" component={AdminCVG} />
-        <Route path="/admin/admin-politique" component={AdminPolitic} />
-        <Route path="/admin/admin-equipe" component={AdminTeam} />
-        <Route path="/admin/admin-partenaires" component={AdminPartners} />
-        <Route path="/admin/admin-concept" component={AdminConcept} />
-        <Route path="/result" component={Result} />
         <Route path="/commande-page1" component={OrderPageOne} />
         <Route path="/commande-page2" component={OrderPageTwo} />
-        <Route path="/admin/admin-faq" component={AdminFAQ} />
-        <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
-        <Route path="/admin/ajout-faq" component={AjoutFAQ} />
+        <PrivateRouteAdmin path="/admin/admin-menu" component={AdminMenu} />
+        <PrivateRouteAdmin path="/admin/admin-cgv" component={AdminCVG} />
+        <PrivateRouteAdmin path="/admin/admin-politique" component={AdminPolitic} />
+        <PrivateRouteAdmin path="/admin/admin-equipe" component={AdminTeam} />
+        <PrivateRouteAdmin path="/admin/admin-partenaires" component={AdminPartners} />
+        <PrivateRouteAdmin path="/admin/admin-concept" component={AdminConcept} />
+        <PrivateRouteAdmin path="/admin/admin-faq" component={AdminFAQ} />
+        <PrivateRouteAdmin path="/admin/modif-faq/:id" component={ModificationFAQ} />
+        <PrivateRouteAdmin path="/admin/ajout-faq" component={AjoutFAQ} />
+        <PrivateRouteAdmin path="/admin/admin-contact" component={AdminContact} />
         <Route path="/connexion" component={Login} />
-        <Route path="/admin/admin-contact" component={AdminContact} />
         <Route path="/result" component={Result} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
