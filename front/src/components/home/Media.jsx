@@ -5,7 +5,6 @@ import './Media.scss';
 const Media = () => {
   const opts = {
     playerVars: {
-      // différente configuration de lecture, d'affichage, d'utilisation//
       autoplay: 0,
       rel: 0,
       showinfo: 0,
@@ -16,7 +15,7 @@ const Media = () => {
     <div className="Media">
       <YouTube
         className="video-media"
-        videoId="RluXbJ4CZHU" // Lien id de la video, pour inserer une video, tu as le choix soit avec replace ou slice//
+        videoId="RluXbJ4CZHU"
         opts={opts}
       />
     </div>
