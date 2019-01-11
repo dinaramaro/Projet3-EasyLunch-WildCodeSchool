@@ -8,18 +8,21 @@ import { handleChangeOrder } from '../../actions';
 
 
 const FormOrder = (props) => {
-  const { formulaire: { date, schedule, nb_users }, handleChangeOrder, menuResto: { resto: { restoInfos }} } = props;
+  const {
+    formulaire: { date, schedule, nb_users },
+    handleChangeOrder, menuResto: { resto: { restoInfos } },
+  } = props;
   return (
     <div className="OrderOne">
       <p>Commande (1/2)</p>
       <p>Informations générales</p>
-      <p>(concernent l'ensemble des invités)</p>
+      <p>(concernent l&apos;ensemble des invités)</p>
       <Form>
         <FormGroup row>
           <Label for="date" sm={3}>Date</Label>
           <Col sm={4}>
             <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e, restoInfos.id)}>
-              <option value="Aujourd'hui">Aujourd'hui</option>
+              <option value="Aujourd'hui">Aujourd&apos;hui</option>
             </Input>
           </Col>
         </FormGroup>

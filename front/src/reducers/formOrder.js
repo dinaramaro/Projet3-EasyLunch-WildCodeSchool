@@ -16,7 +16,7 @@ const formOrder = (state = initialState, action) => {
         ...state,
         formulaire: tempFormChange,
       };
-      return newState;  
+      return newState;
     }
     default: {
       return state;

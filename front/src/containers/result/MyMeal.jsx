@@ -20,7 +20,7 @@ const MyMeal = (props) => {
   return (
     <div className="MyMeal">
       <p>Mon repas</p>
-      {(tabs[0] !== undefined) && (tabs[0].menuname !== '') && (
+      {(tabs[0] !== undefined) && (tabs[0].menuname !== '') && (tabs[0].menuname !== undefined) && (
         <div>
           <p className="souligne">{`${tabs[0].menuname} ${subtitle}`}</p>
         </div>

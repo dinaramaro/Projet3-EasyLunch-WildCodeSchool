@@ -4,7 +4,7 @@ const initialState = {
   total: 0,
 };
 
-const formOrder = (state = initialState, action) => {
+const sendOrder = (state = initialState, action) => {
   let newState;
   let tempTab = [...state.tabs];
   switch (action.type) {
@@ -13,8 +13,10 @@ const formOrder = (state = initialState, action) => {
       tempBooking[action.e.target.name] = action.e.target.value;
       const tableBooking = {};
       tableBooking.master_user_id = '';
-      tableBooking.nb_users = tempBooking.nb_users;
-      tableBooking.schedule = tempBooking.schedule;
+      tableBooking.nb_users = parseInt(tempBooking.nb_users, 10);
+      const tempSchedule = tempBooking.schedule;
+      const tempScheduleString = tempSchedule.toString().split('h').join('');
+      tableBooking.schedule = parseInt(tempScheduleString, 10);
       tableBooking.restaurant_id = action.idresto;
       const tempTable = { tableBooking };
       newState = {
@@ -83,7 +85,9 @@ const formOrder = (state = initialState, action) => {
       tableCommand.user_id = '';
       tableCommand.price = action.menuprice;
       const tempMenu = {};
-      const tempMealsPrices = tempTab.filter(item => item.mealprice > 0).map(item => item.mealprice);
+      const tempMealsPrices = tempTab.filter(
+        item => item.mealprice > 0,
+      ).map(item => item.mealprice);
       tempMenu[action.idmenu] = tempMealsPrices;
       tableCommand.menu = JSON.stringify(tempMenu);
 
@@ -92,33 +96,33 @@ const formOrder = (state = initialState, action) => {
         tempPayment.user_id = '';
         tablePayment = tempPayment;
       }
-      
       const tableBooking = tempBooking;
       const tempUnion = { tableBooking, tableCommand, tablePayment };
-      const tempFixed = action.mealprice;
       newState = {
         ...state,
         sendOrder: tempUnion,
         tabs: tempTab,
-        total: tempFixed.toFixed(2),
+        total: action.menuprice,
       };
       return newState;
     }
     case 'CHOOSEONCARDS': {
+      const tempFormChange = { ...state.sendOrder };
+      const tempBooking = tempFormChange.tableBooking;
+      let tempCommand = tempFormChange.tableCommand;
+      let tempPayment = tempFormChange.tablePayment;
+
       const tempObj = {};
       tempObj.text = action.text;
       tempObj.idmeal = action.idmeal;
       tempObj.mealprice = 0;
-      let tableCommand = {};
-      tableCommand.user_id = '';
 
-      const tempFormChange = { ...state.sendOrder };
-      const tempBooking = tempFormChange.tableBooking;
-      const tempCommand = tempFormChange.tableCommand;
-      const tempPayment = tempFormChange.tablePayment;
-      let tempTotal = tempCommand.price;
+      let tempTotal = 0;
+      let tempTotalRound = 0;
 
       if (tempCommand !== undefined) {
+        tempTotal = tempCommand.price;
+
         const tempTabMeal = tempCommand.meal_id;
         const tempMealIdChange = tempTabMeal.slice(1, tempTabMeal.length - 1);
         let tempTabMealId = tempMealIdChange.split(',');
@@ -144,26 +148,38 @@ const formOrder = (state = initialState, action) => {
           }
         }
         tempCommand.meal_id = `{${result}}`;
-        tableCommand = tempCommand;
+        tempTotalRound = Math.round(tempTotal * 100) / 100;
+        tempCommand.price = tempTotalRound;
       } else {
+        tempCommand = {};
+
         tempTotal += action.mealprice;
+        tempTotalRound = Math.round(tempTotal * 100) / 100;
+        tempCommand.price = tempTotalRound;
         const idMealString = action.idmeal.toString();
-        tableCommand.meal_id = `{${idMealString}}`;
+        tempCommand.meal_id = `{${idMealString}}`;
         tempTab = [tempObj];
       }
-      const tempTotalRound = Math.round(tempTotal * 100) / 100;
-      tempCommand.price = tempTotalRound.toFixed(2);
+      if (tempPayment === undefined) {
+        tempPayment = {};
+      }
+
       const tableBooking = tempBooking;
+
+      tempCommand.user_id = '';
+      const tableCommand = tempCommand;
+
       tempPayment.amount = tempTotalRound;
       tempPayment.user_id = '';
       const tablePayment = tempPayment;
+
       const tempUnion = { tableBooking, tableCommand, tablePayment };
-            
+
       newState = {
         ...state,
         sendOrder: tempUnion,
         tabs: tempTab,
-        total: tempTotalRound.toFixed(2),
+        total: tempTotalRound,
       };
       return newState;
     }
@@ -174,4 +190,4 @@ const formOrder = (state = initialState, action) => {
   }
 };
 
-export default formOrder;
+export default sendOrder;
