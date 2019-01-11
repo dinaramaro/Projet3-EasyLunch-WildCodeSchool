@@ -17,9 +17,9 @@ const DisplaySubTitleMenu = ({ list }) => {
       default:
         subtitle = '';
     }
-  }  
+  }
   return (
-    <div>
+    <div className="DisplaySubTitleMenu">
       { subtitle }
     </div>
   );

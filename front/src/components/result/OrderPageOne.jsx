@@ -9,7 +9,7 @@ import FormOrder from '../../containers/result/FormOrder';
 
 
 const OrderPageOne = () => (
-  <Container fluid className="OrderOne">
+  <Container fluid className="OrderPageOne">
     <Row>
       <Col sm={4}>
         <RestoInfos />

@@ -15,7 +15,7 @@ const cardResto = (state = initialState, action) => {
     case 'CARD_RESTO_SUCCESS':
       return {
         menus: action.infos.menus,
-        cartes: action.infos.cartes,
+        cards: action.infos.cards,
         loading: false,
         error: null,
       };

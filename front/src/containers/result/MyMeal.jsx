@@ -22,10 +22,10 @@ const MyMeal = (props) => {
       <p>Mon repas</p>
       {(tabs[0] !== undefined) && (tabs[0].menuname !== '') && (tabs[0].menuname !== undefined) && (
         <div>
-          <p className="souligne">{`${tabs[0].menuname} ${subtitle}`}</p>
+          <p className="underline">{`${tabs[0].menuname} ${subtitle}`}</p>
         </div>
       )}
-      {tabs.map(item => <p key={item.idmeal}>{`${item.text} : ${item[item.text]}`}</p>)}
+      {tabs.map(item => <p key={item[item.text]}>{`${item.text} : ${item[item.text]}`}</p>)}
     </div>
   );
 };

@@ -13,7 +13,7 @@ const FormOrder = (props) => {
     handleChangeOrder, menuResto: { resto: { restoInfos } },
   } = props;
   return (
-    <div className="OrderOne">
+    <div className="FormOrder">
       <p>Commande (1/2)</p>
       <p>Informations générales</p>
       <p>(concernent l&apos;ensemble des invités)</p>

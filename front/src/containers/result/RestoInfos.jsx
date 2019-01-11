@@ -27,7 +27,7 @@ class RestoInfos extends Component {
       restoCity = restoInfos.city;
     }
     return (
-      <div>
+      <div className="RestoInfos">
         <h3>{restoName}</h3>
         <CardText>{restoAddress}</CardText>
         <CardText>{restoCity}</CardText>

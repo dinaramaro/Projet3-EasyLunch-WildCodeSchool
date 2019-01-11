@@ -19,9 +19,9 @@ const DisplayMenus = ({ list }) => {
     }
   }
   return (
-    <div>
+    <div className="DisplayMenus">
       {
-        menus.map(menu => <div><DisplayMenu menu={menu} /></div>)
+        menus.map(menu => <div key={menu.name}><DisplayMenu menu={menu} /></div>)
       }
     </div>
   );

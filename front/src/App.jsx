@@ -16,7 +16,7 @@ import AdminCVG from './components/admin/cgv/AdminCGV';
 import Restaurant from './components/about/Restaurant';
 import AdminPolitic from './components/admin/politic/AdminPolitic';
 import AdminTeam from './components/admin/team/AdminTeam';
-import LoginAdmin from './components/Login';
+import Login from './components/Login';
 import AdminPartners from './components/admin/partners/AdminPartners';
 import AdminConcept from './components/admin/concept/AdminConcept';
 import AdminFAQ from './components/admin/FAQ/AdminFAQ';
@@ -24,15 +24,11 @@ import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
-<<<<<<< HEAD
 import OrderPageOne from './components/result/OrderPageOne';
 import OrderPageTwo from './containers/result/OrderPageTwo';
-
-=======
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
->>>>>>> dev
 
 const App = () => (
   <div className="App">
@@ -54,22 +50,17 @@ const App = () => (
         <Route path="/admin/admin-equipe" component={AdminTeam} />
         <Route path="/admin/admin-partenaires" component={AdminPartners} />
         <Route path="/admin/admin-concept" component={AdminConcept} />
-<<<<<<< HEAD
-        <Route path="/admin/login" component={LoginAdmin} />
         <Route path="/result" component={Result} />
         <Route path="/commande-page1" component={OrderPageOne} />
         <Route path="/commande-page2" component={OrderPageTwo} />
-=======
         <Route path="/admin/admin-faq" component={AdminFAQ} />
         <Route path="/admin/modif-faq/:id" component={ModificationFAQ} />
         <Route path="/admin/ajout-faq" component={AjoutFAQ} />
         <Route path="/connexion" component={Login} />
         <Route path="/admin/admin-contact" component={AdminContact} />
-        <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
->>>>>>> dev
       </Switch>
     </div>
     <Footer />

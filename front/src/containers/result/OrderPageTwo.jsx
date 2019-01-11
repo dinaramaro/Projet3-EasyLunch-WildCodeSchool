@@ -9,7 +9,7 @@ import OrderMenu from './OrderMenu';
 
 
 const OrderPageTwo = () => (
-  <Container fluid className="OrderTwo">
+  <Container fluid className="OrderPageTwo">
     <Row>
       <Col sm={4}>
         <RestoInfos />

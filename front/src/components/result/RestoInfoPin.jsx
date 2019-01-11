@@ -29,7 +29,7 @@ const RestoInfoPin = (props) => {
   }
   const { info } = props;
   return (
-    <Card className="RestoInfo">
+    <Card className="RestoInfoPin">
       <CardImg top width="100%" src={info.picture} alt="Card image cap" />
       <CardBody>
         <CardTitle>{info.name}</CardTitle>

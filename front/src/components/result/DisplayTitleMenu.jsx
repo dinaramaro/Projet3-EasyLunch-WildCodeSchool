@@ -42,8 +42,8 @@ const DisplayTitleMenu = ({ ent, main, dessert }) => {
     }
   }
   return (
-    <div>
-      <p className="souligne">{ title }</p>
+    <div className="DisplayTitleMenu">
+      <p className="underline">{ title }</p>
       <p>{ subtitle }</p>
     </div>
   );

@@ -14,7 +14,7 @@ const DisplayMenu = ({ menu }) => {
   tempListDessert = meals.filter(item => item.plat === 2);
 
   return (
-    <div>
+    <div className="DisplayMenu">
       <DisplayTitleMenu ent={tempListEnt} main={tempListMain} dessert={tempListDessert} />
       <FormGroup>
         <ChooseOnMenus text="Entrée" meals={tempListEnt} />

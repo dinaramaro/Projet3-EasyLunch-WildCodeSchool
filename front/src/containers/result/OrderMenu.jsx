@@ -26,11 +26,11 @@ class OrderMenu extends Component {
   componentDidMount() {
     const { menuResto: { resto: { restoInfos } }, cardResto } = this.props;
     if (!_.isEmpty(restoInfos)) {
-      cardResto(`${varServeur}cartes/${restoInfos.id}`);
+      cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
   }
 
-  toggle(tab) {
+  toggle(tab) { 
     const { activeTab } = this.state;
     if (activeTab !== tab) {
       this.setState({
@@ -43,7 +43,7 @@ class OrderMenu extends Component {
     const { activeTab } = this.state;
     const {
       menus,
-      cartes,
+      cards,
       error,
       loading,
       chooseByUser: {
@@ -66,14 +66,14 @@ class OrderMenu extends Component {
       listForm = menus.filter(item => item.mod === 0);
     }
 
-    if (cartes !== undefined) {
-      listEnt = cartes.filter(item => item.plat === 0);
-      listMain = cartes.filter(item => item.plat === 1);
-      listDessert = cartes.filter(item => item.plat === 2);
-      listDrink = cartes.filter(item => item.plat === 3);
-      listDayEnt = cartes.filter(item => item.plat === 4);
-      listDayMain = cartes.filter(item => item.plat === 5);
-      listDayDessert = cartes.filter(item => item.plat === 6);
+    if (cards !== undefined) {
+      listEnt = cards.filter(item => item.plat === 0);
+      listMain = cards.filter(item => item.plat === 1);
+      listDessert = cards.filter(item => item.plat === 2);
+      listDrink = cards.filter(item => item.plat === 3);
+      listDayEnt = cards.filter(item => item.plat === 4);
+      listDayMain = cards.filter(item => item.plat === 5);
+      listDayDessert = cards.filter(item => item.plat === 6);
     }
 
     if (error) {
@@ -250,7 +250,7 @@ function mstp(state) {
   return {
     menuResto: state.menuResto,
     menus: state.cardResto.menus,
-    cartes: state.cardResto.cartes,
+    cards: state.cardResto.cards,
     error: state.cardResto.error,
     loading: state.cardResto.loading,
     chooseByUser: state.chooseByUser,
