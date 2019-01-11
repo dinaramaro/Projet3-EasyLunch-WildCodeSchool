@@ -26,10 +26,12 @@ import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
 import OrderPageOne from './components/result/OrderPageOne';
 import OrderPageTwo from './containers/result/OrderPageTwo';
+import AdminContactRestaurant from './components/admin/contactRestaurant/AdminContactRestaurant';
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+
 
 const App = () => (
   <div className="App">
@@ -57,6 +59,7 @@ const App = () => (
         <PrivateRouteAdmin path="/admin/modif-faq/:id" component={ModificationFAQ} />
         <PrivateRouteAdmin path="/admin/ajout-faq" component={AjoutFAQ} />
         <PrivateRouteAdmin path="/admin/admin-contact" component={AdminContact} />
+        <Route path="/admin/admin-restaurant" component={AdminContactRestaurant} />
         <Route path="/connexion" component={Login} />
         <Route path="/result" component={Result} />
         <Route path="/inscription" component={Register} />
