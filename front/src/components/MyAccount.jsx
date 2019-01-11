@@ -53,7 +53,7 @@ class MyAccount extends Component {
           flash = 'Erreur serveur';
         }
         if (response.ok) {
-          flash = 'Le mot de passe à été modifié avec succès';
+          flash = 'Le mot de passe a été modifié avec succès';
         }
         this.setState({
           flash,
