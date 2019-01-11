@@ -49,6 +49,20 @@ class AdminCGV extends Component {
 
   render() {
     const { cgv } = this.state;
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
     return (
       <div className="AdminCGV">
         <AdminMenu />
@@ -63,6 +77,8 @@ class AdminCGV extends Component {
                 name="cgv"
                 placeholder="Conditions Générales"
                 value={cgv}
+                modules={{ toolbar: toolbarOptions }}
+                formats={formats}
                 onChange={this.changeCGV}
                 className="input-CGV"
               />

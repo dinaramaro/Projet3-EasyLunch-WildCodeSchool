@@ -21,6 +21,7 @@ import checkConnected from './routes/myAccount/checkConnected';
 import command from './routes/command/command';
 import changePassword from './routes/myAccount/changePassword';
 import contact from './routes/admin/contact';
+import contactrestaurant from './routes/admin/contactrestaurant';
 
 const app = express();
 const debug = Debug('back:app');
@@ -52,6 +53,7 @@ app.use('/api/checked', checkConnected);
 app.use('/api/command', command);
 app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
+app.use('/api/admin/contact-restaurant', contactrestaurant);
 
 
 // Uncomment on pre-prod/prod
