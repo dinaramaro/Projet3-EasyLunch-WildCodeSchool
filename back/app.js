@@ -15,6 +15,11 @@ import team from './routes/admin/team';
 import concept from './routes/admin/concept';
 import search from './routes/search';
 import restaurant from './routes/restaurant';
+import signUp from './routes/myAccount/signUp';
+import signIn from './routes/myAccount/signIn';
+import checkConnected from './routes/myAccount/checkConnected';
+import command from './routes/command/command';
+import changePassword from './routes/myAccount/changePassword';
 import contact from './routes/admin/contact';
 import contactrestaurant from './routes/admin/contactrestaurant';
 
@@ -42,6 +47,11 @@ app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
 app.use('/api/admin/concept', concept);
+app.use('/api/signup', signUp);
+app.use('/api/signin', signIn);
+app.use('/api/checked', checkConnected);
+app.use('/api/command', command);
+app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
 app.use('/api/admin/contact-restaurant', contactrestaurant);
 
