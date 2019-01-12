@@ -9,6 +9,7 @@ import {
   Input,
   Container,
 } from 'reactstrap';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
@@ -16,6 +17,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser } from '../actions/logIn';
 import { varServeur } from '../constants';
+import 'react-notifications/lib/notifications.css';
+
 
 class Login extends Component {
   constructor(props) {
@@ -34,6 +37,26 @@ class Login extends Component {
       [e.target.name]: e.target.value,
     });
   }
+
+  createNotification = (type) => {
+    return () => {
+      switch (type) {
+        case 'info':
+          NotificationManager.info('Info message');
+          break;
+        case 'success':
+          NotificationManager.success('Success message');
+          break;
+        case 'warning':
+          NotificationManager.warning('Warning message');
+          break;
+        case 'error':
+          NotificationManager.error('Error message');
+          break;
+      }
+    };
+  };
+
 
   handleSubmit(e) {
     e.preventDefault();
@@ -91,6 +114,7 @@ class Login extends Component {
           </Form>
           <Button className="all-btn" tag={Link} to="/inscription">Créer un compte</Button>
         </Container>
+        <NotificationContainer/>
       </div>
     );
   }
