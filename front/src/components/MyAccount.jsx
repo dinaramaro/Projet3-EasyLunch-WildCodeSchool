@@ -50,7 +50,7 @@ class MyAccount extends Component {
         } else if (response.status === 500) {
           NotificationManager.error('Erreur serveur', '', 2000);
         } else if (response.status === 200) {
-          NotificationManager.success('Mot de passe a été changer avec succés', '', 2000);
+          NotificationManager.success('Le mot de passe a été changé avec succés', '', 2000);
         }
         this.setState({
           oldPwd: '',
