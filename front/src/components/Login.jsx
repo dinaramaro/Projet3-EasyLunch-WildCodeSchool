@@ -50,10 +50,10 @@ class Login extends Component {
     })
       .then((res) => {
         if (res.status === 401) {
-          NotificationManager.error('Mauvais mot de passe ou adresse mail');
+          NotificationManager.error('Mauvais mot de passe ou adresse mail', '', 2000);
         }
         if (res.status === 200) {
-          NotificationManager.success('Connecté');
+          NotificationManager.success('Connecté', '', 2000);
           return res.json();
         }
       })

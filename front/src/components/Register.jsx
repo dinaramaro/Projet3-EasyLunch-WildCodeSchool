@@ -3,6 +3,7 @@ import './Register.scss';
 import {
   Container, Input, Button, Form,
 } from 'reactstrap';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { withRouter } from 'react-router';
 import { varServeur } from '../constants';
 
@@ -35,6 +36,7 @@ class Register extends Component {
       body: JSON.stringify(this.state),
     });
     const { history } = this.props;
+    NotificationManager.success('Compte enregistré, vous pouvez vous connecter', '', 3000);
     history.push('/connexion');
   }
 
@@ -81,6 +83,7 @@ class Register extends Component {
             />
             <Button className="all-btn" type="submit"> Inscritpion </Button>
           </Form>
+          <NotificationContainer />
         </Container>
       </div>
     );

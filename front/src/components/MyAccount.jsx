@@ -46,11 +46,11 @@ class MyAccount extends Component {
     })
       .then((response) => {
         if (response.status === 403) {
-          NotificationManager.error('Mot de passe incorrect');
+          NotificationManager.error('Mot de passe incorrect', '', 2000);
         } else if (response.status === 500) {
-          NotificationManager.error('Erreur serveur');
+          NotificationManager.error('Erreur serveur', '', 2000);
         } else if (response.status === 200) {
-          NotificationManager.success('Mot de passe a été changer avec succés');
+          NotificationManager.success('Mot de passe a été changer avec succés', '', 2000);
         }
         this.setState({
           oldPwd: '',
