@@ -7,6 +7,7 @@ import {
   Container, Card, CardBody,
   CardTitle, CardSubtitle, Row, Input, Col, Form, Button,
 } from 'reactstrap';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import './MyAccount.scss';
 import { varServeur } from '../constants';
 
@@ -16,7 +17,6 @@ class MyAccount extends Component {
     this.state = {
       oldPwd: '',
       newPwd: '',
-      flash: '',
     };
     this.changePassword = this.changePassword.bind(this);
     this.newPassword = this.newPassword.bind(this);
@@ -45,18 +45,16 @@ class MyAccount extends Component {
       }),
     })
       .then((response) => {
-        let flash = '';
         if (response.status === 403) {
-          flash = 'Mot de passe incorrect';
-        }
-        if (response.status === 500) {
-          flash = 'Erreur serveur';
-        }
-        if (response.ok) {
-          flash = 'Le mot de passe à été modifié avec succès';
+          NotificationManager.error('Mot de passe incorrect');
+        } else if (response.status === 500) {
+          NotificationManager.error('Erreur serveur');
+        } else if (response.status === 200) {
+          NotificationManager.success('Mot de passe a été changer avec succés');
         }
         this.setState({
-          flash,
+          oldPwd: '',
+          newPwd: '',
         });
       });
   }
@@ -65,7 +63,6 @@ class MyAccount extends Component {
     const {
       oldPwd,
       newPwd,
-      flash,
     } = this.state;
     const {
       user,
@@ -117,7 +114,7 @@ class MyAccount extends Component {
               <Button className="all-btn" type="submit">Modifier</Button>
             </Row>
           </Form>
-          <p>{flash}</p>
+          <NotificationContainer />
         </Container>
       </div>
     );

@@ -9,6 +9,7 @@ import {
   Input,
   Container,
 } from 'reactstrap';
+import _ from 'lodash';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -17,8 +18,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser } from '../actions/logIn';
 import { varServeur } from '../constants';
-import 'react-notifications/lib/notifications.css';
-
 
 class Login extends Component {
   constructor(props) {
@@ -38,25 +37,6 @@ class Login extends Component {
     });
   }
 
-  createNotification = (type) => {
-    return () => {
-      switch (type) {
-        case 'info':
-          NotificationManager.info('Info message');
-          break;
-        case 'success':
-          NotificationManager.success('Success message');
-          break;
-        case 'warning':
-          NotificationManager.warning('Warning message');
-          break;
-        case 'error':
-          NotificationManager.error('Error message');
-          break;
-      }
-    };
-  };
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -68,9 +48,17 @@ class Login extends Component {
       }),
       body: JSON.stringify(this.state),
     })
-      .then(res => res.json())
+      .then((res) => {
+        if (res.status === 401) {
+          NotificationManager.error('Mauvais mot de passe ou adresse mail');
+        }
+        if (res.status === 200) {
+          NotificationManager.success('Connecté');
+          return res.json();
+        }
+      })
       .then((data) => {
-        if (data.user) {
+        if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
           Cookies.set('token', data.token, { expires: 1 });
           const { from } = state || { from: { pathname: '/mon-compte' } };
@@ -113,8 +101,8 @@ class Login extends Component {
             <Button className="all-btn" type="submit">Connexion</Button>
           </Form>
           <Button className="all-btn" tag={Link} to="/inscription">Créer un compte</Button>
+          <NotificationContainer />
         </Container>
-        <NotificationContainer/>
       </div>
     );
   }

@@ -14,6 +14,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -38,6 +39,7 @@ class NavBar extends Component {
     const { logout } = this.props;
     logout();
     Cookies.remove('token');
+    NotificationManager.success('Vous avez été déconnecté');
   }
 
   render() {
@@ -93,6 +95,7 @@ class NavBar extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+        <NotificationContainer />
       </div>
     );
   }
