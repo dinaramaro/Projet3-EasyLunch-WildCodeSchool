@@ -30,7 +30,7 @@ const ChooseOnCards = (props) => {
                 }}
               />
             </div>
-          )
+          );
         })
       }
     </div>

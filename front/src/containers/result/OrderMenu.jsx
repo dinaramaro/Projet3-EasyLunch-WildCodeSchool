@@ -30,7 +30,7 @@ class OrderMenu extends Component {
     }
   }
 
-  toggle(tab) { 
+  toggle(tab) {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
       this.setState({
