@@ -14,6 +14,7 @@ import partners from './routes/admin/partners';
 import team from './routes/admin/team';
 import search from './routes/search';
 import restaurant from './routes/restaurant';
+import codeToIdRestaurant from './routes/participation/codeToIdRestaurant';
 
 const app = express();
 const debug = Debug('back:app');
@@ -38,7 +39,7 @@ app.use('/api/admin/politic', politic);
 app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
-
+app.use('/api/idrestaurant', codeToIdRestaurant);
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

@@ -7,14 +7,13 @@ import {
   Button,
 } from 'reactstrap';
 import './Participate.scss';
-//import { varServeur } from '../../../constants';
 
 class Participate extends Component {
   constructor(props) {
     super(props);
     this.state = {
       codeParticipation: '',
-    }
+    };
     this.onChange = this.onChange.bind(this);
   }
 
@@ -28,21 +27,19 @@ class Participate extends Component {
       fetch(`${varServeur}`, {
         method: 'GET',
         headers: {
-  
         }
       })    console.log(this.state);
-  
     }
     */
 
   render() {
     const {
-      codeParticipation
+      codeParticipation,
     } = this.state;
     return (
       <div className="Participate">
         <div className="participation-message">
-          Entrez ici le code qui vous a été transmis pour rejoindre la table réservée par vos amis!
+          Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
         </div>
         <Container fluid className="input-container">
           <Row className="input-row">
