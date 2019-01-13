@@ -44,7 +44,7 @@ export default class NavBar extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem tag={Link} to="/components/Jeparticipe">
+              <NavItem tag={Link} to="/participation">
                   Je participe
               </NavItem>
               <NavItem tag={Link} to="/login">

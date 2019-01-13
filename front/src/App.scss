@@ -5,7 +5,7 @@ $accentuationColor: #f9b522;
 .App{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  .content{
+  .content{ 
     min-height: calc(100vh - 158px);
   }
   .title {
@@ -29,6 +29,8 @@ $accentuationColor: #f9b522;
       border-color: #d39e00;
     }
   }
+
+.footer{
+    height:200px;
+  } 
 }
-
-

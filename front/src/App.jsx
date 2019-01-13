@@ -23,6 +23,7 @@ import AdminFAQ from './components/admin/FAQ/AdminFAQ';
 import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import Result from './components/result/Result';
+import Participate from './components/participate/Participate';
 
 const App = () => (
   <div className="App">
@@ -49,9 +50,10 @@ const App = () => (
         <Route path="/admin/admin-concept" component={AdminConcept} />
         <Route path="/login" component={Login} />
         <Route path="/result" component={Result} />
+        <Route path="/participation" component={Participate} />
       </Switch>
     </div>
-    <Footer />
+    <Footer className="footer" />
   </div>
 );
 export default App;
