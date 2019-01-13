@@ -3,8 +3,9 @@ import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 import './AdminCGV.scss';
+import AdminMenu from '../AdminMenu';
 
 class AdminCGV extends Component {
   constructor(props) {
@@ -48,8 +49,23 @@ class AdminCGV extends Component {
 
   render() {
     const { cgv } = this.state;
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
     return (
       <div className="AdminCGV">
+        <AdminMenu />
         <h1 className="title">CGV</h1>
         <Container>
           <Form>
@@ -61,6 +77,8 @@ class AdminCGV extends Component {
                 name="cgv"
                 placeholder="Conditions Générales"
                 value={cgv}
+                modules={{ toolbar: toolbarOptions }}
+                formats={formats}
                 onChange={this.changeCGV}
                 className="input-CGV"
               />

@@ -3,8 +3,9 @@ import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
-import { varServeur } from '../../constants';
+import { varServeur } from '../../../constants';
 import './AdminPolitic.scss';
+import AdminMenu from '../AdminMenu';
 
 class AdminPolitic extends Component {
   constructor(props) {
@@ -38,17 +39,30 @@ class AdminPolitic extends Component {
       body: JSON.stringify({ politic }),
     }).then((response) => {
       if (response.ok) {
-        window.scrollTo({
-          top: 0,
-        });
+        window.location.reload();
       }
     });
   }
 
   render() {
+    const toolbarOptions = [
+      [{ header: [1, 2, 3, false] }, { color: [] }, 'bold', 'italic', 'underline'],
+      [{ align: ['', 'center', 'right', 'justify'] }],
+      [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ];
+
+    const formats = [
+      'header', 'font', 'size', 'color',
+      'bold', 'italic', 'underline', 'align', 'strike', 'blockquote',
+      'list', 'bullet', 'indent',
+      'link', 'image', 'video',
+    ];
     const { politic } = this.state;
     return (
       <div className="AdminPolitic">
+        <AdminMenu />
         <h1 className="title">Politique de confidentialité</h1>
         <Container>
           <Form>
@@ -60,6 +74,8 @@ class AdminPolitic extends Component {
                 name="politic"
                 placeholder="Politique de Confidentialité"
                 value={politic}
+                modules={{ toolbar: toolbarOptions }}
+                formats={formats}
                 onChange={this.changePolitic}
                 className="input-politic"
               />

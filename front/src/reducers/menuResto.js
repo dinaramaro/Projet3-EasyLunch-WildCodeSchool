@@ -1,27 +1,33 @@
 const initialState = {
   loading: false,
   error: null,
-  cartes: [],
+  resto: {},
 };
 
 const menuResto = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case 'MENU_RESTO_FAILED':
-      return {
+      newState = {
         ...state,
         error: action.error,
       };
+      return newState;
     case 'MENU_RESTO_SUCCESS':
-      return {
-        cartes: action.infos,
+    console.log(action.MENU_RESTO_SUCCESS);
+    
+      newState = {
+        resto: action.infos,
         loading: false,
         error: null,
       };
+      return newState;
     case 'MENU_RESTO_LOADING':
-      return {
+      newState = {
         ...state,
         loading: true,
       };
+      return newState;
     default:
       return state;
   }

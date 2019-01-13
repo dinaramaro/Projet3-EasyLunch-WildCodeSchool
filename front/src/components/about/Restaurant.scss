@@ -1,11 +1,12 @@
 .Restaurant {
   
-  .restaurant-title-h2 {
-    padding: 2%;
-  }
-  
-  .paragraph-n1 {
-   text-align:justify; 
+  text-align: center;
+
+  .form {
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
   }
   
   .form-title {
@@ -17,15 +18,5 @@
     margin: 2%;
   }
   
-  ul { 
-    list-style : none
-  }
-  
-  .li-restaurant::before {
-    content: "•"; color:#f9b522;
-    display: inline-block; 
-    width: 1em;
-    margin-left: -1em
-  }
 }
 

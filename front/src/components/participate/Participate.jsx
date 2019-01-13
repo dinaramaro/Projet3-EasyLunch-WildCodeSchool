@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './Participate.scss';
 import { varServeur } from '../../constants';
-import menuResto from '../../actions/menuResto';
+import { menuResto } from '../../actions/menuResto';
 
 
 class Participate extends Component {
@@ -32,6 +32,7 @@ class Participate extends Component {
 
     getIdRestau = (e) => {
       e.preventDefault();
+      const { menuResto } = this.props;
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
         .then(response => response.json())

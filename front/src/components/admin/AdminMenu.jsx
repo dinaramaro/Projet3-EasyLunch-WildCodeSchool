@@ -1,31 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AdminMenu.scss';
-import { Container, Row, NavItem } from 'reactstrap';
+import { Nav, NavItem } from 'reactstrap';
 
-const Menu = () => (
+
+const AdminMenu = () => (
   <div className="AdminMenu">
-    <h1 className="title">Menu Administrateur</h1>
-    <Container>
-      <Row>
-        <NavItem tag={Link} to="/admin/admin-cgv">
-          CGV
-        </NavItem>
-        <NavItem tag={Link} to="/admin/admin-concept">
-          Concept
-        </NavItem>
-        <NavItem tag={Link} to="/admin/admin-partenaires">
-          Partenaires
-        </NavItem>
-        <NavItem tag={Link} to="/admin/admin-politique">
-          Politique de Confidentialité
-        </NavItem>
-        <NavItem tag={Link} to="/admin/admin-equipe">
-          Equipe
-        </NavItem>
-      </Row>
-    </Container>
+    <Nav className="menu">
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-cgv">
+        CGV
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-concept">
+        Concept
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-partenaires">
+        Partenaires
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-politique">
+        Politique de Confidentialité
+      </NavItem>
+      <NavItem className="sidenav bottom" tag={Link} to="/admin/admin-equipe">
+        Equipe
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-faq">
+        FAQ
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-contact">
+        Contact
+      </NavItem>
+      <NavItem className="sidenav" tag={Link} to="/admin/admin-restaurant">
+        Contact Restaurant
+      </NavItem>
+    </Nav>
   </div>
 );
 
-export default Menu;
+export default AdminMenu;
