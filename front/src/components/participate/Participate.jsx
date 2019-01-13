@@ -5,8 +5,14 @@ import {
   Col,
   Input,
   Button,
+  Form,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import './Participate.scss';
+import { varServeur } from '../../constants';
+import menuResto from '../../actions/menuResto';
+
 
 class Participate extends Component {
   constructor(props) {
@@ -15,6 +21,7 @@ class Participate extends Component {
       codeParticipation: '',
     };
     this.onChange = this.onChange.bind(this);
+    this.getIdRestau = this.getIdRestau.bind(this);
   }
 
   onChange(e) {
@@ -22,45 +29,53 @@ class Participate extends Component {
       [e.target.name]: e.target.value,
     });
   }
-  /*
-    codeVerif = () => {
-      fetch(`${varServeur}`, {
-        method: 'GET',
-        headers: {
-        }
-      })    console.log(this.state);
+
+    getIdRestau = (e) => {
+      e.preventDefault();
+      const { codeParticipation } = this.state;
+      fetch(`${varServeur}idrestaurant/${codeParticipation}`)
+        .then(response => response.json())
+        .then((data) => {
+          menuResto(`${varServeur}restaurant/menus/${data}`);
+        });
     }
-    */
 
-  render() {
-    const {
-      codeParticipation,
-    } = this.state;
-    return (
-      <div className="Participate">
-        <div className="participation-message">
-          Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
+    render() {
+      const {
+        codeParticipation,
+      } = this.state;
+      return (
+        <div className="Participate">
+          <div className="participation-message">
+            Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
+          </div>
+          <Container fluid className="input-container">
+            <Row className="input-row">
+              <Form onSubmit={this.getIdRestau}>
+                <Col>
+                  <Input
+                    type="text"
+                    name="codeParticipation"
+                    placeholder=" Code de participation"
+                    value={codeParticipation}
+                    onChange={this.onChange}
+                  />
+                </Col>
+                <Col>
+                  <Button type="submit" color="info"> Envoyer </Button>
+                </Col>
+              </Form>
+            </Row>
+          </Container>
         </div>
-        <Container fluid className="input-container">
-          <Row className="input-row">
-            <Col>
-              <Input
-                type="text"
-                name="codeParticipation"
-                placeholder=" Code de participation"
-                value={codeParticipation}
-                onChange={this.onChange}
-              />
-
-            </Col>
-            <Col>
-              <Button type="submit" color="info"> Envoyer </Button>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
+      );
+    }
 }
 
-export default Participate;
+function mdtp(dispatch) {
+  return bindActionCreators({
+    menuResto,
+  }, dispatch);
+}
+
+export default connect(null, mdtp)(Participate);

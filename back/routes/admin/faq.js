@@ -45,7 +45,6 @@ router.delete('/:id', (req, res) => {
   const idQuestion = req.params.id;
   connection.query('DELETE FROM admin_faq WHERE id = ?', [idQuestion], (err) => {
     if (err) {
-      console.log(err);
       res.status(500).send("Erreur lors de la suppression d'une question");
     } else {
       res.sendStatus(200);
@@ -57,7 +56,6 @@ router.post('/', (req, res) => {
   const formData = req.body;
   connection.query('INSERT INTO admin_faq SET ?', formData, (err) => {
     if (err) {
-      console.log(err);
       res.status(500).send("Erreur lors de la sauvegarde d'une question");
     } else {
       res.sendStatus(200);
