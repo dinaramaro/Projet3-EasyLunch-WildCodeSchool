@@ -57,9 +57,9 @@ router.post('/', (req, res) => {
       } else {
         connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error3) => {
           if (error3) {
-            res.status(500).send(`${error3} dans le login`);
+            res.sendStatus(500);
           } else {
-            res.status(200);
+            res.sendStatus(200);
           }
         });
       }

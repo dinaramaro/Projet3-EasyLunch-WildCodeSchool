@@ -46,7 +46,7 @@ class MyAccount extends Component {
     })
       .then((response) => {
         if (response.status === 403) {
-          NotificationManager.error('Mot de passe incorrect', '', 2000);
+          NotificationManager.error('Votre ancien mot de passe est incorrect', '', 2000);
         } else if (response.status === 500) {
           NotificationManager.error('Erreur serveur', '', 2000);
         } else if (response.status === 200) {

@@ -34,10 +34,17 @@ class Register extends Component {
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify(this.state),
-    });
-    const { history } = this.props;
-    NotificationManager.success('Compte enregistré, vous pouvez vous connecter', '', 3000);
-    history.push('/connexion');
+    })
+      .then((res) => {
+        if (res.status === 500) {
+          NotificationManager.error('Adresse email deja enregistré', '', 2000);
+        }
+        if (res.status === 200) {
+          const { history } = this.props;
+          NotificationManager.success('Compte enregistré, vous pouvez vous connecter', '', 3000);
+          history.push('/connexion');
+        }
+      });
   }
 
   render() {
