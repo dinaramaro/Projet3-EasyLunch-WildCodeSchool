@@ -5,17 +5,20 @@ import formOrder from './formOrder';
 import cardResto from './cardResto';
 import chooseByUser from './chooseByUser';
 import sendOrder from './sendOrder';
-
+import getCode from './getCode';
+import notificationsReducer from './notificationsReducer';
 import log from './log';
 
 const allReducers = combineReducers({
   searchResults,
   menuResto,
+  notificationsReducer,
   formOrder,
   cardResto,
   chooseByUser,
   sendOrder,
   log,
+  getCode,
 });
 
 export default allReducers;

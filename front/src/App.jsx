@@ -1,4 +1,5 @@
 import React from 'react';
+import { NotificationContainer } from 'react-notifications';
 import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Home from './components/home/Home';
@@ -67,6 +68,7 @@ const App = () => (
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
       </Switch>
+      <NotificationContainer />
     </div>
     <Footer className="footer" />
   </div>

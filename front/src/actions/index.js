@@ -1,11 +1,14 @@
-export const handleChangeOrder = (e, idresto) => ({
+export const handleChangeOrder = (name, value, idresto, user) => ({
   type: 'CHANGEORDER',
-  e,
+  name,
+  value,
   idresto,
+  user,
 });
 
 export const handleChooseOnMenus = (
-  e,
+  name,
+  value,
   idmenu,
   menuname,
   menuprice,
@@ -14,9 +17,11 @@ export const handleChooseOnMenus = (
   mealprice,
   plat,
   nbmeals,
+  user,
 ) => ({
   type: 'CHOOSEONMENUS',
-  e,
+  name,
+  value,
   idmenu,
   menuname,
   menuprice,
@@ -25,18 +30,22 @@ export const handleChooseOnMenus = (
   mealprice,
   plat,
   nbmeals,
+  user,
 });
 
-export const handleChooseOnCards = (e, mealprice, text, idmeal, plat) => ({
+export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat, user) => ({
   type: 'CHOOSEONCARDS',
-  e,
+  name,
+  value,
   mealprice,
   text,
   idmeal,
   plat,
+  user,
 });
 
-export const handleChangeSpecial = e => ({
+export const handleChangeSpecial = (name, value) => ({
   type: 'CHANGESPECIAL',
-  e,
+  name,
+  value,
 });

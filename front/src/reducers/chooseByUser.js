@@ -14,7 +14,7 @@ const chooseByUser = (state = initialState, action) => {
       tempObj.idmenu = action.idmenu;
       tempObj.menuname = action.menuname;
       tempObj.menuprice = action.menuprice;
-      tempObj[action.text] = action.e.target.value;
+      tempObj[action.text] = action.value;
       tempObj.text = action.text;
       tempObj.idmeal = action.idmeal;
       tempObj.mealprice = action.mealprice;
@@ -36,11 +36,11 @@ const chooseByUser = (state = initialState, action) => {
     }
     case 'CHOOSEONCARDS': {
       const tempObj = {};
-      const resultFind = tempTab.find(item => item[item.text] === action.e.target.value);
+      const resultFind = tempTab.find(item => item[item.text] === action.value);
       let tempTotal = state.total;
       if (resultFind === undefined) {
         tempObj.id = action.id;
-        tempObj[action.e.target.name] = action.e.target.value;
+        tempObj[action.name] = action.value;
         tempObj.price = action.price;
         tempObj.text = action.text;
         tempObj.plat = action.plat;
@@ -50,7 +50,7 @@ const chooseByUser = (state = initialState, action) => {
         tempTabSorted = tempTab.sort((a, b) => a.plat - b.plat);
         tempTotal += action.mealprice;
       } else {
-        const resultFilter = tempTab.filter(item => item[item.text] !== action.e.target.value);
+        const resultFilter = tempTab.filter(item => item[item.text] !== action.value);
         tempTabSorted = resultFilter.sort((a, b) => a.plat - b.plat);
         tempTotal -= action.mealprice;
       }

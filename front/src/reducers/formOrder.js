@@ -11,7 +11,7 @@ const formOrder = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGEORDER': {
       const tempFormChange = { ...state.formulaire };
-      tempFormChange[action.e.target.name] = action.e.target.value;
+      tempFormChange[action.name] = action.value;
       newState = {
         ...state,
         formulaire: tempFormChange,

@@ -35,7 +35,7 @@ class RestoInfos extends Component {
           {days.map((day, index) => {
             let concatDays = '';
             if (index === 0) {
-              concatDays = `${concatDays}Ouverture : `;
+              concatDays = 'Ouverture : ';
             }
             switch (day) {
               case '0':
