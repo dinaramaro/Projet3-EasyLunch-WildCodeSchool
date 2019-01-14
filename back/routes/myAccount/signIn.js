@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import express from 'express';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
@@ -53,18 +54,15 @@ router.post('/', (req, res) => {
     const token = jwt.sign(user, secret, { expiresIn: 86400 });
     connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error2) => {
       if (error2) {
-        res.sendStatus(500);
-      } else {
-        connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error3) => {
-          if (error3) {
-            res.sendStatus(500);
-          } else {
-            res.status(200);
-          }
-        });
+        return res.sendStatus(500);
       }
+      connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error3) => {
+        if (error3) {
+          return res.sendStatus(500);
+        }
+        return res.json({ user, token });
+      });
     });
-    return res.json({ user, token });
   })(req, res);
 });
 
