@@ -9,10 +9,12 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import './Participate.scss';
 import { varServeur } from '../../constants';
 import { menuResto } from '../../actions/menuResto';
-
+import { cardResto } from '../../actions/cardResto';
+import { saveCodeParticipation } from '../../actions/saveCodeParticipation';
 
 class Participate extends Component {
   constructor(props) {
@@ -32,12 +34,17 @@ class Participate extends Component {
 
     getIdRestau = (e) => {
       e.preventDefault();
-      const { menuResto } = this.props;
+      const {
+        menuResto, cardResto, history, saveCodeParticipation,
+      } = this.props;
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
         .then(response => response.json())
         .then((data) => {
+          saveCodeParticipation(codeParticipation);
           menuResto(`${varServeur}restaurant/menus/${data}`);
+          cardResto(`${varServeur}cards/${data}`);
+          history.push('/commande-participation');
         });
     }
 
@@ -76,7 +83,9 @@ class Participate extends Component {
 function mdtp(dispatch) {
   return bindActionCreators({
     menuResto,
+    cardResto,
+    saveCodeParticipation,
   }, dispatch);
 }
 
-export default connect(null, mdtp)(Participate);
+export default connect(null, mdtp)(withRouter(Participate));

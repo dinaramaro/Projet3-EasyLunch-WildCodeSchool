@@ -24,6 +24,7 @@ import command from './routes/command/command';
 import changePassword from './routes/myAccount/changePassword';
 import contact from './routes/admin/contact';
 import contactrestaurant from './routes/admin/contactrestaurant';
+import participation from './routes/participation/participation';
 
 const app = express();
 const debug = Debug('back:app');
@@ -58,6 +59,7 @@ app.use('/api/command', command);
 app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
 app.use('/api/admin/contact-restaurant', contactrestaurant);
+app.use('/api/participe', participation);
 
 
 // Uncomment on pre-prod/prod

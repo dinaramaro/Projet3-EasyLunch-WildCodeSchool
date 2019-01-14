@@ -3,22 +3,22 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-  Nav, NavItem, NavLink, Card, Col, Row, TabPane,
-  TabContent, Form, FormGroup, Input, Button, Modal,
-  ModalHeader, ModalBody, ModalFooter,
+  Nav, NavItem, NavLink, Card, Col, Row,
+  TabPane, TabContent, Form, FormGroup, Input, Button,
+  Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import classnames from 'classnames';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
-import ChooseOnCards from './ChooseOnCards';
-import MyMeal from './MyMeal';
+import ChooseOnCardsParticipate from './ChooseOnCardsParticipate';
+import MyMealParticipate from './MyMealParticipate';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial } from '../../actions';
-import { sendCommand } from '../../actions/sendCommand';
+import { notifError } from '../../actions/notifications';
 
 
-class OrderMenu extends Component {
+class OrderMenuParticipate extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -51,10 +51,22 @@ class OrderMenu extends Component {
   }
 
   handleClickPay() {
-    const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
     if (!_.isEmpty(sendOrder)) {
-      sendCommand(`${varServeur}command`, sendOrder);
-      this.toggleModal();
+      fetch(`${varServeur}participe/${codeParticip}`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(sendOrder),
+      })
+        .then((res) => {
+          if (res.status === 500) {
+            notifError('Erreur serveur');
+          } if (res.status === 200) {
+            this.toggleModal();
+          }
+        });
     }
   }
 
@@ -71,7 +83,6 @@ class OrderMenu extends Component {
       handleChangeSpecial,
       log: { user },
       menuResto: { resto: { restoInfos } },
-      getCode: { code },
     } = this.props;
 
     let listEnt = [];
@@ -197,13 +208,13 @@ class OrderMenu extends Component {
                       listMOD.length > 0 && (
                         <div>
                           <FormGroup>
-                            <ChooseOnCards text="Entrée du jour" meals={listDayEnt} />
+                            <ChooseOnCardsParticipate text="Entrée du jour" meals={listDayEnt} />
                           </FormGroup>
                           <FormGroup>
-                            <ChooseOnCards text="Plat du jour" meals={listDayMain} />
+                            <ChooseOnCardsParticipate text="Plat du jour" meals={listDayMain} />
                           </FormGroup>
                           <FormGroup>
-                            <ChooseOnCards text="Dessert du jour" meals={listDayDessert} />
+                            <ChooseOnCardsParticipate text="Dessert du jour" meals={listDayDessert} />
                           </FormGroup>
                         </div>
                       )
@@ -217,7 +228,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCards text="Entrée" meals={listEnt} />
+                      <ChooseOnCardsParticipate text="Entrée" meals={listEnt} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -228,7 +239,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCards text="Plat" meals={listMain} />
+                      <ChooseOnCardsParticipate text="Plat" meals={listMain} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -239,7 +250,7 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCards text="Dessert" meals={listDessert} />
+                      <ChooseOnCardsParticipate text="Dessert" meals={listDessert} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -250,14 +261,14 @@ class OrderMenu extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCards text="Boisson" meals={listDrink} />
+                      <ChooseOnCardsParticipate text="Boisson" meals={listDrink} />
                     </FormGroup>
                   </Card>
                 </Col>
               </Row>
             </TabPane>
           </TabContent>
-          <MyMeal />
+          <MyMealParticipate />
           <FormGroup>
             <p>Instructions spéciales</p>
             <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
@@ -277,9 +288,7 @@ class OrderMenu extends Component {
         <Modal isOpen={modal} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>{`Merci ${userName} !`}</ModalHeader>
           <ModalBody>
-            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.
-            Invite tes collègues à te rejoindre en utilisant le code : ${code}
-            Ou en transmettant le lien suivant :`}
+            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.`}
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.toggleModal}>Partager le code et le lien</Button>
@@ -299,8 +308,8 @@ function mstp(state) {
     loading: state.cardResto.loading,
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
-    getCode: state.getCode,
     log: state.log,
+    codeParticip: state.codeParticip,
   };
 }
 
@@ -308,10 +317,10 @@ function mdtp(dispatch) {
   return bindActionCreators({
     cardResto,
     handleChangeSpecial,
-    sendCommand,
+    notifError,
   },
   dispatch);
 }
 
 
-export default connect(mstp, mdtp)(OrderMenu);
+export default connect(mstp, mdtp)(OrderMenuParticipate);

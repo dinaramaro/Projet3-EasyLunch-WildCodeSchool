@@ -20,7 +20,7 @@ const OrderPageTwo = () => (
       </Col>
     </Row>
   </Container>
-)
+);
 
 function mstp(state) {
   return {

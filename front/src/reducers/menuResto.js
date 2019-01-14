@@ -13,14 +13,12 @@ const menuResto = (state = initialState, action) => {
         error: action.error,
       };
       return newState;
-    case 'MENU_RESTO_SUCCESS':    
+    case 'MENU_RESTO_SUCCESS':
       newState = {
         resto: action.infos,
         loading: false,
         error: null,
       };
-      console.log(newState);
-      
       return newState;
     case 'MENU_RESTO_LOADING':
       newState = {

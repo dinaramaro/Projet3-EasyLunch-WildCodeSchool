@@ -33,6 +33,7 @@ import Register from './components/Register';
 import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+import OrderPageTwoParticipate from './containers/participate/OrderPageTwoParticipate';
 
 
 const App = () => (
@@ -51,6 +52,7 @@ const App = () => (
         <Route path="/a-propos/restaurateur" component={Restaurant} />
         <Route path="/commande-page1" component={OrderPageOne} />
         <Route path="/commande-page2" component={OrderPageTwo} />
+        <Route path="/commande-participation" component={OrderPageTwoParticipate} />
         <PrivateRouteAdmin path="/admin/admin-menu" component={AdminMenu} />
         <PrivateRouteAdmin path="/admin/admin-cgv" component={AdminCVG} />
         <PrivateRouteAdmin path="/admin/admin-politique" component={AdminPolitic} />
