@@ -1,15 +1,17 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import {
   Container, Card, CardBody,
   CardTitle, CardSubtitle, Row, Input, Col, Form, Button,
 } from 'reactstrap';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
 import './MyAccount.scss';
 import { varServeur } from '../constants';
+import { notifSuccess, notifError } from '../actions/notifications';
+
 
 class MyAccount extends Component {
   constructor(props) {
@@ -29,6 +31,7 @@ class MyAccount extends Component {
   }
 
   newPassword(e) {
+    const { notifError, notifSuccess } = this.props;
     e.preventDefault();
     const { oldPwd, newPwd } = this.state;
     const { id } = this.props;
@@ -46,11 +49,11 @@ class MyAccount extends Component {
     })
       .then((response) => {
         if (response.status === 403) {
-          NotificationManager.error('Votre ancien mot de passe est incorrect', '', 2000);
+          notifError('Votre ancien mot de passe est incorrect');
         } else if (response.status === 500) {
-          NotificationManager.error('Erreur serveur', '', 2000);
+          notifError('Erreur serveur');
         } else if (response.status === 200) {
-          NotificationManager.success('Le mot de passe a été changé avec succés', '', 2000);
+          notifSuccess('Le mot de passe a été changé avec succès');
         }
         this.setState({
           oldPwd: '',
@@ -114,7 +117,6 @@ class MyAccount extends Component {
               <Button className="all-btn" type="submit">Modifier</Button>
             </Row>
           </Form>
-          <NotificationContainer />
         </Container>
       </div>
     );
@@ -129,5 +131,6 @@ const mstp = state => ({
   id: state.log.user.id,
 });
 
+const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError }, dispatch);
 
-export default connect(mstp)(MyAccount);
+export default connect(mstp, mdtp)(MyAccount);

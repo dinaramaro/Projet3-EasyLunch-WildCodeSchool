@@ -10,13 +10,13 @@ import {
   Container,
 } from 'reactstrap';
 import _ from 'lodash';
-import { NotificationContainer, NotificationManager } from 'react-notifications';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser } from '../actions/logIn';
+import { notifSuccess, notifError } from '../actions/notifications';
 import { varServeur } from '../constants';
 
 class Login extends Component {
@@ -40,7 +40,9 @@ class Login extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { setUser, history, location: { state } } = this.props;
+    const {
+      setUser, notifError, notifSuccess, history, location: { state },
+    } = this.props;
     fetch(`${varServeur}signin`, {
       method: 'POST',
       headers: new Headers({
@@ -50,10 +52,10 @@ class Login extends Component {
     })
       .then((res) => {
         if (res.status === 401) {
-          NotificationManager.error('Mauvais mot de passe ou adresse mail', '', 2000);
+          notifError('Mauvais mot de passe ou adresse email');
         }
         if (res.status === 200) {
-          NotificationManager.success('Connecté', '', 2000);
+          notifSuccess('Connecté');
           return res.json();
         }
       })
@@ -101,13 +103,12 @@ class Login extends Component {
             <Button className="all-btn" type="submit">Connexion</Button>
           </Form>
           <Button className="all-btn" tag={Link} to="/inscription">Créer un compte</Button>
-          <NotificationContainer />
         </Container>
       </div>
     );
   }
 }
 
-const mdtp = dispatch => bindActionCreators({ setUser }, dispatch);
+const mdtp = dispatch => bindActionCreators({ setUser, notifSuccess, notifError }, dispatch);
 
 export default connect(null, mdtp)(withRouter(Login));

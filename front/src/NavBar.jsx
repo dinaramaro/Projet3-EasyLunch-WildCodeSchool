@@ -20,6 +20,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from './actions/logIn';
 import { mailAdmin } from './constants';
+import { notifSuccess } from './actions/notifications';
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -37,10 +39,10 @@ class NavBar extends Component {
   }
 
   logout() {
-    const { logout } = this.props;
+    const { logout, notifSuccess } = this.props;
     logout();
     Cookies.remove('token');
-    NotificationManager.success('Vous avez été déconnecté');
+    notifSuccess('Vous avez été déconnecté');
   }
 
   render() {
@@ -113,6 +115,6 @@ class NavBar extends Component {
 const mstp = state => ({
   user: state.log.user,
 });
-const mdtp = dispatch => bindActionCreators({ logout }, dispatch);
+const mdtp = dispatch => bindActionCreators({ logout, notifSuccess }, dispatch);
 
 export default connect(mstp, mdtp)(NavBar);

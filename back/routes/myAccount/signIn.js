@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
           if (error3) {
             res.sendStatus(500);
           } else {
-            res.sendStatus(200);
+            res.status(200);
           }
         });
       }
