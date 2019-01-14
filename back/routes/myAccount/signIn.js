@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
     const token = jwt.sign(user, secret, { expiresIn: 86400 });
     connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error2) => {
       if (error2) {
-        res.status(500).send(`${error2}`);
+        res.sendStatus(500);
       } else {
         connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error3) => {
           if (error3) {
