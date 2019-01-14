@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import {
@@ -9,6 +10,8 @@ import {
 } from 'reactstrap';
 import './MyAccount.scss';
 import { varServeur } from '../constants';
+import { notifSuccess, notifError } from '../actions/notifications';
+
 
 class MyAccount extends Component {
   constructor(props) {
@@ -16,7 +19,6 @@ class MyAccount extends Component {
     this.state = {
       oldPwd: '',
       newPwd: '',
-      flash: '',
     };
     this.changePassword = this.changePassword.bind(this);
     this.newPassword = this.newPassword.bind(this);
@@ -29,6 +31,7 @@ class MyAccount extends Component {
   }
 
   newPassword(e) {
+    const { notifError, notifSuccess } = this.props;
     e.preventDefault();
     const { oldPwd, newPwd } = this.state;
     const { id } = this.props;
@@ -45,18 +48,16 @@ class MyAccount extends Component {
       }),
     })
       .then((response) => {
-        let flash = '';
         if (response.status === 403) {
-          flash = 'Mot de passe incorrect';
-        }
-        if (response.status === 500) {
-          flash = 'Erreur serveur';
-        }
-        if (response.ok) {
-          flash = 'Le mot de passe a été modifié avec succès';
+          notifError('Votre ancien mot de passe est incorrect');
+        } else if (response.status === 500) {
+          notifError('Erreur serveur');
+        } else if (response.status === 200) {
+          notifSuccess('Le mot de passe a été changé avec succès');
         }
         this.setState({
-          flash,
+          oldPwd: '',
+          newPwd: '',
         });
       });
   }
@@ -65,7 +66,6 @@ class MyAccount extends Component {
     const {
       oldPwd,
       newPwd,
-      flash,
     } = this.state;
     const {
       user,
@@ -117,7 +117,6 @@ class MyAccount extends Component {
               <Button className="all-btn" type="submit">Modifier</Button>
             </Row>
           </Form>
-          <p>{flash}</p>
         </Container>
       </div>
     );
@@ -132,5 +131,6 @@ const mstp = state => ({
   id: state.log.user.id,
 });
 
+const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError }, dispatch);
 
-export default connect(mstp)(MyAccount);
+export default connect(mstp, mdtp)(MyAccount);

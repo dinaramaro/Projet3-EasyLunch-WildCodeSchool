@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
   };
   connection.query('INSERT INTO public_users_app SET ?', data, (err) => {
     if (err) {
-      res.status(500);
+      res.sendStatus(500);
     } else {
       res.sendStatus(200);
     }
