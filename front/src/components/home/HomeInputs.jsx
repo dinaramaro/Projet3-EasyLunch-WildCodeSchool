@@ -44,7 +44,7 @@ class HomeInputs extends Component {
 
             <Input
               className="search1"
-              placeholder="Restaurant"
+              placeholder="Restaurant, ville, adresse ou type de restaurant"
               style={{ width: '25vw' }}
               value={keyword}
               onChange={this.onChange}
