@@ -1,5 +1,6 @@
 import express from 'express';
 import connection from '../config';
+import { cpus } from 'os';
 
 const router = express.Router();
 
@@ -39,11 +40,18 @@ router.post('/', (req, res) => {
                     ...tablePayment,
                     command_id: commandId,
                   };
-                  connection.query('INSERT INTO public_payment SET ?', newPayment, (err5) => {
+                  connection.query('INSERT INTO public_payment SET ?', newPayment, (err5, results5) => {
                     if (err5) {
                       res.status(500).send(`Erreur public payment: ${err5}`);
                     } else {
-                      res.sendStatus(201);
+                      const paymentId = results5.insertId;
+                      connection.query('UPDATE public_command SET payment_id = ? WHERE id = ?', [paymentId, commandId], (err6) => {
+                        if (err6) {
+                          res.status(500).send(`Erreur public command: ${err6}`);
+                        } else {
+                          res.json(nameCode);
+                        }
+                      })  
                     }
                   });
                 }

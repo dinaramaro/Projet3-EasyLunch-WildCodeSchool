@@ -7,8 +7,10 @@ import { bindActionCreators } from 'redux';
 import { handleChangeOrder } from '../../actions';
 
 
-const FormOrder = ({ formulaire: { date, schedule, nb_users },
+const FormOrder = ({
+  formulaire: { date, schedule, nb_users },
   handleChangeOrder, menuResto: { resto: { restoInfos } },
+  log: { user },
 }) => (
   <div className="FormOrder">
     <p>Commande (1/2)</p>
@@ -18,7 +20,7 @@ const FormOrder = ({ formulaire: { date, schedule, nb_users },
       <FormGroup row>
         <Label for="date" sm={3}>Date</Label>
         <Col sm={4}>
-          <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id)}>
+          <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, user.id)}>
             <option value="Aujourd'hui">Aujourd&apos;hui</option>
           </Input>
         </Col>
@@ -26,7 +28,7 @@ const FormOrder = ({ formulaire: { date, schedule, nb_users },
       <FormGroup row>
         <Label for="hour" sm={3}>Heure</Label>
         <Col sm={4}>
-          <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id)}>
+          <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, user.id)}>
             <option>Veuillez sélectionner</option>
             <option value="12h00">12h00</option>
             <option value="12h15">12h15</option>
@@ -41,7 +43,7 @@ const FormOrder = ({ formulaire: { date, schedule, nb_users },
       <FormGroup row>
         <Label for="nb" sm={3}>Nombre de personnes</Label>
         <Col sm={4}>
-          <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id)}>
+          <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, user.id)}>
             <option>Veuillez sélectionner</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -61,6 +63,7 @@ function mstp(state) {
   return {
     formulaire: state.formOrder.formulaire,
     menuResto: state.menuResto,
+    log: state.log,
   };
 }
 

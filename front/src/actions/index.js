@@ -1,8 +1,9 @@
-export const handleChangeOrder = (name, value, idresto) => ({
+export const handleChangeOrder = (name, value, idresto, user) => ({
   type: 'CHANGEORDER',
   name,
   value,
   idresto,
+  user,
 });
 
 export const handleChooseOnMenus = (
@@ -16,6 +17,7 @@ export const handleChooseOnMenus = (
   mealprice,
   plat,
   nbmeals,
+  user,
 ) => ({
   type: 'CHOOSEONMENUS',
   name,
@@ -28,9 +30,10 @@ export const handleChooseOnMenus = (
   mealprice,
   plat,
   nbmeals,
+  user,
 });
 
-export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat) => ({
+export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat, user) => ({
   type: 'CHOOSEONCARDS',
   name,
   value,
@@ -38,6 +41,7 @@ export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat) 
   text,
   idmeal,
   plat,
+  user,
 });
 
 export const handleChangeSpecial = (name, value) => ({

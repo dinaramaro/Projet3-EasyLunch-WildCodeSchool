@@ -12,7 +12,7 @@ const sendOrder = (state = initialState, action) => {
       const tempBooking = { ...state.sendOrder.tableBooking };
       tempBooking[action.name] = action.value;
       const tableBooking = {};
-      tableBooking.master_user_id = '';
+      tableBooking.master_user_id = action.user;
       tableBooking.nb_users = parseInt(tempBooking.nb_users, 10);
       const tempSchedule = tempBooking.schedule;
       const tempScheduleString = tempSchedule.toString().split('h').join('');
@@ -26,13 +26,22 @@ const sendOrder = (state = initialState, action) => {
       return newState;
     }
     case 'CHANGESPECIAL': {
-      const tempFormChange = { ...state.sendOrder };
-      const tempBooking = tempFormChange.tableBooking;
-      const tempCommand = tempFormChange.tableCommand;
+      const tempFormChange = { ...state };
+      const tempBooking = tempFormChange.sendOrder.tableBooking;
+      const tempCommand = tempFormChange.sendOrder.tableCommand;
+      const tempPayment = tempFormChange.sendOrder.tablePayment;
+      const tempTotal = tempFormChange.total;
       tempCommand[action.name] = action.value;
       const tableCommand = tempCommand;
       const tableBooking = tempBooking;
-      const tempTable = { tableBooking, tableCommand };
+      let tablePayment = {};
+      if (tempPayment !== undefined) {
+        tempPayment.amount = tempTotal;
+        tempPayment.user_id = tempCommand.user_id;
+        tempPayment.status = 'ok';
+        tablePayment = tempPayment;
+      }
+      const tempTable = { tableBooking, tableCommand, tablePayment };
       newState = {
         ...state,
         sendOrder: tempTable,
@@ -82,7 +91,7 @@ const sendOrder = (state = initialState, action) => {
         tableCommand.meal_id = `{${idMealString}}`;
         tempTab = [tempObj];
       }
-      tableCommand.user_id = '';
+      tableCommand.user_id = action.user;
       tableCommand.price = action.menuprice;
       const tempMenu = {};
       const tempMealsPrices = tempTab.filter(
@@ -93,7 +102,8 @@ const sendOrder = (state = initialState, action) => {
 
       if (tempPayment !== undefined) {
         tempPayment.amount = action.menuprice;
-        tempPayment.user_id = '';
+        tempPayment.user_id = action.user;
+        tempPayment.status = 'ok';
         tablePayment = tempPayment;
       }
       const tableBooking = tempBooking;
@@ -166,11 +176,12 @@ const sendOrder = (state = initialState, action) => {
 
       const tableBooking = tempBooking;
 
-      tempCommand.user_id = '';
+      tempCommand.user_id = action.user;
       const tableCommand = tempCommand;
 
       tempPayment.amount = tempTotalRound;
-      tempPayment.user_id = '';
+      tempPayment.user_id = action.user;
+      tempPayment.status = 'ok';
       const tablePayment = tempPayment;
 
       const tempUnion = { tableBooking, tableCommand, tablePayment };
