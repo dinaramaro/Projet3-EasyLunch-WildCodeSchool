@@ -8,7 +8,9 @@ import {
 import './ChooseOnMenus.scss';
 import { handleChooseOnMenus } from '../../actions';
 
-const ChooseOnMenus = ({ handleChooseOnMenus, text, meals }) => {
+const ChooseOnMenus = ({
+  handleChooseOnMenus, text, meals, idUser,
+}) => {
   return (
     <div className="ChooseOnMenus">
       {
@@ -29,7 +31,7 @@ const ChooseOnMenus = ({ handleChooseOnMenus, text, meals }) => {
               id={`${item.id_plat}${item.id}`}
               label={item.meals_name}
               onChange={(e) => {
-                handleChooseOnMenus(e.target.name, e.target.value, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals);
+                handleChooseOnMenus(e.target.name, e.target.value, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals, idUser);
               }}
             />
           </div>
@@ -39,8 +41,15 @@ const ChooseOnMenus = ({ handleChooseOnMenus, text, meals }) => {
   );
 };
 
+function mstp(state) {
+  return {
+    idUser: state.log.user.id,
+  };
+}
+
+
 function mdtp(dispatch) {
   return bindActionCreators({ handleChooseOnMenus }, dispatch);
 }
 
-export default connect(null, mdtp)(ChooseOnMenus);
+export default connect(mstp, mdtp)(ChooseOnMenus);

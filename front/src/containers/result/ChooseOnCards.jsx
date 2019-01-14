@@ -7,7 +7,9 @@ import {
 import './ChooseOnCards.scss';
 import { handleChooseOnCards } from '../../actions';
 
-const ChooseOnCards = ({ handleChooseOnCards, text, meals }) => {
+const ChooseOnCards = ({
+  handleChooseOnCards, text, meals, idUser,
+}) => {
   let tempPrice = '';
   return (
     <div className="ChooseOnCards">
@@ -25,19 +27,25 @@ const ChooseOnCards = ({ handleChooseOnCards, text, meals }) => {
                 name={text}
                 id={item.id}
                 onChange={(e) => {
-                  handleChooseOnCards(e.target.name, e.target.value, item.price, text, item.id, item.plat);
+                  handleChooseOnCards(e.target.name, e.target.value, item.price, text, item.id, item.plat, idUser);
                 }}
               />
             </div>
-          )
+          );
         })
       }
     </div>
   );
 };
 
+function mstp(state) {
+  return {
+    idUser: state.log.user.id,
+  };
+}
+
 function mdtp(dispatch) {
   return bindActionCreators({ handleChooseOnCards }, dispatch);
 }
 
-export default connect(null, mdtp)(ChooseOnCards);
+export default connect(mstp, mdtp)(ChooseOnCards);
