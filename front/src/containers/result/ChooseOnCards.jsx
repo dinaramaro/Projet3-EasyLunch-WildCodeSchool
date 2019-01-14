@@ -8,7 +8,7 @@ import './ChooseOnCards.scss';
 import { handleChooseOnCards } from '../../actions';
 
 const ChooseOnCards = ({
-  handleChooseOnCards, text, meals, log: { user },
+  handleChooseOnCards, text, meals, idUser,
 }) => {
   let tempPrice = '';
   return (
@@ -27,7 +27,7 @@ const ChooseOnCards = ({
                 name={text}
                 id={item.id}
                 onChange={(e) => {
-                  handleChooseOnCards(e.target.name, e.target.value, item.price, text, item.id, item.plat, user.id);
+                  handleChooseOnCards(e.target.name, e.target.value, item.price, text, item.id, item.plat, idUser);
                 }}
               />
             </div>
@@ -40,7 +40,7 @@ const ChooseOnCards = ({
 
 function mstp(state) {
   return {
-    log: state.log,
+    idUser: state.log.user.id,
   };
 }
 

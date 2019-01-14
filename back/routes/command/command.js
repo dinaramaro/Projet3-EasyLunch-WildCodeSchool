@@ -1,13 +1,12 @@
 import express from 'express';
 import connection from '../config';
-import { cpus } from 'os';
 
 const router = express.Router();
 
 router.post('/', (req, res) => {
   connection.query('SELECT name, id FROM public_code WHERE free = 1 ORDER BY RAND() LIMIT 1', (err, results) => {
     if (err) {
-      res.status(500).send(`Erreur public code: ${err}`);
+      res.sendStatus(500);
     } else {
       const code = results[0].id;
       const nameCode = results[0].name;
@@ -47,11 +46,11 @@ router.post('/', (req, res) => {
                       const paymentId = results5.insertId;
                       connection.query('UPDATE public_command SET payment_id = ? WHERE id = ?', [paymentId, commandId], (err6) => {
                         if (err6) {
-                          res.status(500).send(`Erreur public command: ${err6}`);
+                          res.sendStatus(500);
                         } else {
                           res.json(nameCode);
                         }
-                      })  
+                      });
                     }
                   });
                 }

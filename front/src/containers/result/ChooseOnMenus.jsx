@@ -9,7 +9,7 @@ import './ChooseOnMenus.scss';
 import { handleChooseOnMenus } from '../../actions';
 
 const ChooseOnMenus = ({
-  handleChooseOnMenus, text, meals, log: { user },
+  handleChooseOnMenus, text, meals, idUser,
 }) => {
   return (
     <div className="ChooseOnMenus">
@@ -31,7 +31,7 @@ const ChooseOnMenus = ({
               id={`${item.id_plat}${item.id}`}
               label={item.meals_name}
               onChange={(e) => {
-                handleChooseOnMenus(e.target.name, e.target.value, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals, user.id);
+                handleChooseOnMenus(e.target.name, e.target.value, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals, idUser);
               }}
             />
           </div>
@@ -43,7 +43,7 @@ const ChooseOnMenus = ({
 
 function mstp(state) {
   return {
-    log: state.log,
+    idUser: state.log.user.id,
   };
 }
 
