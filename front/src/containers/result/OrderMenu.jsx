@@ -227,7 +227,7 @@ class OrderMenu extends Component {
           <MyMeal />
           <FormGroup>
             <p>Instructions spéciales</p>
-            <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e)} />
+            <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
           </FormGroup>
           <Row>
             <Col sm={2}>

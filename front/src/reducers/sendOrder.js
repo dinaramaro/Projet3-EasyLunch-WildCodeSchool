@@ -10,7 +10,7 @@ const sendOrder = (state = initialState, action) => {
   switch (action.type) {
     case 'CHANGEORDER': {
       const tempBooking = { ...state.sendOrder.tableBooking };
-      tempBooking[action.e.target.name] = action.e.target.value;
+      tempBooking[action.name] = action.value;
       const tableBooking = {};
       tableBooking.master_user_id = '';
       tableBooking.nb_users = parseInt(tempBooking.nb_users, 10);
@@ -29,7 +29,7 @@ const sendOrder = (state = initialState, action) => {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
       const tempCommand = tempFormChange.tableCommand;
-      tempCommand[action.e.target.name] = action.e.target.value;
+      tempCommand[action.name] = action.value;
       const tableCommand = tempCommand;
       const tableBooking = tempBooking;
       const tempTable = { tableBooking, tableCommand };

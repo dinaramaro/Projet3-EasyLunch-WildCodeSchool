@@ -8,8 +8,7 @@ import {
 import './ChooseOnMenus.scss';
 import { handleChooseOnMenus } from '../../actions';
 
-const ChooseOnMenus = (props) => {
-  const { handleChooseOnMenus, text, meals } = props;
+const ChooseOnMenus = ({ handleChooseOnMenus, text, meals }) => {
   return (
     <div className="ChooseOnMenus">
       {
@@ -30,7 +29,7 @@ const ChooseOnMenus = (props) => {
               id={`${item.id_plat}${item.id}`}
               label={item.meals_name}
               onChange={(e) => {
-                handleChooseOnMenus(e, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals);
+                handleChooseOnMenus(e.target.name, e.target.value, item.id, item.menu_name, item.menu_price, text, item.id_plat, item.meals_price, item.plat, item.nbmeals);
               }}
             />
           </div>

@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-const MyMeal = (props) => {
-  const { chooseByUser: { tabs } } = props;
+const MyMeal = ({ chooseByUser: { tabs } }) => {
   let subtitle = '';
   if (tabs[0] !== undefined) {
     switch (tabs[0].nbmeals) {

@@ -7,8 +7,7 @@ import {
 import './ChooseOnCards.scss';
 import { handleChooseOnCards } from '../../actions';
 
-const ChooseOnCards = (props) => {
-  const { handleChooseOnCards, text, meals } = props;
+const ChooseOnCards = ({ handleChooseOnCards, text, meals }) => {
   let tempPrice = '';
   return (
     <div className="ChooseOnCards">
@@ -26,7 +25,7 @@ const ChooseOnCards = (props) => {
                 name={text}
                 id={item.id}
                 onChange={(e) => {
-                  handleChooseOnCards(e, item.price, text, item.id, item.plat);
+                  handleChooseOnCards(e.target.name, e.target.value, item.price, text, item.id, item.plat);
                 }}
               />
             </div>
