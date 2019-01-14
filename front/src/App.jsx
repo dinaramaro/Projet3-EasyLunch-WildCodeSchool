@@ -24,6 +24,8 @@ import ModificationFAQ from './components/admin/FAQ/ModificationFAQ';
 import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
+import OrderPageOne from './components/result/OrderPageOne';
+import OrderPageTwo from './containers/result/OrderPageTwo';
 import AdminContactRestaurant from './components/admin/contactRestaurant/AdminContactRestaurant';
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
@@ -45,6 +47,8 @@ const App = () => (
         <Route path="/a-propos/partenaires" component={Partners} />
         <Route path="/a-propos/politique" component={Politic} />
         <Route path="/a-propos/restaurateur" component={Restaurant} />
+        <Route path="/commande-page1" component={OrderPageOne} />
+        <Route path="/commande-page2" component={OrderPageTwo} />
         <PrivateRouteAdmin path="/admin/admin-menu" component={AdminMenu} />
         <PrivateRouteAdmin path="/admin/admin-cgv" component={AdminCVG} />
         <PrivateRouteAdmin path="/admin/admin-politique" component={AdminPolitic} />
