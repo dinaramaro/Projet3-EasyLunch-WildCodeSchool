@@ -9,12 +9,14 @@ import {
   Input,
   Container,
 } from 'reactstrap';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setUser } from '../actions/logIn';
+import { notifSuccess, notifError } from '../actions/notifications';
 import { varServeur } from '../constants';
 
 class Login extends Component {
@@ -35,9 +37,12 @@ class Login extends Component {
     });
   }
 
+
   handleSubmit(e) {
     e.preventDefault();
-    const { setUser, history, location: { state } } = this.props;
+    const {
+      setUser, notifError, notifSuccess, history, location: { state },
+    } = this.props;
     fetch(`${varServeur}signin`, {
       method: 'POST',
       headers: new Headers({
@@ -45,9 +50,17 @@ class Login extends Component {
       }),
       body: JSON.stringify(this.state),
     })
-      .then(res => res.json())
+      .then((res) => {
+        if (res.status === 401) {
+          notifError('Mauvais mot de passe ou adresse email');
+        }
+        if (res.status === 200) {
+          notifSuccess('Connecté');
+          return res.json();
+        }
+      })
       .then((data) => {
-        if (data.user) {
+        if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
           Cookies.set('token', data.token, { expires: 1 });
           const { from } = state || { from: { pathname: '/mon-compte' } };
@@ -79,7 +92,7 @@ class Login extends Component {
                 <Label for="Password">Mot de passe</Label>
                 <Input
                   type="password"
-                  placeholder="fantome"
+                  placeholder="Mot de passe"
                   name="password"
                   value={password}
                   onChange={this.onChangeInput}
@@ -96,6 +109,6 @@ class Login extends Component {
   }
 }
 
-const mdtp = dispatch => bindActionCreators({ setUser }, dispatch);
+const mdtp = dispatch => bindActionCreators({ setUser, notifSuccess, notifError }, dispatch);
 
 export default connect(null, mdtp)(withRouter(Login));

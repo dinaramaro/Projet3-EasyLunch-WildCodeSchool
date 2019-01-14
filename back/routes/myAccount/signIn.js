@@ -41,24 +41,23 @@ passport.use(new JwtStrategy({
 ));
 
 router.post('/', (req, res) => {
-  passport.authenticate('local', (err, data) => {
-    if (err) {
-      return res.status(500).send(`${err} dans le login`);
+  passport.authenticate('local', (error, data) => {
+    if (error) {
+      return res.sendStatus(500);
     }
     if (!data) {
       return res
-        .status(401)
-        .json({ message: "Erreur de Mot de Passe ou d'adresse mail" });
+        .sendStatus(401);
     }
     const { password, ...user } = data;
     const token = jwt.sign(user, secret, { expiresIn: 86400 });
-    connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error) => {
-      if (error) {
-        res.status(500).send(`${err}`);
+    connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error2) => {
+      if (error2) {
+        res.sendStatus(500);
       } else {
-        connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error) => {
-          if (error) {
-            res.status(500).send(`${err} dans le login`);
+        connection.query('INSERT INTO public_token (token, user) VALUES (?, ?)', [token, user.mail], (error3) => {
+          if (error3) {
+            res.sendStatus(500);
           } else {
             res.status(200);
           }

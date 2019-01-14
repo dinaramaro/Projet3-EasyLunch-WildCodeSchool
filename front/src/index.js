@@ -13,6 +13,7 @@ import allReducers from './reducers';
 import thunk from 'redux-thunk';
 import 'font-awesome/css/font-awesome.min.css';
 import 'react-quill/dist/quill.snow.css';
+import 'react-notifications/lib/notifications.css';
 import CheckToken from './CheckToken';
 
 const store = createStore(allReducers, applyMiddleware(thunk));
