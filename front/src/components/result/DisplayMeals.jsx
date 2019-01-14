@@ -2,10 +2,10 @@ import React from 'react';
 
 
 const DisplayMeals = ({ text, meals }) => (
-  <div>
+  <div className="DisplayMeals">
     {
       meals.length > 0
-        ? <p>{text}</p>
+        ? <p>{`${text} : `}</p>
         : ''
     }
     {
