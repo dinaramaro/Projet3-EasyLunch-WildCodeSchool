@@ -31,9 +31,11 @@ const sendOrder = (state = initialState, action) => {
       const tempCommand = tempFormChange.sendOrder.tableCommand;
       const tempPayment = tempFormChange.sendOrder.tablePayment;
       const tempTotal = tempFormChange.total;
-      tempBooking.master_user_id = action.iduser;
       if (tempCommand !== undefined) {
         tempCommand.user_id = action.iduser;
+      }
+      if (tempBooking !== undefined) {
+        tempBooking.master_user_id = action.iduser;
       }
       const tableCommand = tempCommand;
       const tableBooking = tempBooking;

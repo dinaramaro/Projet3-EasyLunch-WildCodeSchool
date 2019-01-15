@@ -29,7 +29,7 @@ import ChooseOnCards from './ChooseOnCards';
 import MyMeal from './MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
-import { handleChangeSpecial } from '../../actions';
+import { handleChangeSpecial, getUserId } from '../../actions';
 import { sendCommand } from '../../actions/sendCommand';
 
 class OrderMenu extends Component {
@@ -44,10 +44,15 @@ class OrderMenu extends Component {
   }
 
   componentDidMount() {
-    const { menuResto: { resto: { restoInfos } }, cardResto } = this.props;
+    const {
+      menuResto: { resto: { restoInfos } },
+      cardResto, log: { user },
+      getUserId,
+    } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
+    getUserId(user.id);
   }
 
   onToken = (token) => {
@@ -360,6 +365,7 @@ function mdtp(dispatch) {
     cardResto,
     handleChangeSpecial,
     sendCommand,
+    getUserId,
   },
   dispatch);
 }
