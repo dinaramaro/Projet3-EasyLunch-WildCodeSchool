@@ -15,14 +15,17 @@ import team from './routes/admin/team';
 import concept from './routes/admin/concept';
 import search from './routes/search';
 import restaurant from './routes/restaurant';
+import codeToIdRestaurant from './routes/participation/codeToIdRestaurant';
 import cards from './routes/cards';
 import signUp from './routes/myAccount/signUp';
 import signIn from './routes/myAccount/signIn';
 import checkConnected from './routes/myAccount/checkConnected';
 import command from './routes/command/command';
 import changePassword from './routes/myAccount/changePassword';
+import reservationHistory from './routes/myAccount/reservationHistory';
 import contact from './routes/admin/contact';
 import contactrestaurant from './routes/admin/contactrestaurant';
+import participation from './routes/participation/participation';
 
 const app = express();
 const debug = Debug('back:app');
@@ -47,6 +50,7 @@ app.use('/api/admin/politic', politic);
 app.use('/api/admin/partners', partners);
 app.use('/api/search', search);
 app.use('/api/admin/team', team);
+app.use('/api/idrestaurant', codeToIdRestaurant);
 app.use('/api/cards', cards);
 app.use('/api/admin/concept', concept);
 app.use('/api/signup', signUp);
@@ -56,6 +60,8 @@ app.use('/api/command', command);
 app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
 app.use('/api/admin/contact-restaurant', contactrestaurant);
+app.use('/api/participate', participation);
+app.use('/api/reservationhistory', reservationHistory);
 
 
 // Uncomment on pre-prod/prod

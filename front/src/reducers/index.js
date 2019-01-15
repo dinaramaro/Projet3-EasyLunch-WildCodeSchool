@@ -8,6 +8,7 @@ import sendOrder from './sendOrder';
 import getCode from './getCode';
 import notificationsReducer from './notificationsReducer';
 import log from './log';
+import codeParticip from './codeParticip';
 
 const allReducers = combineReducers({
   searchResults,
@@ -19,6 +20,7 @@ const allReducers = combineReducers({
   sendOrder,
   log,
   getCode,
+  codeParticip,
 });
 
 export default allReducers;

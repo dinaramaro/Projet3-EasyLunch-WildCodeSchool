@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-const InfoGe = ({ formulaire: { date, schedule, nb_users } }) => (
+const GeneralInformationsParticipation = ({ formulaire: { date, schedule, nb_users } }) => (
   <div className="InfoGe">
     <p>Informations générales</p>
     <p>{`Date : ${date}`}</p>
@@ -17,4 +17,4 @@ function mstp(state) {
   };
 }
 
-export default connect(mstp)(InfoGe);
+export default connect(mstp)(GeneralInformationsParticipation);
