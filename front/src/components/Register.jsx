@@ -90,6 +90,7 @@ class Register extends Component {
               type="password"
               value={password}
               onChange={this.onChangeInput}
+              minLength="8"
               required
             />
             <Button className="all-btn" type="submit"> Inscritpion </Button>
