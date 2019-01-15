@@ -291,7 +291,7 @@ class OrderMenuParticipate extends Component {
             {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.`}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Partager le code et le lien</Button>
+            <Button color="primary" onClick={this.toggleModal}>Ok</Button>
           </ModalFooter>
         </Modal>
       </div>

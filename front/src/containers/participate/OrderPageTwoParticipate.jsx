@@ -4,7 +4,7 @@ import {
   Container, Row, Col,
 } from 'reactstrap';
 import RestoInfosParticipate from './RestoInfosParticipate';
-import InfoGeParticipate from './InfosGeParticipate';
+import GeneralInformations from './GeneralInformationsParticipation';
 import OrderMenuParticipate from './OrderMenuParticipate';
 
 
@@ -13,7 +13,7 @@ const OrderPageTwoParticipate = () => (
     <Row>
       <Col sm={4}>
         <RestoInfosParticipate />
-        <InfoGeParticipate />
+        <GeneralInformations />
       </Col>
       <Col sm={8}>
         <OrderMenuParticipate />

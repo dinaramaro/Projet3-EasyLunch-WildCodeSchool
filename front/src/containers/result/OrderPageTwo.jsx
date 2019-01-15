@@ -4,7 +4,7 @@ import {
   Container, Row, Col,
 } from 'reactstrap';
 import RestoInfos from './RestoInfos';
-import InfoGe from './InfoGe';
+import GeneralInformations from './GeneralInformations';
 import OrderMenu from './OrderMenu';
 
 
@@ -13,7 +13,7 @@ const OrderPageTwo = () => (
     <Row>
       <Col sm={4}>
         <RestoInfos />
-        <InfoGe />
+        <GeneralInformations />
       </Col>
       <Col sm={8}>
         <OrderMenu />

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './HomeInputs.scss';
 import { Input, Button, Form } from 'reactstrap';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import queryString from 'query-string';
 
 const imgSrc = 'medias/hero-image.png';
@@ -69,7 +70,7 @@ class HomeInputs extends Component {
               <option>7</option>
             </Input>
             <Button className="search-button btn-submit">Rechercher</Button>
-            <Button className="participe-button">Je participe</Button>
+            <Button tag={Link} to="/participation" className="participe-button">Je participe</Button>
           </div>
         </Form>
       </div>
