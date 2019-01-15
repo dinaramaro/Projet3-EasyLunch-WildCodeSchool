@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-<<<<<<< HEAD
   Nav,
   NavItem,
   NavLink,
@@ -21,11 +20,6 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-=======
-  Nav, NavItem, NavLink, Card, Col, Row, TabPane,
-  TabContent, Form, FormGroup, Input, Button, Modal,
-  ModalHeader, ModalBody, ModalFooter,
->>>>>>> dev
 } from 'reactstrap';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
