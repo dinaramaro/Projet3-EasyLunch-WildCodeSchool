@@ -1,19 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import StripeCheckout from 'react-stripe-checkout';
+import { varServeur } from '../../constants';
 
 const TakeMoney = (props) => {
   const { chooseByUser: { total } } = props;
   const totalSend = total * 100 / 100;
 
   const onToken = (token) => {
-    fetch('/save-stripe-token', {
+    fetch(`${varServeur}`, {
       method: 'POST',
       body: JSON.stringify(token),
     }).then((response) => {
-      response.json().then((data) => {
-        alert(`We are in business, ${data.email}`);
-      });
+      response.json();
     });
   };
 
