@@ -65,6 +65,7 @@ const App = () => (
         <Route path="/result" component={Result} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
+        <PrivateRoute path="/paiement" component={OrderPageTwo} />
       </Switch>
       <NotificationContainer />
     </div>

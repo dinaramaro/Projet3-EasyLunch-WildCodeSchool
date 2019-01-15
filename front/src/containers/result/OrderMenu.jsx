@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-  Nav, NavItem, NavLink, Card, Col, Row, TabPane, TabContent, Form, FormGroup, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  Col,
+  Row,
+  TabPane,
+  TabContent,
+  Form,
+  FormGroup,
+  Input,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from 'reactstrap';
 import classnames from 'classnames';
+import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
@@ -15,7 +32,6 @@ import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial } from '../../actions';
 import { sendCommand } from '../../actions/sendCommand';
 
-
 class OrderMenu extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +40,7 @@ class OrderMenu extends Component {
       modal: false,
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.redirectConnect = this.redirectConnect.bind(this);
   }
 
   componentDidMount() {
@@ -31,6 +48,30 @@ class OrderMenu extends Component {
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
+  }
+
+  onToken = (token) => {
+    fetch('/save-stripe-token', {
+      method: 'POST',
+      body: JSON.stringify(token),
+    })
+      .then(response => response.text())
+      .then(() => {
+        this.handleClickPay();
+      });
+  }
+
+  handleClickPay() {
+    const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    if (!_.isEmpty(sendOrder)) {
+      sendCommand(`${varServeur}command`, sendOrder);
+      this.toggleModal();
+    }
+  }
+
+  toggleModal() {
+    const { modal } = this.state;
+    this.setState({ modal: !modal });
   }
 
   toggle(tab) {
@@ -42,18 +83,12 @@ class OrderMenu extends Component {
     }
   }
 
-
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
-  handleClickPay() {
-    const { sendOrder: { sendOrder }, sendCommand } = this.props;
-    if (!_.isEmpty(sendOrder)) {
-      sendCommand(`${varServeur}command`, sendOrder);
-      this.toggleModal();
-    }
+  redirectConnect() {
+    const { history, location: { pathname } } = this.props;
+    history.push({
+      pathname: '/connexion',
+      state: { from: { pathname } },
+    });
   }
 
   render() {
@@ -71,6 +106,8 @@ class OrderMenu extends Component {
       menuResto: { resto: { restoInfos } },
       getCode: { code },
     } = this.props;
+
+    const totalSend = total * 100 / 100;
 
     let listEnt = [];
     let listMain = [];
@@ -268,7 +305,23 @@ class OrderMenu extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Button type="button" onClick={() => this.handleClickPay()}>Payer</Button>
+              {
+                (userName !== undefined)
+                  ? (
+                    <StripeCheckout
+                      token={this.onToken}
+                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+                      amount={Math.round(totalSend * 100)}
+                      currency="EUR"
+                    >
+                      <Button type="button">
+                      Payer
+                      </Button>
+                    </StripeCheckout>
+                  )
+                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+              }
+
             </Col>
           </Row>
         </Form>
@@ -312,4 +365,4 @@ function mdtp(dispatch) {
 }
 
 
-export default connect(mstp, mdtp)(OrderMenu);
+export default withRouter(connect(mstp, mdtp)(OrderMenu));

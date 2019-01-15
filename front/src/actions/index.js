@@ -49,3 +49,8 @@ export const handleChangeSpecial = (name, value) => ({
   name,
   value,
 });
+
+export const getUserId = iduser => ({
+  type: 'GETUSERID',
+  iduser,
+});

@@ -39,7 +39,7 @@ const chooseByUser = (state = initialState, action) => {
       const resultFind = tempTab.find(item => item[item.text] === action.value);
       let tempTotal = state.total;
       if (resultFind === undefined) {
-        tempObj.id = action.id;
+        tempObj.id = action.idmeal;
         tempObj[action.name] = action.value;
         tempObj.price = action.price;
         tempObj.text = action.text;
