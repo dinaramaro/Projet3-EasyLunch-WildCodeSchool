@@ -56,7 +56,7 @@ class OrderMenu extends Component {
   }
 
   onToken = (token) => {
-    fetch(`${varServeur}`, {
+    fetch(`${varServeur}pay`, {
       method: 'POST',
       body: JSON.stringify(token),
     })
