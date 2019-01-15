@@ -4,7 +4,7 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import RestoInfos from '../../containers/result/RestoInfos';
-import InfoGe from '../../containers/result/InfoGe';
+import GeneralInformations from '../../containers/result/GeneralInformations';
 import FormOrder from '../../containers/result/FormOrder';
 
 
@@ -13,7 +13,7 @@ const OrderPageOne = () => (
     <Row>
       <Col sm={4}>
         <RestoInfos />
-        <InfoGe />
+        <GeneralInformations />
       </Col>
       <Col sm={8}>
         <FormOrder />
