@@ -7,6 +7,7 @@ import {
   TabContent, Form, FormGroup, Input, Button, Modal,
   ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
@@ -270,7 +271,7 @@ class OrderMenu extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Button type="button" onClick={() => this.handleClickPay()}>Payer</Button>
+              <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
             </Col>
           </Row>
         </Form>
