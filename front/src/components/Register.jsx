@@ -94,7 +94,7 @@ class Register extends Component {
               required
             />
             <p className="give">Vos données ne seront utilisées que pour le besoin des restaurateurs.</p>
-            <Button className="all-btn" type="submit"> Inscritpion </Button>
+            <Button className="all-btn" type="submit"> Inscription </Button>
           </Form>
         </Container>
       </div>
