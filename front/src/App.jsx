@@ -34,6 +34,7 @@ import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 import OrderPageTwoParticipate from './containers/participate/OrderPageTwoParticipate';
+import ReservationHistory from './components/commandHistory/ReservationHistory';
 
 
 const App = () => (
@@ -69,6 +70,7 @@ const App = () => (
         <Route path="/participation" component={Participate} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
+        <PrivateRoute path="/historique-de-reservation" component={ReservationHistory} />
       </Switch>
       <NotificationContainer />
     </div>
