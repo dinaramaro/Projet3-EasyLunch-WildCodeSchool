@@ -96,6 +96,7 @@ class Login extends Component {
                   name="password"
                   value={password}
                   onChange={this.onChangeInput}
+                  minLength="8"
                   required
                 />
               </Col>
