@@ -72,7 +72,7 @@ const App = () => (
       </Switch>
       <NotificationContainer />
     </div>
-    <Footer className="footer" />
+    <Footer />
   </div>
 );
 export default App;
