@@ -25,6 +25,34 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
+    case 'GETUSERID': {
+      const tempFormChange = { ...state };
+      const tempBooking = tempFormChange.sendOrder.tableBooking;
+      const tempCommand = tempFormChange.sendOrder.tableCommand;
+      const tempPayment = tempFormChange.sendOrder.tablePayment;
+      const tempTotal = tempFormChange.total;
+      if (tempCommand !== undefined) {
+        tempCommand.user_id = action.iduser;
+      }
+      if (tempBooking !== undefined) {
+        tempBooking.master_user_id = action.iduser;
+      }
+      const tableCommand = tempCommand;
+      const tableBooking = tempBooking;
+      let tablePayment = {};
+      if (tempPayment !== undefined) {
+        tempPayment.amount = tempTotal;
+        tempPayment.user_id = tempCommand.user_id;
+        tempPayment.status = 'ok';
+        tablePayment = tempPayment;
+      }
+      const tempTable = { tableBooking, tableCommand, tablePayment };
+      newState = {
+        ...state,
+        sendOrder: tempTable,
+      };
+      return newState;
+    }
     case 'CHANGESPECIAL': {
       const tempFormChange = { ...state };
       const tempBooking = tempFormChange.sendOrder.tableBooking;
@@ -48,7 +76,6 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-
     case 'CHOOSEONMENUS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;

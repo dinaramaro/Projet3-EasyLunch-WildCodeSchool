@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ import {
   Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import classnames from 'classnames';
+import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCardsParticipate from './ChooseOnCardsParticipate';
@@ -26,6 +28,8 @@ class OrderMenuParticipate extends Component {
       modal: false,
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.redirectConnect = this.redirectConnect.bind(this);
+
   }
 
   componentDidMount() {
@@ -70,6 +74,14 @@ class OrderMenuParticipate extends Component {
     }
   }
 
+  redirectConnect() {
+    const { history, location: { pathname } } = this.props;
+    history.push({
+      pathname: '/connexion',
+      state: { from: { pathname } },
+    });
+  }
+
   render() {
     const { activeTab, modal } = this.state;
     const {
@@ -84,6 +96,8 @@ class OrderMenuParticipate extends Component {
       log: { user },
       menuResto: { resto: { restoInfos } },
     } = this.props;
+
+    const totalSend = total * 100 / 100;
 
     let listEnt = [];
     let listMain = [];
@@ -281,7 +295,22 @@ class OrderMenuParticipate extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Button type="button" onClick={() => this.handleClickPay()}>Payer</Button>
+              {
+                (userName !== undefined)
+                  ? (
+                    <StripeCheckout
+                      token={this.onToken}
+                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+                      amount={Math.round(totalSend * 100)}
+                      currency="EUR"
+                    >
+                      <Button type="button">
+                      Payer
+                      </Button>
+                    </StripeCheckout>
+                  )
+                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+              }
             </Col>
           </Row>
         </Form>
@@ -323,4 +352,4 @@ function mdtp(dispatch) {
 }
 
 
-export default connect(mstp, mdtp)(OrderMenuParticipate);
+export default withRouter(connect(mstp, mdtp)(OrderMenuParticipate));

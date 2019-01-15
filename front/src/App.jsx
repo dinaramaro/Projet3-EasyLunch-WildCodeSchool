@@ -70,6 +70,7 @@ const App = () => (
         <Route path="/participation" component={Participate} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
+        <PrivateRoute path="/paiement" component={OrderPageTwo} />
         <PrivateRoute path="/historique-de-reservation" component={ReservationHistory} />
       </Switch>
       <NotificationContainer />
