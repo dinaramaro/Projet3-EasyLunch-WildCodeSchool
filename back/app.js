@@ -59,7 +59,7 @@ app.use('/api/command', command);
 app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
 app.use('/api/admin/contact-restaurant', contactrestaurant);
-app.use('/api/participe', participation);
+app.use('/api/participate', participation);
 
 
 // Uncomment on pre-prod/prod

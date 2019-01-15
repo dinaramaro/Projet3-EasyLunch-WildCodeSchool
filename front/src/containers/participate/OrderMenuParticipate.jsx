@@ -53,7 +53,7 @@ class OrderMenuParticipate extends Component {
   handleClickPay() {
     const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
     if (!_.isEmpty(sendOrder)) {
-      fetch(`${varServeur}participe/${codeParticip}`, {
+      fetch(`${varServeur}participate/${codeParticip}`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
