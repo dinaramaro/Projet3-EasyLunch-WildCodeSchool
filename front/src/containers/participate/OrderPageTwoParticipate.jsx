@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col,
 } from 'reactstrap';
-import RestoInfos from './RestoInfos';
-import GeneralInformations from './GeneralInformations';
-import OrderMenu from './OrderMenu';
+import RestoInfosParticipate from './RestoInfosParticipate';
+import GeneralInformations from './GeneralInformationsParticipation';
+import OrderMenuParticipate from './OrderMenuParticipate';
 
 
-const OrderPageTwo = () => (
+const OrderPageTwoParticipate = () => (
   <Container fluid className="OrderPageTwo">
     <Row>
       <Col sm={4}>
-        <RestoInfos />
+        <RestoInfosParticipate />
         <GeneralInformations />
       </Col>
       <Col sm={8}>
-        <OrderMenu />
+        <OrderMenuParticipate />
       </Col>
     </Row>
   </Container>
@@ -28,4 +28,4 @@ function mstp(state) {
   };
 }
 
-export default connect(mstp)(OrderPageTwo);
+export default connect(mstp)(OrderPageTwoParticipate);

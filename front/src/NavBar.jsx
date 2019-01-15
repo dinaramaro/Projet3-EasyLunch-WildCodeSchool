@@ -59,13 +59,13 @@ class NavBar extends Component {
               />
             </Link>
           </NavbarBrand>
-          <NavItem tag={Link} to="/components/" className="join d-md-none d-lg-none">
+          <NavItem tag={Link} to="/participation" className="join d-md-none d-lg-none">
             Je participe
           </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem tag={Link} to="/components/Jeparticipe">
+              <NavItem tag={Link} to="/participation">
                 Je participe
               </NavItem>
               {
