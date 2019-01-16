@@ -42,7 +42,7 @@ const sendOrder = (state = initialState, action) => {
       let tablePayment = {};
       if (tempPayment !== undefined) {
         tempPayment.amount = tempTotal;
-        tempPayment.user_id = tempCommand.user_id;
+        tempPayment.user_id = action.iduser;
         tempPayment.status = 'ok';
         tablePayment = tempPayment;
       }

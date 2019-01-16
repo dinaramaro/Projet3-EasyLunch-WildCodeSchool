@@ -15,6 +15,7 @@ import { varServeur } from '../../constants';
 import { menuResto } from '../../actions/menuResto';
 import { cardResto } from '../../actions/cardResto';
 import { saveCodeParticipation } from '../../actions/saveCodeParticipation';
+import { recupGeInfo } from '../../actions';
 
 class Participate extends Component {
   constructor(props) {
@@ -35,15 +36,16 @@ class Participate extends Component {
     getIdRestau = (e) => {
       e.preventDefault();
       const {
-        menuResto, cardResto, history, saveCodeParticipation,
+        menuResto, cardResto, history, saveCodeParticipation, recupGeInfo,
       } = this.props;
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
         .then(response => response.json())
         .then((data) => {
           saveCodeParticipation(codeParticipation);
-          menuResto(`${varServeur}restaurant/menus/${data}`);
-          cardResto(`${varServeur}cards/${data}`);
+          menuResto(`${varServeur}restaurant/menus/${data.restaurant_id}`);
+          cardResto(`${varServeur}cards/${data.restaurant_id}`);
+          recupGeInfo(data.nb_users, data.schedule);
           history.push('/commande-participation');
         });
     }
@@ -85,6 +87,7 @@ function mdtp(dispatch) {
     menuResto,
     cardResto,
     saveCodeParticipation,
+    recupGeInfo,
   }, dispatch);
 }
 

@@ -12,11 +12,13 @@ import {
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
 import { menuResto } from '../../actions/menuResto';
+import { toggleTab } from '../../actions';
 
 
 const RestoInfoPin = (props) => {
   const infoResto = (id) => {
-    const { menuResto } = props;
+    const { menuResto, toggleTab } = props;
+    toggleTab();
     menuResto(`${varServeur}restaurant/menus/${id}`);
   };
 
@@ -35,14 +37,14 @@ const RestoInfoPin = (props) => {
         <CardTitle>{info.name}</CardTitle>
         <CardSubtitle>{info.address}</CardSubtitle>
         <CardText>{info.city}</CardText>
-        <button className="showMenu" type="button" onClick={infoResto(info.id)}>Voir la carte du restaurant</button>
+        <button className="showMenu" type="button" onClick={() => infoResto(info.id)}>Voir la carte du restaurant</button>
       </CardBody>
     </Card>
   );
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ menuResto }, dispatch);
+  return bindActionCreators({ menuResto, toggleTab }, dispatch);
 }
 
 export default withRouter(

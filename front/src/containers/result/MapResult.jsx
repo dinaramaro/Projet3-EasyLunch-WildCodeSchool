@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -25,6 +26,7 @@ import UserInfo from '../../components/result/UserInfo';
 import DisplayMeals from '../../components/result/DisplayMeals';
 import DisplayTitleMenu from '../../components/result/DisplayTitleMenu';
 import RestoInfos from './RestoInfos';
+import { toggleTabDefault } from '../../actions';
 
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
@@ -42,7 +44,6 @@ class Mapresult extends Component {
     this.state = {
       viewport: {},
       popupInfo: null,
-      activeTab: '1',
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
@@ -76,11 +77,9 @@ class Mapresult extends Component {
   }
 
   toggle(tab) {
-    const { activeTab } = this.state;
+    const { toggleTab: { activeTab }, toggleTabDefault } = this.props;
     if (activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+      toggleTabDefault();
     }
   }
 
@@ -157,11 +156,11 @@ class Mapresult extends Component {
   render() {
     const {
       viewport,
-      activeTab,
     } = this.state;
     const {
       searchResults: { results },
       menuResto: { resto },
+      toggleTab: { activeTab },
     } = this.props;
     let listEnt = [];
     let listMain = [];
@@ -249,7 +248,12 @@ function mstp(state) {
   return {
     searchResults: state.searchResults,
     menuResto: state.menuResto,
+    toggleTab: state.toggleTab,
   };
 }
 
-export default connect(mstp)(Mapresult);
+function mdtp(dispatch) {
+  return bindActionCreators({ toggleTabDefault }, dispatch);
+}
+
+export default connect(mstp, mdtp)(Mapresult);
