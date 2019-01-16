@@ -20,7 +20,7 @@ router.post('/:amount', (req, res) => {
         receipt_email: customerEmail,
         customer: customer.id
       }))
-    .then(charge => res.send(charge))
+    .then(charge => res.json(charge.id))
     .catch((err) => {
       if (err) {
         res.sendStatus(500);

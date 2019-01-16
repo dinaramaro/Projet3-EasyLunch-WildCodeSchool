@@ -17,7 +17,7 @@ import MyMealParticipate from './MyMealParticipate';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial } from '../../actions';
-import { notifError } from '../../actions/notifications';
+import { notifError, notifSuccess } from '../../actions/notifications';
 
 
 class OrderMenuParticipate extends Component {
@@ -39,6 +39,33 @@ class OrderMenuParticipate extends Component {
     }
   }
 
+  onToken = (token) => {
+    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
+    const amount = total * 100;
+    fetch(`${varServeur}pay/${amount}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(token),
+    }).then((res) => {
+      if (res.status === 200) {
+        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
+        return res.json();
+      }
+      notifError('Erreur lors du paiement, veuillez réessayez');
+    })
+      .then((idStripe) => {
+        this.handleClickPay(idStripe);
+      });
+  }
+
+  toggleModal() {
+    const { modal } = this.state;
+    this.setState({ modal: !modal });
+  }
+
   toggle(tab) {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
@@ -48,21 +75,19 @@ class OrderMenuParticipate extends Component {
     }
   }
 
-
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
-  handleClickPay() {
+  handleClickPay(idStripe) {
     const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
+    const newCommand = {
+      ...sendOrder,
+      idStripe,
+    };
     if (!_.isEmpty(sendOrder)) {
       fetch(`${varServeur}participate/${codeParticip}`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
         }),
-        body: JSON.stringify(sendOrder),
+        body: JSON.stringify(newCommand),
       })
         .then((res) => {
           if (res.status === 500) {
@@ -89,13 +114,16 @@ class OrderMenuParticipate extends Component {
       cards,
       error,
       loading,
-      chooseByUser: {
-        total,
-      },
       handleChangeSpecial,
       log: { user },
       menuResto: { resto: { restoInfos } },
     } = this.props;
+
+    let { chooseByUser: { total } } = this.props;
+
+    if (total % 1 !== 0) {
+      total = `${total}0`;
+    }
 
     const totalSend = total * 100 / 100;
 
@@ -347,6 +375,7 @@ function mdtp(dispatch) {
     cardResto,
     handleChangeSpecial,
     notifError,
+    notifSuccess,
   },
   dispatch);
 }

@@ -65,7 +65,6 @@ app.use('/api/participate', participation);
 app.use('/api/reservationhistory', reservationHistory);
 app.use('/api/pay', paiementStripe);
 
-
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

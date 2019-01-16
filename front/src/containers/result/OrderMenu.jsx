@@ -70,18 +70,23 @@ class OrderMenu extends Component {
     }).then((res) => {
       if (res.status === 200) {
         notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
-        this.handleClickPay();
-        res.json();
-      } else if (res.status === 500) {
-        notifError('Erreur lors du paiement, veuillez réessayez');
+        return res.json();
       }
-    });
+      notifError('Erreur lors du paiement, veuillez réessayez');
+    })
+      .then((idStripe) => {
+        this.handleClickPay(idStripe);
+      });
   }
 
-  handleClickPay() {
+  handleClickPay(idStripe) {
     const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    const newOrder = {
+      ...sendOrder,
+      idStripe,
+    };
     if (!_.isEmpty(sendOrder)) {
-      sendCommand(`${varServeur}command`, sendOrder);
+      sendCommand(`${varServeur}command`, newOrder);
       this.toggleModal();
     }
   }

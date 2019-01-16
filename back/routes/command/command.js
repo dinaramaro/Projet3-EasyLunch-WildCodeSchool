@@ -34,10 +34,11 @@ router.post('/', (req, res) => {
                   res.status(500).send(`Erreur public command: ${err4}`);
                 } else {
                   const commandId = results4.insertId;
-                  const { tablePayment } = req.body;
+                  const { tablePayment, idStripe } = req.body;
                   const newPayment = {
                     ...tablePayment,
                     command_id: commandId,
+                    stripe_id: idStripe,
                   };
                   connection.query('INSERT INTO public_payment SET ?', newPayment, (err5, results5) => {
                     if (err5) {
