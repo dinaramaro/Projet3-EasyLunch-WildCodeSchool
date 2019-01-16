@@ -4,7 +4,11 @@ import {
   Container, Input, Button, Form,
 } from 'reactstrap';
 import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { notifSuccess, notifError } from '../actions/notifications';
 import { varServeur } from '../constants';
+
 
 class Register extends Component {
   constructor(props) {
@@ -26,6 +30,7 @@ class Register extends Component {
   }
 
   handleSubmit(e) {
+    const { notifError, notifSuccess } = this.props;
     e.preventDefault();
     fetch(`${varServeur}signup`, {
       method: 'POST',
@@ -33,9 +38,17 @@ class Register extends Component {
         'Content-Type': 'application/json',
       }),
       body: JSON.stringify(this.state),
-    });
-    const { history } = this.props;
-    history.push('/connexion');
+    })
+      .then((res) => {
+        if (res.status === 500) {
+          notifError('Adresse email déjà enregistré');
+        }
+        if (res.status === 200) {
+          const { history } = this.props;
+          notifSuccess('Compte enregistré, vous pouvez vous connecter');
+          history.push('/connexion');
+        }
+      });
   }
 
   render() {
@@ -77,9 +90,11 @@ class Register extends Component {
               type="password"
               value={password}
               onChange={this.onChangeInput}
+              minLength="8"
               required
             />
-            <Button className="all-btn" type="submit"> Inscritpion </Button>
+            <p className="give">Vos données ne seront utilisées que pour le besoin des restaurateurs.</p>
+            <Button className="all-btn" type="submit"> Inscription </Button>
           </Form>
         </Container>
       </div>
@@ -87,4 +102,6 @@ class Register extends Component {
   }
 }
 
-export default withRouter(Register);
+const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError }, dispatch);
+
+export default connect(null, mdtp)(withRouter(Register));

@@ -1,0 +1,39 @@
+.Participate {
+  position:relative;
+  background-image: url("/medias/Participate-cheers.jpeg");
+  background-position: center;
+  height: 45vw;
+  width: 100%;
+
+  .participation-message {
+    position: absolute;
+    left: 30%;
+    top: 33%;
+    background-color:hsla(0, 0%, 96%, 0.945);
+    width: 40%;
+    text-align: center;
+    border-radius:10px;
+    padding: 25px;
+    text-shadow: 0.2px 0.2px;
+  }
+
+  .input-container {
+    position: absolute;
+    left: 30%;
+    background: rgba(128, 128, 128, 0.753);
+    height: 5vw;
+    width: 40%;
+    top:50%;
+    border-radius:10px;
+  }
+
+    Input {
+      margin: 15px 15px 15px 32%; 
+      width: 110%   
+    }
+
+    Button {
+    margin: 15px 15px 15px 32%;    
+    color:white;
+    }
+}

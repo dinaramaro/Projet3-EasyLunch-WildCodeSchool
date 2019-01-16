@@ -6,7 +6,7 @@ $accentuationColor: #f9b522;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   .content{
-    min-height: calc(100vh - 30px);
+    min-height: calc(71.7vh);
   }
   .title {
     background-color: #f9f9f9;
@@ -29,6 +29,10 @@ $accentuationColor: #f9b522;
       border-color: #d39e00;
     }
   }
+  .underline {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 }
-
 

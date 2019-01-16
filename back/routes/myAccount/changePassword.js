@@ -1,7 +1,6 @@
 import express from 'express';
-import connection from '../config';
 import bcrypt from 'bcrypt';
-import secret from './secretOrKey';
+import connection from '../config';
 
 const router = express.Router();
 
