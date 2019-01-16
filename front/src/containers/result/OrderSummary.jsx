@@ -1,44 +1,67 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React from 'react';
+import {
+  Container, Row, Col, Button,
+} from 'reactstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import GeneralInformations from './GeneralInformations';
 import RestoInfos from './RestoInfos';
 
-class OrderSummary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
-  render() {
-    const { menuResto: { resto: { restoInfos } } } = this.props;
-    const { sendOrder: { sendOrder }} = this.props;
+const OrderSummary = (props) => {
+  const { menuResto: { resto: { restoInfos } } } = props;
+  const { chooseByUser: { tabs } } = props;
+  const { sendOrder: { sendOrder: { tableCommand } } } = props;
+  const { sendOrder } = props;
+  if (tabs.length === 0) {
     return (
-      <Container>
-        <Row>
-          <Col sm={8}>
-            <h2>Récapitulatif de votre commande</h2>
-            <RestoInfos />
-            <GeneralInformations />
-            <h2>Menu</h2>
-            <p></p>
-          </Col>
-          <Col sm={4}>
-            <p>
-              {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
-            </p>
-            <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
-            <p>Code de partage : (code de partage)</p>
-          </Col>
-        </Row>
-
-      </Container>
-    )
+      <div>
+        <Link to="/"><Button>VEUILLEZ CHOISIR VOTRE MENU</Button></Link>
+      </div>
+    );
   }
+  return (
+    <Container>
+      <Row>
+        <Col sm={8}>
+          <RestoInfos />
+          <GeneralInformations />
+          <h2>Récapitulatif de votre commande</h2>
+          <ul>
+            {tabs.map((item) => {
+              if (item.Plat !== undefined) {
+                return (
+                  <li>{item.Plat}</li>
+                );
+              } if (item.Dessert !== undefined) {
+                return (
+                  <li>{item.Dessert}</li>
+                );
+              } if (item.Boisson !== undefined) {
+                return (
+                  <li>{item.Boisson}</li>
+                );
+              }
+              return (
+                <li>{item.Entrée}</li>
+              );
+            })
+            }
+          </ul>
+          <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
+          <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
+        </Col>
+        <Col sm={4}>
+          <p>
+            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
+          </p>
+          <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
+          <p>Code de partage : (code de partage)</p>
+        </Col>
+      </Row>
 
-}
+    </Container>
+  );
+};
 
 function mstp(state) {
   return {

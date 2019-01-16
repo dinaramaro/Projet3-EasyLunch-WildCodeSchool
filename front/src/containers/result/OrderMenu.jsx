@@ -127,49 +127,49 @@ class OrderMenu extends Component {
           <NavItem>
             {
               listForm.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                { 'Formules' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+                  {'Formules'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMOD.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                { 'Menu du jour' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                  {'Menu du jour'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listEnt.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-                { 'Entrées' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                  {'Entrées'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMain.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-                { 'Plats' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                  {'Plats'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDessert.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                { 'Desserts' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                  {'Desserts'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDrink.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-                { 'Boissons' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
+                  {'Boissons'}
+                </NavLink>
               )}
           </NavItem>
         </Nav>
@@ -265,7 +265,7 @@ class OrderMenu extends Component {
           </FormGroup>
           <Row>
             <Col sm={2}>
-              { 'Total :' }
+              {'Total :'}
             </Col>
             <Col sm={4}>
               {`${total} €`}
