@@ -7,15 +7,17 @@ const stripe = Stripe(privateKeyStripe);
 
 router.post('/:amount', (req, res) => {
   const amount = req.params.amount;
+  const customerEmail = req.body.email;
   stripe.customers.create({
-    email: req.body.email,
+    email: customerEmail,
     card: req.body.id
   })
     .then(customer =>
       stripe.charges.create({
         amount,
-        description: '',
+        description: 'Commande EasyLunch',
         currency: 'EUR',
+        receipt_email: customerEmail,
         customer: customer.id
       }))
     .then(charge => res.send(charge))

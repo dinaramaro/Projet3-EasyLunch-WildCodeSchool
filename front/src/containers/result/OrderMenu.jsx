@@ -115,15 +115,16 @@ class OrderMenu extends Component {
       cards,
       error,
       loading,
-      chooseByUser: {
-        total,
-      },
       handleChangeSpecial,
       log: { user },
       menuResto: { resto: { restoInfos } },
       getCode: { code },
     } = this.props;
+    let { chooseByUser: { total } } = this.props;
 
+    if (total % 1 !== 0) {
+      total = `${total}0`;
+    }
     const totalSend = total * 100 / 100;
 
     let listEnt = [];
