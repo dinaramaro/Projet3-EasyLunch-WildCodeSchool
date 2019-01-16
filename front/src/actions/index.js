@@ -1,5 +1,5 @@
 export const handleChangeOrder = (name, value, idresto, user) => ({
-  type: 'CHANGEORDER',
+  type: 'CHANGE_ORDER',
   name,
   value,
   idresto,
@@ -19,7 +19,7 @@ export const handleChooseOnMenus = (
   nbmeals,
   user,
 ) => ({
-  type: 'CHOOSEONMENUS',
+  type: 'CHOOSE_ON_MENUS',
   name,
   value,
   idmenu,
@@ -34,7 +34,7 @@ export const handleChooseOnMenus = (
 });
 
 export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat, user) => ({
-  type: 'CHOOSEONCARDS',
+  type: 'CHOOSE_ON_CARDS',
   name,
   value,
   mealprice,
@@ -45,12 +45,26 @@ export const handleChooseOnCards = (name, value, mealprice, text, idmeal, plat, 
 });
 
 export const handleChangeSpecial = (name, value) => ({
-  type: 'CHANGESPECIAL',
+  type: 'CHANGE_SPECIAL',
   name,
   value,
 });
 
 export const getUserId = iduser => ({
-  type: 'GETUSERID',
+  type: 'GET_USER_ID',
   iduser,
+});
+
+export const toggleTab = () => ({
+  type: 'TOGGLE_TAB',
+});
+
+export const toggleTabDefault = () => ({
+  type: 'TOGGLE_TAB_DEF',
+});
+
+export const recupGeInfo = (nb, schedule) => ({
+  type: 'RECUP_GE_INFO',
+  nb,
+  schedule,
 });
