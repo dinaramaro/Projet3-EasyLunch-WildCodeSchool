@@ -4,8 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
   Nav, NavItem, NavLink, Card, Col, Row, TabPane,
-  TabContent, Form, FormGroup, Input, Button, Modal,
-  ModalHeader, ModalBody, ModalFooter,
+  TabContent, Form, FormGroup, Input, Button,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
@@ -24,9 +23,7 @@ class OrderMenu extends Component {
     super(props);
     this.state = {
       activeTab: '1',
-      modal: false,
     };
-    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
@@ -45,22 +42,15 @@ class OrderMenu extends Component {
     }
   }
 
-
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
   handleClickPay() {
     const { sendOrder: { sendOrder }, sendCommand } = this.props;
     if (!_.isEmpty(sendOrder)) {
       sendCommand(`${varServeur}command`, sendOrder);
-      this.toggleModal();
     }
   }
 
   render() {
-    const { activeTab, modal } = this.state;
+    const { activeTab } = this.state;
     const {
       menus,
       cards,
@@ -70,9 +60,6 @@ class OrderMenu extends Component {
         total,
       },
       handleChangeSpecial,
-      log: { user },
-      menuResto: { resto: { restoInfos } },
-      getCode: { code },
     } = this.props;
 
     let listEnt = [];
@@ -84,8 +71,6 @@ class OrderMenu extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
-    let userName = '';
-    let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -100,14 +85,6 @@ class OrderMenu extends Component {
       listDayEnt = cards.filter(item => item.plat === 4);
       listDayMain = cards.filter(item => item.plat === 5);
       listDayDessert = cards.filter(item => item.plat === 6);
-    }
-
-    if (user !== undefined) {
-      userName = user.name;
-    }
-
-    if (restoInfos !== undefined) {
-      restoName = restoInfos.name;
     }
 
     if (error) {
@@ -275,17 +252,6 @@ class OrderMenu extends Component {
             </Col>
           </Row>
         </Form>
-        <Modal isOpen={modal} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>{`Merci ${userName} !`}</ModalHeader>
-          <ModalBody>
-            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.
-            Invite tes collègues à te rejoindre en utilisant le code : ${code}
-            Ou en transmettant le lien suivant :`}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Partager le code et le lien</Button>
-          </ModalFooter>
-        </Modal>
       </div>
     );
   }
