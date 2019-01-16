@@ -91,6 +91,14 @@ class OrderMenuParticipate extends Component {
     }
   }
 
+<<<<<<< HEAD
+=======
+  toggleModal() {
+    const { modal } = this.state;
+    this.setState({ modal: !modal });
+  }
+
+>>>>>>> d9d77dde8b19c219124f703ec4694070b129b462
   handleClickPay(idStripe) {
     const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
     const newCommand = {
