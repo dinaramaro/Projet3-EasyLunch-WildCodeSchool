@@ -4,23 +4,10 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-  Nav,
-  NavItem,
-  NavLink,
-  Card,
-  Col,
-  Row,
-  TabPane,
-  TabContent,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+  Nav, NavItem, NavLink, Card, Col, Row, TabPane,
+  TabContent, Form, FormGroup, Input, Button,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
@@ -38,9 +25,7 @@ class OrderMenu extends Component {
     super(props);
     this.state = {
       activeTab: '1',
-      modal: false,
     };
-    this.toggleModal = this.toggleModal.bind(this);
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);
   }
@@ -91,11 +76,6 @@ class OrderMenu extends Component {
     }
   }
 
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
   toggle(tab) {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
@@ -114,16 +94,13 @@ class OrderMenu extends Component {
   }
 
   render() {
-    const { activeTab, modal } = this.state;
+    const { activeTab } = this.state;
     const {
       menus,
       cards,
       error,
       loading,
       handleChangeSpecial,
-      log: { user },
-      menuResto: { resto: { restoInfos } },
-      getCode: { code },
     } = this.props;
     let { chooseByUser: { total } } = this.props;
 
@@ -141,8 +118,6 @@ class OrderMenu extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
-    let userName = '';
-    let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -157,14 +132,6 @@ class OrderMenu extends Component {
       listDayEnt = cards.filter(item => item.plat === 4);
       listDayMain = cards.filter(item => item.plat === 5);
       listDayDessert = cards.filter(item => item.plat === 6);
-    }
-
-    if (user !== undefined) {
-      userName = user.name;
-    }
-
-    if (restoInfos !== undefined) {
-      restoName = restoInfos.name;
     }
 
     if (error) {
@@ -184,49 +151,49 @@ class OrderMenu extends Component {
           <NavItem>
             {
               listForm.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                { 'Formules' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+                  {'Formules'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMOD.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                { 'Menu du jour' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                  {'Menu du jour'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listEnt.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-                { 'Entrées' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                  {'Entrées'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMain.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-                { 'Plats' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                  {'Plats'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDessert.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                { 'Desserts' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                  {'Desserts'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDrink.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-                { 'Boissons' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
+                  {'Boissons'}
+                </NavLink>
               )}
           </NavItem>
         </Nav>
@@ -322,12 +289,13 @@ class OrderMenu extends Component {
           </FormGroup>
           <Row>
             <Col sm={2}>
-              { 'Total :' }
+              {'Total :'}
             </Col>
             <Col sm={4}>
               {`${total} €`}
             </Col>
             <Col sm={6}>
+              <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
               {
                 (userName !== undefined)
                   ? (
@@ -344,21 +312,9 @@ class OrderMenu extends Component {
                   )
                   : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
               }
-
             </Col>
           </Row>
         </Form>
-        <Modal isOpen={modal} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>{`Merci ${userName} !`}</ModalHeader>
-          <ModalBody>
-            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.
-            Invite tes collègues à te rejoindre en utilisant le code : ${code}
-            Ou en transmettant le lien suivant :`}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Partager le code et le lien</Button>
-          </ModalFooter>
-        </Modal>
       </div>
     );
   }
