@@ -62,7 +62,7 @@ class Login extends Component {
       .then((data) => {
         if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
-          Cookies.set('token', data.token, { expires: 1 });
+          Cookies.set('token', data.token);
           const { from } = state || { from: { pathname: '/mon-compte' } };
           history.push(from.pathname);
         }
@@ -92,10 +92,11 @@ class Login extends Component {
                 <Label for="Password">Mot de passe</Label>
                 <Input
                   type="password"
-                  placeholder="Mot de passe"
+                  placeholder="●●●●●●●●"
                   name="password"
                   value={password}
                   onChange={this.onChangeInput}
+                  minLength="8"
                   required
                 />
               </Col>

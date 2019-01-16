@@ -8,7 +8,7 @@ const sendOrder = (state = initialState, action) => {
   let newState;
   let tempTab = [...state.tabs];
   switch (action.type) {
-    case 'CHANGEORDER': {
+    case 'CHANGE_ORDER': {
       const tempBooking = { ...state.sendOrder.tableBooking };
       tempBooking[action.name] = action.value;
       const tableBooking = {};
@@ -25,7 +25,35 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHANGESPECIAL': {
+    case 'GET_USER_ID': {
+      const tempFormChange = { ...state };
+      const tempBooking = tempFormChange.sendOrder.tableBooking;
+      const tempCommand = tempFormChange.sendOrder.tableCommand;
+      const tempPayment = tempFormChange.sendOrder.tablePayment;
+      const tempTotal = tempFormChange.total;
+      if (tempCommand !== undefined) {
+        tempCommand.user_id = action.iduser;
+      }
+      if (tempBooking !== undefined) {
+        tempBooking.master_user_id = action.iduser;
+      }
+      const tableCommand = tempCommand;
+      const tableBooking = tempBooking;
+      let tablePayment = {};
+      if (tempPayment !== undefined) {
+        tempPayment.amount = tempTotal;
+        tempPayment.user_id = action.iduser;
+        tempPayment.status = 'ok';
+        tablePayment = tempPayment;
+      }
+      const tempTable = { tableBooking, tableCommand, tablePayment };
+      newState = {
+        ...state,
+        sendOrder: tempTable,
+      };
+      return newState;
+    }
+    case 'CHANGE_SPECIAL': {
       const tempFormChange = { ...state };
       const tempBooking = tempFormChange.sendOrder.tableBooking;
       const tempCommand = tempFormChange.sendOrder.tableCommand;
@@ -48,8 +76,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-
-    case 'CHOOSEONMENUS': {
+    case 'CHOOSE_ON_MENUS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
       const tempCommand = tempFormChange.tableCommand;
@@ -116,7 +143,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHOOSEONCARDS': {
+    case 'CHOOSE_ON_CARDS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
       let tempCommand = tempFormChange.tableCommand;

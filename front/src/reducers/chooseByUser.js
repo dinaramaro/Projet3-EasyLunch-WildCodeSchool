@@ -8,7 +8,7 @@ const chooseByUser = (state = initialState, action) => {
   let tempTab = [...state.tabs];
   let tempTabSorted = [];
   switch (action.type) {
-    case 'CHOOSEONMENUS': {
+    case 'CHOOSE_ON_MENUS': {
       const tempObj = {};
       const resultFind = tempTab.find(item => item.text === action.text);
       tempObj.idmenu = action.idmenu;
@@ -34,12 +34,12 @@ const chooseByUser = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHOOSEONCARDS': {
+    case 'CHOOSE_ON_CARDS': {
       const tempObj = {};
       const resultFind = tempTab.find(item => item[item.text] === action.value);
       let tempTotal = state.total;
       if (resultFind === undefined) {
-        tempObj.id = action.id;
+        tempObj.id = action.idmeal;
         tempObj[action.name] = action.value;
         tempObj.price = action.price;
         tempObj.text = action.text;

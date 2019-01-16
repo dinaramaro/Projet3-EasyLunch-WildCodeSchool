@@ -22,9 +22,11 @@ import signIn from './routes/myAccount/signIn';
 import checkConnected from './routes/myAccount/checkConnected';
 import command from './routes/command/command';
 import changePassword from './routes/myAccount/changePassword';
+import reservationHistory from './routes/myAccount/reservationHistory';
 import contact from './routes/admin/contact';
 import contactrestaurant from './routes/admin/contactrestaurant';
 import participation from './routes/participation/participation';
+import paiementStripe from './routes/command/paiementStripe';
 
 const app = express();
 const debug = Debug('back:app');
@@ -60,7 +62,8 @@ app.use('/api/changepassword', changePassword);
 app.use('/api/admin/contact', contact);
 app.use('/api/admin/contact-restaurant', contactrestaurant);
 app.use('/api/participate', participation);
-
+app.use('/api/reservationhistory', reservationHistory);
+app.use('/api/pay', paiementStripe);
 
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {

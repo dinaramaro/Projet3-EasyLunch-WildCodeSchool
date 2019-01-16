@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -8,15 +9,16 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
 import MyMeal from './MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
-import { handleChangeSpecial } from '../../actions';
+import { handleChangeSpecial, getUserId } from '../../actions';
 import { sendCommand } from '../../actions/sendCommand';
-
+import { notifSuccess, notifError } from '../../actions/notifications';
 
 class OrderMenu extends Component {
   constructor(props) {
@@ -24,12 +26,53 @@ class OrderMenu extends Component {
     this.state = {
       activeTab: '1',
     };
+    this.redirectConnect = this.redirectConnect.bind(this);
+    this.onToken = this.onToken.bind(this);
   }
 
   componentDidMount() {
-    const { menuResto: { resto: { restoInfos } }, cardResto } = this.props;
+    const {
+      menuResto: { resto: { restoInfos } },
+      cardResto, log: { user },
+      getUserId,
+    } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
+    }
+    getUserId(user.id);
+  }
+
+  onToken = (token) => {
+    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
+    const amount = total * 100;
+    fetch(`${varServeur}pay/${amount}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(token),
+    }).then((res) => {
+      if (res.status === 200) {
+        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
+        return res.json();
+      }
+      notifError('Erreur lors du paiement, veuillez réessayez');
+    })
+      .then((idStripe) => {
+        this.handleClickPay(idStripe);
+      });
+  }
+
+  handleClickPay(idStripe) {
+    const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    const newOrder = {
+      ...sendOrder,
+      idStripe,
+    };
+    if (!_.isEmpty(sendOrder)) {
+      sendCommand(`${varServeur}command`, newOrder);
+      this.toggleModal();
     }
   }
 
@@ -42,11 +85,12 @@ class OrderMenu extends Component {
     }
   }
 
-  handleClickPay() {
-    const { sendOrder: { sendOrder }, sendCommand } = this.props;
-    if (!_.isEmpty(sendOrder)) {
-      sendCommand(`${varServeur}command`, sendOrder);
-    }
+  redirectConnect() {
+    const { history, location: { pathname } } = this.props;
+    history.push({
+      pathname: '/connexion',
+      state: { from: { pathname } },
+    });
   }
 
   render() {
@@ -56,11 +100,14 @@ class OrderMenu extends Component {
       cards,
       error,
       loading,
-      chooseByUser: {
-        total,
-      },
       handleChangeSpecial,
     } = this.props;
+    let { chooseByUser: { total } } = this.props;
+
+    if (total % 1 !== 0) {
+      total = `${total}0`;
+    }
+    const totalSend = total * 100 / 100;
 
     let listEnt = [];
     let listMain = [];
@@ -249,6 +296,22 @@ class OrderMenu extends Component {
             </Col>
             <Col sm={6}>
               <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
+              {
+                (userName !== undefined)
+                  ? (
+                    <StripeCheckout
+                      token={this.onToken}
+                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+                      amount={Math.round(totalSend * 100)}
+                      currency="EUR"
+                    >
+                      <Button type="button">
+                      Payer
+                      </Button>
+                    </StripeCheckout>
+                  )
+                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+              }
             </Col>
           </Row>
         </Form>
@@ -276,9 +339,12 @@ function mdtp(dispatch) {
     cardResto,
     handleChangeSpecial,
     sendCommand,
+    getUserId,
+    notifSuccess,
+    notifError,
   },
   dispatch);
 }
 
 
-export default connect(mstp, mdtp)(OrderMenu);
+export default withRouter(connect(mstp, mdtp)(OrderMenu));

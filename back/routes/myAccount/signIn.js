@@ -6,7 +6,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import jwt from 'jsonwebtoken';
 import connection from '../config';
-import secret from './secretOrKey';
+import { secret } from './secretOrKey';
 
 const router = express.Router();
 
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
         .sendStatus(401);
     }
     const { password, ...user } = data;
-    const token = jwt.sign(user, secret, { expiresIn: 86400 });
+    const token = jwt.sign(user, secret);
     connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error2) => {
       if (error2) {
         return res.sendStatus(500);

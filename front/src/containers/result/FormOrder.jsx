@@ -37,6 +37,11 @@ const FormOrder = ({
             <option value="13h00">13h00</option>
             <option value="13h15">13h15</option>
             <option value="13h30">13h30</option>
+            <option value="13h45">13h45</option>
+            <option value="14h00">14h00</option>
+            <option value="14h15">14h15</option>
+            <option value="14h30">14h30</option>
+
           </Input>
         </Col>
       </FormGroup>

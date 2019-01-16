@@ -68,6 +68,11 @@ class HomeInputs extends Component {
               <option>5</option>
               <option>6</option>
               <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
             </Input>
             <Button className="search-button btn-submit">Rechercher</Button>
             <Button tag={Link} to="/participation" className="participe-button">Je participe</Button>

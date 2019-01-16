@@ -82,7 +82,7 @@ class NavBar extends Component {
                       </DropdownToggle>
                       <DropdownMenu className="drop">
                         <DropdownItem className="drop" tag={Link} to="/mon-compte" active>Mes Informations</DropdownItem>
-                        <DropdownItem className="drop" tag={Link} to="/mon-compte/historique" active>Historique de Commande</DropdownItem>
+                        <DropdownItem className="drop" tag={Link} to="/historique-de-reservation" active>Historique de Commande</DropdownItem>
                         {
                           (user.mail === mailAdmin)
                             ? (
