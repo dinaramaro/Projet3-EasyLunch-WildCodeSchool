@@ -48,6 +48,7 @@ class Mapresult extends Component {
       longitudeuser: 0,
       popupUser: null,
     };
+    this.closePopupInfo = this.closePopupInfo.bind(this);
   }
 
   componentDidMount() {
@@ -81,6 +82,10 @@ class Mapresult extends Component {
     if (activeTab !== tab) {
       toggleTabDefault();
     }
+  }
+
+  closePopupInfo() {
+    this.onClickMarker('popupInfo', null);
   }
 
   renderRestoMarker = (resto, index) => {
@@ -126,9 +131,11 @@ class Mapresult extends Component {
           anchor="top"
           longitude={popupInfo.lon}
           latitude={popupInfo.lat}
-          onClose={() => this.onClickMarker('popupInfo', null)}
         >
-          <RestoInfoPin info={popupInfo} />
+          <RestoInfoPin
+            info={popupInfo}
+            onClickCard={this.closePopupInfo}
+          />
         </Popup>
       );
     }
@@ -144,7 +151,7 @@ class Mapresult extends Component {
           anchor="top"
           longitude={longitudeuser}
           latitude={latitudeuser}
-          onClose={() => this.onClickMarker('popupUser', null)}
+          onClose={this.closePopupInfo}
         >
           <UserInfo info={popupUser} />
         </Popup>
@@ -205,6 +212,7 @@ class Mapresult extends Component {
                   mapStyle="mapbox://styles/mapbox/light-v9"
                   onViewportChange={this.updateViewport}
                   mapboxApiAccessToken={TOKEN}
+                  onClick={this.closePopupInfo}
                 >
 
                   {results.map(this.renderRestoMarker)}

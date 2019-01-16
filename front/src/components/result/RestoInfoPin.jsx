@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -15,32 +15,45 @@ import { menuResto } from '../../actions/menuResto';
 import { toggleTab } from '../../actions';
 
 
-const RestoInfoPin = (props) => {
-  const infoResto = (id) => {
-    const { menuResto, toggleTab } = props;
-    toggleTab();
-    menuResto(`${varServeur}restaurant/menus/${id}`);
-  };
+class RestoInfoPin extends Component {
+  constructor(props) {
+    super(props);
+    this.showMenu = this.showMenu.bind(this);
+  }
 
-  const { menuResto: { loading, error } } = props;
-  if (error) {
-    return <div>{`Error! ${error.message}`}</div>;
+  showMenu(e) {
+    e.stopPropagation();
+    const { info, menuResto, toggleTab } = this.props;
+    toggleTab();
+    menuResto(`${varServeur}restaurant/menus/${info.id}`);
   }
-  if (loading) {
-    return <div>Loading...</div>;
+
+  render() {
+    const { menuResto: { loading, error }, info, onClickCard } = this.props;
+    if (error) {
+      return <div>{`Error! ${error.message}`}</div>;
+    }
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <Card className="RestoInfoPin" onClick={onClickCard}>
+        <CardImg top width="100%" src={info.picture} alt="Card image cap" />
+        <CardBody>
+          <CardTitle>{info.name}</CardTitle>
+          <CardSubtitle>{info.address}</CardSubtitle>
+          <CardText>{info.city}</CardText>
+          <button
+            type="button"
+            className="showMenu"
+            onClick={this.showMenu}
+          >
+            Voir la carte du restaurant
+          </button>
+        </CardBody>
+      </Card>
+    );
   }
-  const { info } = props;
-  return (
-    <Card className="RestoInfoPin">
-      <CardImg top width="100%" src={info.picture} alt="Card image cap" />
-      <CardBody>
-        <CardTitle>{info.name}</CardTitle>
-        <CardSubtitle>{info.address}</CardSubtitle>
-        <CardText>{info.city}</CardText>
-        <button className="showMenu" type="button" onClick={() => infoResto(info.id)}>Voir la carte du restaurant</button>
-      </CardBody>
-    </Card>
-  );
 }
 
 function mdtp(dispatch) {
