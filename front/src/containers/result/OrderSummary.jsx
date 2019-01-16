@@ -12,6 +12,9 @@ const OrderSummary = (props) => {
   const { chooseByUser: { tabs } } = props;
   const { sendOrder: { sendOrder: { tableCommand } } } = props;
   const { sendOrder } = props;
+  const { getCode: { code } } = props;
+  const { log: { user } } = props;
+
   if (tabs.length === 0) {
     return (
       <div>
@@ -19,6 +22,7 @@ const OrderSummary = (props) => {
       </div>
     );
   }
+
   return (
     <Container>
       <Row>
@@ -51,11 +55,12 @@ const OrderSummary = (props) => {
           <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
         </Col>
         <Col sm={4}>
+          <p>{`Merci ${user.name} !`}</p>
           <p>
             {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
           </p>
           <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
-          <p>Code de partage : (code de partage)</p>
+          <p>{`Code de partage : ${code}`}</p>
         </Col>
       </Row>
 
@@ -68,6 +73,8 @@ function mstp(state) {
     menuResto: state.menuResto,
     sendOrder: state.sendOrder,
     chooseByUser: state.chooseByUser,
+    getCode: state.getCode,
+    log: state.log,
   };
 }
 
