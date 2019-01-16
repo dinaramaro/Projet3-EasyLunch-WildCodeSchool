@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
         .sendStatus(401);
     }
     const { password, ...user } = data;
-    const token = jwt.sign(user, secret, { expiresIn: 86400 });
+    const token = jwt.sign(user, secret);
     connection.query('DELETE FROM public_token WHERE user = ?', user.mail, (error2) => {
       if (error2) {
         return res.sendStatus(500);
