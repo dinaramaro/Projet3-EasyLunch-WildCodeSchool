@@ -43,18 +43,6 @@ class OrderMenuParticipate extends Component {
     getUserId(user.id);
   }
 
-
-  onToken = (token) => {
-    fetch(`${varServeur}pay`, {
-      method: 'POST',
-      body: JSON.stringify(token),
-    })
-      .then(response => response.text())
-      .then(() => {
-        this.handleClickPay();
-      });
-  }
-
   onToken = (token) => {
     const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
     const amount = total * 100;
@@ -91,14 +79,6 @@ class OrderMenuParticipate extends Component {
     }
   }
 
-<<<<<<< HEAD
-=======
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
->>>>>>> d9d77dde8b19c219124f703ec4694070b129b462
   handleClickPay(idStripe) {
     const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
     const newCommand = {
