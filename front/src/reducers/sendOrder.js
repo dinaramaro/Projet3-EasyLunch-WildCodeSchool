@@ -8,7 +8,7 @@ const sendOrder = (state = initialState, action) => {
   let newState;
   let tempTab = [...state.tabs];
   switch (action.type) {
-    case 'CHANGEORDER': {
+    case 'CHANGE_ORDER': {
       const tempBooking = { ...state.sendOrder.tableBooking };
       tempBooking[action.name] = action.value;
       const tableBooking = {};
@@ -25,7 +25,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'GETUSERID': {
+    case 'GET_USER_ID': {
       const tempFormChange = { ...state };
       const tempBooking = tempFormChange.sendOrder.tableBooking;
       const tempCommand = tempFormChange.sendOrder.tableCommand;
@@ -53,7 +53,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHANGESPECIAL': {
+    case 'CHANGE_SPECIAL': {
       const tempFormChange = { ...state };
       const tempBooking = tempFormChange.sendOrder.tableBooking;
       const tempCommand = tempFormChange.sendOrder.tableCommand;
@@ -76,7 +76,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHOOSEONMENUS': {
+    case 'CHOOSE_ON_MENUS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
       const tempCommand = tempFormChange.tableCommand;
@@ -143,7 +143,7 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'CHOOSEONCARDS': {
+    case 'CHOOSE_ON_CARDS': {
       const tempFormChange = { ...state.sendOrder };
       const tempBooking = tempFormChange.tableBooking;
       let tempCommand = tempFormChange.tableCommand;

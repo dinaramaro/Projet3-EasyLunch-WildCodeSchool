@@ -5,7 +5,7 @@ const initialState = {
 const toggleTab = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case 'TOGGLETAB': {
+    case 'TOGGLE_TAB': {
       let tempTab = state.activeTab;
       if (tempTab === '1') {
         tempTab = '2';
@@ -16,7 +16,7 @@ const toggleTab = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'TOGGLETABDEF': {
+    case 'TOGGLE_TAB_DEF': {
       let tempTab = state.activeTab;
       if (tempTab === '1') {
         tempTab = '2';

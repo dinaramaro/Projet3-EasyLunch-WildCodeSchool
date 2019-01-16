@@ -9,7 +9,7 @@ const initialState = {
 const formOrder = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case 'CHANGEORDER': {
+    case 'CHANGE_ORDER': {
       const tempFormChange = { ...state.formulaire };
       tempFormChange[action.name] = action.value;
       newState = {
@@ -18,7 +18,7 @@ const formOrder = (state = initialState, action) => {
       };
       return newState;
     }
-    case 'RECUPGEINFO': {
+    case 'RECUP_GE_INFO': {
       const tempFormChange = { ...state.formulaire };
       tempFormChange.nb_users = action.nb;
       const tempSchedule = action.schedule;
