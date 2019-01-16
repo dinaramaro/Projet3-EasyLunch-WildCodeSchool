@@ -57,7 +57,7 @@ class ReservationHistory extends Component {
                           <CardText>Heure: {hour}</CardText>
                           <br />
                           <CardText>Participants: {item.nb_users}</CardText>
-                          <CardText>Prix: {item.price}0 €</CardText>
+                          <CardText>Prix: {item.price} €</CardText>
                         </CardBody>
                       </Card>
                     </Col>

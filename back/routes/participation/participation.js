@@ -20,10 +20,11 @@ router.post('/:code', (req, res) => {
           res.sendStatus(500);
         } else {
           const commandId = results2.insertId;
-          const { tablePayment } = req.body;
+          const { tablePayment, idStripe } = req.body;
           const newPayment = {
             ...tablePayment,
             command_id: commandId,
+            stripe_id: idStripe,
           };
           connection.query('INSERT INTO public_payment SET ?', newPayment, (err3, results3) => {
             if (err3) {
