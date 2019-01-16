@@ -5,10 +5,10 @@ const initialState = '';
 const notificationsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'NOTIF_SUCCESS':
-      NotificationManager.success(action.message, '', 2000);
+      NotificationManager.success(action.message, '', 3500);
       return null;
     case 'NOTIF_ERROR':
-      NotificationManager.error(action.message, '', 2000);
+      NotificationManager.error(action.message, '', 3500);
       return null;
     default:
       return state;
