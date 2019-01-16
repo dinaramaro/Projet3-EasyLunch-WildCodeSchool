@@ -67,7 +67,6 @@ app.use('/api/reservationhistory', reservationHistory);
 app.use('/api/pay', paiementStripe);
 app.use('/api/mailcontact', mailContact);
 
-
 // Uncomment on pre-prod/prod
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

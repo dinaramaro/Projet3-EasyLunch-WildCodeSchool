@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -25,6 +26,7 @@ import UserInfo from '../../components/result/UserInfo';
 import DisplayMeals from '../../components/result/DisplayMeals';
 import DisplayTitleMenu from '../../components/result/DisplayTitleMenu';
 import RestoInfos from './RestoInfos';
+import { toggleTabDefault } from '../../actions';
 
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
@@ -42,11 +44,11 @@ class Mapresult extends Component {
     this.state = {
       viewport: {},
       popupInfo: null,
-      activeTab: '1',
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
     };
+    this.closePopupInfo = this.closePopupInfo.bind(this);
   }
 
   componentDidMount() {
@@ -76,12 +78,14 @@ class Mapresult extends Component {
   }
 
   toggle(tab) {
-    const { activeTab } = this.state;
+    const { toggleTab: { activeTab }, toggleTabDefault } = this.props;
     if (activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+      toggleTabDefault();
     }
+  }
+
+  closePopupInfo() {
+    this.onClickMarker('popupInfo', null);
   }
 
   renderRestoMarker = (resto, index) => {
@@ -127,9 +131,11 @@ class Mapresult extends Component {
           anchor="top"
           longitude={popupInfo.lon}
           latitude={popupInfo.lat}
-          onClose={() => this.onClickMarker('popupInfo', null)}
         >
-          <RestoInfoPin info={popupInfo} />
+          <RestoInfoPin
+            info={popupInfo}
+            onClickCard={this.closePopupInfo}
+          />
         </Popup>
       );
     }
@@ -145,7 +151,7 @@ class Mapresult extends Component {
           anchor="top"
           longitude={longitudeuser}
           latitude={latitudeuser}
-          onClose={() => this.onClickMarker('popupUser', null)}
+          onClose={this.closePopupInfo}
         >
           <UserInfo info={popupUser} />
         </Popup>
@@ -157,11 +163,11 @@ class Mapresult extends Component {
   render() {
     const {
       viewport,
-      activeTab,
     } = this.state;
     const {
       searchResults: { results },
       menuResto: { resto },
+      toggleTab: { activeTab },
     } = this.props;
     let listEnt = [];
     let listMain = [];
@@ -206,6 +212,7 @@ class Mapresult extends Component {
                   mapStyle="mapbox://styles/mapbox/light-v9"
                   onViewportChange={this.updateViewport}
                   mapboxApiAccessToken={TOKEN}
+                  onClick={this.closePopupInfo}
                 >
 
                   {results.map(this.renderRestoMarker)}
@@ -249,7 +256,12 @@ function mstp(state) {
   return {
     searchResults: state.searchResults,
     menuResto: state.menuResto,
+    toggleTab: state.toggleTab,
   };
 }
 
-export default connect(mstp)(Mapresult);
+function mdtp(dispatch) {
+  return bindActionCreators({ toggleTabDefault }, dispatch);
+}
+
+export default connect(mstp, mdtp)(Mapresult);

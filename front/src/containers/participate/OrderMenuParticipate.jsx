@@ -12,12 +12,12 @@ import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
-import ChooseOnCardsParticipate from './ChooseOnCardsParticipate';
-import MyMealParticipate from './MyMealParticipate';
+import ChooseOnCards from '../result/ChooseOnCards';
+import MyMeal from '../result/MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
-import { handleChangeSpecial } from '../../actions';
-import { notifError } from '../../actions/notifications';
+import { handleChangeSpecial, getUserId } from '../../actions';
+import { notifError, notifSuccess } from '../../actions/notifications';
 
 
 class OrderMenuParticipate extends Component {
@@ -29,14 +29,45 @@ class OrderMenuParticipate extends Component {
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.redirectConnect = this.redirectConnect.bind(this);
-
   }
 
   componentDidMount() {
-    const { menuResto: { resto: { restoInfos } }, cardResto } = this.props;
+    const {
+      menuResto: { resto: { restoInfos } },
+      cardResto, log: { user },
+      getUserId,
+    } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
+    getUserId(user.id);
+  }
+
+  onToken = (token) => {
+    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
+    const amount = total * 100;
+    fetch(`${varServeur}pay/${amount}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(token),
+    }).then((res) => {
+      if (res.status === 200) {
+        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
+        return res.json();
+      }
+      notifError('Erreur lors du paiement, veuillez réessayez');
+    })
+      .then((idStripe) => {
+        this.handleClickPay(idStripe);
+      });
+  }
+
+  toggleModal() {
+    const { modal } = this.state;
+    this.setState({ modal: !modal });
   }
 
   toggle(tab) {
@@ -48,21 +79,19 @@ class OrderMenuParticipate extends Component {
     }
   }
 
-
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
-  handleClickPay() {
+  handleClickPay(idStripe) {
     const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
+    const newCommand = {
+      ...sendOrder,
+      idStripe,
+    };
     if (!_.isEmpty(sendOrder)) {
       fetch(`${varServeur}participate/${codeParticip}`, {
         method: 'POST',
         headers: new Headers({
           'Content-Type': 'application/json',
         }),
-        body: JSON.stringify(sendOrder),
+        body: JSON.stringify(newCommand),
       })
         .then((res) => {
           if (res.status === 500) {
@@ -73,6 +102,7 @@ class OrderMenuParticipate extends Component {
         });
     }
   }
+
 
   redirectConnect() {
     const { history, location: { pathname } } = this.props;
@@ -89,13 +119,16 @@ class OrderMenuParticipate extends Component {
       cards,
       error,
       loading,
-      chooseByUser: {
-        total,
-      },
       handleChangeSpecial,
       log: { user },
       menuResto: { resto: { restoInfos } },
     } = this.props;
+
+    let { chooseByUser: { total } } = this.props;
+
+    if (total % 1 !== 0) {
+      total = `${total}0`;
+    }
 
     const totalSend = total * 100 / 100;
 
@@ -222,13 +255,13 @@ class OrderMenuParticipate extends Component {
                       listMOD.length > 0 && (
                         <div>
                           <FormGroup>
-                            <ChooseOnCardsParticipate text="Entrée du jour" meals={listDayEnt} />
+                            <ChooseOnCards text="Entrée du jour" meals={listDayEnt} />
                           </FormGroup>
                           <FormGroup>
-                            <ChooseOnCardsParticipate text="Plat du jour" meals={listDayMain} />
+                            <ChooseOnCards text="Plat du jour" meals={listDayMain} />
                           </FormGroup>
                           <FormGroup>
-                            <ChooseOnCardsParticipate text="Dessert du jour" meals={listDayDessert} />
+                            <ChooseOnCards text="Dessert du jour" meals={listDayDessert} />
                           </FormGroup>
                         </div>
                       )
@@ -242,7 +275,7 @@ class OrderMenuParticipate extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCardsParticipate text="Entrée" meals={listEnt} />
+                      <ChooseOnCards text="Entrée" meals={listEnt} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -253,7 +286,7 @@ class OrderMenuParticipate extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCardsParticipate text="Plat" meals={listMain} />
+                      <ChooseOnCards text="Plat" meals={listMain} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -264,7 +297,7 @@ class OrderMenuParticipate extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCardsParticipate text="Dessert" meals={listDessert} />
+                      <ChooseOnCards text="Dessert" meals={listDessert} />
                     </FormGroup>
                   </Card>
                 </Col>
@@ -275,14 +308,14 @@ class OrderMenuParticipate extends Component {
                 <Col>
                   <Card body>
                     <FormGroup>
-                      <ChooseOnCardsParticipate text="Boisson" meals={listDrink} />
+                      <ChooseOnCards text="Boisson" meals={listDrink} />
                     </FormGroup>
                   </Card>
                 </Col>
               </Row>
             </TabPane>
           </TabContent>
-          <MyMealParticipate />
+          <MyMeal />
           <FormGroup>
             <p>Instructions spéciales</p>
             <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
@@ -339,6 +372,8 @@ function mstp(state) {
     sendOrder: state.sendOrder,
     log: state.log,
     codeParticip: state.codeParticip,
+    getCode: state.getCode,
+
   };
 }
 
@@ -347,6 +382,8 @@ function mdtp(dispatch) {
     cardResto,
     handleChangeSpecial,
     notifError,
+    getUserId,
+    notifSuccess,
   },
   dispatch);
 }

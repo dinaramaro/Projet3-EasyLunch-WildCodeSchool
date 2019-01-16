@@ -63,7 +63,7 @@ class Login extends Component {
       .then((data) => {
         if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
-          Cookies.set('token', data.token, { expires: 1 });
+          Cookies.set('token', data.token);
           const { from } = state || { from: { pathname: '/mon-compte' } };
           history.push(from.pathname);
         }
