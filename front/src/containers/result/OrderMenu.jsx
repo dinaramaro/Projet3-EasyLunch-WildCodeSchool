@@ -118,7 +118,6 @@ class OrderMenu extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
-    let userName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -133,10 +132,6 @@ class OrderMenu extends Component {
       listDayEnt = cards.filter(item => item.plat === 4);
       listDayMain = cards.filter(item => item.plat === 5);
       listDayDessert = cards.filter(item => item.plat === 6);
-    }
-
-    if (user !== undefined) {
-      userName = user.name;
     }
 
     if (error) {
@@ -302,7 +297,7 @@ class OrderMenu extends Component {
             <Col sm={6}>
               <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
               {
-                (userName !== undefined)
+                (user !== undefined)
                   ? (
                     <StripeCheckout
                       token={this.onToken}
