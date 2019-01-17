@@ -72,7 +72,6 @@ class OrderMenu extends Component {
     };
     if (!_.isEmpty(sendOrder)) {
       sendCommand(`${varServeur}command`, newOrder);
-      this.toggleModal();
     }
   }
 
@@ -101,6 +100,7 @@ class OrderMenu extends Component {
       error,
       loading,
       handleChangeSpecial,
+      log: { user },
     } = this.props;
     let { chooseByUser: { total } } = this.props;
 
@@ -297,7 +297,7 @@ class OrderMenu extends Component {
             <Col sm={6}>
               <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
               {
-                (userName !== undefined)
+                (user !== undefined)
                   ? (
                     <StripeCheckout
                       token={this.onToken}
@@ -306,7 +306,7 @@ class OrderMenu extends Component {
                       currency="EUR"
                     >
                       <Button type="button">
-                      Payer
+                        Payer
                       </Button>
                     </StripeCheckout>
                   )
