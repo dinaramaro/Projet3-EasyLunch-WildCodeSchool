@@ -16,6 +16,7 @@ import { menuResto } from '../../actions/menuResto';
 import { cardResto } from '../../actions/cardResto';
 import { saveCodeParticipation } from '../../actions/saveCodeParticipation';
 import { notifError, notifInfo } from '../../actions/notifications';
+import { recupGeInfo } from '../../actions';
 
 class Participate extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Participate extends Component {
     getIdRestau = (e) => {
       e.preventDefault();
       const {
-        menuResto, cardResto, history, saveCodeParticipation, notifError, notifInfo,
+        menuResto, cardResto, history, saveCodeParticipation, notifError, notifInfo, recupGeInfo,
       } = this.props;
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
@@ -54,8 +55,9 @@ class Participate extends Component {
         .then((data) => {
           if (data !== undefined) {
             saveCodeParticipation(codeParticipation);
-            menuResto(`${varServeur}restaurant/menus/${data}`);
-            cardResto(`${varServeur}cards/${data}`);
+            menuResto(`${varServeur}restaurant/menus/${data.restaurant_id}`);
+            cardResto(`${varServeur}cards/${data.restaurant_id}`);
+            recupGeInfo(data.nb_users, data.schedule);
             history.push('/commande-participation');
           }
         });
@@ -100,6 +102,7 @@ function mdtp(dispatch) {
     saveCodeParticipation,
     notifError,
     notifInfo,
+    recupGeInfo,
   }, dispatch);
 }
 
