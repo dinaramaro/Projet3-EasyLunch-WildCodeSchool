@@ -221,6 +221,8 @@ const sendOrder = (state = initialState, action) => {
       };
       return newState;
     }
+    case 'INIT_STATE':
+      return initialState;
 
     default: {
       return state;
