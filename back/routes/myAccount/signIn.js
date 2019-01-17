@@ -6,7 +6,7 @@ import { Strategy as LocalStrategy } from 'passport-local';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import jwt from 'jsonwebtoken';
 import connection from '../config';
-import { secret } from './secretOrkey';
+import { secret } from './secretOrKey';
 
 const router = express.Router();
 

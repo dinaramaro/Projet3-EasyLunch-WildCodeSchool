@@ -1,5 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
+import { mail, passwordMail } from '../myAccount/secretOrKey';
 
 
 const router = express.Router();
@@ -16,13 +17,13 @@ router.post('/', (req, res) => {
     port: 465,
     secure: true,
     auth: {
-      user: 'greedydevswcs@gmail.com',
-      pass: 'greedydevs-33'
+      user: mail,
+      pass: passwordMail,
     },
   });
   const mailOptions = {
-    from: '"EasyLunch Contact" <greedydevswcs@gmail.com>',
-    to: req.body.email,
+    from: `EasyLunch Contact ${mail}`,
+    to: mail,
     subject: `EasyLunch : ${req.body.subject}`,
     html: output
   };
