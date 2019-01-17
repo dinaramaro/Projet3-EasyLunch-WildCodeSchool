@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import {
   Nav, NavItem, NavLink, Card, Col, Row,
   TabPane, TabContent, Form, FormGroup, Input, Button,
-  Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
@@ -25,9 +24,7 @@ class OrderMenuParticipate extends Component {
     super(props);
     this.state = {
       activeTab: '1',
-      modal: false,
     };
-    this.toggleModal = this.toggleModal.bind(this);
     this.redirectConnect = this.redirectConnect.bind(this);
   }
 
@@ -65,11 +62,6 @@ class OrderMenuParticipate extends Component {
       });
   }
 
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
-  }
-
   toggle(tab) {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
@@ -80,7 +72,9 @@ class OrderMenuParticipate extends Component {
   }
 
   handleClickPay(idStripe) {
-    const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
+    const {
+      history, codeParticip, notifError, sendOrder: { sendOrder },
+    } = this.props;
     const newCommand = {
       ...sendOrder,
       idStripe,
@@ -97,7 +91,7 @@ class OrderMenuParticipate extends Component {
           if (res.status === 500) {
             notifError('Erreur serveur');
           } if (res.status === 200) {
-            this.toggleModal();
+            history.push('recapitulatif-participation');
           }
         });
     }
@@ -113,7 +107,7 @@ class OrderMenuParticipate extends Component {
   }
 
   render() {
-    const { activeTab, modal } = this.state;
+    const { activeTab } = this.state;
     const {
       menus,
       cards,
@@ -121,7 +115,6 @@ class OrderMenuParticipate extends Component {
       loading,
       handleChangeSpecial,
       log: { user },
-      menuResto: { resto: { restoInfos } },
     } = this.props;
 
     let { chooseByUser: { total } } = this.props;
@@ -142,7 +135,6 @@ class OrderMenuParticipate extends Component {
     let listForm = [];
     let listMOD = [];
     let userName = '';
-    let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -161,10 +153,6 @@ class OrderMenuParticipate extends Component {
 
     if (user !== undefined) {
       userName = user.name;
-    }
-
-    if (restoInfos !== undefined) {
-      restoName = restoInfos.name;
     }
 
     if (error) {
@@ -347,15 +335,6 @@ class OrderMenuParticipate extends Component {
             </Col>
           </Row>
         </Form>
-        <Modal isOpen={modal} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>{`Merci ${userName} !`}</ModalHeader>
-          <ModalBody>
-            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.`}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Ok</Button>
-          </ModalFooter>
-        </Modal>
       </div>
     );
   }
