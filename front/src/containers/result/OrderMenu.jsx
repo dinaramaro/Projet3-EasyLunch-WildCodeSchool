@@ -103,7 +103,7 @@ class OrderMenu extends Component {
       handleChangeSpecial,
       log: { user },
     } = this.props;
-    let { chooseByUser: { total } } = this.props;    
+    let { chooseByUser: { total } } = this.props;
     if (total % 1 !== 0) {
       total = `${total}0`;
     }

@@ -57,7 +57,6 @@ class Restaurants extends Component {
 
   render() {
     const { searchResults: { results } } = this.props;
-    console.log('results', results);
     const { keyword, personcapacity } = this.state;
     return (
       <div className="Restaurants">
