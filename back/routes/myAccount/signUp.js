@@ -1,6 +1,8 @@
 import express from 'express';
+import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import connection from '../config';
+import { mail, passwordMail } from './secretOrKey';
 
 const router = express.Router();
 
@@ -14,7 +16,36 @@ router.post('/', (req, res) => {
     if (err) {
       res.sendStatus(500);
     } else {
-      res.sendStatus(200);
+      const output = `
+      <h1>Bienvenue ${data.name} chez EASYLUNCH</h1>
+      <br />
+      <p>Votre inscription a bien été prise en compte, <br /> Vous trouverez toute nos informations utiles sur notre site.</p>
+    `;
+
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: mail,
+          pass: passwordMail,
+        },
+      });
+      const mailOptions = {
+        from: `EasyLunch Contact ${mail}`,
+        to: data.mail,
+        subject: `Bienvenue ${data.name} chez EASYLUNCH`,
+        html: output
+      };
+
+      transporter.sendMail(mailOptions, (error) => {
+        if (error) {
+          res.sendStatus(500);
+        }
+        console.log('coucou ca marche');
+        
+        res.sendStatus(200);
+      });
     }
   });
 });
