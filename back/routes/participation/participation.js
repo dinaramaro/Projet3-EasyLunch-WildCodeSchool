@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post('/:code', (req, res) => {
   const code = req.params.code;
-  connection.query('SELECT public_code.id FROM public_booking JOIN public_code ON public_booking.code = public_code.id WHERE name = ? ORDER BY created_date DESC LIMIT 1', code, (err, results) => {
+  connection.query('SELECT public_booking.id FROM public_booking JOIN public_code ON public_booking.code = public_code.id WHERE name = ? ORDER BY created_date DESC LIMIT 1', code, (err, results) => {
     if (err) {
       res.sendStatus(500);
     } else {

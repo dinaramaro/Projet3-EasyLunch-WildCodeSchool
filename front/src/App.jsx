@@ -36,7 +36,6 @@ import PrivateRouteAdmin from './PrivateRouteAdmin';
 import OrderPageTwoParticipate from './containers/participate/OrderPageTwoParticipate';
 import ReservationHistory from './components/commandHistory/ReservationHistory';
 
-
 const App = () => (
   <div className="App">
     <NavBar />

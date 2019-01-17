@@ -10,6 +10,9 @@ const notificationsReducer = (state = initialState, action) => {
     case 'NOTIF_ERROR':
       NotificationManager.error(action.message, '', 3500);
       return null;
+    case 'NOTIF_INFO':
+      NotificationManager.info(action.message, '', 3500);
+      return null;
     default:
       return state;
   }

@@ -15,6 +15,7 @@ import { varServeur } from '../../constants';
 import { menuResto } from '../../actions/menuResto';
 import { cardResto } from '../../actions/cardResto';
 import { saveCodeParticipation } from '../../actions/saveCodeParticipation';
+import { notifError, notifInfo } from '../../actions/notifications';
 
 class Participate extends Component {
   constructor(props) {
@@ -35,16 +36,28 @@ class Participate extends Component {
     getIdRestau = (e) => {
       e.preventDefault();
       const {
-        menuResto, cardResto, history, saveCodeParticipation,
+        menuResto, cardResto, history, saveCodeParticipation, notifError, notifInfo,
       } = this.props;
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
-        .then(response => response.json())
+        .then((response) => {
+          if (response.status === 401) {
+            notifInfo('La table est déjà complète');
+          }
+          if (response.status === 500) {
+            notifError('Erreur serveur, veuillez réessayer');
+          }
+          if (response.status === 200) {
+            return response.json();
+          }
+        })
         .then((data) => {
-          saveCodeParticipation(codeParticipation);
-          menuResto(`${varServeur}restaurant/menus/${data}`);
-          cardResto(`${varServeur}cards/${data}`);
-          history.push('/commande-participation');
+          if (data !== undefined) {
+            saveCodeParticipation(codeParticipation);
+            menuResto(`${varServeur}restaurant/menus/${data}`);
+            cardResto(`${varServeur}cards/${data}`);
+            history.push('/commande-participation');
+          }
         });
     }
 
@@ -85,6 +98,8 @@ function mdtp(dispatch) {
     menuResto,
     cardResto,
     saveCodeParticipation,
+    notifError,
+    notifInfo,
   }, dispatch);
 }
 
