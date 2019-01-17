@@ -59,7 +59,7 @@ class Contact extends Component {
     })
       .then((res) => {
         if (res.status === 500) {
-          notifError('Une erreur serveur, veuillez reéssayer');
+          notifError('Une erreur serveur c&aposproduite');
         }
         if (res.status === 200) {
           notifSuccess('Email bien envoyé');
