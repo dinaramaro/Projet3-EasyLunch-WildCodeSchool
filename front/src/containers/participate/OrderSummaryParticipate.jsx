@@ -46,7 +46,7 @@ const OrderSummary = (props) => {
                 );
               }
               return (
-                <li>{item.Entrée}</li>
+                <li>{item[item.text]}</li>
               );
             })
             }
