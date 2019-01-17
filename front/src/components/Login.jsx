@@ -50,6 +50,7 @@ class Login extends Component {
       }),
       body: JSON.stringify(this.state),
     })
+      // eslint-disable-next-line consistent-return
       .then((res) => {
         if (res.status === 401) {
           notifError('Mauvais mot de passe ou adresse email');

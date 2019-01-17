@@ -9,6 +9,9 @@ import {
   Input,
   Button,
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { notifSuccess, notifError } from '../../actions/notifications';
 import { varServeur } from '../../constants';
 import './Contacts.scss';
 
@@ -18,7 +21,12 @@ class Contact extends Component {
     super(props);
     this.state = {
       contactText: '',
+      subject: '',
+      email: '',
+      text: '',
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeInput = this.onChangeInput.bind(this);
   }
 
   componentDidMount() {
@@ -27,15 +35,55 @@ class Contact extends Component {
       .then(contactText => this.setState({ contactText }));
   }
 
+  onChangeInput(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { email, subject, text } = this.state;
+    const mail = {
+      email,
+      subject,
+      text,
+    };
+    const { notifError, notifSuccess } = this.props;
+    fetch(`${varServeur}mailcontact`, {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(mail),
+    })
+      .then((res) => {
+        if (res.status === 500) {
+          notifError('Une erreur serveur, veuillez reéssayer');
+        }
+        if (res.status === 200) {
+          notifSuccess('Email bien envoyé');
+          this.setState({
+            subject: '',
+            email: '',
+            text: '',
+          });
+        }
+      });
+  }
+
+
   render() {
-    const { contactText } = this.state;
+    const {
+      contactText, email, subject, text,
+    } = this.state;
     return (
       <div className="Contacts">
         <h1 className="title">NOUS CONTACTER</h1>
         <Container>
           <div className="contact">
             <p><div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} /></p>
-            <Form className="form">
+            <Form className="form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label className="email">VOTRE E-MAIL</Label>
                 <Input
@@ -43,18 +91,20 @@ class Contact extends Component {
                   type="email"
                   name="email"
                   placeholder="VOTRE E-MAIL"
+                  onChange={this.onChangeInput}
+                  value={email}
                 />
               </FormGroup>
               <FormGroup>
                 <Label>SUJET</Label>
-                <Input required type="text" name="subject" placeholder="SUJET" />
+                <Input required type="text" name="subject" placeholder="SUJET" onChange={this.onChangeInput} value={subject} />
               </FormGroup>
               <FormGroup>
                 <Label>VOTRE MESSAGE</Label>
                 <br />
-                <Input type="textarea" name="text" placeholder="VOTRE MESSAGE" />
+                <Input required type="textarea" name="text" placeholder="VOTRE MESSAGE" onChange={this.onChangeInput} value={text} />
               </FormGroup>
-              <Button color="warning" className="text-color">
+              <Button color="warning" type="submit" className="text-color">
                 ENVOYER
               </Button>
             </Form>
@@ -108,5 +158,6 @@ class Contact extends Component {
     );
   }
 }
+const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError }, dispatch);
 
-export default Contact;
+export default connect(null, mdtp)(Contact);
