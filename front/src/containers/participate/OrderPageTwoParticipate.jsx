@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col,
 } from 'reactstrap';
-import RestoInfosParticipate from './RestoInfosParticipate';
-import GeneralInformations from './GeneralInformationsParticipation';
+import RestoInfos from '../result/RestoInfos';
+import GeneralInformations from '../result/GeneralInformations';
 import OrderMenuParticipate from './OrderMenuParticipate';
 
 
@@ -12,7 +12,7 @@ const OrderPageTwoParticipate = () => (
   <Container fluid className="OrderPageTwo">
     <Row>
       <Col sm={4}>
-        <RestoInfosParticipate />
+        <RestoInfos />
         <GeneralInformations />
       </Col>
       <Col sm={8}>
