@@ -8,12 +8,14 @@ import GeneralInformations from '../result/GeneralInformations';
 import RestoInfos from '../result/RestoInfos';
 
 const OrderSummary = (props) => {
-  const { menuResto: { resto: { restoInfos } } } = props;
-  const { chooseByUser: { tabs } } = props;
-  const { sendOrder: { sendOrder: { tableCommand } } } = props;
-  const { sendOrder } = props;
-  const { log: { user } } = props;
-  const { codeParticip } = props;
+  const {
+    menuResto: { resto: { restoInfos } },
+    chooseByUser: { tabs },
+    sendOrder: { sendOrder: { tableCommand } },
+    sendOrder,
+    log: { user },
+    codeParticip,
+  } = props;
 
   if (tabs.length === 0) {
     return (
