@@ -37,8 +37,6 @@ import OrderPageTwoParticipate from './containers/participate/OrderPageTwoPartic
 import OrderSummary from './containers/result/OrderSummary';
 import ReservationHistory from './components/commandHistory/ReservationHistory';
 
-
-
 const App = () => (
   <div className="App">
     <NavBar />

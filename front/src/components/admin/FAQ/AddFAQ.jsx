@@ -29,7 +29,6 @@ class AddFAQ extends Component {
   }
 
   handleSubmit(event) {
-    const { history } = this.props;
     event.preventDefault();
     const url = `${varServeur}admin/faq/`;
     const config = {
@@ -43,7 +42,7 @@ class AddFAQ extends Component {
       .then(res => res.text())
       .then((res) => {
         if (res === 'OK') {
-          history.push('/admin/admin-faq');
+          window.location.reload();
         }
       });
   }

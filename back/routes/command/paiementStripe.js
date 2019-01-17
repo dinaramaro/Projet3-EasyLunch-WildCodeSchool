@@ -7,7 +7,7 @@ const stripe = Stripe(privateKeyStripe);
 
 router.post('/:amount', (req, res) => {
   const amount = req.params.amount;
-  const customerEmail = req.body.email;
+  const customerEmail = req.body.email;  
   stripe.customers.create({
     email: customerEmail,
     card: req.body.id
@@ -22,7 +22,7 @@ router.post('/:amount', (req, res) => {
       }))
     .then(charge => res.json(charge.id))
     .catch((err) => {
-      if (err) {
+      if (err) {        
         res.sendStatus(500);
       } else {
         res.sendStatus(200);

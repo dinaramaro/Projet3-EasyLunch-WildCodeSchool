@@ -7,7 +7,6 @@ import {
   Nav, NavItem, NavLink, Card, Col, Row, TabPane,
   TabContent, Form, FormGroup, Input, Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
@@ -58,6 +57,7 @@ class OrderMenu extends Component {
         return res.json();
       }
       notifError('Erreur lors du paiement, veuillez réessayez');
+      return res.json();
     })
       .then((idStripe) => {
         this.handleClickPay(idStripe);
@@ -65,13 +65,14 @@ class OrderMenu extends Component {
   }
 
   handleClickPay(idStripe) {
-    const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    const { history, sendOrder: { sendOrder }, sendCommand } = this.props;
     const newOrder = {
       ...sendOrder,
       idStripe,
     };
     if (!_.isEmpty(sendOrder)) {
       sendCommand(`${varServeur}command`, newOrder);
+      history.push('/recapitulatif-commande');
     }
   }
 
@@ -102,8 +103,7 @@ class OrderMenu extends Component {
       handleChangeSpecial,
       log: { user },
     } = this.props;
-    let { chooseByUser: { total } } = this.props;
-
+    let { chooseByUser: { total } } = this.props;    
     if (total % 1 !== 0) {
       total = `${total}0`;
     }
@@ -295,9 +295,8 @@ class OrderMenu extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
               {
-                (user !== undefined)
+                (!_.isEmpty(user))
                   ? (
                     <StripeCheckout
                       token={this.onToken}

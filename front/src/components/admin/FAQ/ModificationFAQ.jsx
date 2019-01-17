@@ -38,7 +38,7 @@ class ModficationFAQ extends Component {
   }
 
   handleSubmit(e) {
-    const { match, history } = this.props;
+    const { match } = this.props;
     e.preventDefault();
     const config = {
       method: 'PUT',
@@ -51,7 +51,7 @@ class ModficationFAQ extends Component {
       .then(res => res.text())
       .then((res) => {
         if (res === 'OK') {
-          history.push('/admin/admin-faq');
+          window.location.reload();
         }
       });
   }

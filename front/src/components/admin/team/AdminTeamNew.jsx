@@ -6,6 +6,7 @@ import {
   FormGroup,
   Input,
 } from 'reactstrap';
+import { withRouter } from 'react-router';
 import { varServeur } from '../../../constants';
 import './AdminTeamNew.scss';
 
@@ -91,4 +92,4 @@ class AdminTeamNew extends Component {
   }
 }
 
-export default AdminTeamNew;
+export default withRouter(AdminTeamNew);
