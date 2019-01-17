@@ -22,6 +22,9 @@ const searchResults = (state = initialState, action) => {
         ...state,
         loading: true,
       };
+    case 'INIT_STATE':
+      return initialState;
+
     default:
       return state;
   }

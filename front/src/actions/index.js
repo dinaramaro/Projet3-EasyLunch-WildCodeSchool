@@ -68,3 +68,7 @@ export const recupGeInfo = (nb, schedule) => ({
   nb,
   schedule,
 });
+
+export const initState = () => ({
+  type: 'INIT_STATE',
+});
