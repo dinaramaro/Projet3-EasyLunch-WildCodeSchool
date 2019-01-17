@@ -17,7 +17,7 @@ import MyMeal from '../result/MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId } from '../../actions';
-import { notifError, notifSuccess } from '../../actions/notifications';
+import { notifError, notifSuccess, notifInfo } from '../../actions/notifications';
 
 
 class OrderMenuParticipate extends Component {
@@ -44,7 +44,9 @@ class OrderMenuParticipate extends Component {
   }
 
   onToken = (token) => {
-    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
+    const {
+      notifInfo, notifSuccess, notifError, chooseByUser: { total },
+    } = this.props;
     const amount = total * 100;
     fetch(`${varServeur}pay/${amount}`, {
       method: 'POST',
@@ -57,11 +59,16 @@ class OrderMenuParticipate extends Component {
       if (res.status === 200) {
         notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
         return res.json();
+      } if (res.status === 500) {
+        notifError('Erreur lors du paiement, veuillez réessayez');
+        return res.json();
+      } if (res.status === 403) {
+        notifInfo('Impossible de commander après 11h30, paiement refusé');
+        return '';
       }
-      notifError('Erreur lors du paiement, veuillez réessayez');
     })
       .then((idStripe) => {
-        this.handleClickPay(idStripe);
+        if (idStripe !== '') this.handleClickPay(idStripe);
       });
   }
 
@@ -384,6 +391,7 @@ function mdtp(dispatch) {
     notifError,
     getUserId,
     notifSuccess,
+    notifInfo,
   },
   dispatch);
 }

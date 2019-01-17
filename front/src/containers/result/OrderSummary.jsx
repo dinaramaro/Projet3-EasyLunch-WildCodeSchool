@@ -18,7 +18,6 @@ class OrderSummary extends Component {
       email2: '',
       email3: '',
       email4: '',
-      isSuccess: false,
     };
     this.onChange = this.onChange.bind(this);
     this.sendMail = this.sendMail.bind(this);
@@ -33,7 +32,7 @@ class OrderSummary extends Component {
   sendMail(e) {
     e.preventDefault();
     const {
-      email1, email2, email3, email4, isSuccess,
+      email1, email2, email3, email4,
     } = this.state;
     const {
       notifError, notifSuccess, hour, log: { user: { name } },
