@@ -44,8 +44,6 @@ class OrderMenu extends Component {
   onToken = (token) => {
     const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
     const amount = total * 100;
-    console.log(amount);
-    
     fetch(`${varServeur}pay/${amount}`, {
       method: 'POST',
       headers: {
@@ -105,9 +103,7 @@ class OrderMenu extends Component {
       handleChangeSpecial,
       log: { user },
     } = this.props;
-    let { chooseByUser: { total } } = this.props;
-    console.log(user);
-    
+    let { chooseByUser: { total } } = this.props;    
     if (total % 1 !== 0) {
       total = `${total}0`;
     }
