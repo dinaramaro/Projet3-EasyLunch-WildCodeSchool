@@ -101,7 +101,6 @@ class OrderMenu extends Component {
       loading,
       handleChangeSpecial,
       log: { user },
-      // menuResto: { resto: { restoInfos } },
     } = this.props;
     let { chooseByUser: { total } } = this.props;
 
@@ -120,7 +119,6 @@ class OrderMenu extends Component {
     let listForm = [];
     let listMOD = [];
     let userName = '';
-    // let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -140,10 +138,6 @@ class OrderMenu extends Component {
     if (user !== undefined) {
       userName = user.name;
     }
-
-    // if (restoInfos !== undefined) {
-    //   restoName = restoInfos.name;
-    // }
 
     if (error) {
       return <div>{`Error!'} ${error.message}`}</div>;
@@ -354,7 +348,7 @@ function mdtp(dispatch) {
     notifSuccess,
     notifError,
   },
-    dispatch);
+  dispatch);
 }
 
 
