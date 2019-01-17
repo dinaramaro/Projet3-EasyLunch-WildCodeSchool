@@ -1,5 +1,7 @@
 import express from 'express';
+import nodemailer from 'nodemailer';
 import connection from '../config';
+import { senderMail, passwordMail } from '../myAccount/secretOrKey';
 
 const router = express.Router();
 
@@ -49,6 +51,43 @@ router.post('/', (req, res) => {
                         if (err6) {
                           res.sendStatus(500);
                         } else {
+                          connection.query('SELECT name, mail FROM public_users_app JOIN public_booking ON public_users_app.id = public_booking.master_user_id WHERE public_booking.id = ?', bookingId, (err7, results7) => {
+                            if (err7) {
+                              res.sendStatus(500);
+                            } else {
+                              const { name, mail } = results7[0];
+                              const output = `
+                            <h1>Merci ${name} d'avoir commandé chez EASYLUNCH</h1>
+                            <br />
+                            <p>Votre commande a bien été réservé, bonne appétit!</p>
+                            <br />
+                            <p> Je vous remercie de votre commande JOEL</p>
+                          `;
+
+                              const transporter = nodemailer.createTransport({
+                                host: 'smtp.gmail.com',
+                                port: 465,
+                                secure: true,
+                                auth: {
+                                  user: senderMail,
+                                  pass: passwordMail,
+                                },
+                              });
+                              const mailOptions = {
+                                from: `EasyLunch Commande ${senderMail}`,
+                                to: mail,
+                                subject: 'Votre commande chez EASYLUNCH',
+                                html: output
+                              };
+
+                              transporter.sendMail(mailOptions, (error) => {
+                                if (error) {
+                                  res.sendStatus(500);
+                                }
+                                res.sendStatus(200);
+                              });
+                            }
+                          });
                           res.json(nameCode);
                         }
                       });
