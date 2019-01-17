@@ -9,6 +9,8 @@ import { notifSuccess, notifError } from '../../actions/notifications';
 import GeneralInformations from './GeneralInformations';
 import RestoInfos from './RestoInfos';
 import { varServeur } from '../../constants';
+import { initState } from '../../actions';
+
 
 class OrderSummary extends Component {
   constructor(props) {
@@ -21,6 +23,11 @@ class OrderSummary extends Component {
     };
     this.onChange = this.onChange.bind(this);
     this.sendMail = this.sendMail.bind(this);
+  }
+
+  componentWillUnmount() {
+    const { initState } = this.props;
+    initState();
   }
 
   onChange(e) {
@@ -99,12 +106,14 @@ class OrderSummary extends Component {
 
 
   render() {
-    const { menuResto: { resto: { restoInfos } } } = this.props;
-    const { chooseByUser: { tabs } } = this.props;
-    const { sendOrder: { sendOrder: { tableCommand } } } = this.props;
-    const { sendOrder } = this.props;
-    const { getCode: { code } } = this.props;
-    const { log: { user } } = this.props;
+    const {
+      menuResto: { resto: { restoInfos } },
+      chooseByUser: { tabs },
+      sendOrder: { sendOrder: { tableCommand } },
+      sendOrder,
+      getCode: { code },
+      log: { user },
+    } = this.props;
     const {
       email1, email2, email3, email4,
     } = this.state;
@@ -116,6 +125,7 @@ class OrderSummary extends Component {
         </div>
       );
     }
+
     return (
       <Container>
         <Row>
@@ -139,10 +149,10 @@ class OrderSummary extends Component {
                   );
                 }
                 return (
-                  <li>{item.Entrée}</li>
+                  <li>{item[item.text]}</li>
                 );
               })
-            }
+              }
             </ul>
             <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
             <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
@@ -205,7 +215,7 @@ function mstp(state) {
   };
 }
 
-const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError }, dispatch);
+const mdtp = dispatch => bindActionCreators({ notifSuccess, notifError, initState }, dispatch);
 
 
 export default connect(mstp, mdtp)(OrderSummary);

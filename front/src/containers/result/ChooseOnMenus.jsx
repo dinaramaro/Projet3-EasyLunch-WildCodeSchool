@@ -28,7 +28,7 @@ const ChooseOnMenus = ({
               <CustomInput
                 type="radio"
                 value={item.meals_name}
-                name={text}
+                name={`${item.id_plat}${item.id}`}
                 id={`${item.id_plat}${item.id}`}
                 label={item.meals_name}
                 onChange={(e) => {
@@ -57,7 +57,7 @@ const ChooseOnMenus = ({
                   <CustomInput
                     type="radio"
                     value={item.meals_name}
-                    name={text}
+                    name={`${item.id_plat}${item.id}`}
                     id={`${item.id_plat}${item.id}`}
                     label={item.meals_name}
                     onChange={(e) => {
@@ -85,7 +85,7 @@ const ChooseOnMenus = ({
                   type="radio"
                   checked
                   value={item.meals_name}
-                  name={text}
+                  name={`${item.id_plat}${item.id}`}
                   id={`${item.id_plat}${item.id}`}
                   label={item.meals_name}
                   onChange={(e) => {

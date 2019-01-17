@@ -45,7 +45,7 @@ class OrderMenu extends Component {
     const {
       notifInfo, notifSuccess, notifError, chooseByUser: { total },
     } = this.props;
-    const amount = total * 100;
+    const amount = Math.round(total * 100);
     fetch(`${varServeur}pay/${amount}`, {
       method: 'POST',
       headers: {

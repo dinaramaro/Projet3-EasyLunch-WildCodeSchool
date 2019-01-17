@@ -26,6 +26,9 @@ const menuResto = (state = initialState, action) => {
         loading: true,
       };
       return newState;
+    case 'INIT_STATE':
+      return initialState;
+
     default:
       return state;
   }
