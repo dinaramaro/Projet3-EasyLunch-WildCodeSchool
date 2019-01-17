@@ -72,7 +72,6 @@ class OrderMenu extends Component {
     };
     if (!_.isEmpty(sendOrder)) {
       sendCommand(`${varServeur}command`, newOrder);
-      this.toggleModal();
     }
   }
 
@@ -101,6 +100,8 @@ class OrderMenu extends Component {
       error,
       loading,
       handleChangeSpecial,
+      log: { user },
+      // menuResto: { resto: { restoInfos } },
     } = this.props;
     let { chooseByUser: { total } } = this.props;
 
@@ -118,6 +119,8 @@ class OrderMenu extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
+    let userName = '';
+    // let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -133,6 +136,14 @@ class OrderMenu extends Component {
       listDayMain = cards.filter(item => item.plat === 5);
       listDayDessert = cards.filter(item => item.plat === 6);
     }
+
+    if (user !== undefined) {
+      userName = user.name;
+    }
+
+    // if (restoInfos !== undefined) {
+    //   restoName = restoInfos.name;
+    // }
 
     if (error) {
       return <div>{`Error!'} ${error.message}`}</div>;
@@ -306,7 +317,7 @@ class OrderMenu extends Component {
                       currency="EUR"
                     >
                       <Button type="button">
-                      Payer
+                        Payer
                       </Button>
                     </StripeCheckout>
                   )
@@ -343,7 +354,7 @@ function mdtp(dispatch) {
     notifSuccess,
     notifError,
   },
-  dispatch);
+    dispatch);
 }
 
 
