@@ -24,7 +24,6 @@ class OrderSummary extends Component {
       getCode: { code },
       log: { user },
     } = this.props;
-
     if (tabs.length === 0) {
       return (
         <div>
@@ -56,7 +55,7 @@ class OrderSummary extends Component {
                   );
                 }
                 return (
-                  <li>{item.Entrée}</li>
+                  <li>{item[item.text]}</li>
                 );
               })
               }
