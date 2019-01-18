@@ -5,10 +5,17 @@ import { senderMail, passwordMail } from '../myAccount/secretOrKey';
 const router = express.Router();
 
 router.post('/', (req, res) => {
+  const {
+    masterName, shareCode, restoName, restoAddress, targetMail, hour
+  } = req.body;
+
   const output = `
-    <p>Mail de la part de ${req.body.email}</p>
+    <p>${masterName} vous invite à rejoindre sa table via le code ${shareCode}</p>
     <br />
-    <p>${req.body.text}</p>
+    <p>Informations restaurant :</p>
+    <p>${restoName}</p>
+    <p>${restoAddress}</p>
+    <p>à ${hour}</p>
   `;
 
   const transporter = nodemailer.createTransport({
@@ -22,8 +29,8 @@ router.post('/', (req, res) => {
   });
   const mailOptions = {
     from: `EasyLunch Contact ${senderMail}`,
-    to: senderMail,
-    subject: `EasyLunch : ${req.body.subject}`,
+    to: targetMail,
+    subject: `Invitation à rejoindre de ${masterName}`,
     html: output
   };
 

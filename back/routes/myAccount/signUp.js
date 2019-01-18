@@ -2,7 +2,7 @@ import express from 'express';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import connection from '../config';
-import { mail, passwordMail } from './secretOrKey';
+import { senderMail, passwordMail } from './secretOrKey';
 
 const router = express.Router();
 
@@ -27,12 +27,12 @@ router.post('/', (req, res) => {
         port: 465,
         secure: true,
         auth: {
-          user: mail,
+          user: senderMail,
           pass: passwordMail,
         },
       });
       const mailOptions = {
-        from: `EasyLunch Contact ${mail}`,
+        from: `EasyLunch Contact ${senderMail}`,
         to: data.mail,
         subject: `Bienvenue ${data.name} chez EASYLUNCH`,
         html: output
