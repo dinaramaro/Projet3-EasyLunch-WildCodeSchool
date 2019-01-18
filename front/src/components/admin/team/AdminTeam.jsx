@@ -54,7 +54,9 @@ class AdminTeam extends Component {
       method: 'DELETE',
     })
       .then((response) => {
-        if (response.ok) window.location.reload();
+        if (response.ok) {
+          window.location.reload();
+        }
       });
   }
 

@@ -8,6 +8,7 @@ import {
   ModalFooter,
   Button,
 } from 'reactstrap';
+import { withRouter } from 'react-router';
 import FormPartners from './FormPartners';
 import { varServeur } from '../../../constants';
 import AdminMenu from '../AdminMenu';
@@ -37,9 +38,7 @@ class AdminPartners extends Component {
     fetch(`${varServeur}admin/partners/${id}`, {
       method: 'DELETE',
     }).then((response) => {
-      if (response.ok) {
-        window.location.reload();
-      }
+      if (response.ok) window.location.reload();
     });
   }
 
@@ -113,4 +112,4 @@ class AdminPartners extends Component {
   }
 }
 
-export default AdminPartners;
+export default withRouter(AdminPartners);

@@ -4,13 +4,12 @@ import DisplayMenu from './DisplayMenu';
 const DisplayMenus = ({ list }) => {
   let tempMenuName = '';
   let menus = [];
-
   for (let i = 0; i < list.length; i += 1) {
-    if (tempMenuName !== list[i].menu_name) {
+    if (tempMenuName !== list[i].id) {
       const tempObj = {};
-      tempObj.name = list[i].menu_name;
+      tempObj.name = list[i].id;
       tempObj.meals = [list[i]];
-      tempMenuName = list[i].menu_name;
+      tempMenuName = list[i].id;
       menus = [...menus, tempObj];
     } else {
       const menu = menus[menus.length - 1].meals;
@@ -21,7 +20,7 @@ const DisplayMenus = ({ list }) => {
   return (
     <div className="DisplayMenus">
       {
-        menus.map(menu => <div key={menu.name}><DisplayMenu menu={menu} /></div>)
+        menus.map(menu => <div key={menu.id}><DisplayMenu menu={menu} /></div>)
       }
     </div>
   );

@@ -34,10 +34,9 @@ import MyAccount from './components/MyAccount';
 import PrivateRoute from './PrivateRoute';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
 import OrderPageTwoParticipate from './containers/participate/OrderPageTwoParticipate';
+import OrderSummaryParticipate from './containers/participate/OrderSummaryParticipate';
 import OrderSummary from './containers/result/OrderSummary';
 import ReservationHistory from './components/commandHistory/ReservationHistory';
-
-
 
 const App = () => (
   <div className="App">
@@ -57,6 +56,7 @@ const App = () => (
         <Route path="/commande-page2" component={OrderPageTwo} />
         <Route path="/commande-participation" component={OrderPageTwoParticipate} />
         <Route path="/recapitulatif-commande" component={OrderSummary} />
+        <Route path="/recapitulatif-participation" component={OrderSummaryParticipate} />
         <PrivateRouteAdmin path="/admin/admin-menu" component={AdminMenu} />
         <PrivateRouteAdmin path="/admin/admin-cgv" component={AdminCVG} />
         <PrivateRouteAdmin path="/admin/admin-politique" component={AdminPolitic} />

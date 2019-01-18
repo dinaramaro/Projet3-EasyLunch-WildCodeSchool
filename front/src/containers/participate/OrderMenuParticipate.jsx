@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import {
   Nav, NavItem, NavLink, Card, Col, Row,
   TabPane, TabContent, Form, FormGroup, Input, Button,
-  Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
@@ -17,7 +16,7 @@ import MyMeal from '../result/MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId } from '../../actions';
-import { notifError, notifSuccess } from '../../actions/notifications';
+import { notifError, notifSuccess, notifInfo } from '../../actions/notifications';
 
 
 class OrderMenuParticipate extends Component {
@@ -25,9 +24,7 @@ class OrderMenuParticipate extends Component {
     super(props);
     this.state = {
       activeTab: '1',
-      modal: false,
     };
-    this.toggleModal = this.toggleModal.bind(this);
     this.redirectConnect = this.redirectConnect.bind(this);
   }
 
@@ -44,8 +41,10 @@ class OrderMenuParticipate extends Component {
   }
 
   onToken = (token) => {
-    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
-    const amount = total * 100;
+    const {
+      notifInfo, notifSuccess, notifError, chooseByUser: { total },
+    } = this.props;
+    const amount = Math.round(total * 100);
     fetch(`${varServeur}pay/${amount}`, {
       method: 'POST',
       headers: {
@@ -57,17 +56,17 @@ class OrderMenuParticipate extends Component {
       if (res.status === 200) {
         notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
         return res.json();
+      } if (res.status === 500) {
+        notifError('Erreur lors du paiement, veuillez réessayez');
+        return res.json();
+      } if (res.status === 403) {
+        notifInfo('Impossible de commander après 11h30, paiement refusé');
+        return '';
       }
-      notifError('Erreur lors du paiement, veuillez réessayez');
     })
       .then((idStripe) => {
-        this.handleClickPay(idStripe);
+        if (idStripe !== '') this.handleClickPay(idStripe);
       });
-  }
-
-  toggleModal() {
-    const { modal } = this.state;
-    this.setState({ modal: !modal });
   }
 
   toggle(tab) {
@@ -80,7 +79,9 @@ class OrderMenuParticipate extends Component {
   }
 
   handleClickPay(idStripe) {
-    const { codeParticip, notifError, sendOrder: { sendOrder } } = this.props;
+    const {
+      history, codeParticip, notifError, sendOrder: { sendOrder },
+    } = this.props;
     const newCommand = {
       ...sendOrder,
       idStripe,
@@ -97,7 +98,7 @@ class OrderMenuParticipate extends Component {
           if (res.status === 500) {
             notifError('Erreur serveur');
           } if (res.status === 200) {
-            this.toggleModal();
+            history.push('recapitulatif-participation');
           }
         });
     }
@@ -113,7 +114,7 @@ class OrderMenuParticipate extends Component {
   }
 
   render() {
-    const { activeTab, modal } = this.state;
+    const { activeTab } = this.state;
     const {
       menus,
       cards,
@@ -121,7 +122,6 @@ class OrderMenuParticipate extends Component {
       loading,
       handleChangeSpecial,
       log: { user },
-      menuResto: { resto: { restoInfos } },
     } = this.props;
 
     let { chooseByUser: { total } } = this.props;
@@ -142,7 +142,6 @@ class OrderMenuParticipate extends Component {
     let listForm = [];
     let listMOD = [];
     let userName = '';
-    let restoName = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -161,10 +160,6 @@ class OrderMenuParticipate extends Component {
 
     if (user !== undefined) {
       userName = user.name;
-    }
-
-    if (restoInfos !== undefined) {
-      restoName = restoInfos.name;
     }
 
     if (error) {
@@ -347,15 +342,6 @@ class OrderMenuParticipate extends Component {
             </Col>
           </Row>
         </Form>
-        <Modal isOpen={modal} toggle={this.toggleModal}>
-          <ModalHeader toggle={this.toggleModal}>{`Merci ${userName} !`}</ModalHeader>
-          <ModalBody>
-            {`Ta commande a bien été prise en compte et transmise au restaurant ${restoName}.`}
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModal}>Ok</Button>
-          </ModalFooter>
-        </Modal>
       </div>
     );
   }
@@ -384,6 +370,7 @@ function mdtp(dispatch) {
     notifError,
     getUserId,
     notifSuccess,
+    notifInfo,
   },
   dispatch);
 }

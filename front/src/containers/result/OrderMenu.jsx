@@ -7,7 +7,6 @@ import {
   Nav, NavItem, NavLink, Card, Col, Row, TabPane,
   TabContent, Form, FormGroup, Input, Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
@@ -18,7 +17,7 @@ import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId } from '../../actions';
 import { sendCommand } from '../../actions/sendCommand';
-import { notifSuccess, notifError } from '../../actions/notifications';
+import { notifSuccess, notifError, notifInfo } from '../../actions/notifications';
 
 class OrderMenu extends Component {
   constructor(props) {
@@ -43,8 +42,10 @@ class OrderMenu extends Component {
   }
 
   onToken = (token) => {
-    const { notifSuccess, notifError, chooseByUser: { total } } = this.props;
-    const amount = total * 100;
+    const {
+      notifInfo, notifSuccess, notifError, chooseByUser: { total },
+    } = this.props;
+    const amount = Math.round(total * 100);
     fetch(`${varServeur}pay/${amount}`, {
       method: 'POST',
       headers: {
@@ -56,22 +57,28 @@ class OrderMenu extends Component {
       if (res.status === 200) {
         notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
         return res.json();
+      } if (res.status === 500) {
+        notifError('Erreur lors du paiement, veuillez réessayez');
+        return res.json();
+      } if (res.status === 403) {
+        notifInfo('Impossible de commander après 11h30, paiement refusé');
+        return '';
       }
-      notifError('Erreur lors du paiement, veuillez réessayez');
     })
       .then((idStripe) => {
-        this.handleClickPay(idStripe);
+        if (idStripe !== '') this.handleClickPay(idStripe);
       });
   }
 
   handleClickPay(idStripe) {
-    const { sendOrder: { sendOrder }, sendCommand } = this.props;
+    const { history, sendOrder: { sendOrder }, sendCommand } = this.props;
     const newOrder = {
       ...sendOrder,
       idStripe,
     };
     if (!_.isEmpty(sendOrder)) {
       sendCommand(`${varServeur}command`, newOrder);
+      history.push('/recapitulatif-commande');
     }
   }
 
@@ -103,7 +110,6 @@ class OrderMenu extends Component {
       log: { user },
     } = this.props;
     let { chooseByUser: { total } } = this.props;
-
     if (total % 1 !== 0) {
       total = `${total}0`;
     }
@@ -295,9 +301,8 @@ class OrderMenu extends Component {
               {`${total} €`}
             </Col>
             <Col sm={6}>
-              <Link to="/recapitulatif-commande"><Button type="button" onClick={() => this.handleClickPay()}>Payer</Button></Link>
               {
-                (user !== undefined)
+                (!_.isEmpty(user))
                   ? (
                     <StripeCheckout
                       token={this.onToken}
@@ -342,6 +347,7 @@ function mdtp(dispatch) {
     getUserId,
     notifSuccess,
     notifError,
+    notifInfo,
   },
   dispatch);
 }
