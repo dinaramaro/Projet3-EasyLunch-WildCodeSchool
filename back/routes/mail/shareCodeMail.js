@@ -10,7 +10,9 @@ router.post('/', (req, res) => {
   } = req.body;
 
   const output = `
-    <p>${masterName} vous invite à rejoindre sa table via le code ${shareCode}</p>
+    <p>${masterName} vous invite à rejoindre sa table via le code <strong>${shareCode}</strong></p>
+    <br />
+    <p><a href="https://easylunch.campus-bordeaux.ovh/participation">Rejoindre la réservation</a></p>
     <br />
     <p>Informations restaurant :</p>
     <p>${restoName}</p>
