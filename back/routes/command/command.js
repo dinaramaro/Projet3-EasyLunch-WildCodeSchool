@@ -54,16 +54,15 @@ router.post('/', (req, res) => {
                           connection.query('SELECT name, mail FROM public_users_app JOIN public_booking ON public_users_app.id = public_booking.master_user_id WHERE public_booking.id = ?', bookingId, (err7, results7) => {
                             if (err7) {
                               res.sendStatus(500);
-                            } else {
+                            } else {                              
                               const { name, mail } = results7[0];
                               const output = `
                             <h1>Merci ${name} d'avoir commandé chez EASYLUNCH</h1>
                             <br />
-                            <p>Votre commande a bien été réservé, bonne appétit!</p>
+                            <p>Votre commande a bien été réservée, bon appétit!</p>
                             <br />
-                            <p> Je vous remercie de votre commande JOEL</p>
+                            <p> Je vous remercie de votre commande</p>
                           `;
-
                               const transporter = nodemailer.createTransport({
                                 host: 'smtp.gmail.com',
                                 port: 465,
@@ -79,7 +78,6 @@ router.post('/', (req, res) => {
                                 subject: 'Votre commande chez EASYLUNCH',
                                 html: output
                               };
-
                               transporter.sendMail(mailOptions, (error) => {
                                 if (error) {
                                   res.sendStatus(500);

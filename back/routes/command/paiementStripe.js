@@ -7,22 +7,23 @@ const stripe = Stripe(privateKeyStripe);
 
 router.post('/:amount', (req, res) => {
   const heure = () => {
-    const ladate = new Date();
-    let h = ladate.getHours();
+    const currentDate = new Date();
+    let h = currentDate.getHours();
     if (h < 10) {
       h = '0' + h;
     }
-    let m = ladate.getMinutes();
+    let m = currentDate.getMinutes();
     if (m < 10) {
       m = '0' + m;
     }
-    let s = ladate.getSeconds();
+    let s = currentDate.getSeconds();
     if (s < 10) {
       s = '0' + s;
     }
     return h * 60 + m;
   };
-  if (isProd) {
+  console.log(isProd);
+  if (!isProd) {
     const amount = req.params.amount;
     const customerEmail = req.body.email;
     stripe.customers.create({
@@ -37,15 +38,8 @@ router.post('/:amount', (req, res) => {
           receipt_email: customerEmail,
           customer: customer.id
         }))
-      .then(charge => res.json(charge.id))
-      .catch((err) => {
-        if (err) {
-          res.sendStatus(500);
-        } else {
-          res.sendStatus(200);
-        }
-      });
-  } else if (662 < heure < 1380) {
+      .then(charge => res.json(charge.id));
+  } else if (heure > 695 && heure < 1440) {
     res.sendStatus(403);
   } else {
     const amount = req.params.amount;
@@ -62,14 +56,7 @@ router.post('/:amount', (req, res) => {
           receipt_email: customerEmail,
           customer: customer.id
         }))
-      .then(charge => res.json(charge.id))
-      .catch((err) => {
-        if (err) {
-          res.sendStatus(500);
-        } else {
-          res.sendStatus(200);
-        }
-      });
+      .then(charge => res.json(charge.id));
   }
 });
 

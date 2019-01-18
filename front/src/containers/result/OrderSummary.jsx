@@ -164,7 +164,7 @@ class OrderSummary extends Component {
             </p>
             <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
             <p>{`Code de partage : ${code}`}</p>
-            <h3>Entrez içi les Emails des personnes avec qui vous souhaitez déjeuner</h3>
+            <h3>Entrez ici les emails des personnes avec qui vous souhaitez déjeuner</h3>
             <Form onSubmit={this.sendMail}>
               <Input
                 name="email1"

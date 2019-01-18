@@ -47,7 +47,7 @@ router.post('/:code', (req, res) => {
                     <br />
                     <p>Votre commande a bien été réservé, bonne appétit!</p>
                     <br />
-                    <p> Je vous remercie de votre commande JOEL</p>
+                    <p> Je vous remercie de votre commande</p>
                   `;
 
                       const transporter = nodemailer.createTransport({
