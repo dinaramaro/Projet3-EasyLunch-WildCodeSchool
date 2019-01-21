@@ -28,7 +28,6 @@ export function sendCommandParticipate(url, newOrder) {
         }
         return response;
       })
-      .then(res => res.json())
       .catch(error => dispatch(sendCommandParticipeFailed(error)));
   };
 }
