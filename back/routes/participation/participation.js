@@ -5,7 +5,7 @@ import { senderMail, passwordMail } from '../myAccount/secretOrKey';
 
 const router = express.Router();
 
-router.post('/:code', (req, res) => {
+router.post('/:code', (req, res) => {  
   const code = req.params.code;
   connection.query('SELECT a.id from public_booking a INNER join public_code b on b.id = a.code where b.name = ? ORDER BY created_date DESC LIMIT 1', code, (err, results) => {
     if (err) {

@@ -42,8 +42,11 @@ class Participate extends Component {
       const { codeParticipation } = this.state;
       fetch(`${varServeur}idrestaurant/${codeParticipation}`)
         .then((response) => {
-          if (response.status === 401) {
+          if (response.status === 403) {
             notifInfo('La table est déjà complète');
+          }
+          if (response.status === 401) {
+            notifInfo('Code non valide, veuillez réessayer');
           }
           if (response.status === 500) {
             notifError('Erreur serveur, veuillez réessayer');

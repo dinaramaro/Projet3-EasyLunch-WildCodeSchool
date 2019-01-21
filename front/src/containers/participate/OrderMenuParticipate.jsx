@@ -11,6 +11,7 @@ import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
+import { stripePaymentParticipate } from '../../actions/stripePaymentParticipate';
 import ChooseOnCards from '../result/ChooseOnCards';
 import MyMeal from '../result/MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
@@ -40,33 +41,20 @@ class OrderMenuParticipate extends Component {
     getUserId(user.id);
   }
 
+  componentDidUpdate(prevProps) {
+    const { history, isSuccess } = this.props;
+    if (prevProps.isSuccess && isSuccess) {
+      history.push('/recapitulatif-participation');
+    }
+  }
+
   onToken = (token) => {
     const {
-      notifInfo, notifSuccess, notifError, chooseByUser: { total },
+      chooseByUser: { total }, stripePaymentParticipate,
+      sendOrder: { sendOrder }, codeParticip,
     } = this.props;
     const amount = Math.round(total * 100);
-    fetch(`${varServeur}pay/${amount}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(token),
-    }).then((res) => {
-      if (res.status === 200) {
-        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
-        return res.json();
-      } if (res.status === 500) {
-        notifError('Erreur lors du paiement, veuillez réessayez');
-        return res.json();
-      } if (res.status === 403) {
-        notifInfo('Impossible de commander après 11h30, paiement refusé');
-        return '';
-      }
-    })
-      .then((idStripe) => {
-        if (idStripe !== '') this.handleClickPay(idStripe);
-      });
+    stripePaymentParticipate(`${varServeur}pay/${amount}`, token, sendOrder, codeParticip);
   }
 
   toggle(tab) {
@@ -77,33 +65,6 @@ class OrderMenuParticipate extends Component {
       });
     }
   }
-
-  handleClickPay(idStripe) {
-    const {
-      history, codeParticip, notifError, sendOrder: { sendOrder },
-    } = this.props;
-    const newCommand = {
-      ...sendOrder,
-      idStripe,
-    };
-    if (!_.isEmpty(sendOrder)) {
-      fetch(`${varServeur}participate/${codeParticip}`, {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify(newCommand),
-      })
-        .then((res) => {
-          if (res.status === 500) {
-            notifError('Erreur serveur');
-          } if (res.status === 200) {
-            history.push('recapitulatif-participation');
-          }
-        });
-    }
-  }
-
 
   redirectConnect() {
     const { history, location: { pathname } } = this.props;
@@ -119,7 +80,7 @@ class OrderMenuParticipate extends Component {
       menus,
       cards,
       error,
-      loading,
+      loadingResto,
       handleChangeSpecial,
       log: { user },
     } = this.props;
@@ -166,10 +127,14 @@ class OrderMenuParticipate extends Component {
       return <div>{`Error!'} ${error.message}`}</div>;
     }
 
-    if (loading) {
-      return <div>Loading...</div>;
+    if (loadingResto) {
+      return (
+        <div className="text-center">
+          <img src="/medias/eatstreet-loading.gif" alt="loading" />
+          <h2>Récupération des menus...</h2>
+        </div>
+      );
     }
-
     return (
       <div className="OrderMenu">
         <p>Commande (2/2)</p>
@@ -179,49 +144,49 @@ class OrderMenuParticipate extends Component {
           <NavItem>
             {
               listForm.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                { 'Formules' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+                  {'Formules'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMOD.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                { 'Menu du jour' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                  {'Menu du jour'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listEnt.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-                { 'Entrées' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                  {'Entrées'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMain.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-                { 'Plats' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                  {'Plats'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDessert.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                { 'Desserts' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                  {'Desserts'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDrink.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-                { 'Boissons' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
+                  {'Boissons'}
+                </NavLink>
               )}
           </NavItem>
         </Nav>
@@ -317,7 +282,7 @@ class OrderMenuParticipate extends Component {
           </FormGroup>
           <Row>
             <Col sm={2}>
-              { 'Total :' }
+              {'Total :'}
             </Col>
             <Col sm={4}>
               {`${total} €`}
@@ -333,7 +298,7 @@ class OrderMenuParticipate extends Component {
                       currency="EUR"
                     >
                       <Button type="button">
-                      Payer
+                        Payer
                       </Button>
                     </StripeCheckout>
                   )
@@ -353,13 +318,12 @@ function mstp(state) {
     menus: state.cardResto.menus,
     cards: state.cardResto.cards,
     error: state.cardResto.error,
-    loading: state.cardResto.loading,
+    loadingResto: state.cardResto.loading,
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
     log: state.log,
     codeParticip: state.codeParticip,
-    getCode: state.getCode,
-
+    isSuccess: state.stripeLoading.success,
   };
 }
 
@@ -371,6 +335,7 @@ function mdtp(dispatch) {
     getUserId,
     notifSuccess,
     notifInfo,
+    stripePaymentParticipate,
   },
   dispatch);
 }

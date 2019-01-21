@@ -1,13 +1,14 @@
 import express from 'express';
+import _ from 'lodash';
 import connection from '../config';
 
 const router = express.Router();
 
 router.get('/:code', (req, res) => {
   const codeName = req.params.code;
-  connection.query('SELECT public_booking.id, nb_users FROM public_booking JOIN public_code ON public_booking.code = public_code.id WHERE name = ? AND free = 0 ORDER BY created_date DESC LIMIT 1 ', codeName, (err, results) => {
-    if (err) {
-      res.sendStatus(500);
+  connection.query('SELECT public_booking.id, nb_users FROM public_booking JOIN public_code ON public_booking.code = public_code.id WHERE public_code.name = ? AND public_code.free = 0 ORDER BY created_date DESC LIMIT 1 ', codeName, (err, results) => {
+    if (_.isEmpty(results)) {
+      res.sendStatus(401);
     } else {
       const { id, nb_users } = results[0];
       connection.query('SELECT booking_id FROM public_command WHERE booking_id = ?', id, (err2, results2) => {
@@ -24,7 +25,7 @@ router.get('/:code', (req, res) => {
               }
             });
           } else {
-            res.sendStatus(401);
+            res.sendStatus(403);
           }
         }
       });

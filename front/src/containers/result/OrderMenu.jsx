@@ -17,6 +17,7 @@ import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId } from '../../actions';
 import { sendCommand } from '../../actions/sendCommand';
+import { stripePayment } from '../../actions/stripePayment';
 import { notifSuccess, notifError, notifInfo } from '../../actions/notifications';
 
 class OrderMenu extends Component {
@@ -41,45 +42,19 @@ class OrderMenu extends Component {
     getUserId(user.id);
   }
 
-  onToken = (token) => {
-    const {
-      notifInfo, notifSuccess, notifError, chooseByUser: { total },
-    } = this.props;
-    const amount = Math.round(total * 100);
-    fetch(`${varServeur}pay/${amount}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(token),
-    }).then((res) => {
-      if (res.status === 200) {
-        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
-        return res.json();
-      } if (res.status === 500) {
-        notifError('Erreur lors du paiement, veuillez réessayez');
-        return res.json();
-      } if (res.status === 403) {
-        notifInfo('Impossible de commander après 11h30, paiement refusé');
-        return '';
-      }
-    })
-      .then((idStripe) => {
-        if (idStripe !== '') this.handleClickPay(idStripe);
-      });
-  }
-
-  handleClickPay(idStripe) {
-    const { history, sendOrder: { sendOrder }, sendCommand } = this.props;
-    const newOrder = {
-      ...sendOrder,
-      idStripe,
-    };
-    if (!_.isEmpty(sendOrder)) {
-      sendCommand(`${varServeur}command`, newOrder);
+  componentDidUpdate(prevProps) {
+    const { getCode, history } = this.props;
+    if (prevProps.getCode.code === '' && getCode.code) {
       history.push('/recapitulatif-commande');
     }
+  }
+
+  onToken = (token) => {
+    const {
+      stripePayment, sendOrder: { sendOrder }, chooseByUser: { total },
+    } = this.props;
+    const amount = Math.round(total * 100);
+    stripePayment(`${varServeur}pay/${amount}`, token, sendOrder);
   }
 
   toggle(tab) {
@@ -105,9 +80,9 @@ class OrderMenu extends Component {
       menus,
       cards,
       error,
-      loading,
       handleChangeSpecial,
       log: { user },
+      loadingResto,
     } = this.props;
     let { chooseByUser: { total } } = this.props;
     if (total % 1 !== 0) {
@@ -144,8 +119,13 @@ class OrderMenu extends Component {
       return <div>{`Error!'} ${error.message}`}</div>;
     }
 
-    if (loading) {
-      return <div>Loading...</div>;
+    if (loadingResto) {
+      return (
+        <div className="text-center">
+          <img src="/medias/eatstreet-loading.gif" alt="loading" />
+          <h2>Récupération des menus...</h2>
+        </div>
+      );
     }
 
     return (
@@ -336,6 +316,7 @@ function mstp(state) {
     sendOrder: state.sendOrder,
     getCode: state.getCode,
     log: state.log,
+    loadingResto: state.cardResto.loading,
   };
 }
 
@@ -348,6 +329,7 @@ function mdtp(dispatch) {
     notifSuccess,
     notifError,
     notifInfo,
+    stripePayment,
   },
   dispatch);
 }

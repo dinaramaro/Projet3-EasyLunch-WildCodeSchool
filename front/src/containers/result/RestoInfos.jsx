@@ -26,6 +26,7 @@ class RestoInfos extends Component {
       restoAddress = restoInfos.address;
       restoCity = restoInfos.city;
     }
+
     return (
       <div className="RestoInfos">
         <h3>{restoName}</h3>

@@ -8,23 +8,33 @@ import GeneralInformations from '../result/GeneralInformations';
 import OrderMenuParticipate from './OrderMenuParticipate';
 
 
-const OrderPageTwoParticipate = () => (
-  <Container fluid className="OrderPageTwo">
-    <Row>
-      <Col sm={4}>
-        <RestoInfos />
-        <GeneralInformations />
-      </Col>
-      <Col sm={8}>
-        <OrderMenuParticipate />
-      </Col>
-    </Row>
-  </Container>
-);
+const OrderPageTwoParticipate = ({ isLoadingStripe }) => {
+  if (isLoadingStripe) {
+    return (
+      <Container className="text-center">
+        <img src="/medias/eatstreet-loading.gif" alt="loading" />
+        <h2>Authorisation de paiement en cours...</h2>
+      </Container>
+    );
+  }
+  return (
+    <Container fluid className="OrderPageTwo">
+      <Row>
+        <Col sm={4}>
+          <RestoInfos />
+          <GeneralInformations />
+        </Col>
+        <Col sm={8}>
+          <OrderMenuParticipate />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 function mstp(state) {
   return {
-    menuResto: state.menuResto,
+    isLoadingStripe: state.stripeLoading.loading,
   };
 }
 
