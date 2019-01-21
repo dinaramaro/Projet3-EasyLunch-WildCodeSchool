@@ -326,6 +326,7 @@ class OrderMenu extends Component {
 }
 
 function mstp(state) {
+  console.log('state', state);
   return {
     menuResto: state.menuResto,
     menus: state.cardResto.menus,

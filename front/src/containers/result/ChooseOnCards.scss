@@ -1,4 +1,6 @@
 .ChooseOnCards {
+  display: flex;
+  flex-direction: column;
   .checkbox label {
     float: left;
   }

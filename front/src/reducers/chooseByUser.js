@@ -9,8 +9,10 @@ const chooseByUser = (state = initialState, action) => {
   let tempTabSorted = [];
   switch (action.type) {
     case 'CHOOSE_ON_MENUS': {
+      console.log('reducers choose on menus');
       const tempObj = {};
       const resultFind = tempTab.find(item => item.text === action.text);
+      console.log('resultFind', resultFind);
       tempObj.idmenu = action.idmenu;
       tempObj.menuname = action.menuname;
       tempObj.menuprice = action.menuprice;
