@@ -37,7 +37,8 @@ router.post('/:code', (req, res) => {
                 if (err4) {
                   res.sendStatus(500);
                 } else {
-                  connection.query('SELECT name, mail FROM public_users_app JOIN public_booking ON public_users_app.id = public_booking.master_user_id WHERE public_booking.id = ?', idBooking, (err7, results7) => {
+                  const { tablePayment: { user_id } } = req.body;
+                  connection.query('SELECT name, mail FROM public_users_app WHERE id = ?', user_id, (err7, results7) => {
                     if (err7) {
                       res.sendStatus(500);
                     } else {
@@ -45,7 +46,7 @@ router.post('/:code', (req, res) => {
                       const output = `
                     <h1>Merci ${name} d'avoir commandé chez EASYLUNCH</h1>
                     <br />
-                    <p>Votre commande a bien été réservé, bonne appétit!</p>
+                    <p>Votre commande a bien été réservé, bon appétit!</p>
                     <br />
                     <p> Je vous remercie de votre commande</p>
                   `;
