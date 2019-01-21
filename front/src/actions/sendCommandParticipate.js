@@ -26,7 +26,7 @@ export function sendCommandParticipate(url, newOrder) {
         if (!response.ok) {
           throw Error(response.statusText);
         }
-        return response;
+        return response.json();
       })
       .catch(error => dispatch(sendCommandParticipeFailed(error)));
   };
