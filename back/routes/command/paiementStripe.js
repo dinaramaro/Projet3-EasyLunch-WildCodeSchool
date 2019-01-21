@@ -22,7 +22,6 @@ router.post('/:amount', (req, res) => {
     }
     return h * 60 + m;
   };
-  console.log(isProd);
   if (!isProd) {
     const amount = req.params.amount;
     const customerEmail = req.body.email;
