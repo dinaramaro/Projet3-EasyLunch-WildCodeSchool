@@ -36,6 +36,11 @@ const Footer = () => (
         <li>
           <Link to="/a-propos/faq">FAQ</Link>
         </li>
+        <li>
+          <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
+            Espace restaurateurs
+          </a>
+        </li>
       </Col>
       <Col>
         <a
