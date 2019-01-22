@@ -60,51 +60,6 @@ class Restaurants extends Component {
     const { keyword, personcapacity } = this.state;
     return (
       <div className="Restaurants">
-        <Form onSubmit={this.searchSubmit}>
-          <Row>
-            <Col xs="4" className="padding">
-              <Input
-                className="search1"
-                placeholder="Restaurant, ville, adresse ou type de restaurant"
-                value={keyword}
-                onChange={this.onChange}
-                name="keyword"
-              />
-            </Col>
-            <Col xs="3">
-              <Input
-                type="select"
-                className="search2"
-                placeholder="Nombre de personnes"
-                value={personcapacity}
-                onChange={this.onChange}
-                name="personcapacity"
-              >
-                <option>Pour combien ?</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </Input>
-            </Col>
-            <Col xs="4">
-              <Button
-                color="warning"
-                className="btn-submit submit-button all-btn"
-              >
-                Rechercher
-              </Button>
-            </Col>
-          </Row>
-        </Form>
         <Row>
           {results.map(item => (
             <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
