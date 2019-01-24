@@ -71,6 +71,8 @@ class Concept extends Component {
               </Link>
             </Col>
           </Row>
+          <h2 className="link-app">EasyLunch également disponible sur votre smartphone</h2>
+
           <Row className="link-app">
             <Col>
               <a
