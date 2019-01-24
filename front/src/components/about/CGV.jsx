@@ -23,7 +23,7 @@ class CGV extends Component {
     const { cgv } = this.state;
     return (
       <div className="CGV">
-        <h1 className="title">Conditions générales de Service</h1>
+        <h1>Conditions générales de Service</h1>
         <Container>
           <div className="ql-editor" dangerouslySetInnerHTML={{ __html: cgv }} />
         </Container>

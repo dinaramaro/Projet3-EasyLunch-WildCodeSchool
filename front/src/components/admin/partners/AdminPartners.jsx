@@ -59,7 +59,7 @@ class AdminPartners extends Component {
     return (
       <div className="AdminPartners">
         <AdminMenu />
-        <h1 className="title">Partenaires</h1>
+        <h1>Partenaires</h1>
         <Container fluid>
           <Table bordered>
             <thead>

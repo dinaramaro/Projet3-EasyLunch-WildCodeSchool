@@ -84,7 +84,7 @@ class Login extends Component {
     const { mail, password } = this.state;
     return (
       <div className="Login">
-        <h1 className="title">Connexion</h1>
+        <h1>Connexion</h1>
         <Container>
           <Form onSubmit={this.handleSubmit}>
             <Row>
