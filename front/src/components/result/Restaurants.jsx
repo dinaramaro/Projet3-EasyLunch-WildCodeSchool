@@ -11,7 +11,6 @@ import {
   CardTitle,
   CardSubtitle,
 } from 'reactstrap';
-import queryString from 'query-string';
 import './Restaurants.scss';
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
@@ -20,32 +19,6 @@ import { menuResto } from '../../actions/menuResto';
 import { toggleTab } from '../../actions';
 
 class Restaurants extends Component {
-  constructor(props) {
-    super(props);
-    const { location: { search } } = props;
-    const { keyword, personcapacity } = queryString.parse(search);
-    this.state = {
-      keyword,
-      personcapacity,
-    };
-    this.onChange = this.onChange.bind(this);
-    this.searchSubmit = this.searchSubmit.bind(this);
-  }
-
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  searchSubmit(e) {
-    e.preventDefault();
-    const { resultRestaurants } = this.props;
-    const query = queryString.stringify(this.state);
-    resultRestaurants(`${varServeur}search/?${query}`);
-  }
-
-
   infoResto(id) {
     const { menuResto, toggleTab } = this.props;
     toggleTab();
