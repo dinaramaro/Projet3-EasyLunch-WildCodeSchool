@@ -73,7 +73,6 @@ class OrderSummary extends Component {
             <p>
               {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
             </p>
-            <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
             <p>{`Code de partage : ${codeParticip}`}</p>
           </Col>
         </Row>
