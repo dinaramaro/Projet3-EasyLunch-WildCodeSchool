@@ -1,6 +1,5 @@
 .MapResult {
-  position: fixed;
-  margin-top: 6em;
+  bottom: 180px;
   .number-meals {
     font-size: 1rem;
   }
@@ -18,7 +17,30 @@
     top: -1.25rem;
   }
 
+  
+  
 }
-
-
+@media only screen and (min-width: 992px) {
+  .MapResult {
+    position: fixed;
+    bottom: 185px;
+    margin-top: 6em;
+    .number-meals {
+      font-size: 1rem;
+    }
+    .type-meal {
+      text-decoration: underline;
+    }
+    .menu {
+      padding: 1.25rem;
+    }
+    .menu-card {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-bottom: 1.25rem;
+      position: relative;
+      top: -1.25rem;
+    }
+  }
+}
 

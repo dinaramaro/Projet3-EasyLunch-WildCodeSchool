@@ -10,7 +10,6 @@ import {
   Container,
 } from 'reactstrap';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -28,6 +27,7 @@ class Login extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeInput = this.onChangeInput.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
 
@@ -37,6 +37,16 @@ class Login extends Component {
     });
   }
 
+
+  redirect() {
+    const {
+      history, location: { state: { from: { pathname } } },
+    } = this.props;
+    history.push({
+      pathname: '/inscription',
+      state: { from: { pathname } },
+    });
+  }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -93,7 +103,7 @@ class Login extends Component {
                 <Label for="Password">Mot de passe</Label>
                 <Input
                   type="password"
-                  placeholder="●●●●●●●●"
+                  placeholder="********"
                   name="password"
                   value={password}
                   onChange={this.onChangeInput}
@@ -104,7 +114,7 @@ class Login extends Component {
             </Row>
             <Button className="all-btn" type="submit">Connexion</Button>
           </Form>
-          <Button className="all-btn" tag={Link} to="/inscription">Créer un compte</Button>
+          <Button onClick={this.redirect} className="all-btn">Créer un compte</Button>
         </Container>
       </div>
     );
