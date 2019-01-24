@@ -26,7 +26,7 @@ class Partners extends Component {
     const { partners } = this.state;
     return (
       <div className="Partners">
-        <h1>NOS PARTENAIRES</h1>
+        <h1 className="title">NOS PARTENAIRES</h1>
         <Container>
           <Row>
             {

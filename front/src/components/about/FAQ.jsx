@@ -23,7 +23,7 @@ class FAQ extends Component {
     const { questions } = this.state;
     return (
       <div className="FAQ">
-        <h1>FAQ</h1>
+        <h1 className="title">FAQ</h1>
         <Container>
           <Row>
             <Col>

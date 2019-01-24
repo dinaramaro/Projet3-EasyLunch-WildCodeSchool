@@ -33,7 +33,7 @@ class ReservationHistory extends Component {
     const { history } = this.state;
     return (
       <div className="ReservationHistory">
-        <h1>Historique des réservations</h1>
+        <h1 className="title">Historique des réservations</h1>
         <Container>
           {
           (!_.isEmpty(history))

@@ -70,7 +70,7 @@ class Restaurant extends Component {
     } = this.state;
     return (
       <div className="Restaurant">
-        <h1>VOUS ÊTES RESTAURATEUR?</h1>
+        <h1 className="title">VOUS ÊTES RESTAURATEUR?</h1>
         <Container>
           <div>
             <p>

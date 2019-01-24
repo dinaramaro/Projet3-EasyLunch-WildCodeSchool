@@ -79,7 +79,7 @@ class Contact extends Component {
     } = this.state;
     return (
       <div className="Contacts">
-        <h1>NOUS CONTACTER</h1>
+        <h1 className="title">NOUS CONTACTER</h1>
         <Container>
           <div className="contact">
             <p><div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} /></p>

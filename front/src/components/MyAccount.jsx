@@ -75,7 +75,7 @@ class MyAccount extends Component {
     } = this.props;
     return (
       <div className="MyAccount">
-        <h1>
+        <h1 className="title">
         Bienvenue {user}
         </h1>
         <Container>
