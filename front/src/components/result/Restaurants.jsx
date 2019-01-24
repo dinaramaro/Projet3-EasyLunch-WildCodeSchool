@@ -4,15 +4,12 @@ import { bindActionCreators } from 'redux';
 import {
   Row,
   Col,
-  Input,
   Card,
   CardImg,
   CardText,
   CardBody,
   CardTitle,
   CardSubtitle,
-  Button,
-  Form,
 } from 'reactstrap';
 import queryString from 'query-string';
 import './Restaurants.scss';
@@ -57,7 +54,6 @@ class Restaurants extends Component {
 
   render() {
     const { searchResults: { results } } = this.props;
-    const { keyword, personcapacity } = this.state;
     return (
       <div className="Restaurants">
         <Row>
@@ -68,6 +64,8 @@ class Restaurants extends Component {
                   <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{item.name}</CardTitle>
+                    <CardSubtitle>{item.description}</CardSubtitle>
+                    <br />
                     <CardSubtitle>{item.address}</CardSubtitle>
                     <CardText>{item.city}</CardText>
                   </CardBody>

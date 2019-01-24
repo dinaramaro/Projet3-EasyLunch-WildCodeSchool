@@ -53,7 +53,7 @@ class AdminFAQ extends Component {
     return (
       <div className="AdminFAQ">
         <AdminMenu />
-        <h1 className="title">FAQ</h1>
+        <h1>FAQ</h1>
         <Container>
           <Row className="button">
             <Link to="/admin/ajout-faq"><Button className="mb-3">Ajouter une question</Button></Link>

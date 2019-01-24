@@ -25,7 +25,7 @@ class Equipe extends Component {
     const { team } = this.state;
     return (
       <div className="Team">
-        <h1 className="title">NOTRE EQUIPE</h1>
+        <h1>NOTRE EQUIPE</h1>
         <Container>
           <Row>
             {

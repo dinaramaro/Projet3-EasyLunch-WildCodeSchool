@@ -23,7 +23,7 @@ class Politic extends Component {
     const { politic } = this.state;
     return (
       <div className="Politic">
-        <h1 className="title">Politique de confidentialité</h1>
+        <h1>Politique de confidentialité</h1>
         <Container>
           <div className="ql-editor" dangerouslySetInnerHTML={{ __html: politic }} />
         </Container>
