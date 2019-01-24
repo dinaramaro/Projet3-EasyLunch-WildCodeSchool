@@ -50,7 +50,7 @@ class Result extends Component {
             <Col xs="2" className="padding">
               <Input
                 className="search1"
-                placeholder="Restaurant, ville, adresse ou type de restaurant"
+                placeholder="Restaurant, adresse"
                 value={keyword}
                 onChange={this.onChange}
                 name="keyword"

@@ -10,7 +10,6 @@ import {
   Container,
 } from 'reactstrap';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
@@ -41,12 +40,17 @@ class Login extends Component {
 
   redirect() {
     const {
-      history, location: { state: { from: { pathname } } },
+      history, location: { state },
     } = this.props;
-    history.push({
-      pathname: '/inscription',
-      state: { from: { pathname } },
-    });
+    if (state === undefined) {
+      history.push('/inscription');
+    } else {
+      const { location: { state: { from: { pathname } } } } = this.props;
+      history.push({
+        pathname: '/inscription',
+        state: { from: { pathname } },
+      });
+    }
   }
 
   handleSubmit(e) {

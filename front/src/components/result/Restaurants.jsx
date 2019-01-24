@@ -11,7 +11,6 @@ import {
   CardTitle,
   CardSubtitle,
 } from 'reactstrap';
-import queryString from 'query-string';
 import './Restaurants.scss';
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
@@ -19,32 +18,6 @@ import { dataResults } from '../../actions/search';
 import { menuResto } from '../../actions/menuResto';
 
 class Restaurants extends Component {
-  constructor(props) {
-    super(props);
-    const { location: { search } } = props;
-    const { keyword, personcapacity } = queryString.parse(search);
-    this.state = {
-      keyword,
-      personcapacity,
-    };
-    this.onChange = this.onChange.bind(this);
-    this.searchSubmit = this.searchSubmit.bind(this);
-  }
-
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  searchSubmit(e) {
-    e.preventDefault();
-    const { resultRestaurants } = this.props;
-    const query = queryString.stringify(this.state);
-    resultRestaurants(`${varServeur}search/?${query}`);
-  }
-
-
   infoResto(id) {
     const { menuResto, history } = this.props;
     menuResto(`${varServeur}restaurant/menus/${id}`);
@@ -63,6 +36,8 @@ class Restaurants extends Component {
                   <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{item.name}</CardTitle>
+                    <CardSubtitle>{item.description}</CardSubtitle>
+                    <br />
                     <CardSubtitle>{item.address}</CardSubtitle>
                     <CardText>{item.city}</CardText>
                   </CardBody>

@@ -187,6 +187,7 @@ class OrderMenu extends Component {
       <div className="OrderMenu">
         <p>Faites votre choix</p>
         <p>(uniquement pour vous)</p>
+        <p>et nous transmettrons le LunchCode à partager à la fin de votre commande</p>
         <Nav tabs>
           <NavItem>
             {

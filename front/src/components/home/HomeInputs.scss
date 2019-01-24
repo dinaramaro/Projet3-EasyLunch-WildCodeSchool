@@ -29,31 +29,13 @@
       transform: translate(-50%, -50%);
       width: 200px;
       font-size: 20px;
-      left: 40%;
+      left: 50%;
       top: 85%;
       background-color: #ffa300;
       border: none;
       border-radius: 7px;
       box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
     }
-    
-    .participe-button {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      font-size: 20px;
-      left: 60%;
-      top: 85%;
-      background-color: #ffa300;
-      border: none;
-      border-radius: 7px;
-      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
-    }
-
-    .just-margin {
-      margin-top: 62px;
-    }
- 
   
   @media only screen and (max-width: 900px) {
 
