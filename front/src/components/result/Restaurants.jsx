@@ -80,7 +80,7 @@ class Restaurants extends Component {
                 onChange={this.onChange}
                 name="personcapacity"
               >
-                <option>Pour combien ?</option>
+                <option>Nombre de personnes</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>

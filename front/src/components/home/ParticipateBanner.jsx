@@ -71,29 +71,6 @@ class ParticipateBanner extends Component {
       codeParticipation,
     } = this.state;
     return (
-      // <Container fluid className="ParticipateBanner">
-      //   <Row className="participation-message">
-      //     <Col sm="12" md={{ size: 6, offset: 3 }}> Entrez ici le code transmis par vos amis pour rejoindre la table réservée!</Col>
-
-      //   </Row>
-      //   <Row className="input-row">
-      //     <Form onSubmit={this.getIdRestau} className="same-row">
-      //       <Col>
-      //         <Input
-      //           type="text"
-      //           name="codeParticipation"
-      //           placeholder=" Code de participation"
-      //           value={codeParticipation}
-      //           onChange={this.onChange}
-      //         />
-      //       </Col>
-      //       <Col>
-      //         <Button type="submit" color="info"> Envoyer </Button>
-      //       </Col>
-      //     </Form>
-      //   </Row>
-      // </Container>
-
       <Container fluid className="ParticipateBanner">
         <Row className="input-row">
           <Col sm="6"> Entrez ici le code transmis par vos amis pour rejoindre la table réservée!</Col>

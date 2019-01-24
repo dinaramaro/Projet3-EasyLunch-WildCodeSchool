@@ -59,7 +59,7 @@ class HomeInputs extends Component {
               value={personcapacity}
               onChange={this.onChange}
             >
-              <option>Pour combien ?</option>
+              <option>Nombre de personnes</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
