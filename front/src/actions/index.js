@@ -55,14 +55,6 @@ export const getUserId = iduser => ({
   iduser,
 });
 
-export const toggleTab = () => ({
-  type: 'TOGGLE_TAB',
-});
-
-export const toggleTabDefault = () => ({
-  type: 'TOGGLE_TAB_DEF',
-});
-
 export const recupGeInfo = (nb, schedule) => ({
   type: 'RECUP_GE_INFO',
   nb,

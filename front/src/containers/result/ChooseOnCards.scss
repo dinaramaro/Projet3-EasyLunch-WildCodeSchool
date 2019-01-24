@@ -1,7 +1,11 @@
 .ChooseOnCards {
   display: flex;
   flex-direction: column;
-  .checkbox label {
-    float: left;
-  }
+  .checkbox 
+    label {
+      float: left;
+    }
+    .meal-price {
+      float: right;
+    }
 }

@@ -42,9 +42,10 @@ const ChooseOnCards = ({
                         );
                       }}
                     />
-                    {`${item.name} ${tempPrice}`}
+                    {item.name}
                   </Label>
                 </FormGroup>
+                <span className="meal-price">{tempPrice}</span>
               </div>
             );
           })
@@ -75,9 +76,10 @@ const ChooseOnCards = ({
                           );
                         }}
                       />
-                      {`${item.name} ${tempPrice}`}
+                      {item.name}
                     </Label>
                   </FormGroup>
+                  <span className="meal-price">{tempPrice}</span>
                 </div>
               );
             }
@@ -103,9 +105,10 @@ const ChooseOnCards = ({
                         );
                       }}
                     />
-                    {`${item.name} ${tempPrice}`}
+                    {item.name}
                   </Label>
                 </FormGroup>
+                <span className="meal-price">{tempPrice}</span>
               </div>
             );
           })

@@ -20,7 +20,6 @@ import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
 import { dataResults } from '../../actions/search';
 import { menuResto } from '../../actions/menuResto';
-import { toggleTab } from '../../actions';
 
 class Restaurants extends Component {
   constructor(props) {
@@ -50,9 +49,9 @@ class Restaurants extends Component {
 
 
   infoResto(id) {
-    const { menuResto, toggleTab } = this.props;
-    toggleTab();
+    const { menuResto, history } = this.props;
     menuResto(`${varServeur}restaurant/menus/${id}`);
+    history.push('/commande-page');
   }
 
   render() {
@@ -136,7 +135,6 @@ function mdtp(dispatch) {
   return bindActionCreators({
     resultRestaurants: dataResults,
     menuResto,
-    toggleTab,
   },
   dispatch);
 }

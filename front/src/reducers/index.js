@@ -9,7 +9,6 @@ import getCode from './getCode';
 import notificationsReducer from './notificationsReducer';
 import log from './log';
 import codeParticip from './codeParticip';
-import toggleTab from './toggleTab';
 
 const allReducers = combineReducers({
   searchResults,
@@ -22,7 +21,6 @@ const allReducers = combineReducers({
   log,
   getCode,
   codeParticip,
-  toggleTab,
 });
 
 export default allReducers;

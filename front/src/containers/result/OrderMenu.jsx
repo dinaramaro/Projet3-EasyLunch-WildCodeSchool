@@ -31,14 +31,52 @@ class OrderMenu extends Component {
 
   componentDidMount() {
     const {
-      menuResto: { resto: { restoInfos } },
-      cardResto, log: { user },
+      restoInfos,
+      log: { user },
       getUserId,
     } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
     getUserId(user.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { menus, cards } = this.props;
+    let listEnt = [];
+    let listMain = [];
+    let listDessert = [];
+    let listDrink = [];
+    let listForm = [];
+    let listMOD = [];
+    let tempActiveTab = '';
+
+    if (menus !== undefined) {
+      listMOD = menus.filter(item => item.mod === 1);
+      listForm = menus.filter(item => item.mod === 0);
+    }
+    if (cards !== undefined) {
+      listEnt = cards.filter(item => item.plat === 0);
+      listMain = cards.filter(item => item.plat === 1);
+      listDessert = cards.filter(item => item.plat === 2);
+      listDrink = cards.filter(item => item.plat === 3);
+    }
+    if (listMOD.length > 0) {
+      tempActiveTab = '1';
+    } else if (listForm.length > 0) {
+      tempActiveTab = '2';
+    } else if (listEnt.length > 0) {
+      tempActiveTab = '3';
+    } else if (listMain.length > 0) {
+      tempActiveTab = '4';
+    } else if (listDessert.length > 0) {
+      tempActiveTab = '5';
+    } else if (listDrink.length > 0) {
+      tempActiveTab = '6';
+    }
+    if ((prevProps.menus !== menus) || (prevProps.cards !== cards)) {
+      this.displayTab(tempActiveTab);
+    }
   }
 
   onToken = (token) => {
@@ -68,6 +106,10 @@ class OrderMenu extends Component {
       .then((idStripe) => {
         if (idStripe !== '') this.handleClickPay(idStripe);
       });
+  }
+
+  displayTab(activeTab) {
+    this.setState({ activeTab });
   }
 
   handleClickPay(idStripe) {
@@ -102,8 +144,8 @@ class OrderMenu extends Component {
   render() {
     const { activeTab } = this.state;
     const {
-      menus,
       cards,
+      menus,
       error,
       loading,
       handleChangeSpecial,
@@ -150,23 +192,22 @@ class OrderMenu extends Component {
 
     return (
       <div className="OrderMenu">
-        <p>Commande (2/2)</p>
         <p>Faites votre choix</p>
         <p>(uniquement pour vous)</p>
         <Nav tabs>
           <NavItem>
             {
-              listForm.length > 0 && (
+              listMOD.length > 0 && (
                 <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                  {'Formules'}
+                  {'Menu du jour'}
                 </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
-              listMOD.length > 0 && (
+              listForm.length > 0 && (
                 <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                  {'Menu du jour'}
+                  {'Formules'}
                 </NavLink>
               )}
           </NavItem>
@@ -209,15 +250,6 @@ class OrderMenu extends Component {
               <Row>
                 <Col>
                   <Card body>
-                    <DisplayMenus list={listForm} />
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="2">
-              <Row>
-                <Col>
-                  <Card body>
                     {
                       listMOD.length > 0 && (
                         <p>{listMOD[0].menu_name}</p>
@@ -243,6 +275,16 @@ class OrderMenu extends Component {
                 </Col>
               </Row>
             </TabPane>
+            <TabPane tabId="2">
+              <Row>
+                <Col>
+                  <Card body>
+                    <DisplayMenus list={listForm} />
+                  </Card>
+                </Col>
+              </Row>
+            </TabPane>
+
             <TabPane tabId="3">
               <Row>
                 <Col>
@@ -326,13 +368,12 @@ class OrderMenu extends Component {
 }
 
 function mstp(state) {
-  console.log('state', state);
   return {
-    menuResto: state.menuResto,
-    menus: state.cardResto.menus,
-    cards: state.cardResto.cards,
-    error: state.cardResto.error,
-    loading: state.cardResto.loading,
+    restoInfos: state.menuResto.resto.restoInfos,
+    menus: state.menuResto.resto.menus,
+    cards: state.menuResto.resto.cards,
+    error: state.menuResto.error,
+    loading: state.menuResto.loading,
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
     getCode: state.getCode,

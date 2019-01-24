@@ -31,7 +31,6 @@ passport.use('local', new LocalStrategy({
       return done(null, user);
     });
   } catch (e) {
-    console.log('err', e);
   }
 }));
 

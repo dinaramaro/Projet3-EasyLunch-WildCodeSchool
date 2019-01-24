@@ -1,32 +1,17 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
 import {
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
-  Card,
-  CardText,
   Row,
   Col,
-  Button,
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import './MapResult.scss';
-import classnames from 'classnames';
 import RestoPin from '../../components/result/RestoPin';
 import RestoInfoPin from '../../components/result/RestoInfoPin';
 import UserPin from '../../components/result/UserPin';
 import UserInfo from '../../components/result/UserInfo';
-import DisplayMeals from '../../components/result/DisplayMeals';
-import DisplayTitleMenu from '../../components/result/DisplayTitleMenu';
-import RestoInfos from './RestoInfos';
-import { toggleTabDefault } from '../../actions';
 
 
 const TOKEN = 'pk.eyJ1IjoiY3RyaSIsImEiOiJjanAyaXV1OGcwNzJpM3dwaDhwejJvZjJnIn0.bVruUQb_cXzaHLyWmk1zSg';
@@ -75,13 +60,6 @@ class Mapresult extends Component {
 
   updateViewport = (viewport) => {
     this.setState({ viewport });
-  }
-
-  toggle(tab) {
-    const { toggleTab: { activeTab }, toggleTabDefault } = this.props;
-    if (activeTab !== tab) {
-      toggleTabDefault();
-    }
   }
 
   closePopupInfo() {
@@ -166,87 +144,36 @@ class Mapresult extends Component {
     } = this.state;
     const {
       searchResults: { results },
-      menuResto: { resto },
-      toggleTab: { activeTab },
     } = this.props;
-    let listEnt = [];
-    let listMain = [];
-    let listDessert = [];
-
-    if (!_.isEmpty(resto)) {
-      const { menus } = resto;
-      listEnt = menus.filter(item => item.plat === 0);
-      listMain = menus.filter(item => item.plat === 1);
-      listDessert = menus.filter(item => item.plat === 2);
-    }
 
     return (
       <div className="MapResult">
-        <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '1' })}
-              onClick={() => { this.toggle('1'); }}
+        <Row>
+          <Col sm="12">
+            <MapGL
+              className="Mapresult"
+              {...viewport}
+              width="38vw"
+              height="35vw"
+              mapStyle="mapbox://styles/mapbox/light-v9"
+              onViewportChange={this.updateViewport}
+              mapboxApiAccessToken={TOKEN}
+              onClick={this.closePopupInfo}
             >
-              Carte
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: activeTab === '2' })}
-              onClick={() => { this.toggle('2'); }}
-            >
-              Menu
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
-            <Row>
-              <Col sm="12">
-                <MapGL
-                  className="Mapresult"
-                  {...viewport}
-                  width="38vw"
-                  height="35vw"
-                  mapStyle="mapbox://styles/mapbox/light-v9"
-                  onViewportChange={this.updateViewport}
-                  mapboxApiAccessToken={TOKEN}
-                  onClick={this.closePopupInfo}
-                >
 
-                  {results.map(this.renderRestoMarker)}
-                  {this.renderUserMarker()}
-                  {this.renderPopup()}
-                  {this.renderPopupUser()}
+              {results.map(this.renderRestoMarker)}
+              {this.renderUserMarker()}
+              {this.renderPopup()}
+              {this.renderPopupUser()}
 
-                  <div className="nav" style={navStyle}>
-                    <NavigationControl onViewportChange={this.updateViewport} />
-                  </div>
+              <div className="nav" style={navStyle}>
+                <NavigationControl onViewportChange={this.updateViewport} />
+              </div>
 
-                </MapGL>
+            </MapGL>
 
-              </Col>
-            </Row>
-          </TabPane>
-          <TabPane tabId="2">
-            <Row>
-              <Col sm="12">
-                <Card body>
-                  <RestoInfos />
-                  <DisplayTitleMenu ent={listEnt} main={listMain} dessert={listDessert} />
-                  <DisplayMeals text="Entrée" meals={listEnt} />
-                  <DisplayMeals text="Plat" meals={listMain} />
-                  <DisplayMeals text="Dessert" meals={listDessert} />
-
-                  <CardText>Choisir ce restaurant pour plus de détails...</CardText>
-                  <br />
-                  <Link to="/commande-page1"><Button className="all-btn" color="warning" type="button">Choisir ce restaurant</Button></Link>
-                </Card>
-              </Col>
-            </Row>
-          </TabPane>
-        </TabContent>
+          </Col>
+        </Row>
       </div>
     );
   }
@@ -256,12 +183,8 @@ function mstp(state) {
   return {
     searchResults: state.searchResults,
     menuResto: state.menuResto,
-    toggleTab: state.toggleTab,
   };
 }
 
-function mdtp(dispatch) {
-  return bindActionCreators({ toggleTabDefault }, dispatch);
-}
 
-export default connect(mstp, mdtp)(Mapresult);
+export default connect(mstp)(Mapresult);

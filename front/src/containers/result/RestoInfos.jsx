@@ -3,7 +3,9 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
   CardText,
+  CardImg,
 } from 'reactstrap';
+import './RestoInfos.scss';
 
 
 class RestoInfos extends Component {
@@ -16,6 +18,7 @@ class RestoInfos extends Component {
     let restoName = '';
     let restoAddress = '';
     let restoCity = '';
+    let restoPicture = '';
 
 
     if (!_.isEmpty(restoInfos)) {
@@ -25,10 +28,12 @@ class RestoInfos extends Component {
       restoName = restoInfos.name;
       restoAddress = restoInfos.address;
       restoCity = restoInfos.city;
+      restoPicture = restoInfos.picture;
     }
     return (
       <div className="RestoInfos">
         <h3>{restoName}</h3>
+        <CardImg className="card-image" top width="100%" height="175px" src={restoPicture} alt="Card image cap" />
         <CardText>{restoAddress}</CardText>
         <CardText>{restoCity}</CardText>
         <CardText>
