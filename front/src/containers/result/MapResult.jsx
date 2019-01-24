@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
@@ -26,14 +25,22 @@ const navStyle = {
 class Mapresult extends Component {
   constructor(props) {
     super(props);
+    const windowWidth = window.innerWidth;
+    const mapWidth = windowWidth < 992 ? '96vw' : '38vw';
+    const mapHeight = windowWidth < 992 ? '55vh' : '35vw';
     this.state = {
       viewport: {},
+      mapWidth,
+      mapHeight,
       popupInfo: null,
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
     };
     this.closePopupInfo = this.closePopupInfo.bind(this);
+    this.onResize = this.onResize.bind(this);
+
+    window.addEventListener('resize', this.onResize);
   }
 
   componentDidMount() {
@@ -51,6 +58,20 @@ class Mapresult extends Component {
           longitudeuser: pos.coords.longitude,
         },
       );
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  onResize() {
+    const windowWidth = window.innerWidth;
+    const mapWidth = windowWidth < 1040 ? '96vw' : '38vw';
+    const mapHeight = windowWidth < 1040 ? '55vh' : '35vw';
+    this.setState({
+      mapWidth,
+      mapHeight,
     });
   }
 
@@ -141,6 +162,8 @@ class Mapresult extends Component {
   render() {
     const {
       viewport,
+      mapWidth,
+      mapHeight,
     } = this.state;
     const {
       searchResults: { results },
@@ -151,10 +174,10 @@ class Mapresult extends Component {
         <Row>
           <Col sm="12">
             <MapGL
-              className="Mapresult"
+              className="map"
               {...viewport}
-              width="38vw"
-              height="35vw"
+              width={mapWidth}
+              height={mapHeight}
               mapStyle="mapbox://styles/mapbox/light-v9"
               onViewportChange={this.updateViewport}
               mapboxApiAccessToken={TOKEN}
