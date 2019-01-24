@@ -71,7 +71,7 @@ class NavBar extends Component {
                 </DropdownToggle>
                 <DropdownMenu right className="drop">
                   <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>Foire aux questions</DropdownItem>
-                  <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales de vente</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/politique" active>Politique de confidentialité</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/contact" active>Nous contacter</DropdownItem>
                 </DropdownMenu>

@@ -66,7 +66,7 @@ class AdminCGV extends Component {
     return (
       <div className="AdminCGV">
         <AdminMenu />
-        <h1>CGV</h1>
+        <h1 className="title">CGV</h1>
         <Container>
           <Form>
             <FormGroup>

@@ -63,7 +63,7 @@ class AdminPolitic extends Component {
     return (
       <div className="AdminPolitic">
         <AdminMenu />
-        <h1>Politique de confidentialité</h1>
+        <h1 className="title">Politique de confidentialité</h1>
         <Container>
           <Form>
             <FormGroup>

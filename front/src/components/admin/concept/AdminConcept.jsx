@@ -70,7 +70,7 @@ class AdminConcept extends Component {
     return (
       <div className="AdminConcept">
         <AdminMenu />
-        <h1>Concept</h1>
+        <h1 className="title">Concept</h1>
         <Container>
           <Form>
             <FormGroup>

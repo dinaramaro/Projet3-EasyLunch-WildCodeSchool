@@ -67,7 +67,7 @@ class AdminContactRestaurant extends Component {
     return (
       <div>
         <AdminMenu />
-        <h1>Vous êtes restaurateur?</h1>
+        <h1 className="title">Vous êtes restaurateur?</h1>
         <Container>
           <p>
             <ReactQuill

@@ -68,7 +68,7 @@ class AdminContact extends Component {
     return (
       <div className="Contact">
         <AdminMenu />
-        <h1>Nous contacter</h1>
+        <h1 className="title">Nous contacter</h1>
         <Container>
           <Form>
             <FormGroup>
