@@ -1,9 +1,12 @@
 .ParticipateBanner{
-  background-color:orange;
-  // margin:auto;
-  padding:10px;
+  background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+  color:white;
+  padding:30px;
   .same-row{
     display: flex;
     margin: auto;
+  }
+  Button{
+    background-color: #5a6268;
   }
 }

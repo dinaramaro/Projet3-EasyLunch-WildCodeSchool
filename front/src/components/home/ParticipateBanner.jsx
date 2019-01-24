@@ -108,7 +108,7 @@ class ParticipateBanner extends Component {
               />
             </Col>
             <Col sm="1">
-              <Button type="submit" color="info"> Envoyer </Button>
+              <Button type="submit"> Envoyer </Button>
             </Col>
           </Form>
         </Row>
