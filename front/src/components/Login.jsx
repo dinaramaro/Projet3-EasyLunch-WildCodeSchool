@@ -75,8 +75,11 @@ class Login extends Component {
         if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
           Cookies.set('token', data.token);
-          const { from } = state || { from: { pathname: '/mon-compte' } };
-          history.push(from.pathname);
+          const { activeTab, from } = state || { from: { pathname: '/mon-compte' } };
+          history.push({
+            pathname: from.pathname,
+            state: { activeTab },
+          });
         }
       });
   }

@@ -24,7 +24,7 @@ class OrderMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '1',
+      activeTab: '0',
     };
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);
@@ -40,47 +40,14 @@ class OrderMenu extends Component {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
     getUserId(user.id);
+    this.displayActiveTab();
   }
 
   componentDidUpdate(prevProps) {
-    const { menus, cards } = this.props;
-    let listEnt = [];
-    let listMain = [];
-    let listDessert = [];
-    let listDrink = [];
-    let listForm = [];
-    let listMOD = [];
-    let tempActiveTab = '';
-
-    if (menus !== undefined) {
-      listMOD = menus.filter(item => item.mod === 1);
-      listForm = menus.filter(item => item.mod === 0);
-    }
-    if (cards !== undefined) {
-      listEnt = cards.filter(item => item.plat === 0);
-      listMain = cards.filter(item => item.plat === 1);
-      listDessert = cards.filter(item => item.plat === 2);
-      listDrink = cards.filter(item => item.plat === 3);
-    }
-    if (listMOD.length > 0) {
-      tempActiveTab = '1';
-    } else if (listForm.length > 0) {
-      tempActiveTab = '2';
-    } else if (listEnt.length > 0) {
-      tempActiveTab = '3';
-    } else if (listMain.length > 0) {
-      tempActiveTab = '4';
-    } else if (listDessert.length > 0) {
-      tempActiveTab = '5';
-    } else if (listDrink.length > 0) {
-      tempActiveTab = '6';
-    }
-    if ((prevProps.menus !== menus) || (prevProps.cards !== cards)) {
-      this.displayTab(tempActiveTab);
-      const { getCode, history } = this.props;
-      if (prevProps.getCode.code === '' && getCode.code) {
-        history.push('/recapitulatif-commande');
-      }
+    const { getCode, history } = this.props;
+    this.displayActiveTab();
+    if (prevProps.getCode.code === '' && getCode.code) {
+      history.push('/recapitulatif-commande');
     }
   }
 
@@ -93,7 +60,9 @@ class OrderMenu extends Component {
   }
 
   displayTab = (activeTab) => {
-    this.setState({ activeTab });
+    this.setState({
+      activeTab,
+    });
   }
 
   toggle = (tab) => {
@@ -105,11 +74,58 @@ class OrderMenu extends Component {
     }
   }
 
+  displayActiveTab() {
+    const { menus, cards, location: { state } } = this.props;
+    const { activeTab } = this.state;
+    const previousTab = state && state.activeTab;
+
+    if (activeTab === '0') {
+      if (previousTab) {
+        this.displayTab(previousTab);
+      } else if (menus || cards) {
+        let listEnt = [];
+        let listMain = [];
+        let listDessert = [];
+        let listDrink = [];
+        let listForm = [];
+        let listMOD = [];
+        let tempActiveTab = '';
+
+        if (menus) {
+          listMOD = menus.filter(item => item.mod === 1);
+          listForm = menus.filter(item => item.mod === 0);
+        }
+
+        if (cards) {
+          listEnt = cards.filter(item => item.plat === 0);
+          listMain = cards.filter(item => item.plat === 1);
+          listDessert = cards.filter(item => item.plat === 2);
+          listDrink = cards.filter(item => item.plat === 3);
+        }
+
+        switch (true) {
+          case (listMOD.length > 0): tempActiveTab = '1'; break;
+          case (listForm.length > 0): tempActiveTab = '2'; break;
+          case (listEnt.length > 0): tempActiveTab = '3'; break;
+          case (listMain.length > 0): tempActiveTab = '4'; break;
+          case (listDessert.length > 0): tempActiveTab = '5'; break;
+          case (listDrink.length > 0): tempActiveTab = '6'; break;
+          default: tempActiveTab = '0';
+        }
+        this.displayTab(tempActiveTab);
+      }
+    }
+  }
+
   redirectConnect() {
     const { history, location: { pathname } } = this.props;
+    const { activeTab } = this.state;
     history.push({
       pathname: '/connexion',
-      state: { from: { pathname } },
+      state: { 
+        from: { pathname },
+        activeTab,
+      },
     });
   }
 
@@ -370,7 +386,7 @@ function mdtp(dispatch) {
     notifInfo,
     stripePayment,
   },
-  dispatch);
+    dispatch);
 }
 
 
