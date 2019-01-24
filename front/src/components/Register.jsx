@@ -58,9 +58,7 @@ class Register extends Component {
   render() {
     const {
       mail, password, phone, name,
-    } = this.state;
-    console.log(this.props);
-    
+    } = this.state;    
     return (
       <div className="Register">
         <h1 className="title">Inscription</h1>
