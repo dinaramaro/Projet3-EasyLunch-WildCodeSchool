@@ -40,12 +40,17 @@ class Login extends Component {
 
   redirect() {
     const {
-      history, location: { state: { from: { pathname } } },
+      history, location: { state },
     } = this.props;
-    history.push({
-      pathname: '/inscription',
-      state: { from: { pathname } },
-    });
+    if (state === undefined) {
+      history.push('/inscription');
+    } else {
+      const { location: { state: { from: { pathname } } } } = this.props;
+      history.push({
+        pathname: '/inscription',
+        state: { from: { pathname } },
+      });
+    }
   }
 
   handleSubmit(e) {

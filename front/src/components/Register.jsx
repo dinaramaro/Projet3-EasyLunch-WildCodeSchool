@@ -31,7 +31,7 @@ class Register extends Component {
 
   handleSubmit(e) {
     const {
-      notifError, notifSuccess, history, location: { state: { from: { pathname } } },
+      notifError, notifSuccess, history, location: { state },
     } = this.props;
     e.preventDefault();
     fetch(`${varServeur}signup`, {
@@ -47,10 +47,15 @@ class Register extends Component {
         }
         if (res.status === 200) {
           notifSuccess('Compte enregistré, vous pouvez vous connecter');
-          history.push({
-            pathname: '/connexion',
-            state: { from: { pathname } },
-          });
+          if (state === undefined) {
+            history.push('/connexion');
+          } else {
+            const { location: { state: { from: { pathname } } } } = this.props;
+            history.push({
+              pathname: '/connexion',
+              state: { from: { pathname } },
+            });
+          }
         }
       });
   }
@@ -58,7 +63,7 @@ class Register extends Component {
   render() {
     const {
       mail, password, phone, name,
-    } = this.state;    
+    } = this.state;
     return (
       <div className="Register">
         <h1>Inscription</h1>
