@@ -36,8 +36,9 @@ class HomeInputs extends Component {
         <Form onSubmit={() => this.pageResult()}>
           <div
             className="background"
-            style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}
+            style={{ backgroundImage: `url(${imgSrc})`, height: '90vh' }}
           >
+            <div className="fog" />
             <h2 className="border-text banner-text">
               Commandez et payez avant
             </h2>

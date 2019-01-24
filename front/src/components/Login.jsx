@@ -10,7 +10,6 @@ import {
   Container,
 } from 'reactstrap';
 import _ from 'lodash';
-import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';

@@ -6,7 +6,7 @@ import './Footer.scss';
 
 const Footer = () => (
   <Container className="Footer" fluid>
-    <Row className="d-flex justify-content-around left">
+    <Row className="d-flex justify-content-around left foot">
       <Col lg={{ offset: 1, size: 3 }}>
         <li>
           <Link to="/a-propos/contact">Contact Client</Link>
