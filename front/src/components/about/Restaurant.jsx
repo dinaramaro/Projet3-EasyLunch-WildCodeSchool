@@ -72,11 +72,7 @@ class Restaurant extends Component {
       <div className="Restaurant">
         <h1 className="title">VOUS ÊTES RESTAURATEUR?</h1>
         <Container>
-          <div>
-            <p>
-              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: text }} />
-            </p>
-          </div>
+          <div className="ql-editor" dangerouslySetInnerHTML={{ __html: text }} />
           <h1 className="form-title">NOUS CONTACTER</h1>
           <div className="form-div">
             <Form className="form" onSubmit={this.handleSubmit}>

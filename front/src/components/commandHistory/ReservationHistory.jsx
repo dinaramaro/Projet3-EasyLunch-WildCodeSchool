@@ -44,7 +44,7 @@ class ReservationHistory extends Component {
                   const scheduleToString = '' + item.schedule;
                   const hour = `${scheduleToString[0]}${scheduleToString[1]}h${scheduleToString[2]}${scheduleToString[3]}`;
                   return (
-                    <Col lg="4" md="5" xs="12">
+                    <Col key={item.id} lg="4" md="5" xs="12">
                       <Card>
                         <CardImg top height="250px" src={item.picture} alt="Image restaurant" />
                         <CardBody>

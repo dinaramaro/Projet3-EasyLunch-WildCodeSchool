@@ -65,13 +65,13 @@ class Concept extends Component {
                 alt="Easy-lunch-partenaires"
               />
               <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
-              <p>Vous souhaitez en savoir plus sur le concept et devenir partenaire Easy Lunch ?</p>
+              <p>Vous souhaitez en savoir plus sur le concept Easy Lunch ?</p>
               <Link to="/a-propos/partenaires">
                 <Button color="success">Devenir partenaire</Button>
               </Link>
             </Col>
           </Row>
-          <h2 className="link-app">EasyLunch également disponible sur votre smartphone</h2>
+          <h2 className="mobile-apps">EasyLunch également disponible sur votre smartphone</h2>
 
           <Row className="link-app">
             <Col>
