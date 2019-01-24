@@ -9,25 +9,36 @@ import FormOrder from './FormOrder';
 import './OrderPage.scss';
 
 
-const OrderPage = () => (
-  <Container fluid className="OrderPage">
-    <Row>
-      <Col sm={3}>
-        <RestoInfos />
-      </Col>
-      <Col sm={5}>
-        <OrderMenu />
-      </Col>
-      <Col sm={4}>
-        <FormOrder />
-      </Col>
-    </Row>
-  </Container>
-);
+const OrderPage = ({ isLoadingStripe }) => {
+  if (isLoadingStripe) {
+    return (
+      <Container className="text-center">
+        <img src="/medias/eatstreet-loading.gif" alt="loading" />
+        <h2>Authorisation de paiement en cours...</h2>
+      </Container>
+    );
+  }
+
+  return (
+    <Container fluid className="OrderPage">
+      <Row>
+        <Col sm={3}>
+          <RestoInfos />
+        </Col>
+        <Col sm={5}>
+          <OrderMenu />
+        </Col>
+        <Col sm={4}>
+          <FormOrder />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 function mstp(state) {
   return {
-    menuResto: state.menuResto,
+    isLoadingStripe: state.stripeLoading.loading,
   };
 }
 

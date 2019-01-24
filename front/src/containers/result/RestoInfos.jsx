@@ -30,6 +30,7 @@ class RestoInfos extends Component {
       restoCity = restoInfos.city;
       restoPicture = restoInfos.picture;
     }
+
     return (
       <div className="RestoInfos">
         <h3>{restoName}</h3>

@@ -39,8 +39,10 @@ class HomeInputs extends Component {
             style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}
           >
             <h2 className="border-text banner-text">
-              Commandez et payez avant et soyez servis dès votre arrivée au
-              restaurant
+              Commandez et payez avant
+            </h2>
+            <h2 className="just-margin border-text banner-text">
+              et soyez servis dès votre arrivée au restaurant
             </h2>
 
             <Input
@@ -73,6 +75,7 @@ class HomeInputs extends Component {
               <option>10</option>
               <option>11</option>
               <option>12</option>
+              <option>12+</option>
             </Input>
             <Button className="search-button btn-submit">Rechercher</Button>
             <Button tag={Link} to="/participation" className="participe-button">Je participe</Button>

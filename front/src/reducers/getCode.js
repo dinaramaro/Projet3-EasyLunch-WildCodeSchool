@@ -1,7 +1,7 @@
 const initialState = {
   loading: false,
   error: null,
-  code: {},
+  code: '',
 };
 
 const getCode = (state = initialState, action) => {
