@@ -61,14 +61,14 @@ class NavBar extends Component {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem tag={Link} to="/a-propos/restaurateur">
-                Pour les restaurateurs
+                Vous êtes restaurateur?
               </NavItem>
               <UncontrolledDropdown setActiveFromChild>
                 <DropdownToggle tag="a" className="dropdown-toggle nav-link infos-toggle" caret>
-                  Infos
+                  Aide
                 </DropdownToggle>
                 <DropdownMenu right className="drop">
-                  <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>Foire aux questions</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>FAQ</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/politique" active>Politique de confidentialité</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/contact" active>Nous contacter</DropdownItem>
@@ -78,7 +78,7 @@ class NavBar extends Component {
                 (_.isEmpty(user))
                   ? (
                     <NavItem tag={Link} to="/connexion">
-                      Connexion
+                      Se connecter
                     </NavItem>
                   )
                   : (
