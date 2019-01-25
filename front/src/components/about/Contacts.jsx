@@ -82,7 +82,7 @@ class Contact extends Component {
         <h1 className="title">NOUS CONTACTER</h1>
         <Container>
           <div className="contact">
-            <p><div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} /></p>
+            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} />
             <Form className="form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label className="email">VOTRE E-MAIL</Label>

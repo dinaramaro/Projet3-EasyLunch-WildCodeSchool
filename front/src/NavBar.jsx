@@ -50,14 +50,12 @@ class NavBar extends Component {
     return (
       <div className="nav-bar">
         <Navbar className="navbar-div" dark expand="md">
-          <NavbarBrand>
-            <Link to="/">
-              <img
-                src="/medias/weblogo-easylunch-blanc.png"
-                alt="navbarLogo"
-                className="navbar-logo"
-              />
-            </Link>
+          <NavbarBrand tag={Link} to="/">
+            <img
+              src="/medias/weblogo-easylunch-blanc.png"
+              alt="navbarLogo"
+              className="navbar-logo"
+            />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>

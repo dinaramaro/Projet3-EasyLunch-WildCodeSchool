@@ -40,7 +40,7 @@ class HomeInputs extends Component {
             <h2 className="border-text banner-text">
               Commandez et payez avant
             </h2>
-            <h2 className="just-margin border-text banner-text">
+            <h2 className="line2 border-text banner-text">
               et soyez servis dès votre arrivée au restaurant
             </h2>
 

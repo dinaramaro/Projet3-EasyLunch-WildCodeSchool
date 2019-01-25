@@ -31,7 +31,7 @@ class Partners extends Component {
           <Row>
             {
             partners.map(partner => (
-              <Col lg="4" md="6" sm="6" xs="12">
+              <Col key={partner.id} lg="4" md="6" sm="6" xs="12">
                 <CardPartner partner={partner} />
               </Col>
             ))
