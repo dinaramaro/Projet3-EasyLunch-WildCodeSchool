@@ -6,6 +6,8 @@ import {
 import RestoInfos from './RestoInfos';
 import OrderMenu from './OrderMenu';
 import FormOrder from './FormOrder';
+import MyMeal from './MyMeal';
+import PayOrder from './PayOrder';
 import './OrderPage.scss';
 
 
@@ -30,6 +32,8 @@ const OrderPage = ({ isLoadingStripe }) => {
         </Col>
         <Col sm={4}>
           <FormOrder />
+          <MyMeal />
+          <PayOrder />
         </Col>
       </Row>
     </Container>

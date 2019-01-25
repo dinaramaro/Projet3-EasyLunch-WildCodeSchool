@@ -1,5 +1,6 @@
 const initialState = {
   formulaire: {
+    date: "Aujourd'hui",
     schedule: '',
     nb_users: '',
   },

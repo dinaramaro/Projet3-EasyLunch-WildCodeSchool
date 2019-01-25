@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   CardText,
   CardImg,
+  CardSubtitle,
 } from 'reactstrap';
 import './RestoInfos.scss';
 
@@ -19,6 +20,7 @@ class RestoInfos extends Component {
     let restoAddress = '';
     let restoCity = '';
     let restoPicture = '';
+    let restoDescription = '';
 
 
     if (!_.isEmpty(restoInfos)) {
@@ -29,11 +31,15 @@ class RestoInfos extends Component {
       restoAddress = restoInfos.address;
       restoCity = restoInfos.city;
       restoPicture = restoInfos.picture;
+      restoDescription = restoInfos.description;
     }
 
     return (
       <div className="RestoInfos">
         <h3>{restoName}</h3>
+        <br />
+        <CardSubtitle>{restoDescription}</CardSubtitle>
+        <br />
         <CardImg className="card-image" top width="100%" height="175px" src={restoPicture} alt="Card image cap" />
         <CardText>{restoAddress}</CardText>
         <CardText>{restoCity}</CardText>

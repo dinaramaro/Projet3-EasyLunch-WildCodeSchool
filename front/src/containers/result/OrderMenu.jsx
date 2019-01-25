@@ -5,20 +5,15 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
   Nav, NavItem, NavLink, Card, Col, Row, TabPane,
-  TabContent, Form, FormGroup, Input, Button,
+  TabContent, Form, FormGroup, Input,
 } from 'reactstrap';
 import classnames from 'classnames';
-import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
-import MyMeal from './MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId } from '../../actions';
-import { sendCommand } from '../../actions/sendCommand';
-import { stripePayment } from '../../actions/stripePayment';
-import { notifSuccess, notifError, notifInfo } from '../../actions/notifications';
 
 class OrderMenu extends Component {
   constructor(props) {
@@ -26,8 +21,6 @@ class OrderMenu extends Component {
     this.state = {
       activeTab: '0',
     };
-    this.redirectConnect = this.redirectConnect.bind(this);
-    this.onToken = this.onToken.bind(this);
   }
 
   componentDidMount() {
@@ -43,21 +36,10 @@ class OrderMenu extends Component {
     this.displayActiveTab();
   }
 
-  componentDidUpdate(prevProps) {
-    const { getCode, history } = this.props;
+  componentDidUpdate() {
     this.displayActiveTab();
-    if (prevProps.getCode.code === '' && getCode.code) {
-      history.push('/recapitulatif-commande');
-    }
   }
 
-  onToken(token) {
-    const {
-      stripePayment, sendOrder: { sendOrder }, chooseByUser: { total },
-    } = this.props;
-    const amount = Math.round(total * 100);
-    stripePayment(`${varServeur}pay/${amount}`, token, sendOrder);
-  }
 
   displayTab = (activeTab) => {
     this.setState({
@@ -117,18 +99,6 @@ class OrderMenu extends Component {
     }
   }
 
-  redirectConnect() {
-    const { history, location: { pathname } } = this.props;
-    const { activeTab } = this.state;
-    history.push({
-      pathname: '/connexion',
-      state: { 
-        from: { pathname },
-        activeTab,
-      },
-    });
-  }
-
   render() {
     const { activeTab } = this.state;
     const {
@@ -136,15 +106,8 @@ class OrderMenu extends Component {
       menus,
       error,
       handleChangeSpecial,
-      log: { user },
       loadingResto,
     } = this.props;
-    let { chooseByUser: { total } } = this.props;
-    if (total % 1 !== 0) {
-      total = `${total}0`;
-    }
-    const totalSend = total * 100 / 100;
-
     let listEnt = [];
     let listMain = [];
     let listDessert = [];
@@ -324,37 +287,10 @@ class OrderMenu extends Component {
               </Row>
             </TabPane>
           </TabContent>
-          <MyMeal />
           <FormGroup>
             <p>Instructions spéciales</p>
             <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
           </FormGroup>
-          <Row>
-            <Col sm={2}>
-              {'Total :'}
-            </Col>
-            <Col sm={4}>
-              {`${total} €`}
-            </Col>
-            <Col sm={6}>
-              {
-                (!_.isEmpty(user))
-                  ? (
-                    <StripeCheckout
-                      token={this.onToken}
-                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
-                      amount={Math.round(totalSend * 100)}
-                      currency="EUR"
-                    >
-                      <Button type="button">
-                        Payer
-                      </Button>
-                    </StripeCheckout>
-                  )
-                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
-              }
-            </Col>
-          </Row>
         </Form>
       </div>
     );
@@ -380,14 +316,9 @@ function mdtp(dispatch) {
   return bindActionCreators({
     cardResto,
     handleChangeSpecial,
-    sendCommand,
     getUserId,
-    notifSuccess,
-    notifError,
-    notifInfo,
-    stripePayment,
   },
-    dispatch);
+  dispatch);
 }
 
 

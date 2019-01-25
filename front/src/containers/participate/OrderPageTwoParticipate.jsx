@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col,
 } from 'reactstrap';
+import FormOrder from '../result/FormOrder';
+import PayOrderParticipate from './PayOrderParticipate';
+import MyMeal from '../result/MyMeal';
 import RestoInfos from '../result/RestoInfos';
-import GeneralInformations from '../result/GeneralInformations';
 import OrderMenuParticipate from './OrderMenuParticipate';
 
 
-const OrderPageTwoParticipate = ({ isLoadingStripe }) => {
+const OrderPageTwoParticipage = ({ isLoadingStripe }) => {
   if (isLoadingStripe) {
     return (
       <Container className="text-center">
@@ -17,15 +19,20 @@ const OrderPageTwoParticipate = ({ isLoadingStripe }) => {
       </Container>
     );
   }
+
   return (
-    <Container fluid className="OrderPageTwo">
+    <Container fluid className="OrderPage">
       <Row>
-        <Col sm={4}>
+        <Col sm={3}>
           <RestoInfos />
-          <GeneralInformations />
         </Col>
-        <Col sm={8}>
+        <Col sm={5}>
           <OrderMenuParticipate />
+        </Col>
+        <Col sm={4}>
+          <FormOrder />
+          <MyMeal />
+          <PayOrderParticipate />
         </Col>
       </Row>
     </Container>
@@ -38,4 +45,4 @@ function mstp(state) {
   };
 }
 
-export default connect(mstp)(OrderPageTwoParticipate);
+export default connect(mstp)(OrderPageTwoParticipage);

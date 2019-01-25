@@ -26,8 +26,8 @@ const FormOrder = ({
       <FormGroup row>
         <Label for="hour" sm={6}>Heure</Label>
         <Col sm={6}>
-          <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option>Veuillez sélectionner</option>
+          <Input required type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
+            <option value="">Veuillez sélectionner</option>
             <option value="12h00">12h00</option>
             <option value="12h15">12h15</option>
             <option value="12h30">12h30</option>
@@ -39,15 +39,14 @@ const FormOrder = ({
             <option value="14h00">14h00</option>
             <option value="14h15">14h15</option>
             <option value="14h30">14h30</option>
-
           </Input>
         </Col>
       </FormGroup>
       <FormGroup row>
         <Label for="nb" sm={6}>Nombre de personnes</Label>
         <Col sm={6}>
-          <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option>Veuillez sélectionner</option>
+          <Input required type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
+            <option value="">Veuillez sélectionner</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
