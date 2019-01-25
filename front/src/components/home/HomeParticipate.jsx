@@ -72,12 +72,12 @@ class Participate extends Component {
       } = this.state;
       return (
         <div className="HomeParticipe">
-          <div className="title">
-            Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
-          </div>
           <Container fluid className="">
-            <Row className="ParticipateInput">
-              <Form onSubmit={this.getIdRestau}>
+            <Form onSubmit={this.getIdRestau}>
+              <Row className="ParticipateInput">
+                <div className="title">
+              Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
+                </div>
                 <Input
                   type="text"
                   name="codeParticipation"
@@ -85,9 +85,9 @@ class Participate extends Component {
                   value={codeParticipation}
                   onChange={this.onChange}
                 />
-              </Form>
-              <Button type="submit" className="all-btn"> Envoyer </Button>
-            </Row>
+                <Button type="submit" className="all-btn"> Envoyer </Button>
+              </Row>
+            </Form>
             <Row>
               <Explaination />
             </Row>

@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux';
 import { notifSuccess, notifError } from '../../actions/notifications';
 import { varServeur } from '../../constants';
 import './Contacts.scss';
+import RestoPub from './RestoPub';
 
 
 class Contact extends Component {
@@ -81,6 +82,7 @@ class Contact extends Component {
       <div className="Contacts">
         <h1 className="title">NOUS CONTACTER</h1>
         <Container>
+          <RestoPub />
           <div className="contact">
             <p><div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} /></p>
             <Form className="form" onSubmit={this.handleSubmit}>

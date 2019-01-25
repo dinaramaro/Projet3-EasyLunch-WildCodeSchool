@@ -1,6 +1,6 @@
 import express from 'express';
 import Stripe from 'stripe';
-import { privateKeyStripe, isProd } from '../myAccount/secretOrKey';
+import { privateKeyStripe, isProd } from '../myAccount/secretOrkey';
 
 const router = express.Router();
 const stripe = Stripe(privateKeyStripe);
