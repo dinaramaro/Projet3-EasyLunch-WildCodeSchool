@@ -33,7 +33,7 @@ class HomeInputs extends Component {
     const { keyword, personcapacity } = this.state;
     return (
       <div className="HomeInputs">
-        <Form onSubmit={() => this.pageResult()}>
+        <Form className="FormInputs" onSubmit={() => this.pageResult()}>
           <div
             className="background"
             style={{ backgroundImage: `url(${imgSrc})`, height: '90vh' }}
@@ -57,7 +57,6 @@ class HomeInputs extends Component {
             <Input
               className="search2"
               type="select"
-              placeholder="Nombre de personnes"
               style={{ width: '25vw' }}
               name="personcapacity"
               value={personcapacity}
@@ -78,8 +77,12 @@ class HomeInputs extends Component {
               <option>12</option>
               <option>12+</option>
             </Input>
-            <Button className="search-button btn-submit">Rechercher</Button>
-            <Button tag={Link} to="/participation" className="participe-button">Je participe</Button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Button type="submit" className="all-btn">Rechercher</Button>
           </div>
         </Form>
       </div>

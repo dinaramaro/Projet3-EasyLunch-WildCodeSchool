@@ -36,31 +36,13 @@
       width: 100px;
       box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
     }
-    .search-button {
+    .all-btn {
       position: absolute;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      font-size: 20px;
-      left: 40%;
+      left: 45%;
       top: 85%;
-      background-color: #ffa300;
-      border: none;
-      border-radius: 7px;
       box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
     }
-    
-    .participe-button {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      width: 200px;
-      font-size: 20px;
-      left: 60%;
-      top: 85%;
-      background-color: #ffa300;
-      border: none;
-      border-radius: 7px;
-      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
-    }
+
 
     .just-margin {
       margin-top: 62px;
@@ -91,8 +73,10 @@
       top: 23%;
       font-size: 20px;
     }
-    .participe-button {
-      display: none;
+
+    .all-btn {
+      position: absolute;
+      left: 40%;
     }
   }
   @media only screen and (max-width: 600px) {
@@ -115,8 +99,9 @@
     .border-text {
       display: none;
     }
-    .participe-button {
-      display: none;
+    .all-btn {
+      position: absolute;
+      left: 35%;
     }
   }
   

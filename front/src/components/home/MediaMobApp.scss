@@ -1,11 +1,19 @@
 .MediaMobApp {
   background-color: #f9f9f9;
-  height: 100vh;
 
   .video-ex {
     display: flex;
     justify-content: center;
     padding-top: 2em;
     padding-bottom: 2em;
+  }
+
+  .logo {
+    width: 250px;
+    margin: 20px;
+  }
+
+  .link-app {
+    text-align: center;
   }
 }

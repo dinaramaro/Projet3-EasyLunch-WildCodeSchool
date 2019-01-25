@@ -5,6 +5,7 @@ import {
   Input,
   Button,
   Form,
+  Col,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,7 +17,6 @@ import { cardResto } from '../../actions/cardResto';
 import { saveCodeParticipation } from '../../actions/saveCodeParticipation';
 import { notifError, notifInfo } from '../../actions/notifications';
 import { recupGeInfo } from '../../actions';
-import Explaination from './Explaination';
 
 class Participate extends Component {
   constructor(props) {
@@ -72,24 +72,23 @@ class Participate extends Component {
       } = this.state;
       return (
         <div className="HomeParticipe">
-          <Container fluid className="">
-            <Form onSubmit={this.getIdRestau}>
-              <Row className="ParticipateInput">
-                <div className="title">
-              Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
-                </div>
-                <Input
-                  type="text"
-                  name="codeParticipation"
-                  placeholder="LunchCode"
-                  value={codeParticipation}
-                  onChange={this.onChange}
-                />
-                <Button type="submit" className="all-btn"> Envoyer </Button>
-              </Row>
-            </Form>
-            <Row>
-              <Explaination />
+          <Container fluid>
+            <Row className="backgroundCard">
+              <div className="titlePart"> Entrez ici votre LunchCode</div>
+              <Form onSubmit={this.getIdRestau} className="inputCard">
+                <Col>
+                  <Input
+                    type="text"
+                    name="codeParticipation"
+                    placeholder=" LunchCode"
+                    value={codeParticipation}
+                    onChange={this.onChange}
+                  />
+                </Col>
+              </Form>
+              <Col className="inputCard">
+                <Button type="submit" className="all-btn"> Je participe </Button>
+              </Col>
             </Row>
           </Container>
         </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'reactstrap';
 import './Footer.scss';
@@ -42,7 +41,7 @@ const Footer = () => (
           </a>
         </li>
       </Col>
-      <Col>
+      <Col className="footer">
         <a
           href="https://www.facebook.com/EasyLunchBordeaux"
           target="_blank"
