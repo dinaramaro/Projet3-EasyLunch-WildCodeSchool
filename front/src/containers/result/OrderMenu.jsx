@@ -24,7 +24,7 @@ class OrderMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '1',
+      activeTab: '0',
     };
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);
@@ -32,24 +32,26 @@ class OrderMenu extends Component {
 
   componentDidMount() {
     const {
-      menuResto: { resto: { restoInfos } },
-      cardResto, log: { user },
+      restoInfos,
+      log: { user },
       getUserId,
     } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
     getUserId(user.id);
+    this.displayActiveTab();
   }
 
   componentDidUpdate(prevProps) {
     const { getCode, history } = this.props;
+    this.displayActiveTab();
     if (prevProps.getCode.code === '' && getCode.code) {
       history.push('/recapitulatif-commande');
     }
   }
 
-  onToken = (token) => {
+  onToken(token) {
     const {
       stripePayment, sendOrder: { sendOrder }, chooseByUser: { total },
     } = this.props;
@@ -57,7 +59,13 @@ class OrderMenu extends Component {
     stripePayment(`${varServeur}pay/${amount}`, token, sendOrder);
   }
 
-  toggle(tab) {
+  displayTab = (activeTab) => {
+    this.setState({
+      activeTab,
+    });
+  }
+
+  toggle = (tab) => {
     const { activeTab } = this.state;
     if (activeTab !== tab) {
       this.setState({
@@ -66,19 +74,66 @@ class OrderMenu extends Component {
     }
   }
 
+  displayActiveTab() {
+    const { menus, cards, location: { state } } = this.props;
+    const { activeTab } = this.state;
+    const previousTab = state && state.activeTab;
+
+    if (activeTab === '0') {
+      if (previousTab) {
+        this.displayTab(previousTab);
+      } else if (menus || cards) {
+        let listEnt = [];
+        let listMain = [];
+        let listDessert = [];
+        let listDrink = [];
+        let listForm = [];
+        let listMOD = [];
+        let tempActiveTab = '';
+
+        if (menus) {
+          listMOD = menus.filter(item => item.mod === 1);
+          listForm = menus.filter(item => item.mod === 0);
+        }
+
+        if (cards) {
+          listEnt = cards.filter(item => item.plat === 0);
+          listMain = cards.filter(item => item.plat === 1);
+          listDessert = cards.filter(item => item.plat === 2);
+          listDrink = cards.filter(item => item.plat === 3);
+        }
+
+        switch (true) {
+          case (listMOD.length > 0): tempActiveTab = '1'; break;
+          case (listForm.length > 0): tempActiveTab = '2'; break;
+          case (listEnt.length > 0): tempActiveTab = '3'; break;
+          case (listMain.length > 0): tempActiveTab = '4'; break;
+          case (listDessert.length > 0): tempActiveTab = '5'; break;
+          case (listDrink.length > 0): tempActiveTab = '6'; break;
+          default: tempActiveTab = '0';
+        }
+        this.displayTab(tempActiveTab);
+      }
+    }
+  }
+
   redirectConnect() {
     const { history, location: { pathname } } = this.props;
+    const { activeTab } = this.state;
     history.push({
       pathname: '/connexion',
-      state: { from: { pathname } },
+      state: { 
+        from: { pathname },
+        activeTab,
+      },
     });
   }
 
   render() {
     const { activeTab } = this.state;
     const {
-      menus,
       cards,
+      menus,
       error,
       handleChangeSpecial,
       log: { user },
@@ -130,24 +185,23 @@ class OrderMenu extends Component {
 
     return (
       <div className="OrderMenu">
-        <p>Commande (2/2)</p>
         <p>Faites votre choix</p>
         <p>(uniquement pour vous)</p>
         <p>et nous transmettrons le LunchCode à partager à la fin de votre commande</p>
         <Nav tabs>
           <NavItem>
             {
-              listForm.length > 0 && (
+              listMOD.length > 0 && (
                 <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                  {'Formules'}
+                  {'Menu du jour'}
                 </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
-              listMOD.length > 0 && (
+              listForm.length > 0 && (
                 <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                  {'Menu du jour'}
+                  {'Formules'}
                 </NavLink>
               )}
           </NavItem>
@@ -190,15 +244,6 @@ class OrderMenu extends Component {
               <Row>
                 <Col>
                   <Card body>
-                    <DisplayMenus list={listForm} />
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="2">
-              <Row>
-                <Col>
-                  <Card body>
                     {
                       listMOD.length > 0 && (
                         <p>{listMOD[0].menu_name}</p>
@@ -224,6 +269,16 @@ class OrderMenu extends Component {
                 </Col>
               </Row>
             </TabPane>
+            <TabPane tabId="2">
+              <Row>
+                <Col>
+                  <Card body>
+                    <DisplayMenus list={listForm} />
+                  </Card>
+                </Col>
+              </Row>
+            </TabPane>
+
             <TabPane tabId="3">
               <Row>
                 <Col>
@@ -308,11 +363,11 @@ class OrderMenu extends Component {
 
 function mstp(state) {
   return {
-    menuResto: state.menuResto,
-    menus: state.cardResto.menus,
-    cards: state.cardResto.cards,
-    error: state.cardResto.error,
-    loading: state.cardResto.loading,
+    restoInfos: state.menuResto.resto.restoInfos,
+    menus: state.menuResto.resto.menus,
+    cards: state.menuResto.resto.cards,
+    error: state.menuResto.error,
+    loading: state.menuResto.loading,
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
     getCode: state.getCode,
@@ -332,7 +387,7 @@ function mdtp(dispatch) {
     notifInfo,
     stripePayment,
   },
-  dispatch);
+    dispatch);
 }
 
 

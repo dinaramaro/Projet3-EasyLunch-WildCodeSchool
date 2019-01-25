@@ -9,7 +9,6 @@ import getCode from './getCode';
 import notificationsReducer from './notificationsReducer';
 import log from './log';
 import codeParticip from './codeParticip';
-import toggleTab from './toggleTab';
 import stripeLoading from './stripeLoading';
 
 const allReducers = combineReducers({
@@ -23,7 +22,6 @@ const allReducers = combineReducers({
   log,
   getCode,
   codeParticip,
-  toggleTab,
   stripeLoading,
 });
 

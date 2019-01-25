@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import './MyMeal.scss';
 
 
 const MyMeal = ({ chooseByUser: { tabs } }) => {
@@ -18,7 +19,7 @@ const MyMeal = ({ chooseByUser: { tabs } }) => {
   }
   return (
     <div className="MyMeal">
-      <p>Mon repas</p>
+      <p className="title-meal">Mon repas</p>
       {(tabs[0] !== undefined) && (tabs[0].menuname !== '') && (tabs[0].menuname !== undefined) && (
         <div>
           <p className="underline">{`${tabs[0].menuname} ${subtitle}`}</p>

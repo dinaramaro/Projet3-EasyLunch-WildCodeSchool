@@ -26,8 +26,7 @@ import AjoutFAQ from './components/admin/FAQ/AddFAQ';
 import AdminContact from './components/admin/contact/AdminContact';
 import Result from './components/result/Result';
 import Participate from './components/participate/Participate';
-import OrderPageOne from './components/result/OrderPageOne';
-import OrderPageTwo from './containers/result/OrderPageTwo';
+import OrderPage from './containers/result/OrderPage';
 import AdminContactRestaurant from './components/admin/contactRestaurant/AdminContactRestaurant';
 import Register from './components/Register';
 import MyAccount from './components/MyAccount';
@@ -52,8 +51,7 @@ const App = () => (
         <Route path="/a-propos/partenaires" component={Partners} />
         <Route path="/a-propos/politique" component={Politic} />
         <Route path="/a-propos/restaurateur" component={Restaurant} />
-        <Route path="/commande-page1" component={OrderPageOne} />
-        <Route path="/commande-page2" component={OrderPageTwo} />
+        <Route path="/commande-page" component={OrderPage} />
         <Route path="/commande-participation" component={OrderPageTwoParticipate} />
         <Route path="/recapitulatif-commande" component={OrderSummary} />
         <Route path="/recapitulatif-participation" component={OrderSummaryParticipate} />
@@ -73,7 +71,7 @@ const App = () => (
         <Route path="/participation" component={Participate} />
         <Route path="/inscription" component={Register} />
         <PrivateRoute path="/mon-compte" component={MyAccount} />
-        <PrivateRoute path="/paiement" component={OrderPageTwo} />
+        <PrivateRoute path="/paiement" component={OrderPage} />
         <PrivateRoute path="/historique-de-reservation" component={ReservationHistory} />
       </Switch>
       <NotificationContainer />

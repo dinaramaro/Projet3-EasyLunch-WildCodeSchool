@@ -2,14 +2,16 @@ import React from 'react';
 import DisplayMenu from './DisplayMenu';
 
 const DisplayMenus = ({ list }) => {
-  let tempMenuName = '';
+  let tempMenuId = '';
   let menus = [];
   for (let i = 0; i < list.length; i += 1) {
-    if (tempMenuName !== list[i].id) {
+    if (tempMenuId !== list[i].id) {
       const tempObj = {};
-      tempObj.name = list[i].id;
+      tempObj.id = list[i].id;
+      tempObj.menu_name = list[i].menu_name;
+      tempObj.menu_price = list[i].menu_price;
       tempObj.meals = [list[i]];
-      tempMenuName = list[i].id;
+      tempMenuId = list[i].id;
       menus = [...menus, tempObj];
     } else {
       const menu = menus[menus.length - 1].meals;

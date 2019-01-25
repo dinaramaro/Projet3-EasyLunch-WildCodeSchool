@@ -5,29 +5,27 @@ import {
 } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { handleChangeOrder } from '../../actions';
+import './FormOrder.scss';
 
 
 const FormOrder = ({
-  formulaire: { date, schedule, nb_users },
+  formulaire: { schedule, nb_users },
   handleChangeOrder, menuResto: { resto: { restoInfos } },
   idUser,
 }) => (
   <div className="FormOrder">
-    <p>Commande (1/2)</p>
     <p>Informations générales</p>
     <p>(concernent l&apos;ensemble des invités)</p>
     <Form>
       <FormGroup row>
-        <Label for="date" sm={3}>Date</Label>
-        <Col sm={4}>
-          <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option value="Aujourd'hui">Aujourd&apos;hui</option>
-          </Input>
+        <Label for="date" sm={6}>Date</Label>
+        <Col sm={6}>
+          <Input type="text" name="date" id="date" value="Aujourd'hui" />
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="hour" sm={3}>Heure</Label>
-        <Col sm={4}>
+        <Label for="hour" sm={6}>Heure</Label>
+        <Col sm={6}>
           <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
             <option>Veuillez sélectionner</option>
             <option value="12h00">12h00</option>
@@ -46,8 +44,8 @@ const FormOrder = ({
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="nb" sm={3}>Nombre de personnes</Label>
-        <Col sm={4}>
+        <Label for="nb" sm={6}>Nombre de personnes</Label>
+        <Col sm={6}>
           <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
             <option>Veuillez sélectionner</option>
             <option value="1">1</option>
@@ -57,6 +55,11 @@ const FormOrder = ({
             <option value="5">5</option>
             <option value="6">6</option>
             <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
           </Input>
         </Col>
       </FormGroup>

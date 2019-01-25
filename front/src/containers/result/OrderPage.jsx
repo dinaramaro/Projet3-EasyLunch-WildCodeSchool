@@ -4,11 +4,12 @@ import {
   Container, Row, Col,
 } from 'reactstrap';
 import RestoInfos from './RestoInfos';
-import GeneralInformations from './GeneralInformations';
 import OrderMenu from './OrderMenu';
+import FormOrder from './FormOrder';
+import './OrderPage.scss';
 
 
-const OrderPageTwo = ({ isLoadingStripe }) => {
+const OrderPage = ({ isLoadingStripe }) => {
   if (isLoadingStripe) {
     return (
       <Container className="text-center">
@@ -19,14 +20,16 @@ const OrderPageTwo = ({ isLoadingStripe }) => {
   }
 
   return (
-    <Container fluid className="OrderPageTwo">
+    <Container fluid className="OrderPage">
       <Row>
-        <Col sm={4}>
+        <Col sm={3}>
           <RestoInfos />
-          <GeneralInformations />
         </Col>
-        <Col sm={8}>
+        <Col sm={5}>
           <OrderMenu />
+        </Col>
+        <Col sm={4}>
+          <FormOrder />
         </Col>
       </Row>
     </Container>
@@ -39,4 +42,4 @@ function mstp(state) {
   };
 }
 
-export default connect(mstp)(OrderPageTwo);
+export default connect(mstp)(OrderPage);
