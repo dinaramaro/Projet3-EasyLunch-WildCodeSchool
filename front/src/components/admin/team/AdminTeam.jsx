@@ -85,7 +85,7 @@ class AdminTeam extends Component {
     return (
       <div className="AdminTeam">
         <AdminMenu />
-        <h2 className="title">Donnée De L&#39;Equipe</h2>
+        <h2 className="title">Données De L&#39;Equipe</h2>
         <Container>
           <Row>
             {team.map(member => (

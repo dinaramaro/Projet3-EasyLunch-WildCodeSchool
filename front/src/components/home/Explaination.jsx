@@ -43,7 +43,7 @@ const Explaination = () => (
             src="./medias/icon-smiley.svg"
             alt="Partez sans payer"
           />
-          <p className="title-ex3">Soyez servi dès votre arrivée</p>
+          <p className="title-ex3">Soyez servis dès votre arrivée</p>
           <p className="para-details3">
             Rendez-vous au restaurant, votre table est prête, profitez de votre
             déjeuner et des personnes qui vous accompagnent et partez sans
