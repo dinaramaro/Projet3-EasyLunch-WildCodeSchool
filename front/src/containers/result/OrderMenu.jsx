@@ -13,16 +13,9 @@ import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
-import { handleChangeSpecial, getUserId } from '../../actions';
+import { handleChangeSpecial, getUserId, setActiveTab } from '../../actions';
 
 class OrderMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: '0',
-    };
-  }
-
   componentDidMount() {
     const {
       restoInfos,
@@ -42,23 +35,24 @@ class OrderMenu extends Component {
 
 
   displayTab = (activeTab) => {
-    this.setState({
-      activeTab,
-    });
+    const { setActiveTab } = this.props;
+    setActiveTab(activeTab);
   }
 
   toggle = (tab) => {
-    const { activeTab } = this.state;
+    const { setActiveTab, activeTab } = this.props;
     if (activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+      setActiveTab(tab);
     }
   }
 
   displayActiveTab() {
-    const { menus, cards, location: { state } } = this.props;
-    const { activeTab } = this.state;
+    const {
+      menus,
+      cards,
+      location: { state },
+      activeTab,
+    } = this.props;
     const previousTab = state && state.activeTab;
 
     if (activeTab === '0') {
@@ -100,13 +94,13 @@ class OrderMenu extends Component {
   }
 
   render() {
-    const { activeTab } = this.state;
     const {
       cards,
       menus,
       error,
       handleChangeSpecial,
       loadingResto,
+      activeTab,
     } = this.props;
     let listEnt = [];
     let listMain = [];
@@ -309,6 +303,7 @@ function mstp(state) {
     getCode: state.getCode,
     log: state.log,
     loadingResto: state.cardResto.loading,
+    activeTab: state.setActiveTab.activeTab,
   };
 }
 
@@ -317,6 +312,7 @@ function mdtp(dispatch) {
     cardResto,
     handleChangeSpecial,
     getUserId,
+    setActiveTab,
   },
   dispatch);
 }

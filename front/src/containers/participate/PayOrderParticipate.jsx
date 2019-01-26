@@ -39,11 +39,12 @@ class PayOrderParticipate extends Component {
 
 
   redirectConnect() {
-    const { history, location: { pathname } } = this.props;
+    const { history, location: { pathname }, activeTab } = this.props;
     history.push({
       pathname: '/connexion',
       state: {
         from: { pathname },
+        activeTab,
       },
     });
   }
@@ -99,6 +100,7 @@ function mstp(state) {
     log: state.log,
     codeParticip: state.codeParticip,
     isSuccess: state.stripeLoading.success,
+    activeTab: state.setActiveTab.activeTab,
   };
 }
 

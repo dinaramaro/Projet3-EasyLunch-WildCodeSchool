@@ -64,3 +64,8 @@ export const recupGeInfo = (nb, schedule) => ({
 export const initState = () => ({
   type: 'INIT_STATE',
 });
+
+export const setActiveTab = tab => ({
+  type: 'SET_ACTIVE_TAB',
+  tab,
+});

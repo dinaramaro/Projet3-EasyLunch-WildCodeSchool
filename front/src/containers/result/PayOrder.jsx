@@ -16,7 +16,6 @@ class PayOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: '0',
     };
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);
@@ -37,13 +36,13 @@ class PayOrder extends Component {
     stripePayment(`${varServeur}pay/${amount}`, token, sendOrder);
   }
 
-
   redirectConnect() {
-    const { history, location: { pathname } } = this.props;
+    const { history, location: { pathname }, activeTab } = this.props;
     history.push({
       pathname: '/connexion',
       state: {
         from: { pathname },
+        activeTab,
       },
     });
   }
@@ -98,6 +97,7 @@ function mstp(state) {
     sendOrder: state.sendOrder,
     getCode: state.getCode,
     log: state.log,
+    activeTab: state.setActiveTab.activeTab,
   };
 }
 
