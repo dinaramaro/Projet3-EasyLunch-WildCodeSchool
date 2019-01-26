@@ -122,7 +122,7 @@ class OrderMenu extends Component {
     const { activeTab } = this.state;
     history.push({
       pathname: '/connexion',
-      state: { 
+      state: {
         from: { pathname },
         activeTab,
       },
@@ -185,9 +185,7 @@ class OrderMenu extends Component {
 
     return (
       <div className="OrderMenu">
-        <p>Faites votre choix</p>
-        <p>(uniquement pour vous)</p>
-        <p>et nous transmettrons le LunchCode à partager à la fin de votre commande</p>
+        <p>Nous transmettrons le LunchCode à partager à la fin de votre commande</p>
         <Nav tabs>
           <NavItem>
             {
@@ -326,7 +324,7 @@ class OrderMenu extends Component {
           </TabContent>
           <MyMeal />
           <FormGroup>
-            <p>Instructions spéciales</p>
+            <p className="titleCard">Instructions spéciales</p>
             <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
           </FormGroup>
           <Row>
@@ -346,12 +344,12 @@ class OrderMenu extends Component {
                       amount={Math.round(totalSend * 100)}
                       currency="EUR"
                     >
-                      <Button type="button">
+                      <Button type="button" className="all-btn">
                         Payer
                       </Button>
                     </StripeCheckout>
                   )
-                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+                  : <Button className="all-btn" onClick={this.redirectConnect}>Se connecter avant de payer</Button>
               }
             </Col>
           </Row>
@@ -387,7 +385,7 @@ function mdtp(dispatch) {
     notifInfo,
     stripePayment,
   },
-    dispatch);
+  dispatch);
 }
 
 

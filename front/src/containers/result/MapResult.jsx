@@ -26,8 +26,8 @@ class Mapresult extends Component {
   constructor(props) {
     super(props);
     const windowWidth = window.innerWidth;
-    const mapWidth = windowWidth < 992 ? '96vw' : '38vw';
-    const mapHeight = windowWidth < 992 ? '55vh' : '35vw';
+    const mapWidth = windowWidth < 1025 ? '60vw' : '40vw';
+    const mapHeight = windowWidth < 1025 ? '55vh' : '50vh';
     this.state = {
       viewport: {},
       mapWidth,
@@ -67,8 +67,8 @@ class Mapresult extends Component {
 
   onResize() {
     const windowWidth = window.innerWidth;
-    const mapWidth = windowWidth < 1040 ? '96vw' : '38vw';
-    const mapHeight = windowWidth < 1040 ? '55vh' : '35vw';
+    const mapWidth = windowWidth < 692 ? '68vw' : '40vw';
+    const mapHeight = windowWidth < 692 ? '30vh' : '50vh';
     this.setState({
       mapWidth,
       mapHeight,
