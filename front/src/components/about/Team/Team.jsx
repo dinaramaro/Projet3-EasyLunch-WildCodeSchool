@@ -30,7 +30,7 @@ class Equipe extends Component {
           <Row>
             {
             team.map(mate => (
-              <Col className="person" lg="6">
+              <Col key={mate.id} className="person" lg="6">
                 <CardTeam
                   mate={mate}
                 />

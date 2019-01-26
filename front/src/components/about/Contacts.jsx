@@ -84,7 +84,7 @@ class Contact extends Component {
         <Container>
           <RestoPub />
           <div className="contact">
-            <p><div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} /></p>
+            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} />
             <Form className="form" onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Label className="email">VOTRE E-MAIL</Label>

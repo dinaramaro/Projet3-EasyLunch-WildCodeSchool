@@ -40,12 +40,17 @@ class Login extends Component {
 
   redirect() {
     const {
-      history, location: { state: { from: { pathname } } },
+      history, location: { state },
     } = this.props;
-    history.push({
-      pathname: '/inscription',
-      state: { from: { pathname } },
-    });
+    if (state === undefined) {
+      history.push('/inscription');
+    } else {
+      const { location: { state: { from: { pathname } } } } = this.props;
+      history.push({
+        pathname: '/inscription',
+        state: { from: { pathname } },
+      });
+    }
   }
 
   handleSubmit(e) {
@@ -74,8 +79,11 @@ class Login extends Component {
         if (!_.isEmpty(data)) {
           setUser(data.user, data.token);
           Cookies.set('token', data.token);
-          const { from } = state || { from: { pathname: '/mon-compte' } };
-          history.push(from.pathname);
+          const { activeTab, from } = state || { from: { pathname: '/mon-compte' } };
+          history.push({
+            pathname: from.pathname,
+            state: { activeTab },
+          });
         }
       });
   }

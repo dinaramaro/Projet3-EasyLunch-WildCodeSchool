@@ -125,7 +125,6 @@ class OrderSummary extends Component {
         </div>
       );
     }
-
     return (
       <Container>
         <Row>
@@ -137,19 +136,19 @@ class OrderSummary extends Component {
               {tabs.map((item) => {
                 if (item.Plat !== undefined) {
                   return (
-                    <li>{item.Plat}</li>
+                    <li key={item.idmenu}>{item.Plat}</li>
                   );
                 } if (item.Dessert !== undefined) {
                   return (
-                    <li>{item.Dessert}</li>
+                    <li key={item.idmenu}>{item.Dessert}</li>
                   );
                 } if (item.Boisson !== undefined) {
                   return (
-                    <li>{item.Boisson}</li>
+                    <li key={item.idmenu}>{item.Boisson}</li>
                   );
                 }
                 return (
-                  <li>{item[item.text]}</li>
+                  <li key={item.idmenu}>{item[item.text]}</li>
                 );
               })
               }

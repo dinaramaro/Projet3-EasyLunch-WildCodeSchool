@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   Label,
-  CustomInput,
+  Input,
+  FormGroup,
 } from 'reactstrap';
 import './ChooseOnMenus.scss';
 import { handleChooseOnMenus } from '../../actions';
@@ -24,42 +25,13 @@ const ChooseOnMenus = ({
       {
         tabs.length === 0
           ? meals.map(item => (
-            <div className="radio" key={`${item.id_plat}${item.meals_name}`}>
-              <CustomInput
-                type="radio"
-                value={item.meals_name}
-                name={`${item.id_plat}${item.id}`}
-                id={`${item.id_plat}${item.id}`}
-                label={item.meals_name}
-                onChange={(e) => {
-                  handleChooseOnMenus(
-                    e.target.name,
-                    e.target.value,
-                    item.id,
-                    item.menu_name,
-                    item.menu_price,
-                    text,
-                    item.id_plat,
-                    item.meals_price,
-                    item.plat,
-                    item.nbmeals,
-                    idUser,
-                  );
-                }}
-              />
-            </div>
-          ))
-          : meals.map((item) => {
-            const resultFind = tabs.find(it => ((it.idmeal === item.id_plat) && (it.menuname === item.menu_name)));
-            if (resultFind === undefined) {
-              return (
-                <div className="radio" key={`${item.id_plat}${item.meals_name}`}>
-                  <CustomInput
+            <div className="radio" key={`${item.id_plat}${item.meals_name}${item.id}`}>
+              <FormGroup check>
+                <Label check>
+                  <Input
                     type="radio"
+                    name={`${item.id}${text}`}
                     value={item.meals_name}
-                    name={`${item.id_plat}${item.id}`}
-                    id={`${item.id_plat}${item.id}`}
-                    label={item.meals_name}
                     onChange={(e) => {
                       handleChooseOnMenus(
                         e.target.name,
@@ -76,34 +48,74 @@ const ChooseOnMenus = ({
                       );
                     }}
                   />
+                  {`${item.meals_name}`}
+
+                </Label>
+              </FormGroup>
+            </div>
+          ))
+          : meals.map((item) => {
+            const resultFind = tabs.find(it => ((it.idmeal === item.id_plat) && (it.idmenu === item.id)));
+            if (resultFind === undefined) {
+              return (
+                <div className="radio" key={`${item.id_plat}${item.meals_name}${item.id}`}>
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="radio"
+                        name={`${item.id}${text}`}
+                        value={item.meals_name}
+                        onChange={(e) => {
+                          handleChooseOnMenus(
+                            e.target.name,
+                            e.target.value,
+                            item.id,
+                            item.menu_name,
+                            item.menu_price,
+                            text,
+                            item.id_plat,
+                            item.meals_price,
+                            item.plat,
+                            item.nbmeals,
+                            idUser,
+                          );
+                        }}
+                      />
+                      {`${item.meals_name}`}
+                    </Label>
+                  </FormGroup>
+
                 </div>
               );
             }
             return (
-              <div className="radio" key={`${item.id_plat}${item.meals_name}`}>
-                <CustomInput
-                  type="radio"
-                  checked
-                  value={item.meals_name}
-                  name={`${item.id_plat}${item.id}`}
-                  id={`${item.id_plat}${item.id}`}
-                  label={item.meals_name}
-                  onChange={(e) => {
-                    handleChooseOnMenus(
-                      e.target.name,
-                      e.target.value,
-                      item.id,
-                      item.menu_name,
-                      item.menu_price,
-                      text,
-                      item.id_plat,
-                      item.meals_price,
-                      item.plat,
-                      item.nbmeals,
-                      idUser,
-                    );
-                  }}
-                />
+              <div className="radio" key={`${item.id_plat}${item.meals_name}${item.id}`}>
+                <FormGroup check>
+                  <Label check>
+                    <Input
+                      checked
+                      type="radio"
+                      name={`${item.id}${text}`}
+                      value={item.meals_name}
+                      onChange={(e) => {
+                        handleChooseOnMenus(
+                          e.target.name,
+                          e.target.value,
+                          item.id,
+                          item.menu_name,
+                          item.menu_price,
+                          text,
+                          item.id_plat,
+                          item.meals_price,
+                          item.plat,
+                          item.nbmeals,
+                          idUser,
+                        );
+                      }}
+                    />
+                    {`${item.meals_name}`}
+                  </Label>
+                </FormGroup>
               </div>
             );
           })

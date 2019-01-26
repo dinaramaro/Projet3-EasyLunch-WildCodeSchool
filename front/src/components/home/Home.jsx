@@ -4,6 +4,7 @@ import HomeParticipate from './HomeParticipate';
 import MediaMobApp from './MediaMobApp';
 import './Home.scss';
 
+
 const Home = () => (
   <div className="home">
     <HomeInputs />

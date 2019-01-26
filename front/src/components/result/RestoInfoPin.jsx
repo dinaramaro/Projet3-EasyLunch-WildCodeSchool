@@ -12,7 +12,6 @@ import {
 import { withRouter } from 'react-router';
 import { varServeur } from '../../constants';
 import { menuResto } from '../../actions/menuResto';
-import { toggleTab } from '../../actions';
 
 
 class RestoInfoPin extends Component {
@@ -23,9 +22,13 @@ class RestoInfoPin extends Component {
 
   showMenu(e) {
     e.stopPropagation();
-    const { info, menuResto, toggleTab } = this.props;
-    toggleTab();
+    const {
+      info,
+      menuResto,
+      history,
+    } = this.props;
     menuResto(`${varServeur}restaurant/menus/${info.id}`);
+    history.push('/commande-page');
   }
 
   render() {
@@ -57,7 +60,7 @@ class RestoInfoPin extends Component {
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ menuResto, toggleTab }, dispatch);
+  return bindActionCreators({ menuResto }, dispatch);
 }
 
 export default withRouter(

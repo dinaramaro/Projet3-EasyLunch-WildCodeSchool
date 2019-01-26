@@ -9,22 +9,30 @@ const sendOrder = (state = initialState, action) => {
   let tempTab = [...state.tabs];
   switch (action.type) {
     case 'CHANGE_ORDER': {
+      const tempCommand = { ...state.sendOrder.tableCommand };
+      const tempPayment = { ...state.sendOrder.tablePayment };
       const tempBooking = { ...state.sendOrder.tableBooking };
       tempBooking[action.name] = action.value;
       const tableBooking = {};
       tableBooking.master_user_id = action.user;
       tableBooking.nb_users = parseInt(tempBooking.nb_users, 10);
       const tempSchedule = tempBooking.schedule;
-      const tempScheduleString = tempSchedule.toString().split('h').join('');
-      tableBooking.schedule = parseInt(tempScheduleString, 10);
+      if (tempSchedule !== undefined) {
+        const tempScheduleString = tempSchedule.toString().split('h').join('');
+        tableBooking.schedule = parseInt(tempScheduleString, 10);
+      }
+
       tableBooking.restaurant_id = action.idresto;
-      const tempTable = { tableBooking };
+      const tableCommand = tempCommand;
+      const tablePayment = tempPayment;
+      const tempTable = { tableBooking, tableCommand, tablePayment };
       newState = {
         ...state,
         sendOrder: tempTable,
       };
       return newState;
     }
+
     case 'GET_USER_ID': {
       const tempFormChange = { ...state };
       const tempBooking = tempFormChange.sendOrder.tableBooking;

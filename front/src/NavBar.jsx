@@ -50,28 +50,26 @@ class NavBar extends Component {
     return (
       <div className="nav-bar">
         <Navbar className="navbar-div" dark expand="md">
-          <NavbarBrand>
-            <Link to="/">
-              <img
-                src="/medias/weblogo-easylunch-blanc.png"
-                alt="navbarLogo"
-                className="navbar-logo"
-              />
-            </Link>
+          <NavbarBrand tag={Link} to="/">
+            <img
+              src="/medias/weblogo-easylunch-blanc.png"
+              alt="navbarLogo"
+              className="navbar-logo"
+            />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem tag={Link} to="/a-propos/restaurateur">
-                Pour les restaurateurs
+                Vous êtes restaurateur?
               </NavItem>
               <UncontrolledDropdown setActiveFromChild>
                 <DropdownToggle tag="a" className="dropdown-toggle nav-link infos-toggle" caret>
-                  Infos
+                  Aide
                 </DropdownToggle>
                 <DropdownMenu right className="drop">
-                  <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>Foire aux questions</DropdownItem>
-                  <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales de vente</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>FAQ</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/politique" active>Politique de confidentialité</DropdownItem>
                   <DropdownItem className="drop" tag={Link} to="/a-propos/contact" active>Nous contacter</DropdownItem>
                 </DropdownMenu>
@@ -80,7 +78,7 @@ class NavBar extends Component {
                 (_.isEmpty(user))
                   ? (
                     <NavItem tag={Link} to="/connexion">
-                      Connexion
+                      Se connecter
                     </NavItem>
                   )
                   : (
