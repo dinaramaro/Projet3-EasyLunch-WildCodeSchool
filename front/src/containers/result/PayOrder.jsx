@@ -16,6 +16,7 @@ class PayOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeTab: '0',
     };
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);

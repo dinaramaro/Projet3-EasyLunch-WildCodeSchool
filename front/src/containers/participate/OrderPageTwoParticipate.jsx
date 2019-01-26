@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {
   Container, Row, Col,
 } from 'reactstrap';
-import FormOrder from '../result/FormOrder';
+import GeneralInformations from '../result/GeneralInformations';
 import PayOrderParticipate from './PayOrderParticipate';
 import MyMeal from '../result/MyMeal';
 import RestoInfos from '../result/RestoInfos';
@@ -30,7 +30,7 @@ const OrderPageTwoParticipage = ({ isLoadingStripe }) => {
           <OrderMenuParticipate />
         </Col>
         <Col sm={4}>
-          <FormOrder />
+          <GeneralInformations />
           <MyMeal />
           <PayOrderParticipate />
         </Col>

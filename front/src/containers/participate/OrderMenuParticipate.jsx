@@ -61,6 +61,7 @@ class OrderMenuParticipage extends Component {
     const { activeTab } = this.state;
     const previousTab = state && state.activeTab;
 
+
     if (activeTab === '0') {
       if (previousTab) {
         this.displayTab(previousTab);
@@ -297,7 +298,6 @@ class OrderMenuParticipage extends Component {
 }
 
 function mstp(state) {
-  console.log('state', state);
   return {
     restoInfos: state.menuResto.resto.restoInfos,
     menus: state.menuResto.resto.menus,

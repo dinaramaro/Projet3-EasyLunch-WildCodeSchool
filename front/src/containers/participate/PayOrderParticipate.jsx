@@ -22,11 +22,8 @@ class PayOrderParticipate extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('titi');
     const { history, isSuccess } = this.props;
-    console.log('isSuccess', isSuccess);
     if (prevProps.isSuccess && isSuccess) {
-      console.log('envoi');
       history.push('/recapitulatif-participation');
     }
   }
@@ -99,8 +96,9 @@ function mstp(state) {
   return {
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
-    getCode: state.getCode,
     log: state.log,
+    codeParticip: state.codeParticip,
+    isSuccess: state.stripeLoading.success,
   };
 }
 
