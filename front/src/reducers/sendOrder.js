@@ -67,13 +67,17 @@ const sendOrder = (state = initialState, action) => {
       const tempCommand = tempFormChange.sendOrder.tableCommand;
       const tempPayment = tempFormChange.sendOrder.tablePayment;
       const tempTotal = tempFormChange.total;
-      tempCommand[action.name] = action.value;
+      if (tempCommand !== undefined) {
+        tempCommand[action.name] = action.value;
+      }
       const tableCommand = tempCommand;
       const tableBooking = tempBooking;
       let tablePayment = {};
       if (tempPayment !== undefined) {
         tempPayment.amount = tempTotal;
-        tempPayment.user_id = tempCommand.user_id;
+        if (tempCommand !== undefined) {
+          tempPayment.user_id = tempCommand.user_id;
+        }
         tempPayment.status = 'ok';
         tablePayment = tempPayment;
       }

@@ -10,6 +10,8 @@ const setActiveTab = (state = initialState, action) => {
       };
     case 'INIT_STATE':
       return initialState;
+    case 'LOGOUT':
+      return initialState;
     default:
       return state;
   }

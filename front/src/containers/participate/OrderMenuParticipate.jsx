@@ -102,6 +102,7 @@ class OrderMenuParticipage extends Component {
       handleChangeSpecial,
       loadingResto,
       activeTab,
+      sendOrder: { sendOrder: { tableCommand } },
     } = this.props;
     let listEnt = [];
     let listMain = [];
@@ -112,6 +113,7 @@ class OrderMenuParticipage extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
+    let specialText = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -126,6 +128,10 @@ class OrderMenuParticipage extends Component {
       listDayEnt = cards.filter(item => item.plat === 4);
       listDayMain = cards.filter(item => item.plat === 5);
       listDayDessert = cards.filter(item => item.plat === 6);
+    }
+
+    if (tableCommand !== undefined) {
+      specialText = tableCommand.special;
     }
 
     if (error) {
@@ -283,7 +289,11 @@ class OrderMenuParticipage extends Component {
           </TabContent>
           <FormGroup>
             <p>Instructions spéciales</p>
-            <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+            {
+              !_.isEmpty(specialText)
+                ? <Input type="textarea" name="special" value={specialText} onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+                : <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+            }
           </FormGroup>
         </Form>
       </div>
