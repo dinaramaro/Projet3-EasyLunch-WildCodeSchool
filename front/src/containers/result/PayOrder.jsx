@@ -55,21 +55,11 @@ class PayOrder extends Component {
       if (elem !== null) {
         elem.style.border = '1px solid red';
       }
-    } else {
-      const elem = document.getElementById('hour');
-      if (elem !== null) {
-        elem.style.border = '1px solid #ced4da';
-      }
     }
-    if (formulaire.schedule === '') {
+    if (formulaire.nb_users === '') {
       const elem = document.getElementById('nb');
       if (elem !== null) {
         elem.style.border = '1px solid red';
-      }
-    } else {
-      const elem = document.getElementById('nb');
-      if (elem !== null) {
-        elem.style.border = '1px solid #ced4da';
       }
     }
   }
