@@ -23,7 +23,6 @@ class PayOrder extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('didupdate');
     const { getCode, history } = this.props;
     if (prevProps.getCode.code === '' && getCode.code) {
       history.push('/recapitulatif-commande');
@@ -31,7 +30,6 @@ class PayOrder extends Component {
   }
 
   onToken(token) {
-    console.log('ontoken');
     const {
       stripePayment, sendOrder: { sendOrder }, chooseByUser: { total },
     } = this.props;
@@ -51,7 +49,6 @@ class PayOrder extends Component {
   }
 
   verifyGeInfo() {
-    console.log('verify');
     const { formulaire } = this.props;
     if (formulaire.schedule === '') {
       const elem = document.getElementById('hour');
@@ -78,7 +75,6 @@ class PayOrder extends Component {
   }
 
   render() {
-    console.log('render');
     const {
       log: { user },
       formulaire,
