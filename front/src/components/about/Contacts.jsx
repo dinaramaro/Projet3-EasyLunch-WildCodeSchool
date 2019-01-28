@@ -80,9 +80,9 @@ class Contact extends Component {
     } = this.state;
     return (
       <div className="Contacts">
-        <h1 className="title">NOUS CONTACTER</h1>
+        <h1 className="title-contact">NOUS CONTACTER</h1>
+        <RestoPub />
         <Container>
-          <RestoPub />
           <div className="contact">
             <div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} />
             <Form className="form" onSubmit={this.handleSubmit}>
