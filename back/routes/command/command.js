@@ -1,7 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import connection from '../config';
-import { senderMail, passwordMail } from '../myAccount/secretOrkey';
 
 const router = express.Router();
 
@@ -68,6 +67,7 @@ router.post('/', (req, res) => {
                                 <h1>Merci ${name} d'avoir commandé chez EASYLUNCH</h1>
                                 <br />
                                 <p>Votre commande a bien été réservée, bon appétit!</p>
+                                <p>Le code a partager a vos amis est ${code}
                                 <br />
                                 <p> Votre numéro de commande est le ${id_custom}.
                                 <p> Je vous remercie de votre commande</p>
@@ -77,12 +77,12 @@ router.post('/', (req, res) => {
                                     port: 465,
                                     secure: true,
                                     auth: {
-                                      user: senderMail,
-                                      pass: passwordMail,
+                                      user: process.env.SENDER_MAIL,
+                                      pass: process.env.PASSWORD_MAIL,
                                     },
                                   });
                                   const mailOptions = {
-                                    from: `EasyLunch Commande ${senderMail}`,
+                                    from: `EasyLunch Commande ${process.env.SENDER_MAIL}`,
                                     to: mail,
                                     subject: 'Votre commande chez EASYLUNCH',
                                     html: output

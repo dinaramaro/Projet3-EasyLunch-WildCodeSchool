@@ -7,7 +7,7 @@ import {
   Col, Row, Button,
 } from 'reactstrap';
 import StripeCheckout from 'react-stripe-checkout';
-import { varServeur } from '../../constants';
+import { varServeur, publicStripeKey } from '../../constants';
 import { sendCommand } from '../../actions/sendCommand';
 import { stripePayment } from '../../actions/stripePayment';
 import { notifSuccess, notifError, notifInfo } from '../../actions/notifications';
@@ -68,7 +68,7 @@ class PayOrder extends Component {
       return (
         <StripeCheckout
           token={this.onToken}
-          stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+          stripeKey={publicStripeKey}
           amount={Math.round(totalSend * 100)}
           currency="EUR"
         >
