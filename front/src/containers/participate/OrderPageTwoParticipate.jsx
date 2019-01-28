@@ -15,7 +15,7 @@ const OrderPageTwoParticipage = ({ isLoadingStripe }) => {
     return (
       <Container className="text-center">
         <img src="/medias/eatstreet-loading.gif" alt="loading" />
-        <h2>Authorisation de paiement en cours...</h2>
+        <h2>Autorisation de paiement en cours...</h2>
       </Container>
     );
   }

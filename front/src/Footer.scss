@@ -1,10 +1,11 @@
 .Footer {
-  background-image: linear-gradient(to bottom right, #f1c40f, #ffa300);
+  background-color: #ffa300;
   padding-top: 2em;
   padding-bottom: 2em;
 
   a {
-    color: white;
+    text-decoration: none;
+    color: #f9f9f9;
     &:hover {
       text-decoration: none;
     }
@@ -21,7 +22,7 @@
     transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
-    color: whitesmoke;
+    color: #f9f9f9;
     &:hover{
       transform: scale(1.4);
       -moz-transform: scale(1.4);
@@ -38,12 +39,23 @@
     transition-duration: 0.5s;
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
-    color: whitesmoke; 
+    color: #f9f9f9; 
     &:hover{
       transform: scale(1.4);
       -moz-transform: scale(1.4);
       -o-transform: scale(1.4);
       color: #D9317A; 
+    }
+  }
+
+  @media screen and (max-width: 667px) {
+    .foot{
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer{
+      margin-left: 5%;
     }
   }
 }

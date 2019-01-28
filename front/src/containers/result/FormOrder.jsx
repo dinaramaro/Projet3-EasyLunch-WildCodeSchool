@@ -32,14 +32,14 @@ class FormOrder extends Component {
         <p>(concernent l&apos;ensemble des invités)</p>
         <Form>
           <FormGroup row>
-            <Label for="date" sm={6}>Date</Label>
-            <Col sm={6}>
+            <Label for="date" sm={2}><i className="fa fa-calendar" aria-hidden="true" /></Label>
+            <Col sm={10}>
               <Input type="text" name="date" id="date" value="Aujourd'hui" />
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="hour" sm={6}>Heure</Label>
-            <Col sm={6}>
+            <Label for="hour" sm={2}><i className="fa fa-clock-o" aria-hidden="true" /></Label>
+            <Col sm={10}>
               <Input
                 className={clsHour}
                 type="select"

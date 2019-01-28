@@ -2,7 +2,7 @@ import express from 'express';
 import nodemailer from 'nodemailer';
 import bcrypt from 'bcrypt';
 import connection from '../config';
-import { senderMail, passwordMail } from './secretOrKey';
+import { senderMail, passwordMail } from './secretOrkey';
 
 const router = express.Router();
 

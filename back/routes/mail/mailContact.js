@@ -1,6 +1,6 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
-import { senderMail, passwordMail } from '../myAccount/secretOrKey';
+import { senderMail, passwordMail } from '../myAccount/secretOrkey';
 
 const router = express.Router();
 

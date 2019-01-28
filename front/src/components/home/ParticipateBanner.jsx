@@ -79,13 +79,13 @@ class ParticipateBanner extends Component {
               <Input
                 type="text"
                 name="codeParticipation"
-                placeholder=" Code de participation"
+                placeholder="LunchCode"
                 value={codeParticipation}
                 onChange={this.onChange}
               />
             </Col>
             <Col sm="1">
-              <Button type="submit"> Envoyer </Button>
+              <Button type="submit"> Je parcitipe </Button>
             </Col>
           </Form>
         </Row>

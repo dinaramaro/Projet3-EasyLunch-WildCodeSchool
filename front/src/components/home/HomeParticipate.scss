@@ -1,0 +1,38 @@
+.HomeParticipe {
+  background-color: #F9B522;
+  padding: 0.5%;
+
+  .backgroundCard{
+    background-color: #F9B522;
+    display: flex;
+    padding-bottom: 5%;
+
+    .titlePart {
+      background-color: #F9B522;
+      color: #f9f9f9;
+      text-align: center;
+      font-size : 2em;
+      font-weight: bold;
+      padding: 4.2% 1.5% 0 1.5%;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 400; 
+      margin-left: 5%; 
+    }
+
+    .inputCard {
+      margin-top: 3.7em;
+      margin-bottom: 1em;
+      margin-left: 10%;
+    }
+    .all-btn{
+      background-color: #f9f9f9;
+      color: #F9B522;
+    }
+  
+  }
+
+  .HomeCardParti {
+    margin: auto;
+    text-align: center;
+  }
+}
