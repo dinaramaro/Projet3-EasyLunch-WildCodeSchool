@@ -23,7 +23,7 @@ class PayOrderParticipate extends Component {
 
   componentDidUpdate(prevProps) {
     const { history, isSuccess } = this.props;
-    if (prevProps.isSuccess && isSuccess) {
+    if (!prevProps.isSuccess && isSuccess) {
       history.push('/recapitulatif-participation');
     }
   }
