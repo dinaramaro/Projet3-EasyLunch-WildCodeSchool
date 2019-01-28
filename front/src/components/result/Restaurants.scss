@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: stretch;
 
   .search1 {
     margin-top: 50px;
@@ -36,6 +37,10 @@
     border: none;
     box-shadow: 2px 2px 5px grey;
     margin: 10px;
+
+    .icon-pers {
+      margin-right: 10px;
+    }
   }
   .showMenu {
     font-size: 20px;

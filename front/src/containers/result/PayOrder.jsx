@@ -11,6 +11,7 @@ import { varServeur, publicStripeKey } from '../../constants';
 import { sendCommand } from '../../actions/sendCommand';
 import { stripePayment } from '../../actions/stripePayment';
 import { notifSuccess, notifError, notifInfo } from '../../actions/notifications';
+import './PayOrder.scss';
 
 class PayOrder extends Component {
   constructor(props) {
@@ -50,12 +51,12 @@ class PayOrder extends Component {
   displayButtonPay() {
     const {
       log: { user },
-      formulaire,
+      formulaire, chooseByUser: { total }
     } = this.props;
 
     if (_.isEmpty(user)) {
       return (
-        <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+        <Button className="all-btn" onClick={this.redirectConnect}>Se connecter avant de payer</Button>
       );
     }
 
@@ -72,14 +73,20 @@ class PayOrder extends Component {
           amount={Math.round(totalSend * 100)}
           currency="EUR"
         >
-          <Button type="button">
-            Payer
+          <Button className="all-btn">
+            Payer {totalSend}
+            €
           </Button>
         </StripeCheckout>
       );
     }
 
-    return '';
+    return (
+      <Button className="all-btn">
+            Payer {total}
+            €
+      </Button>
+    );
   }
 
   render() {
@@ -90,13 +97,7 @@ class PayOrder extends Component {
     return (
       <div className="PayOrder">
         <Row>
-          <Col sm={2}>
-            {'Total :'}
-          </Col>
-          <Col sm={4}>
-            {`${total} €`}
-          </Col>
-          <Col sm={6}>
+          <Col sm={12} className="pay-button">
             { this.displayButtonPay() }
           </Col>
         </Row>

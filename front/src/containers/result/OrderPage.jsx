@@ -26,20 +26,20 @@ const OrderPage = ({ isLoadingStripe }) => {
     <Container fluid className="OrderPage">
       <h1 className="title">Faites votre choix</h1>
       <Row>
-        <Col sm={3}>
+        <Col sm={12} md={6} lg={3}>
           <Zoom>
             <RestoInfos />
           </Zoom>
         </Col>
-        <Col sm={6}>
+        <Col sm={12} md={12} lg={6}>
           <OrderMenu />
         </Col>
-        <Col sm={3}>
+        <Col sm={12} md={12} lg={3}>
           <Zoom>
             <FormOrder />
+            <MyMeal />
+            <PayOrder />
           </Zoom>
-          <MyMeal />
-          <PayOrder />
         </Col>
       </Row>
     </Container>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
   Container,
-  Row,
-  Col,
   Input,
   Button,
   Form,
@@ -71,29 +69,24 @@ class Participate extends Component {
         codeParticipation,
       } = this.state;
       return (
-        <div className="Participate">
-          <div className="participation-message">
-            Entrez ici le code transmis par vos amis pour rejoindre la table réservée!
+        <Container fluid className="Participate">
+          <div className="fog" />
+          <div className="participate-message">
+            Entrez ici le code transmis par vos amis
+            <br />
+            pour rejoindre la table réservée !
           </div>
-          <Container fluid className="input-container">
-            <Row className="input-row">
-              <Form onSubmit={this.getIdRestau}>
-                <Col>
-                  <Input
-                    type="text"
-                    name="codeParticipation"
-                    placeholder=" Code de participation"
-                    value={codeParticipation}
-                    onChange={this.onChange}
-                  />
-                </Col>
-                <Col>
-                  <Button type="submit" color="info"> Envoyer </Button>
-                </Col>
-              </Form>
-            </Row>
-          </Container>
-        </div>
+          <Form onSubmit={this.getIdRestau} className="form-participate">
+            <Input
+              type="text"
+              name="codeParticipation"
+              placeholder=" Code de participation"
+              value={codeParticipation}
+              onChange={this.onChange}
+            />
+            <Button className="all-btn form-participate" type="submit" color="info"> Envoyer </Button>
+          </Form>
+        </Container>
       );
     }
 }

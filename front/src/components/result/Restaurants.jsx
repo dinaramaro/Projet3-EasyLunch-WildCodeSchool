@@ -37,7 +37,7 @@ class Restaurants extends Component {
                   <CardTitle className="titleCard">{item.name}</CardTitle>
                   <br />
                   <CardSubtitle>
-                    <i className="fa fa-cutlery" />
+                    <i className="fa fa-cutlery icon-pers" />
                     { item.description }
                   </CardSubtitle>
                   <br />
