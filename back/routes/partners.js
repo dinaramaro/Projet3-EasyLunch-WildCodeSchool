@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   connection.query('SELECT * FROM admin_partners', (err, results) => {
     if (err) {
-      res.status(500).send('Erreur');
+      res.sendStatus(500);
     } else {
       res.json(results);
     }
