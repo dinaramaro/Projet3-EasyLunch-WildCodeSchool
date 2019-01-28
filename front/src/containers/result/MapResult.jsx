@@ -21,20 +21,14 @@ const navStyle = {
 class Mapresult extends Component {
   constructor(props) {
     super(props);
-    const windowWidth = window.innerWidth;
-    const mapHeight = windowWidth < 992 ? '55vh' : '35vh';
     this.state = {
       viewport: {},
-      mapHeight,
       popupInfo: null,
       latitudeuser: 0,
       longitudeuser: 0,
       popupUser: null,
     };
     this.closePopupInfo = this.closePopupInfo.bind(this);
-    this.onResize = this.onResize.bind(this);
-
-    window.addEventListener('resize', this.onResize);
   }
 
   componentDidMount() {
@@ -52,18 +46,6 @@ class Mapresult extends Component {
           longitudeuser: pos.coords.longitude,
         },
       );
-    });
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResize);
-  }
-
-  onResize() {
-    const windowWidth = window.innerWidth;
-    const mapHeight = windowWidth < 1040 ? '55vh' : '35vh';
-    this.setState({
-      mapHeight,
     });
   }
 
@@ -154,7 +136,6 @@ class Mapresult extends Component {
   render() {
     const {
       viewport,
-      mapHeight,
     } = this.state;
     const {
       searchResults: { results },
@@ -166,7 +147,7 @@ class Mapresult extends Component {
           className="map"
           {...viewport}
           width="100%"
-          height={mapHeight}
+          height="100%"
           mapStyle="mapbox://styles/mapbox/light-v9"
           onViewportChange={this.updateViewport}
           mapboxApiAccessToken={TOKEN}
