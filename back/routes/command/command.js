@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
       const nameCode = results[0].name;
       connection.query('UPDATE public_code SET free = 0 WHERE name = ?', nameCode, (err2) => {
         if (err2) {
-          res.status(500).send(`Erreur public code: ${err2}`);
+          res.sendStatus(500);
         } else {
           const { tableBooking } = req.body;
           const newBooking = {
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
           };
           connection.query('INSERT INTO public_booking SET ?', newBooking, (err3, results3) => {
             if (err3) {
-              res.status(500).send(`Erreur public booking: ${err3}`);
+              res.sendStatus(500);
             } else {
               const { tableCommand, tableBooking: { restaurant_id } } = req.body;
               connection.query('SELECT cmd.id FROM public_command cmd JOIN public_booking book ON cmd.booking_id = book.id WHERE book.restaurant_id = ?', restaurant_id, (err4, results4) => {
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
                   };
                   connection.query('INSERT INTO public_command SET ?', newCommand, (err5, results5) => {
                     if (err5) {
-                      res.status(500).send(`Erreur public command: ${err5}`);
+                      res.sendStatus(500);
                     } else {
                       const commandId = results5.insertId;
                       const { tablePayment, idStripe } = req.body;
@@ -51,7 +51,7 @@ router.post('/', (req, res) => {
                       };
                       connection.query('INSERT INTO public_payment SET ?', newPayment, (err6, results6) => {
                         if (err6) {
-                          res.status(500).send(`Erreur public payment: ${err6}`);
+                          res.sendStatus(500);
                         } else {
                           const paymentId = results6.insertId;
                           connection.query('UPDATE public_command SET payment_id = ? WHERE id = ?', [paymentId, commandId], (err7) => {
