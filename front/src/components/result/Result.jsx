@@ -10,6 +10,7 @@ import Restaurants from './Restaurants';
 import MapResult from '../../containers/result/MapResult';
 import { varServeur } from '../../constants';
 import { dataResults } from '../../actions/search';
+import { initState } from '../../actions';
 
 
 class Result extends Component {
@@ -24,7 +25,8 @@ class Result extends Component {
   }
 
   componentDidMount() {
-    const { location: { search }, resultRestaurants } = this.props;
+    const { initState, location: { search }, resultRestaurants } = this.props;
+    initState();
     resultRestaurants(`${varServeur}search/${search}`);
   }
 
@@ -104,7 +106,7 @@ class Result extends Component {
 }
 
 function mdtp(dispatch) {
-  return bindActionCreators({ resultRestaurants: dataResults }, dispatch);
+  return bindActionCreators({ initState, resultRestaurants: dataResults }, dispatch);
 }
 
 export default connect(null, mdtp)(Result);
