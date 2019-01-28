@@ -50,29 +50,35 @@ class NavBar extends Component {
     return (
       <div className="nav-bar">
         <Navbar className="navbar-div" dark expand="md">
-          <NavbarBrand>
-            <Link to="/">
-              <img
-                src="/medias/weblogo-easylunch-blanc.png"
-                alt="navbarLogo"
-                className="navbar-logo"
-              />
-            </Link>
+          <NavbarBrand tag={Link} to="/">
+            <img
+              src="/medias/weblogo-easylunch-blanc.png"
+              alt="navbarLogo"
+              className="navbar-logo"
+            />
           </NavbarBrand>
-          <NavItem tag={Link} to="/participation" className="join d-md-none d-lg-none">
-            Je participe
-          </NavItem>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem tag={Link} to="/participation">
-                Je participe
+              <NavItem tag={Link} to="/a-propos/restaurateur">
+                Vous êtes restaurateur?
               </NavItem>
+              <UncontrolledDropdown setActiveFromChild>
+                <DropdownToggle tag="a" className="dropdown-toggle nav-link infos-toggle" caret>
+                  Aide
+                </DropdownToggle>
+                <DropdownMenu right className="drop">
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/faq" active>FAQ</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/cgv" active>Conditions génerales</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/politique" active>Politique de confidentialité</DropdownItem>
+                  <DropdownItem className="drop" tag={Link} to="/a-propos/contact" active>Nous contacter</DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
               {
                 (_.isEmpty(user))
                   ? (
                     <NavItem tag={Link} to="/connexion">
-                      Connexion
+                      Se connecter
                     </NavItem>
                   )
                   : (
@@ -80,7 +86,7 @@ class NavBar extends Component {
                       <DropdownToggle tag="a" className="dropdown-toggle nav-link" caret>
                         Mon Compte
                       </DropdownToggle>
-                      <DropdownMenu className="drop">
+                      <DropdownMenu right className="drop">
                         <DropdownItem className="drop" tag={Link} to="/mon-compte" active>Mes Informations</DropdownItem>
                         <DropdownItem className="drop" tag={Link} to="/historique-de-reservation" active>Historique de Commande</DropdownItem>
                         {
@@ -97,11 +103,6 @@ class NavBar extends Component {
                     </UncontrolledDropdown>
                   )
               }
-              <NavItem>
-                <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
-                  Espace restaurateurs
-                </a>
-              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

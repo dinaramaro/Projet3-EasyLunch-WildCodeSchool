@@ -9,28 +9,22 @@
       background-color: #ffa300;
       cursor: pointer;
     }
-
-    .join {
-      list-style-type: none;
-      a {
-        color: white;
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
-
     
     a {
       color: white;
       padding: 0.07rem 0.5rem 0.5rem 0.5rem;
+      margin-right:1em;
       &:hover {
         text-decoration: none;
-        color: black;
+        color: #f2f2f2;
       }
     }
    .dropdown-toggle:hover {
-     cursor: pointer
+     cursor: pointer;
+     &:hover {
+      text-decoration: none;
+      color: #f2f2f2;
+    }
    }
   }
 }

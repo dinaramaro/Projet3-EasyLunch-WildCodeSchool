@@ -1,12 +1,11 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { Row, Col, Container } from 'reactstrap';
 import './Footer.scss';
 
 const Footer = () => (
   <Container className="Footer" fluid>
-    <Row className="d-flex justify-content-around left">
+    <Row className="d-flex justify-content-around left foot">
       <Col lg={{ offset: 1, size: 3 }}>
         <li>
           <Link to="/a-propos/contact">Contact Client</Link>
@@ -36,8 +35,13 @@ const Footer = () => (
         <li>
           <Link to="/a-propos/faq">FAQ</Link>
         </li>
+        <li>
+          <a href="https://restaurateur.easy-lunch.fr/" target="_blank" rel="noopener noreferrer">
+            Espace restaurateurs
+          </a>
+        </li>
       </Col>
-      <Col>
+      <Col className="footer">
         <a
           href="https://www.facebook.com/EasyLunchBordeaux"
           target="_blank"

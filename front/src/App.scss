@@ -6,7 +6,7 @@ $accentuationColor: #f9b522;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   .content{
-    min-height: calc(71.7vh);
+    min-height: calc(100vh - 140px);
   }
   .title {
     background-color: #f9f9f9;
@@ -19,6 +19,14 @@ $accentuationColor: #f9b522;
     font-weight: 400;  
     margin-bottom: 1em;
   }
+
+  .titleCard {
+    color: #F9B522;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
   .all-btn{
     color: white;
     font-weight: 500;

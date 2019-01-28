@@ -3,7 +3,10 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
   CardText,
+  CardImg,
+  Card,
 } from 'reactstrap';
+import './RestoInfos.scss';
 
 
 class RestoInfos extends Component {
@@ -16,6 +19,7 @@ class RestoInfos extends Component {
     let restoName = '';
     let restoAddress = '';
     let restoCity = '';
+    let restoPicture = '';
 
 
     if (!_.isEmpty(restoInfos)) {
@@ -25,39 +29,47 @@ class RestoInfos extends Component {
       restoName = restoInfos.name;
       restoAddress = restoInfos.address;
       restoCity = restoInfos.city;
+      restoPicture = restoInfos.picture;
     }
 
     return (
       <div className="RestoInfos">
-        <h3>{restoName}</h3>
-        <CardText>{restoAddress}</CardText>
-        <CardText>{restoCity}</CardText>
-        <CardText>
-          {days.map((day, index) => {
-            let concatDays = '';
-            if (index === 0) {
-              concatDays = 'Ouverture : ';
-            }
-            switch (day) {
-              case '0':
-                return `${concatDays} Lundi `;
-              case '1':
-                return `${concatDays} Mardi `;
-              case '2':
-                return `${concatDays} Mercredi `;
-              case '3':
-                return `${concatDays} Jeudi `;
-              case '4':
-                return `${concatDays} Vendredi `;
-              case '5':
-                return `${concatDays} Samedi `;
-              case '6':
-                return `${concatDays} Dimanche `;
-              default:
-                return concatDays;
-            }
-          })}
-        </CardText>
+        <Card>
+          <h3 className="titleCard">{restoName}</h3>
+          <CardImg className="card-image" top width="100%" height="200px" src={restoPicture} alt="Card image cap" />
+          <CardText>
+            <i className="fa fa-home" />
+            {' '}
+            {restoAddress}
+          </CardText>
+          <CardText>{restoCity}</CardText>
+          <CardText>
+            {days.map((day, index) => {
+              let concatDays = '';
+              if (index === 0) {
+                concatDays = 'Ouverture : ';
+              }
+              switch (day) {
+                case '0':
+                  return `${concatDays} Lundi `;
+                case '1':
+                  return `${concatDays} Mardi `;
+                case '2':
+                  return `${concatDays} Mercredi `;
+                case '3':
+                  return `${concatDays} Jeudi `;
+                case '4':
+                  return `${concatDays} Vendredi `;
+                case '5':
+                  return `${concatDays} Samedi `;
+                case '6':
+                  return `${concatDays} Dimanche `;
+                default:
+                  return concatDays;
+              }
+            })}
+          </CardText>
+        </Card>
       </div>
     );
   }

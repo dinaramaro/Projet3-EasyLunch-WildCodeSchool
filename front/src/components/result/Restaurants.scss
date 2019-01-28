@@ -1,4 +1,6 @@
 .Restaurants {
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 140px);
 
   .padding {
     padding-left : 0px;
@@ -13,17 +15,27 @@
   .search2 {
     margin-top: 50px;
     margin-bottom: 50px;
-    width: 12vw;
+    width: 15vw;
+  }
+
+  .titleCard {
+    color: #F9B522;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .submit-button {
+    margin-left: 30px;
     margin-top: 3em;
   }
 
   .card-restaurant {
-    width: 250px;
-    margin: 10px;
-    height: 350px;
+    width: 275px;
+    margin: 30%;
+    height: 425px;
+    border: none;
+    box-shadow: 2px 2px 5px grey;
   }
   .showMenu {
     font-size: 20px;
@@ -33,7 +45,7 @@
     outline: none;
   }
 
-  @media (max-width: 576px) {
+  @media (max-width: 1024px) {
     display: none;
   } 
   

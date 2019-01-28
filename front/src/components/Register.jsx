@@ -30,7 +30,9 @@ class Register extends Component {
   }
 
   handleSubmit(e) {
-    const { notifError, notifSuccess } = this.props;
+    const {
+      notifError, notifSuccess, history, location: { state },
+    } = this.props;
     e.preventDefault();
     fetch(`${varServeur}signup`, {
       method: 'POST',
@@ -44,9 +46,16 @@ class Register extends Component {
           notifError('Adresse email déjà enregistré');
         }
         if (res.status === 200) {
-          const { history } = this.props;
           notifSuccess('Compte enregistré, vous pouvez vous connecter');
-          history.push('/connexion');
+          if (state === undefined) {
+            history.push('/connexion');
+          } else {
+            const { location: { state: { from: { pathname } } } } = this.props;
+            history.push({
+              pathname: '/connexion',
+              state: { from: { pathname } },
+            });
+          }
         }
       });
   }
