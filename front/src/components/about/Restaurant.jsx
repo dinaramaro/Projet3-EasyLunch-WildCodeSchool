@@ -12,8 +12,8 @@ class Restaurant extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      contactText: '',
       text: '',
-      message: '',
       email: '',
       subject: '',
     };
@@ -24,7 +24,7 @@ class Restaurant extends Component {
   componentDidMount() {
     fetch(`${varServeur}admin/contact-restaurant`)
       .then(res => res.json())
-      .then(data => this.setState({ text: data }));
+      .then(data => this.setState({ contactText: data }));
   }
 
   onChangeInput(e) {
@@ -35,11 +35,11 @@ class Restaurant extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, subject, message } = this.state;
+    const { email, subject, text } = this.state;
     const mail = {
       email,
       subject,
-      message,
+      text,
     };
     const { notifError, notifSuccess } = this.props;
     fetch(`${varServeur}mailcontact`, {
@@ -58,7 +58,7 @@ class Restaurant extends Component {
           this.setState({
             subject: '',
             email: '',
-            message: '',
+            text: '',
           });
         }
       });
@@ -66,7 +66,7 @@ class Restaurant extends Component {
 
   render() {
     const {
-      text, message, email, subject,
+      contactText, text, email, subject,
     } = this.state;
     return (
       <div className="Restaurant">
@@ -74,7 +74,7 @@ class Restaurant extends Component {
         <Container>
           <div>
             <p>
-              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: text }} />
+              <div className="ql-editor" dangerouslySetInnerHTML={{ __html: contactText }} />
             </p>
           </div>
           <h1 className="form-title">NOUS CONTACTER</h1>
@@ -106,9 +106,9 @@ class Restaurant extends Component {
                 <Input
                   required
                   type="textarea"
-                  name="message"
+                  name="text"
                   onChange={this.onChangeInput}
-                  value={message}
+                  value={text}
                 />
               </FormGroup>
               <Button color="warning" type="submit" className="all-btn">

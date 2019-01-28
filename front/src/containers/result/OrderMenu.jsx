@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import StripeCheckout from 'react-stripe-checkout';
-import { varServeur } from '../../constants';
+import { varServeur, publicStripeKey } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from './ChooseOnCards';
 import MyMeal from './MyMeal';
@@ -286,7 +286,7 @@ class OrderMenu extends Component {
                   ? (
                     <StripeCheckout
                       token={this.onToken}
-                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+                      stripeKey={publicStripeKey}
                       amount={Math.round(totalSend * 100)}
                       currency="EUR"
                     >
