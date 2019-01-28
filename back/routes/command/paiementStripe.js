@@ -1,9 +1,8 @@
 import express from 'express';
 import Stripe from 'stripe';
-import { privateKeyStripe, isProd } from '../myAccount/secretOrkey';
 
 const router = express.Router();
-const stripe = Stripe(privateKeyStripe);
+const stripe = Stripe(process.env.PRIVATE_STRIPE_KEY);
 
 router.post('/:amount', (req, res) => {
   const heure = () => {
@@ -22,7 +21,7 @@ router.post('/:amount', (req, res) => {
     }
     return h * 60 + m;
   };
-  if (!isProd) {
+  if (!process.env.IS_PROD) {
     const amount = req.params.amount;
     const customerEmail = req.body.email;
     stripe.customers.create({
