@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClassNames from 'classnames';
 import {
   Form, FormGroup, Label, Input, Col,
 } from 'reactstrap';
@@ -9,26 +10,22 @@ import './FormOrder.scss';
 
 
 class FormOrder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   handleChange = (e) => {
-    if (e.target.value !== '') {
-      const elem = document.getElementById(e.target.id);
-      elem.style.border = '1px solid #ced4da';
-    }
-  }
-
-  render() {
     const {
-      formulaire: { schedule, nb_users },
       handleChangeOrder, menuResto: { resto: { restoInfos } },
       idUser,
     } = this.props;
+    handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser);
+  }
 
+  render() {
+    const { formulaire: { schedule, nb_users } } = this.props;
+    const clsHour = ClassNames('hour', {
+      mandatory: schedule === '',
+    });
+    const clsNbUser = ClassNames('nb-user', {
+      mandatory: nb_users === '',
+    });
     return (
       <div className="FormOrder">
         <p>Informations générales</p>
@@ -44,15 +41,12 @@ class FormOrder extends Component {
             <Label for="hour" sm={6}>Heure</Label>
             <Col sm={6}>
               <Input
-                required
+                className={clsHour}
                 type="select"
                 name="schedule"
                 id="hour"
                 value={schedule}
-                onChange={(e) => {
-                  handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser);
-                  this.handleChange(e);
-                }}
+                onChange={this.handleChange}
               >
                 <option value="">Veuillez sélectionner</option>
                 <option value="12h00">12h00</option>
@@ -73,15 +67,12 @@ class FormOrder extends Component {
             <Label for="nb" sm={6}>Nombre de personnes</Label>
             <Col sm={6}>
               <Input
-                required
+                className={clsNbUser}
                 type="select"
                 name="nb_users"
                 id="nb"
                 value={nb_users}
-                onChange={(e) => {
-                  handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser);
-                  this.handleChange(e);
-                }}
+                onChange={this.handleChange}
               >
                 <option value="">Veuillez sélectionner</option>
                 <option value="1">1</option>

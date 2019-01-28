@@ -19,7 +19,6 @@ class PayOrder extends Component {
     };
     this.redirectConnect = this.redirectConnect.bind(this);
     this.onToken = this.onToken.bind(this);
-    this.verifyGeInfo = this.verifyGeInfo.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -48,34 +47,46 @@ class PayOrder extends Component {
     });
   }
 
-  verifyGeInfo() {
-    const { formulaire } = this.props;
-    if (formulaire.schedule === '') {
-      const elem = document.getElementById('hour');
-      if (elem !== null) {
-        elem.style.border = '1px solid red';
-      }
-    }
-    if (formulaire.nb_users === '') {
-      const elem = document.getElementById('nb');
-      if (elem !== null) {
-        elem.style.border = '1px solid red';
-      }
-    }
-  }
-
-  render() {
+  displayButtonPay() {
     const {
       log: { user },
       formulaire,
     } = this.props;
+
+    if (_.isEmpty(user)) {
+      return (
+        <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+      );
+    }
+
+    if (formulaire.nb_users && formulaire.schedule) {
+      let { chooseByUser: { total } } = this.props;
+      if (total % 1 !== 0) {
+        total = `${total}0`;
+      }
+      const totalSend = total * 100 / 100;
+      return (
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
+          amount={Math.round(totalSend * 100)}
+          currency="EUR"
+        >
+          <Button type="button">
+            Payer
+          </Button>
+        </StripeCheckout>
+      );
+    }
+
+    return '';
+  }
+
+  render() {
     let { chooseByUser: { total } } = this.props;
     if (total % 1 !== 0) {
       total = `${total}0`;
     }
-    const totalSend = total * 100 / 100;
-
-
     return (
       <div className="PayOrder">
         <Row>
@@ -86,25 +97,7 @@ class PayOrder extends Component {
             {`${total} €`}
           </Col>
           <Col sm={6}>
-            {
-              (!_.isEmpty(user))
-                ? 
-                (formulaire.nb_users && formulaire.schedule)
-                  ? (
-                    <StripeCheckout
-                      token={this.onToken}
-                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
-                      amount={Math.round(totalSend * 100)}
-                      currency="EUR"
-                    >
-                      <Button type="button">
-                        Payer
-                      </Button>
-                    </StripeCheckout>
-                  )
-                  : (this.verifyGeInfo())
-                : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
-            }
+            { this.displayButtonPay() }
           </Col>
         </Row>
       </div>
@@ -130,8 +123,7 @@ function mdtp(dispatch) {
     notifError,
     notifInfo,
     stripePayment,
-  },
-  dispatch);
+  }, dispatch);
 }
 
 

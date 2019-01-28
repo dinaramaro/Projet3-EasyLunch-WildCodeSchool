@@ -1,0 +1,10 @@
+.FormOrder {
+  .hour,
+  .nb-user {
+    border: 1px solid #ced4da;
+
+    &.mandatory {
+      border-color: red;
+    }
+  }
+}
