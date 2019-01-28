@@ -40,40 +40,6 @@ const Explaination = () => (
         </div>
       </Col>
     </Row>
-    <div className="video-ex">
-      <Media />
-    </div>
-    <br />
-    <h2 className="link-app">EasyLunch également disponible sur votre smartphone</h2>
-
-    <Row className="link-app">
-      <Col>
-        <a
-          href="https://itunes.apple.com/fr/app/easy-lunch/id1407269785?mt=8"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo"
-            src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/Télécharger-dans-App-Store1-1024x303.png"
-            alt="App-Store-Easy-Lunch"
-          />
-        </a>
-      </Col>
-      <Col>
-        <a
-          href="https://play.google.com/store/apps/details?id=com.easy.lunch"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            className="logo"
-            src="https://www.easy-lunch.fr/wp-content/uploads/2018/08/google-play-badge1-1024x303.png"
-            alt="Google-Store-Easy-Lunch"
-          />
-        </a>
-      </Col>
-    </Row>
   </Container>
 );
 
