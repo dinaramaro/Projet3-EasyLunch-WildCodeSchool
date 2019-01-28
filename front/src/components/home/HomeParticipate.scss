@@ -1,38 +1,35 @@
 .HomeParticipe {
   background-color: #F9B522;
-  padding: 0.5%;
 
-  .backgroundCard{
-    background-color: #F9B522;
+
+  .form-participate {
+    height: 150px;
     display: flex;
-    padding-bottom: 5%;
+    align-items: center;
+  }
 
-    .titlePart {
-      background-color: #F9B522;
-      color: #f9f9f9;
-      text-align: center;
-      font-size : 2em;
-      font-weight: bold;
-      padding: 4.2% 1.5% 0 1.5%;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400; 
-      margin-left: 5%; 
-    }
+  .title-participate {
+    color: #f9f9f9;
+    flex-basis: 45%;
+  }
 
-    .inputCard {
-      margin-top: 3.7em;
-      margin-bottom: 1em;
-      margin-left: 10%;
-    }
-    .all-btn{
+  Input {
+    margin: 0 40px;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  }
+
+    .btn-participate{
       background-color: #f9f9f9;
       color: #F9B522;
+      flex-basis: 30%;
+      border: none;
+      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+
+      &:hover {
+        background-color: #F9B522;
+        color: #f9f9f9;
+        border: 1px solid #f9f9f9;
+      }
     }
   
   }
-
-  .HomeCardParti {
-    margin: auto;
-    text-align: center;
-  }
-}

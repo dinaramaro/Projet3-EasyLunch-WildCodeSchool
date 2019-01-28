@@ -15,7 +15,6 @@
     list-style-type: none;
   }
   .fb{
-    margin-right:1em;
     padding: 15px;
     transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -32,7 +31,6 @@
     }
   }
   .insta{
-    margin-right:1em;
     padding: 15px;
     transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -53,6 +51,10 @@
     .foot{
       flex-direction: column;
       text-align: center;
+    }
+    .footer {
+      flex-direction: row;
+      justify-content: center;
     }
   }
 }
