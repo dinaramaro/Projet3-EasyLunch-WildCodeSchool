@@ -7,6 +7,8 @@ import Zoom from 'react-reveal/Zoom';
 import RestoInfos from './RestoInfos';
 import OrderMenu from './OrderMenu';
 import FormOrder from './FormOrder';
+import MyMeal from './MyMeal';
+import PayOrder from './PayOrder';
 import './OrderPage.scss';
 
 
@@ -36,6 +38,8 @@ const OrderPage = ({ isLoadingStripe }) => {
           <Zoom>
             <FormOrder />
           </Zoom>
+          <MyMeal />
+          <PayOrder />
         </Col>
       </Row>
     </Container>

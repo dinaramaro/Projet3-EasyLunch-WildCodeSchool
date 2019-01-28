@@ -67,13 +67,17 @@ const sendOrder = (state = initialState, action) => {
       const tempCommand = tempFormChange.sendOrder.tableCommand;
       const tempPayment = tempFormChange.sendOrder.tablePayment;
       const tempTotal = tempFormChange.total;
-      tempCommand[action.name] = action.value;
+      if (tempCommand !== undefined) {
+        tempCommand[action.name] = action.value;
+      }
       const tableCommand = tempCommand;
       const tableBooking = tempBooking;
       let tablePayment = {};
       if (tempPayment !== undefined) {
         tempPayment.amount = tempTotal;
-        tempPayment.user_id = tempCommand.user_id;
+        if (tempCommand !== undefined) {
+          tempPayment.user_id = tempCommand.user_id;
+        }
         tempPayment.status = 'ok';
         tablePayment = tempPayment;
       }
@@ -97,30 +101,35 @@ const sendOrder = (state = initialState, action) => {
       tempObj.mealprice = action.mealprice;
 
       if (tempCommand !== undefined) {
-        const tempTabMeal = tempCommand.meal_id;
-        const tempMealIdChange = tempTabMeal.slice(1, tempTabMeal.length - 1);
-        let tempTabMealId = tempMealIdChange.split(',');
-        const resultFind = tempTab.find(item => item.text === action.text);
-        if (resultFind === undefined) {
-          tempTab = [...tempTab, tempObj];
-          tempTabMealId.push(action.idmeal);
-        } else {
-          const resultFilter = tempTab.filter(item => item.text !== action.text);
-          tempTab = [...resultFilter, tempObj];
-          const resultFilterMeal = tempTab.map(item => item.idmeal);
-          tempTabMealId = [...resultFilterMeal];
-        }
-        const tempTabMealIdString = tempTabMealId.map(item => item.toString());
-        let result = '';
-        for (let i = 0; i < tempTabMealIdString.length; i += 1) {
-          if (i !== tempTabMealIdString.length - 1) {
-            result += `${tempTabMealIdString[i]},`;
+        if (tempCommand.meal_id !== undefined) {
+          const tempTabMeal = tempCommand.meal_id;
+          const tempMealIdChange = tempTabMeal.slice(1, tempTabMeal.length - 1);
+          let tempTabMealId = tempMealIdChange.split(',');
+          const resultFind = tempTab.find(item => item.text === action.text);
+          if (resultFind === undefined) {
+            tempTab = [...tempTab, tempObj];
+            tempTabMealId.push(action.idmeal);
           } else {
-            result += `${tempTabMealIdString[i]}`;
+            const resultFilter = tempTab.filter(item => item.text !== action.text);
+            tempTab = [...resultFilter, tempObj];
+            const resultFilterMeal = tempTab.map(item => item.idmeal);
+            tempTabMealId = [...resultFilterMeal];
           }
+          const tempTabMealIdString = tempTabMealId.map(item => item.toString());
+          let result = '';
+          for (let i = 0; i < tempTabMealIdString.length; i += 1) {
+            if (i !== tempTabMealIdString.length - 1) {
+              result += `${tempTabMealIdString[i]},`;
+            } else {
+              result += `${tempTabMealIdString[i]}`;
+            }
+          }
+          tableCommand.meal_id = `{${result}}`;
+        } else {
+          const idMealString = action.idmeal.toString();
+          tableCommand.meal_id = `{${idMealString}}`;
+          tempTab = [tempObj];
         }
-
-        tableCommand.meal_id = `{${result}}`;
       } else {
         const idMealString = action.idmeal.toString();
         tableCommand.meal_id = `{${idMealString}}`;
@@ -166,35 +175,45 @@ const sendOrder = (state = initialState, action) => {
       let tempTotalRound = 0;
 
       if (tempCommand !== undefined) {
-        tempTotal = tempCommand.price;
+        if (tempCommand.meal_id !== undefined) {
+          tempTotal = tempCommand.price;
 
-        const tempTabMeal = tempCommand.meal_id;
-        const tempMealIdChange = tempTabMeal.slice(1, tempTabMeal.length - 1);
-        let tempTabMealId = tempMealIdChange.split(',');
-        const resultFind = tempTab.find(item => item.idmeal === action.idmeal);
-        if (resultFind === undefined) {
-          tempTab = [...tempTab, tempObj];
-          tempTabMealId.push(action.idmeal);
-          tempTotal += action.mealprice;
-        } else {
-          const resultFilter = tempTab.filter(item => item.idmeal !== action.idmeal);
-          tempTab = [...resultFilter];
-          const resultFilterMeal = tempTab.map(item => item.idmeal);
-          tempTabMealId = [...resultFilterMeal];
-          tempTotal -= action.mealprice;
-        }
-        const tempTabMealIdString = tempTabMealId.map(item => item.toString());
-        let result = '';
-        for (let i = 0; i < tempTabMealIdString.length; i += 1) {
-          if (i !== tempTabMealIdString.length - 1) {
-            result += `${tempTabMealIdString[i]},`;
+          const tempTabMeal = tempCommand.meal_id;
+          const tempMealIdChange = tempTabMeal.slice(1, tempTabMeal.length - 1);
+          let tempTabMealId = tempMealIdChange.split(',');
+          const resultFind = tempTab.find(item => item.idmeal === action.idmeal);
+          if (resultFind === undefined) {
+            tempTab = [...tempTab, tempObj];
+            tempTabMealId.push(action.idmeal);
+            tempTotal += action.mealprice;
           } else {
-            result += `${tempTabMealIdString[i]}`;
+            const resultFilter = tempTab.filter(item => item.idmeal !== action.idmeal);
+            tempTab = [...resultFilter];
+            const resultFilterMeal = tempTab.map(item => item.idmeal);
+            tempTabMealId = [...resultFilterMeal];
+            tempTotal -= action.mealprice;
           }
+          const tempTabMealIdString = tempTabMealId.map(item => item.toString());
+          let result = '';
+          for (let i = 0; i < tempTabMealIdString.length; i += 1) {
+            if (i !== tempTabMealIdString.length - 1) {
+              result += `${tempTabMealIdString[i]},`;
+            } else {
+              result += `${tempTabMealIdString[i]}`;
+            }
+          }
+          tempCommand.meal_id = `{${result}}`;
+          tempTotalRound = Math.round(tempTotal * 100) / 100;
+          tempCommand.price = tempTotalRound;
+        } else {
+          tempCommand = {};
+          tempTotal += action.mealprice;
+          tempTotalRound = Math.round(tempTotal * 100) / 100;
+          tempCommand.price = tempTotalRound;
+          const idMealString = action.idmeal.toString();
+          tempCommand.meal_id = `{${idMealString}}`;
+          tempTab = [tempObj];
         }
-        tempCommand.meal_id = `{${result}}`;
-        tempTotalRound = Math.round(tempTotal * 100) / 100;
-        tempCommand.price = tempTotalRound;
       } else {
         tempCommand = {};
 

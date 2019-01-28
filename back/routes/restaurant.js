@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/menus/:id', (req, res) => {
   const id = req.params.id;
   const restos = {};
-  connection.query('select distinct id, name, address, schedule, city, tva, picture from public_restaurants where id = ?', id, (err1, results) => {
+  connection.query('select distinct id, name, description, address, schedule, city, tva, picture from public_restaurants where id = ?', id, (err1, results) => {
     if (err1) {
       res.status(500).send('Erreur');
     } else {

@@ -74,7 +74,6 @@ class HomeInputs extends Component {
               <option>10</option>
               <option>11</option>
               <option>12</option>
-              <option>12+</option>
             </Input>
             <br />
             <br />

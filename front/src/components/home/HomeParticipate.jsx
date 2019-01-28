@@ -34,66 +34,66 @@ class Participate extends Component {
     });
   }
 
-    getIdRestau = (e) => {
-      e.preventDefault();
-      const {
-        menuResto, cardResto, history, saveCodeParticipation, notifError, notifInfo, recupGeInfo,
-      } = this.props;
-      const { codeParticipation } = this.state;
-      fetch(`${varServeur}idrestaurant/${codeParticipation}`)
-        .then((response) => {
-          if (response.status === 403) {
-            notifInfo('La table est déjà complète');
-          }
-          if (response.status === 401) {
-            notifInfo('Code non valide, veuillez réessayer');
-          }
-          if (response.status === 500) {
-            notifError('Erreur serveur, veuillez réessayer');
-          }
-          if (response.status === 200) {
-            return response.json();
-          }
-        })
-        .then((data) => {
-          if (data !== undefined) {
-            saveCodeParticipation(codeParticipation);
-            menuResto(`${varServeur}restaurant/menus/${data.restaurant_id}`);
-            cardResto(`${varServeur}cards/${data.restaurant_id}`);
-            recupGeInfo(data.nb_users, data.schedule);
-            history.push('/commande-participation');
-          }
-        });
-    }
+  getIdRestau = (e) => {
+    e.preventDefault();
+    const {
+      menuResto, cardResto, history, saveCodeParticipation, notifError, notifInfo, recupGeInfo,
+    } = this.props;
+    const { codeParticipation } = this.state;
+    fetch(`${varServeur}idrestaurant/${codeParticipation}`)
+      .then((response) => {
+        if (response.status === 403) {
+          notifInfo('La table est déjà complète');
+        }
+        if (response.status === 401) {
+          notifInfo('Code non valide, veuillez réessayer');
+        }
+        if (response.status === 500) {
+          notifError('Erreur serveur, veuillez réessayer');
+        }
+        if (response.status === 200) {
+          return response.json();
+        }
+      })
+      .then((data) => {
+        if (data !== undefined) {
+          saveCodeParticipation(codeParticipation);
+          menuResto(`${varServeur}restaurant/menus/${data.restaurant_id}`);
+          cardResto(`${varServeur}cards/${data.restaurant_id}`);
+          recupGeInfo(data.nb_users, data.schedule);
+          history.push('/commande-participation');
+        }
+      });
+  }
 
-    render() {
-      const {
-        codeParticipation,
-      } = this.state;
-      return (
-        <div className="HomeParticipe">
-          <Container fluid>
-            <Row className="backgroundCard">
-              <div className="titlePart"> Entrez ici votre LunchCode</div>
-              <Form onSubmit={this.getIdRestau} className="inputCard">
-                <Col>
-                  <Input
-                    type="text"
-                    name="codeParticipation"
-                    placeholder=" LunchCode"
-                    value={codeParticipation}
-                    onChange={this.onChange}
-                  />
-                </Col>
-              </Form>
+  render() {
+    const {
+      codeParticipation,
+    } = this.state;
+    return (
+      <div className="HomeParticipe">
+        <Container fluid>
+          <Row className="backgroundCard">
+            <div className="titlePart"> Entrez ici votre LunchCode</div>
+            <Form onSubmit={this.getIdRestau} className="inputCard">
+              <Col>
+                <Input
+                  type="text"
+                  name="codeParticipation"
+                  placeholder=" LunchCode"
+                  value={codeParticipation}
+                  onChange={this.onChange}
+                />
+              </Col>
               <Col className="inputCard">
                 <Button type="submit" className="all-btn"> Je participe </Button>
               </Col>
-            </Row>
-          </Container>
-        </div>
-      );
-    }
+            </Form>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 }
 
 function mdtp(dispatch) {
