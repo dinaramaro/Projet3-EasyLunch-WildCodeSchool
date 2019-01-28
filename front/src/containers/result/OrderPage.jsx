@@ -23,26 +23,28 @@ const OrderPage = ({ isLoadingStripe }) => {
   }
 
   return (
-    <Container fluid className="OrderPage">
+    <div>
       <h1 className="title">Faites votre choix</h1>
-      <Row>
-        <Col sm={12} md={6} lg={3}>
-          <Zoom>
-            <RestoInfos />
-          </Zoom>
-        </Col>
-        <Col sm={12} md={12} lg={6}>
-          <OrderMenu />
-        </Col>
-        <Col sm={12} md={12} lg={3}>
-          <Zoom>
-            <FormOrder />
-            <MyMeal />
-            <PayOrder />
-          </Zoom>
-        </Col>
-      </Row>
-    </Container>
+      <Container fluid className="OrderPage">
+        <Row>
+          <Col sm={12} md={6} lg={3}>
+            <Zoom>
+              <RestoInfos />
+            </Zoom>
+          </Col>
+          <Col sm={12} md={12} lg={6}>
+            <OrderMenu />
+          </Col>
+          <Col sm={12} md={12} lg={3}>
+            <Zoom>
+              <FormOrder />
+              <MyMeal />
+              <PayOrder />
+            </Zoom>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

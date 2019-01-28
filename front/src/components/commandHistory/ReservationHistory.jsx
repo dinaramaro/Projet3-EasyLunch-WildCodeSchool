@@ -53,7 +53,7 @@ class ReservationHistory extends Component {
                             <CardTitle className="titleCard">{item.name}</CardTitle>
                             <br />
                             <CardSubtitle>Dernière commande: <Moment format="DD/MM/YYYY">{item.created_date}</Moment></CardSubtitle>
-                            <CardText><i className="fa fa-clock" /> à {hour}</CardText>
+                            <CardText> à {hour}</CardText>
                             <br />
                             <CardSubtitle><i className="fa fa-home" /> {item.address}</CardSubtitle>
                             <br />

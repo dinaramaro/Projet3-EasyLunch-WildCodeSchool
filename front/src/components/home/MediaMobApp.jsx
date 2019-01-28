@@ -6,8 +6,8 @@ import Explaination from './Explaination';
 
 const MediaMobApp = () => (
   <div className="MediaMobApp">
+    <h1 className="title">Fonctionnement EASYLUNCH</h1>
     <Container>
-      <h2 className="title">Fonctionnement EASYLUNCH</h2>
       <Row>
         <Explaination />
       </Row>

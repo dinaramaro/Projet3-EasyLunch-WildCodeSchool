@@ -1,0 +1,39 @@
+.OrderSummary {
+  margin-bottom: 20px;
+
+  .code-partage {
+    background-color: #F9B522;
+    color: #f9f9f9;
+    text-align: center;
+    font-size : 2em;
+    font-weight: bold;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;  
+    margin-bottom: 1em;
+  }
+
+  .mail-summary {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .recap-command {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+
+  Ul {
+    list-style: none;
+  }
+
+  .space-card {
+    background-color: white;
+  }
+  .mail-input {
+    margin: 10px 0;
+  }
+}
