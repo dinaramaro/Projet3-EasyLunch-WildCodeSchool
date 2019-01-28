@@ -5,6 +5,7 @@ $accentuationColor: #f9b522;
 .App{
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+  background-color: #f9f9f9;
   .content{
     min-height: calc(100vh - 140px);
   }
@@ -41,6 +42,12 @@ $accentuationColor: #f9b522;
     text-decoration: underline;
     font-weight: bold;
     font-size: 1.2em;
+  }
+
+  a.nav-link {
+    cursor: pointer;
+    
+    
   }
 }
 

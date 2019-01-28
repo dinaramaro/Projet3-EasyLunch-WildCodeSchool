@@ -8,6 +8,7 @@
     color: #f9f9f9;
     &:hover {
       text-decoration: none;
+      color: #f1f1f1;
     }
   }
   li {
@@ -48,7 +49,7 @@
     }
   }
 
-  @media screen and (max-width: 667px) {
+  @media screen and (max-width: 992px) {
     .foot{
       flex-direction: column;
       text-align: center;

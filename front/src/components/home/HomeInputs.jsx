@@ -39,10 +39,10 @@ class HomeInputs extends Component {
           >
             <div className="fog" />
             <h2 className="border-text banner-text">
-              Commandez et payez avant
+              Commandez avant et soyez servis
             </h2>
             <h2 className="line2 border-text banner-text">
-              et soyez servis dès votre arrivée au restaurant
+              Dès votre arrivée au restaurant
             </h2>
 
             <Input

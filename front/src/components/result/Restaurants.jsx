@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  Row,
-  Col,
   Card,
   CardImg,
   CardText,
@@ -29,31 +27,28 @@ class Restaurants extends Component {
     const { searchResults: { results } } = this.props;
     return (
       <div className="Restaurants">
-        <Row>
-          {results.map(item => (
-            <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
-              <Col key={item.id} sm="12" md="6" xl="4">
-                <Zoom>
-                  <Card className="card-restaurant">
-                    <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
-                    <CardBody>
-                      <CardTitle className="titleCard">{item.name}</CardTitle>
-                      <br />
-                      <CardSubtitle>
-Restaurant :
-                        { item.description}
-
-                      </CardSubtitle>
-                      <br />
-                      <CardSubtitle>{item.address}</CardSubtitle>
-                      <CardText>{item.city}</CardText>
-                    </CardBody>
-                  </Card>
-                </Zoom>
-              </Col>
-            </button>
-          ))}
-        </Row>
+        {
+        results.map(item => (
+          <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
+            <Zoom>
+              <Card className="card-restaurant">
+                <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
+                <CardBody>
+                  <CardTitle className="titleCard">{item.name}</CardTitle>
+                  <br />
+                  <CardSubtitle>
+                    <i className="fa fa-cutlery" />
+                    { item.description }
+                  </CardSubtitle>
+                  <br />
+                  <CardSubtitle>{item.address}</CardSubtitle>
+                  <CardText>{item.city}</CardText>
+                </CardBody>
+              </Card>
+            </Zoom>
+          </button>
+        ))
+        }
       </div>
     );
   }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { bindActionCreators } from 'redux';
 import {
-  Col, Row, Container, Form, Input, Button,
+  Container, Form, Input, Button,
 } from 'reactstrap';
 import Restaurants from './Restaurants';
 import MapResult from '../../containers/result/MapResult';
@@ -48,58 +48,44 @@ class Result extends Component {
     return (
       <Container fluid className="Result">
         <Form className="searchBar" onSubmit={this.searchSubmit}>
-          <Row>
-            <Col xs="2" className="padding">
-              <Input
-                className="search1"
-                placeholder="Restaurant, adresse"
-                value={keyword}
-                onChange={this.onChange}
-                name="keyword"
-              />
-            </Col>
-            <Col xs="2">
-              <Input
-                type="select"
-                className="search2"
-                placeholder="Nombre de personnes"
-                value={personcapacity}
-                onChange={this.onChange}
-                name="personcapacity"
-              >
-                <option>Pour combien ?</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </Input>
-            </Col>
-            <Col xs="4">
-              <Button
+          <Input
+            className="search1"
+            placeholder="Restaurant, adresse"
+            value={keyword}
+            onChange={this.onChange}
+            name="keyword"
+          />
+          <Input
+            type="select"
+            className="search2"
+            placeholder="Nombre de personnes"
+            value={personcapacity}
+            onChange={this.onChange}
+            name="personcapacity"
+          >
+            <option>Pour combien ?</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </Input>
+          <Button
 
-                className="btn-submit submit-button all-btn"
-              >
-                Rechercher
-              </Button>
-            </Col>
-          </Row>
+            className="btn-submit submit-button all-btn"
+          >
+            Rechercher
+          </Button>
         </Form>
-        <Row>
-          <Col lg={8} xl={8}>
-            <Restaurants />
-          </Col>
-          <Col md={12} lg={4} xl={4}>
-            <MapResult />
-          </Col>
-        </Row>
+        <Restaurants />
+        <MapResult />
       </Container>
     );
   }

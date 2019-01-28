@@ -1,10 +1,10 @@
 .Restaurants {
   background-color: #f9f9f9;
   min-height: calc(100vh - 140px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
-  .padding {
-    padding-left : 0px;
-  }
   .search1 {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -32,10 +32,10 @@
 
   .card-restaurant {
     width: 275px;
-    margin: 30%;
     height: 425px;
     border: none;
     box-shadow: 2px 2px 5px grey;
+    margin: 10px;
   }
   .showMenu {
     font-size: 20px;
@@ -44,9 +44,4 @@
     border-radius: 7px;
     outline: none;
   }
-
-  @media (max-width: 1024px) {
-    display: none;
-  } 
-  
 }

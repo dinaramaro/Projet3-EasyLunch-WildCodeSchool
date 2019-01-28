@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import MapGL, { Marker, Popup, NavigationControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { connect } from 'react-redux';
-import {
-  Row,
-  Col,
-} from 'reactstrap';
 import './MapResult.scss';
 import RestoPin from '../../components/result/RestoPin';
 import RestoInfoPin from '../../components/result/RestoInfoPin';
@@ -26,11 +22,9 @@ class Mapresult extends Component {
   constructor(props) {
     super(props);
     const windowWidth = window.innerWidth;
-    const mapWidth = windowWidth < 1025 ? '60vw' : '40vw';
-    const mapHeight = windowWidth < 1025 ? '55vh' : '50vh';
+    const mapHeight = windowWidth < 992 ? '55vh' : '35vh';
     this.state = {
       viewport: {},
-      mapWidth,
       mapHeight,
       popupInfo: null,
       latitudeuser: 0,
@@ -67,10 +61,8 @@ class Mapresult extends Component {
 
   onResize() {
     const windowWidth = window.innerWidth;
-    const mapWidth = windowWidth < 692 ? '68vw' : '40vw';
-    const mapHeight = windowWidth < 692 ? '30vh' : '50vh';
+    const mapHeight = windowWidth < 1040 ? '55vh' : '35vh';
     this.setState({
-      mapWidth,
       mapHeight,
     });
   }
@@ -162,7 +154,6 @@ class Mapresult extends Component {
   render() {
     const {
       viewport,
-      mapWidth,
       mapHeight,
     } = this.state;
     const {
@@ -171,32 +162,26 @@ class Mapresult extends Component {
 
     return (
       <div className="MapResult">
-        <Row>
-          <Col sm="12">
-            <MapGL
-              className="map"
-              {...viewport}
-              width={mapWidth}
-              height={mapHeight}
-              mapStyle="mapbox://styles/mapbox/light-v9"
-              onViewportChange={this.updateViewport}
-              mapboxApiAccessToken={TOKEN}
-              onClick={this.closePopupInfo}
-            >
+        <MapGL
+          className="map"
+          {...viewport}
+          width="100%"
+          height={mapHeight}
+          mapStyle="mapbox://styles/mapbox/light-v9"
+          onViewportChange={this.updateViewport}
+          mapboxApiAccessToken={TOKEN}
+          onClick={this.closePopupInfo}
+        >
 
-              {results.map(this.renderRestoMarker)}
-              {this.renderUserMarker()}
-              {this.renderPopup()}
-              {this.renderPopupUser()}
+          {results.map(this.renderRestoMarker)}
+          {this.renderUserMarker()}
+          {this.renderPopup()}
+          {this.renderPopupUser()}
 
-              <div className="nav" style={navStyle}>
-                <NavigationControl onViewportChange={this.updateViewport} />
-              </div>
-
-            </MapGL>
-
-          </Col>
-        </Row>
+          <div className="nav" style={navStyle}>
+            <NavigationControl onViewportChange={this.updateViewport} />
+          </div>
+        </MapGL>
       </div>
     );
   }

@@ -1,47 +1,48 @@
 .Result {
   background-color: #f9f9f9;
-  .searchBar {
+  display: flex;
+  flex-wrap: wrap;
 
-    .padding {
-      padding-left : 0px;
-    }
-    .search1 {
-      margin-top: 18%;
-      width: 150%;
-      margin-left: 20%;
-    }
+  .searchBar {
+    flex-grow: 1;
+    display: flex;
+    margin: 20px 0;
     
-    .search2 {
-      margin-top: 19.5%;
-      width: 150%;
-      margin-left: 75%;
-    }
-    
-    .submit-button {
-      margin-top: 9%;
-      margin-left: 60%;
-  
+    > * {
+      margin: 0 10px;
     }
   }
 
-  @media only screen and (max-width: 692px) {
-    .search1 {
-      margin-top: 18%;
-      width: 150%;
-      margin-left: 10%;
+
+  .Restaurants {
+    flex-basis: 60%;
+  }
+
+  .MapResult {
+    flex-basis: 40%;
+  }
+
+
+  @media only screen and ( max-width: 992px) {
+
+    .Restaurants {
+      display: none;
     }
-    
-    .search2 {
-      margin-top: 20%;
-      width: 150%;
-      margin-left: 60%;
+
+    .MapResult {
+      flex-basis: 100%;
     }
-    
-    .submit-button {
-      margin-top: 9.5%;
-      margin-left: 75%;
-  
+
+    .searchBar {
+      flex-direction: column;
+      padding: 20px 25px;
+      
+      > * {
+        margin: 10px 0;
+      }
     }
+
+
   }
 
 }
