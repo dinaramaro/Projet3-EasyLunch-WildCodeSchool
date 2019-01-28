@@ -1,5 +1,9 @@
 .MapResult {
-  bottom: 180px;
+  position: fixed;
+  bottom: 25%;
+  right: 3%;
+  
+
   .number-meals {
     font-size: 1rem;
   }
@@ -15,16 +19,18 @@
     padding-bottom: 1.25rem;
     position: relative;
     top: -1.25rem;
+    
   }
 
   
   
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 1024px) {
   .MapResult {
-    position: fixed;
-    bottom: 185px;
-    margin-top: 6em;
+    position: relative;
+    top: 10%;
+    left: 12%;
+
     .number-meals {
       font-size: 1rem;
     }
@@ -40,6 +46,30 @@
       padding-bottom: 1.25rem;
       position: relative;
       top: -1.25rem;
+    }
+  }
+
+  @media only screen and (max-width: 692px) {
+    .MapResult {
+      position: relative;
+      left: 15%;
+      top: 10%;
+      .number-meals {
+        font-size: 1rem;
+      }
+      .type-meal {
+        text-decoration: underline;
+      }
+      .menu {
+        padding: 1.25rem;
+      }
+      .menu-card {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        padding-bottom: 1.25rem;
+        position: relative;
+        top: -1.25rem;
+      }
     }
   }
 }

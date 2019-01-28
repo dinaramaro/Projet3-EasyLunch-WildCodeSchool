@@ -14,18 +14,17 @@ const FormOrder = ({
   idUser,
 }) => (
   <div className="FormOrder">
-    <p>Informations générales</p>
-    <p>(concernent l&apos;ensemble des invités)</p>
+    <p className="titleCard">Informations générales</p>
     <Form>
       <FormGroup row>
-        <Label for="date" sm={6}>Date</Label>
-        <Col sm={6}>
-          <Input type="text" name="date" id="date" value="Aujourd'hui" />
+        <Label for="date" sm={2}><i class="fa fa-calendar" aria-hidden="true"></i></Label>
+        <Col sm={10}>
+          <Input className="inputDay" type="text" name="date" id="date" value="Aujourd'hui" />
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="hour" sm={6}>Heure</Label>
-        <Col sm={6}>
+        <Label for="hour" sm={2}><i class="fa fa-clock-o" aria-hidden="true"></i></Label>
+        <Col sm={10}>
           <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
             <option>Veuillez sélectionner</option>
             <option value="12h00">12h00</option>
@@ -44,8 +43,8 @@ const FormOrder = ({
         </Col>
       </FormGroup>
       <FormGroup row>
-        <Label for="nb" sm={6}>Nombre de personnes</Label>
-        <Col sm={6}>
+        <Label for="nb" sm={2}><i className="fa fa-users"></i></Label>
+        <Col sm={10}>
           <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
             <option>Veuillez sélectionner</option>
             <option value="1">1</option>

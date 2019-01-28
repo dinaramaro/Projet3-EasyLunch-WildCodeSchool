@@ -82,7 +82,7 @@ class Result extends Component {
             </Col>
             <Col xs="4">
               <Button
-                color="warning"
+
                 className="btn-submit submit-button all-btn"
               >
                 Rechercher
@@ -91,10 +91,10 @@ class Result extends Component {
           </Row>
         </Form>
         <Row>
-          <Col md={12} lg={7}>
+          <Col lg={8} xl={8}>
             <Restaurants />
           </Col>
-          <Col md={12} lg={5}>
+          <Col md={12} lg={4} xl={4}>
             <MapResult />
           </Col>
         </Row>

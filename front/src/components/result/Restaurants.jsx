@@ -13,6 +13,7 @@ import {
 } from 'reactstrap';
 import './Restaurants.scss';
 import { withRouter } from 'react-router';
+import Zoom from 'react-reveal/Zoom';
 import { varServeur } from '../../constants';
 import { dataResults } from '../../actions/search';
 import { menuResto } from '../../actions/menuResto';
@@ -32,16 +33,23 @@ class Restaurants extends Component {
           {results.map(item => (
             <button className="showMenu" type="button" key={item.id} onClick={() => this.infoResto(item.id)}>
               <Col key={item.id} sm="12" md="6" xl="4">
-                <Card className="card-restaurant">
-                  <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
-                  <CardBody>
-                    <CardTitle>{item.name}</CardTitle>
-                    <CardSubtitle>{item.description}</CardSubtitle>
-                    <br />
-                    <CardSubtitle>{item.address}</CardSubtitle>
-                    <CardText>{item.city}</CardText>
-                  </CardBody>
-                </Card>
+                <Zoom>
+                  <Card className="card-restaurant">
+                    <CardImg top width="100%" height="175px" src={item.picture} alt="Card image cap" />
+                    <CardBody>
+                      <CardTitle className="titleCard">{item.name}</CardTitle>
+                      <br />
+                      <CardSubtitle>
+Restaurant :
+                        { item.description}
+
+                      </CardSubtitle>
+                      <br />
+                      <CardSubtitle>{item.address}</CardSubtitle>
+                      <CardText>{item.city}</CardText>
+                    </CardBody>
+                  </Card>
+                </Zoom>
               </Col>
             </button>
           ))}

@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import { connect } from 'react-redux';
+import Zoom from 'react-reveal/Zoom';
 import { varServeur } from '../../constants';
 import './ReservationHistory.scss';
 
@@ -41,25 +42,26 @@ class ReservationHistory extends Component {
               <Row>
                 {
                 history.map((item) => {
-                  const scheduleToString = '' + item.schedule;
+                  const scheduleToString = `${item.schedule}`;
                   const hour = `${scheduleToString[0]}${scheduleToString[1]}h${scheduleToString[2]}${scheduleToString[3]}`;
                   return (
-                    <Col key={item.id} lg="4" md="5" xs="12">
-                      <Card>
-                        <CardImg top height="250px" src={item.picture} alt="Image restaurant" />
-                        <CardBody>
-                          <CardTitle>{item.name}</CardTitle>
-                          <br />
-                          <CardSubtitle><Moment format="DD/MM/YYYY">{item.created_date}</Moment></CardSubtitle>
-                          <br />
-                          <CardSubtitle>Adresse: {item.address}</CardSubtitle>
-                          <br />
-                          <CardText>Heure: {hour}</CardText>
-                          <br />
-                          <CardText>Participants: {item.nb_users}</CardText>
-                          <CardText>Prix: {item.price} €</CardText>
-                        </CardBody>
-                      </Card>
+                    <Col key={item.id} lg="4" md="6" xs="12">
+                      <Zoom>
+                        <Card>
+                          <CardImg top width="100%" height="175px" src={item.picture} alt="Image restaurant" />
+                          <CardBody>
+                            <CardTitle className="titleCard">{item.name}</CardTitle>
+                            <br />
+                            <CardSubtitle>Dernière commande: <Moment format="DD/MM/YYYY">{item.created_date}</Moment></CardSubtitle>
+                            <CardText><i className="fa fa-clock" /> à {hour}</CardText>
+                            <br />
+                            <CardSubtitle><i className="fa fa-home" /> {item.address}</CardSubtitle>
+                            <br />
+                            <CardText><i className="fa fa-users" /> {item.nb_users}</CardText>
+                            <CardText><i className="fa fa-money-bill" /> {item.price} €</CardText>
+                          </CardBody>
+                        </Card>
+                      </Zoom>
                     </Col>
                   );
                 })
