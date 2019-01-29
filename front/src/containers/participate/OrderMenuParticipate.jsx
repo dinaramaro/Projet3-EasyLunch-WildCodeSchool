@@ -14,6 +14,7 @@ import ChooseOnCards from '../result/ChooseOnCards';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
 import { handleChangeSpecial, getUserId, setActiveTab } from '../../actions';
+import './OrderMenuParticipage.scss';
 
 class OrderMenuParticipage extends Component {
   componentDidMount() {
@@ -286,11 +287,12 @@ class OrderMenuParticipage extends Component {
             </TabPane>
           </TabContent>
           <FormGroup>
-            <p>Instructions spéciales</p>
+            <br />
+            <h3 className="title-spe">Instructions spéciales</h3>
             {
               !_.isEmpty(specialText)
-                ? <Input type="textarea" name="special" value={specialText} onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
-                : <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+                ? <Input className="input-shadow" type="textarea" name="special" value={specialText} onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+                : <Input className="input-shadow" type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
             }
           </FormGroup>
         </Form>

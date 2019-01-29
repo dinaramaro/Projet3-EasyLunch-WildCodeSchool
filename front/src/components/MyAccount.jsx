@@ -103,6 +103,7 @@ class MyAccount extends Component {
                   value={oldPwd}
                   name="oldPwd"
                   onChange={this.changePassword}
+                  className="input-shadow"
                 />
               </Col>
               <Col>
@@ -112,6 +113,7 @@ class MyAccount extends Component {
                   value={newPwd}
                   name="newPwd"
                   onChange={this.changePassword}
+                  className="input-shadow"
                 />
               </Col>
               <Button className="all-btn" type="submit">Modifier</Button>

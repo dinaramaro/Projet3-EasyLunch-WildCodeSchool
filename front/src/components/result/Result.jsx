@@ -49,15 +49,16 @@ class Result extends Component {
       <Container fluid className="Result">
         <Form className="searchBar" onSubmit={this.searchSubmit}>
           <Input
-            className="search1"
+            className="search1 input-shadow"
             placeholder="Restaurant, adresse"
             value={keyword}
             onChange={this.onChange}
             name="keyword"
+            
           />
           <Input
             type="select"
-            className="search2"
+            className="search2 input-shadow"
             placeholder="Nombre de personnes"
             value={personcapacity}
             onChange={this.onChange}

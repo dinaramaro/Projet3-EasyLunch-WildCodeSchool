@@ -59,6 +59,7 @@ class AdminTeamNew extends Component {
               placeholder="Nom"
               value={name}
               onChange={this.onChangeNew}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -67,6 +68,7 @@ class AdminTeamNew extends Component {
               placeholder="Fonction / poste"
               value={fonction}
               onChange={this.onChangeNew}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -75,6 +77,7 @@ class AdminTeamNew extends Component {
               placeholder="url photo"
               value={picture}
               onChange={this.onChangeNew}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -83,6 +86,7 @@ class AdminTeamNew extends Component {
               placeholder="Description"
               value={description}
               onChange={this.onChangeNew}
+              className="input-shadow"
             />
           </FormGroup>
           <Button className="all-btn send-mate" onClick={this.postMember}>ENVOYER</Button>

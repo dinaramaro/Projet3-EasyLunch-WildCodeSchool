@@ -105,6 +105,7 @@ class Login extends Component {
                   value={mail}
                   onChange={this.onChangeInput}
                   required
+                  className="input-shadow"
                 />
               </Col>
               <Col md={6}>
@@ -116,6 +117,7 @@ class Login extends Component {
                   value={password}
                   onChange={this.onChangeInput}
                   minLength="8"
+                  className="input-shadow"
                   required
                 />
               </Col>

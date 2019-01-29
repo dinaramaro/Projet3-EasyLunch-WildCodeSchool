@@ -78,6 +78,7 @@ class AdminTeamEdit extends Component {
               placeholder="Mettez le nom de la personne"
               value={name}
               onChange={this.onChangeEdit}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -86,6 +87,7 @@ class AdminTeamEdit extends Component {
               placeholder="Mettez la fonction de la personne"
               value={fonction}
               onChange={this.onChangeEdit}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -94,6 +96,7 @@ class AdminTeamEdit extends Component {
               placeholder="Mettez le lien de vos photos d'équipe"
               value={picture}
               onChange={this.onChangeEdit}
+              className="input-shadow"
             />
             <br />
             <Input
@@ -102,6 +105,7 @@ class AdminTeamEdit extends Component {
               placeholder="VOTRE MESSAGE"
               value={description}
               onChange={this.onChangeEdit}
+              className="input-shadow"
             />
           </FormGroup>
           <Button className="all-btn send-mate" onClick={this.putMember}>VALIDER</Button>
