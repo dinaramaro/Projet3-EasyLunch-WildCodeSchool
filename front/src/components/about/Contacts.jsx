@@ -104,9 +104,9 @@ class Contact extends Component {
               <FormGroup>
                 <Label>VOTRE MESSAGE</Label>
                 <br />
-                <Input required type="textarea" name="text" placeholder="VOTRE MESSAGE" onChange={this.onChangeInput} value={text} />
+                <Input className="area-input" required type="textarea" name="text" placeholder="VOTRE MESSAGE" onChange={this.onChangeInput} value={text} />
               </FormGroup>
-              <Button color="warning" type="submit" className="text-color">
+              <Button className="all-btn" type="submit">
                 ENVOYER
               </Button>
             </Form>
@@ -121,7 +121,6 @@ class Contact extends Component {
                     />
                     <p>Easy Lunch a été conçu pour et par les restaurateurs ! </p>
                     <p>Vous souhaitez en savoir plus sur Easy Lunch ?</p>
-                    <Button color="success">Devenir partenaire</Button>
                   </Col>
                 </Row>
                 <Row>

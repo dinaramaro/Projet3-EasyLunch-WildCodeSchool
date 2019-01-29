@@ -71,7 +71,7 @@ class Participate extends Component {
     return (
       <Container fluid className="HomeParticipe">
         <Form onSubmit={this.getIdRestau} className="form-participate">
-          <div className="title-participate"> Entrez ici votre LunchCode</div>
+          <div className="title-participate"><strong>Entrez ici votre LunchCode</strong></div>
           <Input
             type="text"
             name="codeParticipation"

@@ -46,9 +46,11 @@ $accentuationColor: #f9b522;
   }
 
   a.nav-link {
-    cursor: pointer;
-    
-    
+    cursor: pointer; 
+  }
+
+  Input {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
   }
 }
 

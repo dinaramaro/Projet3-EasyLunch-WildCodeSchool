@@ -3,33 +3,47 @@
 
 
   .form-participate {
-    height: 150px;
+    height: 200px;
     display: flex;
     align-items: center;
   }
 
   .title-participate {
     color: #f9f9f9;
-    flex-basis: 45%;
+    flex-basis: 40%;
+    text-align: right;
+    font-size: 1.3em;
   }
 
   Input {
-    margin: 0 40px;
-    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+    margin: 20px 40px;
+    width: 250px;
   }
 
     .btn-participate{
       background-color: #f9f9f9;
       color: #F9B522;
-      flex-basis: 30%;
       border: none;
-      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+      box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 
       &:hover {
-        background-color: #F9B522;
-        color: #f9f9f9;
+        background-color: #f9f9f9;
+        color: #F9B522;
         border: 1px solid #f9f9f9;
       }
     }
-  
+
+    @media screen and (max-width: 992px) {
+      .title-participate {
+        color: #f9f9f9;
+        flex-basis: 30%;
+        text-align: right;
+        font-size: 1.3em;
+      }
+    
+      .form-participate {
+        flex-direction: column;
+        margin: 0 auto;
+      }
+    }
   }
