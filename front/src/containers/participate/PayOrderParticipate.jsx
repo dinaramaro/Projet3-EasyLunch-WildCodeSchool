@@ -21,13 +21,6 @@ class PayOrderParticipate extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { history, isLoading } = this.props;
-    if (prevProps.isLoading && isLoading) {
-      history.push('/recapitulatif-participation');
-    }
-  }
-
   onToken = (token) => {
     const {
       chooseByUser: { total }, stripePaymentParticipate,

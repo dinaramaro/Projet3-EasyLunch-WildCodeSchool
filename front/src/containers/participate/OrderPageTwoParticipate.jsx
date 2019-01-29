@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   Container, Row, Col,
@@ -10,34 +10,49 @@ import RestoInfos from '../result/RestoInfos';
 import OrderMenuParticipate from './OrderMenuParticipate';
 
 
-const OrderPageTwoParticipage = ({ isLoadingStripe }) => {
-  if (isLoadingStripe) {
+class OrderPageTwoParticipage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { };
+  }
+
+  componentDidUpdate(prevProps) {
+    const { history, isLoadingStripe } = this.props;
+    if (prevProps.isLoadingStripe && !isLoadingStripe) {
+      history.push('/recapitulatif-participation');
+    }
+  }
+
+  render() {
+    const { isLoadingStripe } = this.props;
+    if (isLoadingStripe) {
+      return (
+        <Container className="text-center">
+          <img src="/medias/eatstreet-loading.gif" alt="loading" />
+          <h2>Autorisation de paiement en cours...</h2>
+        </Container>
+      );
+    }
+
     return (
-      <Container className="text-center">
-        <img src="/medias/eatstreet-loading.gif" alt="loading" />
-        <h2>Autorisation de paiement en cours...</h2>
+      <Container fluid className="OrderPage">
+        <Row>
+          <Col sm={3}>
+            <RestoInfos />
+          </Col>
+          <Col sm={5}>
+            <OrderMenuParticipate />
+          </Col>
+          <Col sm={4}>
+            <GeneralInformations />
+            <MyMeal />
+            <PayOrderParticipate />
+          </Col>
+        </Row>
       </Container>
     );
   }
-
-  return (
-    <Container fluid className="OrderPage">
-      <Row>
-        <Col sm={3}>
-          <RestoInfos />
-        </Col>
-        <Col sm={5}>
-          <OrderMenuParticipate />
-        </Col>
-        <Col sm={4}>
-          <GeneralInformations />
-          <MyMeal />
-          <PayOrderParticipate />
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+}
 
 function mstp(state) {
   return {
