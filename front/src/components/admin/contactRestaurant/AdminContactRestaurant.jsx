@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {
   Container,
   Button,
+  Form,
 } from 'reactstrap';
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../../constants';
 import AdminMenu from '../AdminMenu';
+import './AdminContactRestaurant.scss';
 
 class AdminContactRestaurant extends Component {
   constructor(props) {
@@ -65,11 +67,11 @@ class AdminContactRestaurant extends Component {
     ];
 
     return (
-      <div>
+      <div className="AdminContactRestaurant">
         <AdminMenu />
         <h1 className="title">Vous êtes restaurateur?</h1>
         <Container>
-          <p>
+          <Form className="form-contact-resto" onSubmit={this.updateContact}>
             <ReactQuill
               theme="snow"
               type="textarea"
@@ -81,8 +83,8 @@ class AdminContactRestaurant extends Component {
               onChange={this.changeContact}
               className="input-contactRestaurant"
             />
-            <Button onClick={this.updateContact} className="btn-submit all-btn">ENVOYER</Button>
-          </p>
+            <Button className="btn-submit all-btn btn-contact-resto">ENVOYER</Button>
+          </Form>
         </Container>
       </div>
     );
