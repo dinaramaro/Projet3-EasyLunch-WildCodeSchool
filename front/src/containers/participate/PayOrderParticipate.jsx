@@ -23,7 +23,7 @@ class PayOrderParticipate extends Component {
 
   componentDidUpdate(prevProps) {
     const { history, isLoading } = this.props;
-    if (prevProps.isLoading && isLoading) {
+    if (!prevProps.isLoading && isLoading) {
       history.push('/recapitulatif-participation');
     }
   }
@@ -74,7 +74,7 @@ class PayOrderParticipate extends Component {
                     currency="EUR"
                   >
                     <Button className="all-btn" type="button">
-                      Payer {totalSend}
+                      Payer {totalSend} €
                     </Button>
                   </StripeCheckout>
                 )
