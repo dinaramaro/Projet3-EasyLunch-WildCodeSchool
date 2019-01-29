@@ -1,6 +1,7 @@
 .MapResult {
-  position: fixed;
-  margin-top: 6em;
+  position: sticky;
+  top: 78px;
+  height: 450px;
   .number-meals {
     font-size: 1rem;
   }
@@ -16,9 +17,32 @@
     padding-bottom: 1.25rem;
     position: relative;
     top: -1.25rem;
-  }
-
+    
+  } 
+  
 }
+@media only screen and (max-width: 992px) {
+  .MapResult {
+    height: 450px;
+    position: relative;
+    top: 0;
 
-
+    .number-meals {
+      font-size: 1rem;
+    }
+    .type-meal {
+      text-decoration: underline;
+    }
+    .menu {
+      padding: 1.25rem;
+    }
+    .menu-card {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-bottom: 1.25rem;
+      position: relative;
+      top: -1.25rem;
+    }
+  }
+}
 

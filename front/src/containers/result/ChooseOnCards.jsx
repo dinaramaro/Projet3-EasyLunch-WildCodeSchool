@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
-  CustomInput,
+  FormGroup,
+  Label,
+  Input,
 } from 'reactstrap';
 import './ChooseOnCards.scss';
 import { handleChooseOnCards } from '../../actions';
@@ -21,24 +23,29 @@ const ChooseOnCards = ({
             }
             return (
               <div className="checkbox" key={`${item.id}${item.name}`}>
-                <CustomInput
-                  type="checkbox"
-                  label={`${item.name} ${tempPrice}`}
-                  value={item.name}
-                  name={text}
-                  id={item.id}
-                  onChange={(e) => {
-                    handleChooseOnCards(
-                      e.target.name,
-                      e.target.value,
-                      item.price,
-                      text,
-                      item.id,
-                      item.plat,
-                      idUser,
-                    );
-                  }}
-                />
+                <FormGroup check row>
+                  <Label check>
+                    <Input
+                      type="checkbox"
+                      value={item.name}
+                      name={text}
+                      id={item.id}
+                      onChange={(e) => {
+                        handleChooseOnCards(
+                          e.target.name,
+                          e.target.value,
+                          item.price,
+                          text,
+                          item.id,
+                          item.plat,
+                          idUser,
+                        );
+                      }}
+                    />
+                    {item.name}
+                  </Label>
+                </FormGroup>
+                <span className="meal-price">{tempPrice}</span>
               </div>
             );
           })
@@ -50,48 +57,58 @@ const ChooseOnCards = ({
             if (resultFind === undefined) {
               return (
                 <div className="checkbox" key={`${item.id}${item.name}`}>
-                  <CustomInput
-                    type="checkbox"
-                    label={`${item.name} ${tempPrice}`}
-                    value={item.name}
-                    name={text}
-                    id={item.id}
-                    onChange={(e) => {
-                      handleChooseOnCards(
-                        e.target.name,
-                        e.target.value,
-                        item.price,
-                        text,
-                        item.id,
-                        item.plat,
-                        idUser,
-                      );
-                    }}
-                  />
+                  <FormGroup check row>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        value={item.name}
+                        name={text}
+                        id={item.id}
+                        onChange={(e) => {
+                          handleChooseOnCards(
+                            e.target.name,
+                            e.target.value,
+                            item.price,
+                            text,
+                            item.id,
+                            item.plat,
+                            idUser,
+                          );
+                        }}
+                      />
+                      {item.name}
+                    </Label>
+                  </FormGroup>
+                  <span className="meal-price">{tempPrice}</span>
                 </div>
               );
             }
             return (
               <div className="checkbox" key={`${item.id}${item.name}`}>
-                <CustomInput
-                  checked
-                  type="checkbox"
-                  label={`${item.name} ${tempPrice}`}
-                  value={item.name}
-                  name={text}
-                  id={item.id}
-                  onChange={(e) => {
-                    handleChooseOnCards(
-                      e.target.name,
-                      e.target.value,
-                      item.price,
-                      text,
-                      item.id,
-                      item.plat,
-                      idUser,
-                    );
-                  }}
-                />
+                <FormGroup check row>
+                  <Label check>
+                    <Input
+                      checked
+                      type="checkbox"
+                      value={item.name}
+                      name={text}
+                      id={item.id}
+                      onChange={(e) => {
+                        handleChooseOnCards(
+                          e.target.name,
+                          e.target.value,
+                          item.price,
+                          text,
+                          item.id,
+                          item.plat,
+                          idUser,
+                        );
+                      }}
+                    />
+                    {item.name}
+                  </Label>
+                </FormGroup>
+                <span className="meal-price">{tempPrice}</span>
               </div>
             );
           })

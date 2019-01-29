@@ -1,68 +1,100 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ClassNames from 'classnames';
 import {
   Form, FormGroup, Label, Input, Col,
 } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { handleChangeOrder } from '../../actions';
+import './FormOrder.scss';
 
 
-const FormOrder = ({
-  formulaire: { date, schedule, nb_users },
-  handleChangeOrder, menuResto: { resto: { restoInfos } },
-  idUser,
-}) => (
-  <div className="FormOrder">
-    <p>Commande (1/2)</p>
-    <p>Informations générales</p>
-    <p>(concernent l&apos;ensemble des invités)</p>
-    <Form>
-      <FormGroup row>
-        <Label for="date" sm={3}>Date</Label>
-        <Col sm={4}>
-          <Input required type="select" name="date" id="date" value={date} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option value="Aujourd'hui">Aujourd&apos;hui</option>
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="hour" sm={3}>Heure</Label>
-        <Col sm={4}>
-          <Input type="select" name="schedule" id="hour" value={schedule} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option>Veuillez sélectionner</option>
-            <option value="12h00">12h00</option>
-            <option value="12h15">12h15</option>
-            <option value="12h30">12h30</option>
-            <option value="12h45">12h45</option>
-            <option value="13h00">13h00</option>
-            <option value="13h15">13h15</option>
-            <option value="13h30">13h30</option>
-            <option value="13h45">13h45</option>
-            <option value="14h00">14h00</option>
-            <option value="14h15">14h15</option>
-            <option value="14h30">14h30</option>
+class FormOrder extends Component {
+  handleChange = (e) => {
+    const {
+      handleChangeOrder, menuResto: { resto: { restoInfos } },
+      idUser,
+    } = this.props;
+    handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser);
+  }
 
-          </Input>
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="nb" sm={3}>Nombre de personnes</Label>
-        <Col sm={4}>
-          <Input type="select" name="nb_users" id="nb" value={nb_users} onChange={e => handleChangeOrder(e.target.name, e.target.value, restoInfos.id, idUser)}>
-            <option>Veuillez sélectionner</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-          </Input>
-        </Col>
-      </FormGroup>
-    </Form>
-  </div>
-);
+  render() {
+    const { formulaire: { schedule, nb_users } } = this.props;
+    const clsHour = ClassNames('hour', {
+      mandatory: schedule === '',
+    });
+    const clsNbUser = ClassNames('nb-user', {
+      mandatory: nb_users === '',
+    });
+    return (
+      <div className="FormOrder">
+        <p>Informations générales</p>
+        <p>(concernent l&apos;ensemble des invités)</p>
+        <Form>
+          <FormGroup row>
+            <Label for="date" sm={2}><i className="fa fa-calendar" aria-hidden="true" /></Label>
+            <Col sm={10}>
+              <Input type="text" name="date" id="date" value="Aujourd'hui" />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="hour" sm={2}><i className="fa fa-clock-o" aria-hidden="true" /></Label>
+            <Col sm={10}>
+              <Input
+                className={clsHour}
+                type="select"
+                name="schedule"
+                id="hour"
+                value={schedule}
+                onChange={this.handleChange}
+              >
+                <option value="">Veuillez sélectionner</option>
+                <option value="12h00">12h00</option>
+                <option value="12h15">12h15</option>
+                <option value="12h30">12h30</option>
+                <option value="12h45">12h45</option>
+                <option value="13h00">13h00</option>
+                <option value="13h15">13h15</option>
+                <option value="13h30">13h30</option>
+                <option value="13h45">13h45</option>
+                <option value="14h00">14h00</option>
+                <option value="14h15">14h15</option>
+                <option value="14h30">14h30</option>
+              </Input>
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="nb" sm={2}><i className="fa fa-users" /></Label>
+            <Col sm={10}>
+              <Input
+                className={clsNbUser}
+                type="select"
+                name="nb_users"
+                id="nb"
+                value={nb_users}
+                onChange={this.handleChange}
+              >
+                <option value="">Veuillez sélectionner</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </Input>
+            </Col>
+          </FormGroup>
+        </Form>
+      </div>
+    )
+  }
+};
 
 function mstp(state) {
   return {

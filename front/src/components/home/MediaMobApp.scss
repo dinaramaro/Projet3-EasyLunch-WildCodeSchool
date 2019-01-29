@@ -1,0 +1,19 @@
+.MediaMobApp {
+
+  .video-ex {
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+  }
+
+  .logo {
+    width: 250px;
+    margin: 50px;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  }
+
+  .link-app {
+    text-align: center;
+  }
+}

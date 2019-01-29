@@ -2,38 +2,50 @@
   position:relative;
   background-image: url("/medias/Participate-cheers.jpeg");
   background-position: center;
-  height: 45vw;
+  background: cover;
+  height: 100vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
-  .participation-message {
+  .fog {
     position: absolute;
-    left: 30%;
-    top: 33%;
-    background-color:hsla(0, 0%, 96%, 0.945);
-    width: 40%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.6);
+    background-size: cover;
+  }
+
+  .participate-message {
+    position: relative;
     text-align: center;
-    border-radius:10px;
-    padding: 25px;
-    text-shadow: 0.2px 0.2px;
+    font-size : 2em;
+    font-weight: bold;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;  
+    margin-bottom: 1em;
+    color: white;
   }
 
-  .input-container {
-    position: absolute;
-    left: 30%;
-    background: rgba(128, 128, 128, 0.753);
-    height: 5vw;
-    width: 40%;
-    top:50%;
-    border-radius:10px;
-  }
+  .form-participate {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
 
     Input {
-      margin: 15px 15px 15px 32%; 
-      width: 110%   
+      width: 300px;
+      margin-right: 20px;
+      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
     }
 
     Button {
-    margin: 15px 15px 15px 32%;    
-    color:white;
+      box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4)
     }
+  }
 }

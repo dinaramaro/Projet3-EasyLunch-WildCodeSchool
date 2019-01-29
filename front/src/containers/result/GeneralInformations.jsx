@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 
 const GeneralInformations = ({ formulaire: { date, schedule, nb_users } }) => (
   <div className="InfoGe">
-    <p>Informations générales</p>
-    <p>{`Date : ${date}`}</p>
-    <p>{`Heure : ${schedule}`}</p>
-    <p>{`Nombre de personnes : ${nb_users}`}</p>
+    <p><i class="fa fa-calendar" /> {date}</p>
+    <p><i className="fa fa-clock-o" /> {schedule}</p>
+    <p><i className="fa fa-users" /> {nb_users}</p>
   </div>
 );
 

@@ -10,7 +10,7 @@ const CardTeam = ({
       src={picture}
       alt="Easy-lunch-Arthur"
     />
-    <h1>{name}</h1>
+    <h2>{name}</h2>
     <p>{fonction}</p>
     <p className="text">
       {description}

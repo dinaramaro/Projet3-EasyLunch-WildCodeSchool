@@ -10,7 +10,7 @@ import GeneralInformations from './GeneralInformations';
 import RestoInfos from './RestoInfos';
 import { varServeur } from '../../constants';
 import { initState } from '../../actions';
-
+import './OrderSummary.scss';
 
 class OrderSummary extends Component {
   constructor(props) {
@@ -125,81 +125,87 @@ class OrderSummary extends Component {
         </div>
       );
     }
-
     return (
-      <Container>
-        <Row>
-          <Col sm={8}>
-            <RestoInfos />
-            <GeneralInformations />
-            <h2>Récapitulatif de votre commande</h2>
-            <ul>
-              {tabs.map((item) => {
-                if (item.Plat !== undefined) {
+      <div>
+        <h1 className="title">{`Merci ${user.name}`}</h1>
+        <Container className="OrderSummary">
+          <Row>
+            <Col className="space-card" sm={12} md={6} lg={3}>
+              <RestoInfos />
+              <GeneralInformations />
+            </Col>
+            <Col className="mail-summary" sm={12} md={12} lg={5}>
+              <p>
+                {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
+              </p>
+              <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
+              <h1 className="code-partage">LunchCode: <br /> <strong>{code}</strong></h1>
+              <h3>Entrez ici les emails des personnes avec qui vous souhaitez déjeuner</h3>
+              <Form onSubmit={this.sendMail}>
+                <Input
+                  className="mail-input"
+                  name="email1"
+                  value={email1}
+                  onChange={this.onChange}
+                  placeholder="email1"
+                  type="email"
+                />
+                <Input
+                  className="mail-input"
+                  name="email2"
+                  value={email2}
+                  onChange={this.onChange}
+                  placeholder="email2"
+                  type="email"
+                />
+                <Input
+                  className="mail-input"
+                  name="email3"
+                  value={email3}
+                  onChange={this.onChange}
+                  placeholder="email3"
+                  type="email"
+                />
+                <Input
+                  className="mail-input"
+                  name="email4"
+                  value={email4}
+                  onChange={this.onChange}
+                  placeholder="email4"
+                  type="email"
+                />
+                <Button className="all-btn" type="submit">Envoyer</Button>
+              </Form>
+            </Col>
+            <Col className="recap-command"sm={12} md={12} lg={4}>
+              <h2 className="title-card">Récapitulatif de votre commande</h2>
+              <ul>
+                {tabs.map((item) => {
+                  if (item.Plat !== undefined) {
+                    return (
+                      <li key={item.idmenu}>{item.Plat}</li>
+                    );
+                  } if (item.Dessert !== undefined) {
+                    return (
+                      <li key={item.idmenu}>{item.Dessert}</li>
+                    );
+                  } if (item.Boisson !== undefined) {
+                    return (
+                      <li key={item.idmenu}>{item.Boisson}</li>
+                    );
+                  }
                   return (
-                    <li>{item.Plat}</li>
+                    <li key={item.idmenu}>{item[item.text]}</li>
                   );
-                } if (item.Dessert !== undefined) {
-                  return (
-                    <li>{item.Dessert}</li>
-                  );
-                } if (item.Boisson !== undefined) {
-                  return (
-                    <li>{item.Boisson}</li>
-                  );
+                })
                 }
-                return (
-                  <li>{item[item.text]}</li>
-                );
-              })
-              }
-            </ul>
-            <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
-            <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
-          </Col>
-          <Col sm={4}>
-            <p>{`Merci ${user.name} !`}</p>
-            <p>
-              {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
-            </p>
-            <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
-            <p>{`Code de partage : ${code}`}</p>
-            <h3>Entrez ici les emails des personnes avec qui vous souhaitez déjeuner</h3>
-            <Form onSubmit={this.sendMail}>
-              <Input
-                name="email1"
-                value={email1}
-                onChange={this.onChange}
-                placeholder="email1"
-                type="email"
-              />
-              <Input
-                name="email2"
-                value={email2}
-                onChange={this.onChange}
-                placeholder="email2"
-                type="email"
-              />
-              <Input
-                name="email3"
-                value={email3}
-                onChange={this.onChange}
-                placeholder="email3"
-                type="email"
-              />
-              <Input
-                name="email4"
-                value={email4}
-                onChange={this.onChange}
-                placeholder="email4"
-                type="email"
-              />
-              <Button className="all-btn" type="submit">Envoyer</Button>
-            </Form>
-          </Col>
-        </Row>
-
-      </Container>
+              </ul>
+              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
+              <p>{`Prix de votre Commande ${sendOrder.total}  €`}</p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

@@ -4,134 +4,106 @@ import { bindActionCreators } from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-  Nav, NavItem, NavLink, Card, Col, Row,
-  TabPane, TabContent, Form, FormGroup, Input, Button,
+  Nav, NavItem, NavLink, Card, Col, Row, TabPane,
+  TabContent, Form, FormGroup, Input,
 } from 'reactstrap';
 import classnames from 'classnames';
-import StripeCheckout from 'react-stripe-checkout';
 import { varServeur } from '../../constants';
 import { cardResto } from '../../actions/cardResto';
 import ChooseOnCards from '../result/ChooseOnCards';
-import MyMeal from '../result/MyMeal';
 import DisplayMenus from '../../components/result/DisplayMenus';
 import DisplaySubTitleMenu from '../../components/result/DisplaySubTitleMenu';
-import { handleChangeSpecial, getUserId } from '../../actions';
-import { notifError, notifSuccess, notifInfo } from '../../actions/notifications';
+import { handleChangeSpecial, getUserId, setActiveTab } from '../../actions';
 
-
-class OrderMenuParticipate extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: '1',
-    };
-    this.redirectConnect = this.redirectConnect.bind(this);
-  }
-
+class OrderMenuParticipage extends Component {
   componentDidMount() {
     const {
-      menuResto: { resto: { restoInfos } },
-      cardResto, log: { user },
+      restoInfos,
+      log: { user },
       getUserId,
     } = this.props;
     if (!_.isEmpty(restoInfos)) {
       cardResto(`${varServeur}cards/${restoInfos.id}`);
     }
     getUserId(user.id);
+    this.displayActiveTab();
   }
 
-  onToken = (token) => {
-    const {
-      notifInfo, notifSuccess, notifError, chooseByUser: { total },
-    } = this.props;
-    const amount = Math.round(total * 100);
-    fetch(`${varServeur}pay/${amount}`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(token),
-    }).then((res) => {
-      if (res.status === 200) {
-        notifSuccess(`Votre paiement de ${amount / 100} € a bien été effectué !`);
-        return res.json();
-      } if (res.status === 500) {
-        notifError('Erreur lors du paiement, veuillez réessayez');
-        return res.json();
-      } if (res.status === 403) {
-        notifInfo('Impossible de commander après 11h30, paiement refusé');
-        return '';
-      }
-    })
-      .then((idStripe) => {
-        if (idStripe !== '') this.handleClickPay(idStripe);
-      });
+  componentDidUpdate() {
+    this.displayActiveTab();
   }
 
-  toggle(tab) {
-    const { activeTab } = this.state;
+
+  displayTab = (activeTab) => {
+    const { setActiveTab } = this.props;
+    setActiveTab(activeTab);
+  }
+
+  toggle = (tab) => {
+    const { setActiveTab, activeTab } = this.props;
     if (activeTab !== tab) {
-      this.setState({
-        activeTab: tab,
-      });
+      setActiveTab(tab);
     }
   }
 
-  handleClickPay(idStripe) {
-    const {
-      history, codeParticip, notifError, sendOrder: { sendOrder },
-    } = this.props;
-    const newCommand = {
-      ...sendOrder,
-      idStripe,
-    };
-    if (!_.isEmpty(sendOrder)) {
-      fetch(`${varServeur}participate/${codeParticip}`, {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify(newCommand),
-      })
-        .then((res) => {
-          if (res.status === 500) {
-            notifError('Erreur serveur');
-          } if (res.status === 200) {
-            history.push('recapitulatif-participation');
-          }
-        });
-    }
-  }
-
-
-  redirectConnect() {
-    const { history, location: { pathname } } = this.props;
-    history.push({
-      pathname: '/connexion',
-      state: { from: { pathname } },
-    });
-  }
-
-  render() {
-    const { activeTab } = this.state;
+  displayActiveTab() {
     const {
       menus,
       cards,
-      error,
-      loading,
-      handleChangeSpecial,
-      log: { user },
+      location: { state },
+      activeTab,
     } = this.props;
+    const previousTab = state && state.activeTab;
 
-    let { chooseByUser: { total } } = this.props;
 
-    if (total % 1 !== 0) {
-      total = `${total}0`;
+    if (activeTab === '0') {
+      if (previousTab) {
+        this.displayTab(previousTab);
+      } else if (menus || cards) {
+        let listEnt = [];
+        let listMain = [];
+        let listDessert = [];
+        let listDrink = [];
+        let listForm = [];
+        let listMOD = [];
+        let tempActiveTab = '';
+
+        if (menus) {
+          listMOD = menus.filter(item => item.mod === 1);
+          listForm = menus.filter(item => item.mod === 0);
+        }
+
+        if (cards) {
+          listEnt = cards.filter(item => item.plat === 0);
+          listMain = cards.filter(item => item.plat === 1);
+          listDessert = cards.filter(item => item.plat === 2);
+          listDrink = cards.filter(item => item.plat === 3);
+        }
+
+        switch (true) {
+          case (listMOD.length > 0): tempActiveTab = '1'; break;
+          case (listForm.length > 0): tempActiveTab = '2'; break;
+          case (listEnt.length > 0): tempActiveTab = '3'; break;
+          case (listMain.length > 0): tempActiveTab = '4'; break;
+          case (listDessert.length > 0): tempActiveTab = '5'; break;
+          case (listDrink.length > 0): tempActiveTab = '6'; break;
+          default: tempActiveTab = '0';
+        }
+        this.displayTab(tempActiveTab);
+      }
     }
+  }
 
-    const totalSend = total * 100 / 100;
-
+  render() {
+    const {
+      cards,
+      menus,
+      error,
+      handleChangeSpecial,
+      loadingResto,
+      activeTab,
+      sendOrder: { sendOrder: { tableCommand } },
+    } = this.props;
     let listEnt = [];
     let listMain = [];
     let listDessert = [];
@@ -141,7 +113,7 @@ class OrderMenuParticipate extends Component {
     let listDayDessert = [];
     let listForm = [];
     let listMOD = [];
-    let userName = '';
+    let specialText = '';
 
     if (menus !== undefined) {
       listMOD = menus.filter(item => item.mod === 1);
@@ -158,85 +130,78 @@ class OrderMenuParticipate extends Component {
       listDayDessert = cards.filter(item => item.plat === 6);
     }
 
-    if (user !== undefined) {
-      userName = user.name;
+    if (tableCommand !== undefined) {
+      specialText = tableCommand.special;
     }
 
     if (error) {
       return <div>{`Error!'} ${error.message}`}</div>;
     }
 
-    if (loading) {
-      return <div>Loading...</div>;
+    if (loadingResto) {
+      return (
+        <div className="text-center">
+          <img src="/medias/eatstreet-loading.gif" alt="loading" />
+          <h2>Récupération des menus...</h2>
+        </div>
+      );
     }
 
     return (
       <div className="OrderMenu">
-        <p>Commande (2/2)</p>
-        <p>Faites votre choix</p>
-        <p>(uniquement pour vous)</p>
         <Nav tabs>
           <NavItem>
             {
-              listForm.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
-                { 'Formules' }
-              </NavLink>
+              listMOD.length > 0 && (
+                <NavLink className={classnames({ active: activeTab === '1' })} onClick={() => { this.toggle('1'); }}>
+                  {'Menu du jour'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
-              listMOD.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
-                { 'Menu du jour' }
-              </NavLink>
+              listForm.length > 0 && (
+                <NavLink className={classnames({ active: activeTab === '2' })} onClick={() => { this.toggle('2'); }}>
+                  {'Formules'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listEnt.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
-                { 'Entrées' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '3' })} onClick={() => { this.toggle('3'); }}>
+                  {'Entrées'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listMain.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
-                { 'Plats' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '4' })} onClick={() => { this.toggle('4'); }}>
+                  {'Plats'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDessert.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
-                { 'Desserts' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '5' })} onClick={() => { this.toggle('5'); }}>
+                  {'Desserts'}
+                </NavLink>
               )}
           </NavItem>
           <NavItem>
             {
               listDrink.length > 0 && (
-              <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
-                { 'Boissons' }
-              </NavLink>
+                <NavLink className={classnames({ active: activeTab === '6' })} onClick={() => { this.toggle('6'); }}>
+                  {'Boissons'}
+                </NavLink>
               )}
           </NavItem>
         </Nav>
         <Form>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
-              <Row>
-                <Col>
-                  <Card body>
-                    <DisplayMenus list={listForm} />
-                  </Card>
-                </Col>
-              </Row>
-            </TabPane>
-            <TabPane tabId="2">
               <Row>
                 <Col>
                   <Card body>
@@ -265,6 +230,16 @@ class OrderMenuParticipate extends Component {
                 </Col>
               </Row>
             </TabPane>
+            <TabPane tabId="2">
+              <Row>
+                <Col>
+                  <Card body>
+                    <DisplayMenus list={listForm} />
+                  </Card>
+                </Col>
+              </Row>
+            </TabPane>
+
             <TabPane tabId="3">
               <Row>
                 <Col>
@@ -310,37 +285,14 @@ class OrderMenuParticipate extends Component {
               </Row>
             </TabPane>
           </TabContent>
-          <MyMeal />
           <FormGroup>
             <p>Instructions spéciales</p>
-            <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+            {
+              !_.isEmpty(specialText)
+                ? <Input type="textarea" name="special" value={specialText} onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+                : <Input type="textarea" name="special" onChange={e => handleChangeSpecial(e.target.name, e.target.value)} />
+            }
           </FormGroup>
-          <Row>
-            <Col sm={2}>
-              { 'Total :' }
-            </Col>
-            <Col sm={4}>
-              {`${total} €`}
-            </Col>
-            <Col sm={6}>
-              {
-                (userName !== undefined)
-                  ? (
-                    <StripeCheckout
-                      token={this.onToken}
-                      stripeKey="pk_test_ZCwiDmFVZLz1lf8Me8mVthXP"
-                      amount={Math.round(totalSend * 100)}
-                      currency="EUR"
-                    >
-                      <Button type="button">
-                      Payer
-                      </Button>
-                    </StripeCheckout>
-                  )
-                  : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
-              }
-            </Col>
-          </Row>
         </Form>
       </div>
     );
@@ -349,17 +301,17 @@ class OrderMenuParticipate extends Component {
 
 function mstp(state) {
   return {
-    menuResto: state.menuResto,
-    menus: state.cardResto.menus,
-    cards: state.cardResto.cards,
-    error: state.cardResto.error,
-    loading: state.cardResto.loading,
+    restoInfos: state.menuResto.resto.restoInfos,
+    menus: state.menuResto.resto.menus,
+    cards: state.menuResto.resto.cards,
+    error: state.menuResto.error,
+    loading: state.menuResto.loading,
     chooseByUser: state.chooseByUser,
     sendOrder: state.sendOrder,
-    log: state.log,
-    codeParticip: state.codeParticip,
     getCode: state.getCode,
-
+    log: state.log,
+    loadingResto: state.cardResto.loading,
+    activeTab: state.setActiveTab.activeTab,
   };
 }
 
@@ -367,13 +319,11 @@ function mdtp(dispatch) {
   return bindActionCreators({
     cardResto,
     handleChangeSpecial,
-    notifError,
     getUserId,
-    notifSuccess,
-    notifInfo,
+    setActiveTab,
   },
   dispatch);
 }
 
 
-export default withRouter(connect(mstp, mdtp)(OrderMenuParticipate));
+export default withRouter(connect(mstp, mdtp)(OrderMenuParticipage));

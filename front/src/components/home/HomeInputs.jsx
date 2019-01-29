@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './HomeInputs.scss';
 import { Input, Button, Form } from 'reactstrap';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 import queryString from 'query-string';
-
-const imgSrc = 'medias/hero-image.png';
 
 class HomeInputs extends Component {
   constructor(props) {
@@ -33,34 +30,29 @@ class HomeInputs extends Component {
     const { keyword, personcapacity } = this.state;
     return (
       <div className="HomeInputs">
-        <Form onSubmit={() => this.pageResult()}>
-          <div
-            className="background"
-            style={{ backgroundImage: `url(${imgSrc})`, height: '34vw' }}
-          >
-            <h2 className="border-text banner-text">
-              Commandez et payez avant et soyez servis dès votre arrivée au
-              restaurant
-            </h2>
-
+        <div className="fog" />
+        <div className="message-home">
+        Commandez et soyez servis
+          <br />
+        Dès votre arrivée !
+        </div>
+        <Form className="form-inputs" onSubmit={() => this.pageResult()}>
+          <div className="search-inputs">
             <Input
-              className="search1"
-              placeholder="Restaurant, ville, adresse ou type de restaurant"
-              style={{ width: '25vw' }}
+              className="search"
+              placeholder="Restaurant, adresse"
               value={keyword}
               onChange={this.onChange}
               name="keyword"
             />
             <Input
-              className="search2"
+              className="search"
               type="select"
-              placeholder="Nombre de personnes"
-              style={{ width: '25vw' }}
               name="personcapacity"
               value={personcapacity}
               onChange={this.onChange}
             >
-              <option>Pour combien ?</option>
+              <option>Nombre de personnes</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -74,8 +66,9 @@ class HomeInputs extends Component {
               <option>11</option>
               <option>12</option>
             </Input>
-            <Button className="search-button btn-submit">Rechercher</Button>
-            <Button tag={Link} to="/participation" className="participe-button">Je participe</Button>
+          </div>
+          <div className="search-button">
+            <Button type="submit" className="all-btn">Rechercher</Button>
           </div>
         </Form>
       </div>

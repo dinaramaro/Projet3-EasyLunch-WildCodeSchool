@@ -1,11 +1,15 @@
 import React from 'react';
-import Explaination from './Explaination';
 import HomeInputs from './HomeInputs';
+import HomeParticipate from './HomeParticipate';
+import MediaMobApp from './MediaMobApp';
+import './Home.scss';
+
 
 const Home = () => (
-  <div>
+  <div className="Home">
     <HomeInputs />
-    <Explaination />
+    <HomeParticipate />
+    <MediaMobApp />
   </div>
 );
 

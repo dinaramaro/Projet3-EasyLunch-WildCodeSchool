@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Container, Form, FormGroup, Button,
 } from 'reactstrap';
-
 import ReactQuill from 'react-quill';
 import { varServeur } from '../../../constants';
 import './AdminConcept.scss';
@@ -73,7 +72,7 @@ class AdminConcept extends Component {
         <h1 className="title">Concept</h1>
         <Container>
           <Form>
-            <FormGroup>
+            <FormGroup className="form-concept">
               <br />
               <ReactQuill
                 theme="snow"

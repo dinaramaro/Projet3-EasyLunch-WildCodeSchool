@@ -1,0 +1,26 @@
+.OrderSummaryParticipate {
+
+  .code-partage {
+    background-color: #F9B522;
+    color: #f9f9f9;
+    text-align: center;
+    font-size : 2em;
+    font-weight: bold;
+    padding: 1.5% 1.5% 1.5% 1.5%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;  
+    margin-bottom: 1em;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      &::before {
+        content: "- ";
+        color: #F9B522;
+      }
+    }
+  }
+}

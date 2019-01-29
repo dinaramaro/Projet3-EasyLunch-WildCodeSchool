@@ -1,0 +1,10 @@
+.AdminContactRestaurant {
+  .form-contact-resto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .btn-contact-resto{
+      margin: 30px 30px;
+    }
+  }
+}

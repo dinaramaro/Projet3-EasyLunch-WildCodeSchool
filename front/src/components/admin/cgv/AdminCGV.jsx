@@ -69,7 +69,7 @@ class AdminCGV extends Component {
         <h1 className="title">CGV</h1>
         <Container>
           <Form>
-            <FormGroup>
+            <FormGroup className="form-cgv">
               <br />
               <ReactQuill
                 theme="snow"
@@ -82,7 +82,7 @@ class AdminCGV extends Component {
                 onChange={this.changeCGV}
                 className="input-CGV"
               />
-              <Button onClick={this.updateCGV} color="warning" className="btn-submit all-btn btn-CGV">ENVOYER</Button>
+              <Button onClick={this.updateCGV} className="btn-submit all-btn btn-CGV">ENVOYER</Button>
             </FormGroup>
           </Form>
         </Container>

@@ -1,8 +1,11 @@
 .Restaurants {
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
 
-  .padding {
-    padding-left : 0px;
-  }
   .search1 {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -13,17 +16,31 @@
   .search2 {
     margin-top: 50px;
     margin-bottom: 50px;
-    width: 12vw;
+    width: 15vw;
+  }
+
+  .titleCard {
+    color: #F9B522;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .submit-button {
+    margin-left: 30px;
     margin-top: 3em;
   }
 
   .card-restaurant {
-    width: 250px;
+    width: 275px;
+    height: 425px;
+    border: none;
+    box-shadow: 2px 2px 5px grey;
     margin: 10px;
-    height: 350px;
+
+    .icon-pers {
+      margin-right: 10px;
+    }
   }
   .showMenu {
     font-size: 20px;
@@ -32,9 +49,4 @@
     border-radius: 7px;
     outline: none;
   }
-
-  @media (max-width: 576px) {
-    display: none;
-  } 
-  
 }

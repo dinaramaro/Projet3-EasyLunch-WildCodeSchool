@@ -1,7 +1,13 @@
-.AdminPoli{
-  
-  .btn-secondary{
-    background-image: radial-gradient(#F1CD00, #FEA400);
-    border: none;
+.AdminPolitic{
+
+  .form-politic{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .btn-politic{
+      margin: 30px 30px;
+    }
   }
+  
 }

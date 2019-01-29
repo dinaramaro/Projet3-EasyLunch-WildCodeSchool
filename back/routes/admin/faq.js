@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   connection.query('SELECT * FROM admin_faq', (err, results) => {
     if (err) {
-      res.status(500).send('Erreur');
+      res.sendStatus(500);
     } else {
       res.json(results);
     }
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
   const idQuestion = req.params.id;
   connection.query('SELECT * FROM admin_faq WHERE id = ?', [idQuestion], (err, results) => {
     if (err) {
-      res.status(500).send('Erreur');
+      res.sendStatus(500);
     } else {
       res.json(results);
     }
