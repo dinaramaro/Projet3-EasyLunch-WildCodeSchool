@@ -139,7 +139,7 @@ class OrderSummary extends Component {
                 {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
               </p>
               <p>Invite tes collègues à te rejoindre en utilisant le code de partage.</p>
-              <h1 className="code-partage">Code de partage : <br /> <strong>{code}</strong></h1>
+              <h1 className="code-partage">LunchCode: <br /> <strong>{code}</strong></h1>
               <h3>Entrez ici les emails des personnes avec qui vous souhaitez déjeuner</h3>
               <Form onSubmit={this.sendMail}>
                 <Input

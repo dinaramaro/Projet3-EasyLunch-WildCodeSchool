@@ -1,5 +1,4 @@
-.OrderSummary {
-  margin-bottom: 20px;
+.OrderSummaryParticipate {
 
   .code-partage {
     background-color: #F9B522;
@@ -13,19 +12,6 @@
     margin-bottom: 1em;
   }
 
-  .mail-summary {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .recap-command {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-
   ul {
     list-style: none;
     padding-left: 0;
@@ -36,12 +22,5 @@
         color: #F9B522;
       }
     }
-  }
-
-  .space-card {
-    background-color: white;
-  }
-  .mail-input {
-    margin: 10px 0;
   }
 }
