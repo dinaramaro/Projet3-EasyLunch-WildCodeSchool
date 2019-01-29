@@ -1,5 +1,14 @@
 .OrderSummaryParticipate {
-
+  .general{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 40px;
+  }
+  .info-general{
+    background-color: white;
+    margin-bottom: 30px;
+  }
   .code-partage {
     background-color: #F9B522;
     color: #f9f9f9;
@@ -10,6 +19,10 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;  
     margin-bottom: 1em;
+  }
+
+  .snoopy{
+    text-align: center;
   }
 
   ul {

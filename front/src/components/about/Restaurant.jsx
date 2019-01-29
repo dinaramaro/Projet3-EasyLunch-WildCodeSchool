@@ -83,6 +83,7 @@ class Restaurant extends Component {
               <FormGroup>
                 <Label className="email">VOTRE E-MAIL</Label>
                 <Input
+                  className="input-shadow"
                   required
                   type="email"
                   name="email"
@@ -93,6 +94,7 @@ class Restaurant extends Component {
               <FormGroup>
                 <Label>SUJET</Label>
                 <Input
+                  className="input-shadow"
                   required
                   type="text"
                   name="subject"
@@ -104,6 +106,7 @@ class Restaurant extends Component {
                 <Label>VOTRE MESSAGE</Label>
                 <br />
                 <Input
+                  className="input-shadow"
                   required
                   type="textarea"
                   name="text"

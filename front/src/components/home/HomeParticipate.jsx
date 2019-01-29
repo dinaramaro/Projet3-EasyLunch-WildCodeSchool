@@ -78,6 +78,7 @@ class Participate extends Component {
             placeholder=" LunchCode"
             value={codeParticipation}
             onChange={this.onChange}
+            className="input-shadow"
           />
           <Button type="submit" className="btn-participate"> Je participe </Button>
         </Form>

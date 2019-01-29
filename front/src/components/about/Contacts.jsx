@@ -89,6 +89,7 @@ class Contact extends Component {
               <FormGroup>
                 <Label className="email">VOTRE E-MAIL</Label>
                 <Input
+                  className="input-shadow"
                   required
                   type="email"
                   name="email"
@@ -99,12 +100,12 @@ class Contact extends Component {
               </FormGroup>
               <FormGroup>
                 <Label>SUJET</Label>
-                <Input required type="text" name="subject" placeholder="SUJET" onChange={this.onChangeInput} value={subject} />
+                <Input required className="input-shadow" type="text" name="subject" placeholder="SUJET" onChange={this.onChangeInput} value={subject} />
               </FormGroup>
               <FormGroup>
                 <Label>VOTRE MESSAGE</Label>
                 <br />
-                <Input className="area-input" required type="textarea" name="text" placeholder="VOTRE MESSAGE" onChange={this.onChangeInput} value={text} />
+                <Input className="area-input input-shadow" required type="textarea" name="text" placeholder="VOTRE MESSAGE" onChange={this.onChangeInput} value={text} />
               </FormGroup>
               <Button className="all-btn" type="submit">
                 ENVOYER

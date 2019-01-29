@@ -43,21 +43,19 @@ class OrderSummary extends Component {
         <h1 className="title">{`Merci ${user.name} !`}</h1>
         <Container>
           <Row>
-            <Col sm={3}>
+            <Col className="info-general" sm={12} md={6} lg={3}>
               <RestoInfos />
               <GeneralInformations />
             </Col>
-            <Col sm={6}>
+            <Col sm={12} md={12} lg={{ offset: 1, size: 4 }}>
               <p>
                 {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
               </p>
               <h1 className="code-partage">LunchCode : <br /> <strong>{codeParticip}</strong></h1>
             </Col>
-            <Col sm={3}>
-              <h3 className="title-card"><strong>Récapitulatif</strong></h3>
-              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
-              <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
-              <h3 className="title-card"><strong>Détails</strong></h3>
+            <Col className="snoopy" sm={12} md={12} lg={{ offset: 1, size: 3 }}>
+              <h3 className="title-card"><strong>Récapitulatif de votre commande</strong></h3>
+              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : ''}</p>
               <ul>
                 {tabs.map((item) => {
                   if (item.Plat !== undefined) {
@@ -79,6 +77,7 @@ class OrderSummary extends Component {
                 })
                 }
               </ul>
+              <p>{`Prix de votre commande: ${sendOrder.total}€`}</p>
             </Col>
           </Row>
         </Container>

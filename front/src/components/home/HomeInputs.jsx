@@ -39,14 +39,15 @@ class HomeInputs extends Component {
         <Form className="form-inputs" onSubmit={() => this.pageResult()}>
           <div className="search-inputs">
             <Input
-              className="search"
+              className="search input-shadow"
               placeholder="Restaurant, adresse"
               value={keyword}
               onChange={this.onChange}
               name="keyword"
+              
             />
             <Input
-              className="search"
+              className="search input-shadow"
               type="select"
               name="personcapacity"
               value={personcapacity}
