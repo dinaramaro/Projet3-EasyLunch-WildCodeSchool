@@ -61,7 +61,7 @@ class NavBar extends Component {
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem tag={Link} to="/a-propos/restaurateur">
-                Vous êtes restaurateur?
+                Vous êtes restaurateur ?
               </NavItem>
               <UncontrolledDropdown setActiveFromChild>
                 <DropdownToggle tag="a" className="dropdown-toggle nav-link infos-toggle" caret>

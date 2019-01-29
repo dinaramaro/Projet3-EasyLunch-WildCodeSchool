@@ -4,8 +4,6 @@ import { Input, Button, Form } from 'reactstrap';
 import { withRouter } from 'react-router';
 import queryString from 'query-string';
 
-const imgSrc = 'medias/hero-image.png';
-
 class HomeInputs extends Component {
   constructor(props) {
     super(props);
@@ -32,31 +30,24 @@ class HomeInputs extends Component {
     const { keyword, personcapacity } = this.state;
     return (
       <div className="HomeInputs">
-        <Form className="FormInputs" onSubmit={() => this.pageResult()}>
-          <div
-            className="background"
-            style={{ backgroundImage: `url(${imgSrc})`, height: '90vh' }}
-          >
-            <div className="fog" />
-            <h2 className="border-text banner-text">
-              Commandez et payez avant
-            </h2>
-            <h2 className="line2 border-text banner-text">
-              et soyez servis dès votre arrivée au restaurant
-            </h2>
-
+        <div className="fog" />
+        <div className="message-home">
+        Commandez et soyez servis
+          <br />
+        Dès votre arrivée !
+        </div>
+        <Form className="form-inputs" onSubmit={() => this.pageResult()}>
+          <div className="search-inputs">
             <Input
-              className="search1"
+              className="search"
               placeholder="Restaurant, adresse"
-              style={{ width: '25vw' }}
               value={keyword}
               onChange={this.onChange}
               name="keyword"
             />
             <Input
-              className="search2"
+              className="search"
               type="select"
-              style={{ width: '25vw' }}
               name="personcapacity"
               value={personcapacity}
               onChange={this.onChange}
@@ -75,13 +66,9 @@ class HomeInputs extends Component {
               <option>11</option>
               <option>12</option>
             </Input>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
+          </div>
+          <div className="search-button">
             <Button type="submit" className="all-btn">Rechercher</Button>
-
           </div>
         </Form>
       </div>

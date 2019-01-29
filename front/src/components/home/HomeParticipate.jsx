@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {
   Container,
-  Row,
   Input,
   Button,
   Form,
-  Col,
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -71,27 +69,19 @@ class Participate extends Component {
       codeParticipation,
     } = this.state;
     return (
-      <div className="HomeParticipe">
-        <Container fluid>
-          <Row className="backgroundCard">
-            <div className="titlePart"> Entrez ici votre LunchCode</div>
-            <Form onSubmit={this.getIdRestau} className="inputCard">
-              <Col>
-                <Input
-                  type="text"
-                  name="codeParticipation"
-                  placeholder=" LunchCode"
-                  value={codeParticipation}
-                  onChange={this.onChange}
-                />
-              </Col>
-              <Col className="inputCard">
-                <Button type="submit" className="all-btn"> Je participe </Button>
-              </Col>
-            </Form>
-          </Row>
-        </Container>
-      </div>
+      <Container fluid className="HomeParticipe">
+        <Form onSubmit={this.getIdRestau} className="form-participate">
+          <div className="title-participate"><strong>Entrez ici votre LunchCode</strong></div>
+          <Input
+            type="text"
+            name="codeParticipation"
+            placeholder=" LunchCode"
+            value={codeParticipation}
+            onChange={this.onChange}
+          />
+          <Button type="submit" className="btn-participate"> Je participe </Button>
+        </Form>
+      </Container>
     );
   }
 }

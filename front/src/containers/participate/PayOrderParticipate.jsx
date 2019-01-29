@@ -21,13 +21,6 @@ class PayOrderParticipate extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    const { history, isSuccess } = this.props;
-    if (!prevProps.isSuccess && isSuccess) {
-      history.push('/recapitulatif-participation');
-    }
-  }
-
   onToken = (token) => {
     const {
       chooseByUser: { total }, stripePaymentParticipate,
@@ -63,13 +56,7 @@ class PayOrderParticipate extends Component {
     return (
       <div className="PayOrderParticipate">
         <Row>
-          <Col sm={2}>
-            {'Total :'}
-          </Col>
-          <Col sm={4}>
-            {`${total} €`}
-          </Col>
-          <Col sm={6}>
+          <Col sm={12}>
             {
               (!_.isEmpty(user))
                 ? (
@@ -79,12 +66,12 @@ class PayOrderParticipate extends Component {
                     amount={Math.round(totalSend * 100)}
                     currency="EUR"
                   >
-                    <Button type="button">
-                      Payer
+                    <Button className="all-btn" type="button">
+                      Payer {totalSend} €
                     </Button>
                   </StripeCheckout>
                 )
-                : <Button onClick={this.redirectConnect}>Se connecter avant de payer</Button>
+                : <Button className="all-btn" onClick={this.redirectConnect}>Se connecter avant de payer</Button>
             }
           </Col>
         </Row>
@@ -99,7 +86,7 @@ function mstp(state) {
     sendOrder: state.sendOrder,
     log: state.log,
     codeParticip: state.codeParticip,
-    isSuccess: state.stripeLoading.success,
+    isLoading: state.stripeLoading.loading,
     activeTab: state.setActiveTab.activeTab,
   };
 }

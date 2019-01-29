@@ -1,13 +1,10 @@
-.AdminPolitic{
-
-  .form-politic{
+.AdminContactRestaurant {
+  .form-contact-resto {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    .btn-politic{
+    .btn-contact-resto{
       margin: 30px 30px;
     }
   }
-  
 }

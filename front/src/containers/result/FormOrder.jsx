@@ -64,8 +64,8 @@ class FormOrder extends Component {
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="nb" sm={6}>Nombre de personnes</Label>
-            <Col sm={6}>
+            <Label for="nb" sm={2}><i className="fa fa-users" /></Label>
+            <Col sm={10}>
               <Input
                 className={clsNbUser}
                 type="select"

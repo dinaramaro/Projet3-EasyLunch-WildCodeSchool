@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { initState } from '../../actions';
 import GeneralInformations from '../result/GeneralInformations';
 import RestoInfos from '../result/RestoInfos';
+import './OrderSummaryParticipate.scss';
 
 class OrderSummary extends Component {
   constructor(props) {
@@ -32,52 +33,56 @@ class OrderSummary extends Component {
     if (tabs.length === 0) {
       return (
         <div>
-          <Link to="/"><Button>VEUILLEZ CHOISIR VOTRE MENU</Button></Link>
+          <Button className="all-btn"><Link className="text-decoration-none" to="/">Retour à la page d'accueil</Link></Button>
         </div>
       );
     }
 
     return (
-      <Container>
-        <Row>
-          <Col sm={8}>
-            <RestoInfos />
-            <GeneralInformations />
-            <h2>Récapitulatif de votre commande</h2>
-            <ul>
-              {tabs.map((item) => {
-                if (item.Plat !== undefined) {
+      <div className="OrderSummaryParticipate">
+        <h1 className="title">{`Merci ${user.name} !`}</h1>
+        <Container>
+          <Row>
+            <Col sm={3}>
+              <RestoInfos />
+              <GeneralInformations />
+            </Col>
+            <Col sm={6}>
+              <p>
+                {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
+              </p>
+              <h1 className="code-partage">LunchCode : <br /> <strong>{codeParticip}</strong></h1>
+            </Col>
+            <Col sm={3}>
+              <h3 className="title-card"><strong>Récapitulatif</strong></h3>
+              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
+              <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
+              <h3 className="title-card"><strong>Détails</strong></h3>
+              <ul>
+                {tabs.map((item) => {
+                  if (item.Plat !== undefined) {
+                    return (
+                      <li>{item.Plat}</li>
+                    );
+                  } if (item.Dessert !== undefined) {
+                    return (
+                      <li>{item.Dessert}</li>
+                    );
+                  } if (item.Boisson !== undefined) {
+                    return (
+                      <li>{item.Boisson}</li>
+                    );
+                  }
                   return (
-                    <li>{item.Plat}</li>
+                    <li>{item[item.text]}</li>
                   );
-                } if (item.Dessert !== undefined) {
-                  return (
-                    <li>{item.Dessert}</li>
-                  );
-                } if (item.Boisson !== undefined) {
-                  return (
-                    <li>{item.Boisson}</li>
-                  );
+                })
                 }
-                return (
-                  <li>{item[item.text]}</li>
-                );
-              })
-              }
-            </ul>
-            <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
-            <p>{`Prix total de votre commande : ${sendOrder.total}  €`}</p>
-          </Col>
-          <Col sm={4}>
-            <p>{`Merci ${user.name} !`}</p>
-            <p>
-              {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
-            </p>
-            <p>{`Code de partage : ${codeParticip}`}</p>
-          </Col>
-        </Row>
-
-      </Container>
+              </ul>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
