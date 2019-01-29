@@ -66,7 +66,7 @@ class AdminPolitic extends Component {
         <h1 className="title">Politique de confidentialité</h1>
         <Container>
           <Form>
-            <FormGroup>
+            <FormGroup className="form-politic">
               <br />
               <ReactQuill
                 theme="snow"
@@ -79,7 +79,7 @@ class AdminPolitic extends Component {
                 onChange={this.changePolitic}
                 className="input-politic"
               />
-              <Button onClick={this.updatePolitic} color="warning" className="btn-submit all-btn btn-politic">ENVOYER</Button>
+              <Button onClick={this.updatePolitic} className="btn-submit all-btn btn-politic">ENVOYER</Button>
             </FormGroup>
           </Form>
         </Container>

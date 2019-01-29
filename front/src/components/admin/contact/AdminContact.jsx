@@ -66,12 +66,12 @@ class AdminContact extends Component {
     ];
 
     return (
-      <div className="Contact">
+      <div className="AdminContact">
         <AdminMenu />
         <h1 className="title">Nous contacter</h1>
         <Container>
           <Form>
-            <FormGroup>
+            <FormGroup className="form-contact">
               <ReactQuill
                 theme="snow"
                 type="textarea"
@@ -82,7 +82,7 @@ class AdminContact extends Component {
                 formats={formats}
                 onChange={this.changeContact}
               />
-              <Button onClick={this.updateContact} color="warning" className="btn-submit all-btn">ENVOYER</Button>
+              <Button onClick={this.updateContact} className="btn-submit all-btn">ENVOYER</Button>
             </FormGroup>
           </Form>
         </Container>
