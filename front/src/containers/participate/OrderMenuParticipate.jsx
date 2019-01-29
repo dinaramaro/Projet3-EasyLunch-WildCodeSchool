@@ -149,8 +149,6 @@ class OrderMenuParticipage extends Component {
 
     return (
       <div className="OrderMenu">
-        <p>Faites votre choix</p>
-        <p>(uniquement pour vous)</p>
         <Nav tabs>
           <NavItem>
             {

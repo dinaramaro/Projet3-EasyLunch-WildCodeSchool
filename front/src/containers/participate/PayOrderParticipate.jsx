@@ -67,7 +67,7 @@ class PayOrderParticipate extends Component {
                     currency="EUR"
                   >
                     <Button className="all-btn" type="button">
-                      Payer {totalSend}
+                      Payer {totalSend} €
                     </Button>
                   </StripeCheckout>
                 )
