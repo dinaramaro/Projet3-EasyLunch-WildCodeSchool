@@ -128,13 +128,13 @@ class OrderSummary extends Component {
     return (
       <div>
         <h1 className="title">{`Merci ${user.name}`}</h1>
-        <Container className="OrderSummary">
+        <Container fluid className="OrderSummary">
           <Row>
             <Col className="space-card" sm={12} md={6} lg={3}>
               <RestoInfos />
               <GeneralInformations />
             </Col>
-            <Col className="mail-summary" sm={12} md={12} lg={5}>
+            <Col className="mail-summary" sm={12} md={12} lg={{ offset: 1, size: 4 }}>
               <p>
                 {`Ta commande a bien été prise en compte et transmise au restaurant ${restoInfos.name}`}
               </p>
@@ -143,7 +143,7 @@ class OrderSummary extends Component {
               <h3>Entrez ici les emails des personnes avec qui vous souhaitez déjeuner</h3>
               <Form onSubmit={this.sendMail}>
                 <Input
-                  className="mail-input"
+                  className="mail-input input-shadow"
                   name="email1"
                   value={email1}
                   onChange={this.onChange}
@@ -151,7 +151,7 @@ class OrderSummary extends Component {
                   type="email"
                 />
                 <Input
-                  className="mail-input"
+                  className="mail-input input-shadow"
                   name="email2"
                   value={email2}
                   onChange={this.onChange}
@@ -159,7 +159,7 @@ class OrderSummary extends Component {
                   type="email"
                 />
                 <Input
-                  className="mail-input"
+                  className="mail-input input-shadow"
                   name="email3"
                   value={email3}
                   onChange={this.onChange}
@@ -167,7 +167,7 @@ class OrderSummary extends Component {
                   type="email"
                 />
                 <Input
-                  className="mail-input"
+                  className="mail-input input-shadow"
                   name="email4"
                   value={email4}
                   onChange={this.onChange}
@@ -177,7 +177,7 @@ class OrderSummary extends Component {
                 <Button className="all-btn" type="submit">Envoyer</Button>
               </Form>
             </Col>
-            <Col className="recap-command"sm={12} md={12} lg={4}>
+            <Col className="recap-command" sm={12} md={12} lg={{ offset: 1, size: 3 }}>
               <h2 className="title-card">Récapitulatif de votre commande</h2>
               <ul>
                 {tabs.map((item) => {
@@ -200,7 +200,7 @@ class OrderSummary extends Component {
                 })
                 }
               </ul>
-              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : 'Instructions spéciales : rien à signaler'}</p>
+              <p>{tableCommand.special !== undefined ? `Instructions spéciales : ${tableCommand.special}` : ''}</p>
               <p>{`Prix de votre Commande ${sendOrder.total}  €`}</p>
             </Col>
           </Row>

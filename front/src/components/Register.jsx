@@ -76,6 +76,7 @@ class Register extends Component {
               value={name}
               onChange={this.onChangeInput}
               required
+              className="input-shadow"
             />
             <Input
               placeholder="Email"
@@ -84,6 +85,7 @@ class Register extends Component {
               value={mail}
               onChange={this.onChangeInput}
               required
+              className="input-shadow"
             />
             <Input
               placeholder="Portable"
@@ -92,6 +94,7 @@ class Register extends Component {
               value={phone}
               onChange={this.onChangeInput}
               required
+              className="input-shadow"
             />
             <Input
               placeholder="Mot de passe"
@@ -101,6 +104,7 @@ class Register extends Component {
               onChange={this.onChangeInput}
               minLength="8"
               required
+              className="input-shadow"
             />
             <p className="give">Vos données ne seront utilisées que pour le besoin des restaurateurs.</p>
             <Button className="all-btn" type="submit"> Inscription </Button>

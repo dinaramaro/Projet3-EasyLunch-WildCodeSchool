@@ -10,7 +10,7 @@ const RestoPub = () => (
   <div className="RestoPub">
     <div className="fog" />
     <Container fluid>
-      <div className="posiresto">
+      <div className="posi-resto">
         <p>Vous êtes restaurateur ?</p>
         <Button className=" all-btn button-resto" tag={Link} to="/a-propos/restaurateur">Plus d'Informations</Button>
       </div>

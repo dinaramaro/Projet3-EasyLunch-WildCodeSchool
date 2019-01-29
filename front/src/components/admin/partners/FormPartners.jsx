@@ -47,6 +47,7 @@ class FormPartner extends Component {
           <Row>
             <Col lg="4" md="4" xs="4">
               <Input
+                className="input-shadow"
                 type="name"
                 name="name"
                 value={name}
@@ -56,6 +57,7 @@ class FormPartner extends Component {
             </Col>
             <Col lg="4" md="4" xs="4">
               <Input
+                className="input-shadow"
                 type="url"
                 name="picture"
                 onChange={this.handleChange}
@@ -65,6 +67,7 @@ class FormPartner extends Component {
             </Col>
             <Col lg="4" md="4" xs="4">
               <Input
+                className="input-shadow"
                 type="url"
                 name="link"
                 onChange={this.handleChange}
