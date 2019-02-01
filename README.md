@@ -387,8 +387,8 @@ mot de passe crypté par bcrypt
   
 
 ## Arborescence de l’application
-
 **Front src/**
+```
 ├── App.jsx
 ├── App.scss
 ├── CheckToken.jsx
@@ -409,8 +409,10 @@ mot de passe crypté par bcrypt
 └── serviceWorker.js
 
 directory: 5 file: 13 
+```
 
 **Back**
+```
 ├── app.js
 ├── bin
 ├── build
@@ -421,8 +423,11 @@ directory: 5 file: 13
 └── routes
 
 directory: 4 file: 4 
+```
 
 **Back routes/** 
+```
+
 ├── admin
 ├── cards.js
 ├── command
@@ -436,6 +441,8 @@ directory: 4 file: 4
 └── search.js
 
 directory: 5 file: 6 
+```
+
 
   
 
@@ -456,3 +463,7 @@ Ce site a été réalisé par:
 - Florian Allainmat,
 
 - José Pérez-Oyarzun
+
+ 
+
+
